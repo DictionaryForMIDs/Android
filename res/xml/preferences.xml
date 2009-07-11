@@ -1,0 +1,14 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceCategory android:title="Search options">
+		<ListPreference android:key="searchMode" android:title="Search mode" android:entries="@array/search_mode" android:entryValues="@array/search_mode_values"></ListPreference><EditTextPreference android:title="Max. results"
+			android:key="maxResults" android:defaultValue="100" android:numeric="decimal" />
+	<EditTextPreference android:title="Timeout for searching" android:key="searchTimeout" android:numeric="decimal" android:defaultValue="30"></EditTextPreference>
+
+</PreferenceCategory>
+	<PreferenceCategory android:title="Display options">
+		
+	<ListPreference android:key="resultFontSize" android:title="Font size for results" android:entries="@array/font_sizes" android:entryValues="@array/font_size_values"></ListPreference>
+<CheckBoxPreference android:defaultValue="false" android:key="ignoreDictionaryStyles" android:title="Ignore font styles"></CheckBoxPreference>
+</PreferenceCategory>
+
+</PreferenceScreen>

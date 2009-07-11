@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout android:id="@+id/LinearLayout01" android:layout_width="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_height="wrap_content">
+
+<include android:layout_width="wrap_content" android:layout_height="wrap_content" layout="@layout/translation_part" android:id="@+id/FromLanguageText"></include><LinearLayout android:layout_height="wrap_content" android:id="@+id/ToLanguageRows" android:layout_width="fill_parent" android:orientation="vertical" android:paddingLeft="10sp"></LinearLayout>
+
+
+
+</LinearLayout>
