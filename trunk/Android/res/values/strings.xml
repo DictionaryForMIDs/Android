@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hello">Hello World, DictionaryForMIDs!</string>
+	<string name="app_name">DictionaryForMIDs</string>
+	<string name="no_files">No files found.</string>
+	<string name="to_top">[root]</string>
+	<string name="to_upper_level">[parent]</string>
+	<string name="title_please_wait">Please wait</string>
+	<string name="msg_searching">Searching...</string>
+	<string name="copy_all">Copy all</string>
+	<string name="copy_word">Copy: %1$s</string>
+<string name="not_found">not found</string>
+<string name="no_included_dictionaries">No included dictionaries found.</string>
+<string name="no_recent_dictionaries">No recently loaded dictionaries found.</string>
+<string name="results_found_maximum">More than %1$d (maximum) results found.</string>
+<string name="results_found_cancel">%1$d result(s) found before canceling.</string>
+<string name="results_found_timeout">%1$d result(s) found before timeout.</string>
+<string name="results_found">%1$d results found.</string>
+<string name="results_found_one">1 result found.</string>
+<string name="no_results_found">Sorry, no results found.</string>
+<string-array name="font_sizes">
+	<item>10sp</item>
+	<item>11sp</item>
+	<item>12sp</item>
+	<item>13sp</item>
+	<item>14sp</item>
+	<item>15sp</item>
+	<item>16sp</item>
+	<item>17sp</item>
+	<item>18sp</item>
+	<item>19sp</item>
+	<item>20sp</item>
+	<item>21sp</item>
+	<item>22sp</item>
+	<item>23sp</item>
+	<item>24sp</item>
+	<item>25sp</item>
+	<item>26sp</item>
+</string-array>
+<string name="title_translation_error">Translation error occurred.</string>
+<string name="msg_translation_error">Details:\n\n%1$s</string>
+<string name="msg_translation_cancelled">Translation canceled.</string>
+<string name="menu_dictionary">Dictionary</string>
+<string name="menu_preferences">Preferences</string>
+<string name="menu_about">About</string>
+<string name="menu_help">Help</string>
+<string name="menu_download_dictionaries">Download...</string>
+<string name="menu_clear_recent_dictionary_list">Clear recent...</string><string name="msg_enter_word_first">Please enter a word first.</string>
+<string name="msg_load_dictionary_first">Please load a dictionary first.</string>
+<string name="msg_reload_dictionary">Please reload the dictionary.</string>
+<string name="msg_exception">Exception occurred:\n%1$s</string>
+<string name="button_ok">OK</string>
+<string name="button_cancel">Cancel</string>
+<string name="button_do_not_show_again">Do not show again</string>
+<string name="msg_download_dictionaries">Downloading a dictionary involves four steps:\n\n1.Choose and download a dictionary on the following website.\n\n2.Extract the zip-file to a directory on your SD-card. You can use a file manager like Astro from the Market.\n\n3.Optional: Extract the included jar-archive onto your SD-card for faster look-ups.\n\n4.Select the dictionary in the previous dialog.</string>
+<string name="msg_clear_recent_dictionaries_list">Clear list of recent dictionaries?</string>
+<string name="button_load_dictionary_from_current_directory">Load dictionary from current directory</string>
+<string name="msg_dictionary_error">Dictionary error</string>
+<string name="msg_dictionary_not_found">Dictionary was not found.\n\nPlease select a dictionary using the following dialog.</string>
+<string name="msg_dictionary_load_error">Error while loading dictionary.</string>
+<string name="msg_internal_dictionary_load_error">Error while loading internal dictionaries.\n\n%1$s</string>
+<string name="title_current_path">&gt; %1$s</string>
+<string name="msg_no_dictionary">Selected item does not look like a dictionary.</string>
+<string name="title_load_dictionary">Load Dictionary...</string>
+<string name="title_load_dictionary_first">Please load dictionary first.</string>
+<string name="title_about_heading">Java application DictonaryForMIDs</string>
+<string name="title_about_copyright_owner">Copyright by Gert Nuber (dict@kugihan.de), Achim Weimert and other contributors.</string>
+<string name="attribute_url">http://dictionarymid.sourceforge.net/</string>
+<string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+<string name="title_version">Version: %1$s</string>
+<string name="title_about_copyright">GNU Public License applies for DictionaryForMIDs Java application. See file COPYING.</string>
+<string name="title_about_dictionary">Dictionary:</string>
+<string name="title_information">Info</string>
+<string name="title_welcome">Welcome</string>
+<string name="title_seconds">%1$d sec</string>
+<string name="msg_first_run">Looks like you are running this program for the first time! Please select a dictionary using the following screen.</string>
+<string name="msg_slow_archive_loading">Translation was canceled after a timeout.\nYou could speed up translation by extracting the archived dictionary to a folder on your SD-card and choosing this folder as dictionary. Alternatively you can increase the timeout in the preferences dialog.</string>
+<string name="msg_parsing_error">Error while parsing resource.\n\n%1$s</string>
+<string-array name="search_mode"><item>Standard</item>
+	<item>Words matching search term</item>
+	<item>Words starting with search term</item>
+	<item>Words including search term</item>
+</string-array>
+<string-array name="search_mode_values">
+	<item>1</item>
+	<item>2</item>
+	<item>3</item>
+	<item>4</item>
+</string-array>
+<string name="title_help">DictionaryForMIDs Help</string>
+<string name="desc_help">Use wildcard characters to refine your search:\n%1$c matches any series of characters\n%2$c matches any single character\n\nTo control sub-expression search:\n%3$c as the first character produces results starting with your search-entry\n%4$c after your entry produces results ending with it.\n\nPlease note: Adding wildcard characters overrides search mode preferences.</string>
+<string name="desc_see_website">See website for more information:\n%1$s</string>
+<string name="tab_load_recent">Recent</string>
+<string name="tab_load_from_file">From file</string>
+<string name="tab_load_included">Included</string>
+<string name="title_recent_dictionary">%3$s\n   %1$s: %2$s</string>
+<string name="title_remove_from_list">Remove from list</string>
+</resources>

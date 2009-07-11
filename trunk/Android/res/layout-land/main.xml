@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	
+
+	
+
+	<LinearLayout android:layout_height="wrap_content" android:animationCache="false" android:layout_width="fill_parent" android:layout_weight="1" android:id="@+id/HeadingLayout" android:orientation="horizontal" android:layout_marginTop="10sp"><ImageView android:id="@+id/ImageView01" android:layout_height="wrap_content" android:src="@drawable/logo" android:layout_weight="1" android:layout_width="wrap_content" android:scaleType="center"></ImageView><TextView android:id="@+id/TextView01" android:textSize="25sp" android:gravity="center" android:layout_height="wrap_content" android:text="DictionaryForMIDs" android:layout_gravity="center" android:layout_margin="10sp" android:layout_weight="4" android:layout_width="wrap_content"></TextView>
+</LinearLayout><LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/InputLayout"><EditText android:layout_height="wrap_content" android:id="@+id/TranslationInput" android:minWidth="50px" android:layout_weight="1" android:layout_width="wrap_content" android:hint="Enter word to translate" android:maxLines="1" android:selectAllOnFocus="true" android:imeOptions="actionDone"></EditText><ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_btn_search" android:id="@+id/StartTranslation" android:paddingLeft="30sp" android:paddingRight="30sp"></ImageButton>
+
+
+
+</LinearLayout><LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/selectLanguagesLayout"><Spinner android:layout_width="wrap_content" android:id="@+id/selectLanguages" android:layout_weight="1" android:layout_height="fill_parent"></Spinner><ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/swapLanguages" android:src="@drawable/ic_menu_revert" android:paddingLeft="30sp" android:paddingRight="30sp"></ImageButton>
+
+
+
+</LinearLayout>
+
+<TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/output" android:textSize="15sp"/>
+
+
+
+
+
+
+<ListView android:id="@+id/translationsListView" android:layout_width="fill_parent" android:layout_weight="1" android:layout_height="wrap_content"></ListView>
+
+
+
+
+
+</LinearLayout>

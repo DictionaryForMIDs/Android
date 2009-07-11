@@ -1,0 +1,4 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"><item android:id="@+id/itemCopyAll" android:title="@string/copy_all"></item>
+<item android:id="@+id/itemCopyFromWord" android:title="@string/copy_word"></item>
+<item android:id="@+id/itemCopyToWord" android:title="@string/copy_word"></item>
+</menu>
