@@ -25,8 +25,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import de.kugihan.dictionaryformids.hmi_android.Preferences.DictionaryType;
 import de.kugihan.dictionaryformids.hmi_android.R;
@@ -75,11 +77,17 @@ public class RecentList extends ListActivity implements ResultProvider {
 				.registerOnSharedPreferenceChangeListener(preferenceChangeListener);
 		
 		registerForContextMenu(getListView());
+		
+		TextView empty = (TextView) findViewById(android.R.id.empty);
+		empty.setOnClickListener(clickListener);
     }
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
+	public final void onCreateContextMenu(final ContextMenu menu, final View v,
+			final ContextMenuInfo menuInfo) {
 		final MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.recent_dictionary_context, menu);
 	}
@@ -160,6 +168,7 @@ public class RecentList extends ListActivity implements ResultProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public final Intent getReturnData() {
     	return returnData;
     }
@@ -167,12 +176,16 @@ public class RecentList extends ListActivity implements ResultProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public final int getResultCode() {
     	return resultCode;
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean onContextItemSelected(MenuItem item) {
+	public final boolean onContextItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.itemRemoveFromList:
 	    	final AdapterContextMenuInfo menuInfo = (AdapterContextMenuInfo) item
@@ -187,4 +200,17 @@ public class RecentList extends ListActivity implements ResultProvider {
 		}
 		return true;
     }
+    
+    /**
+     * A listener for clicks on the download dictionaries field.
+     */
+    private OnClickListener clickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(final View v) {
+			ChooseDictionary parent = (ChooseDictionary) getParent();
+			parent.showDialog(ChooseDictionary.ID_DOWNLOAD);
+		}
+    	
+    };
 }
