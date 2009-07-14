@@ -20,7 +20,11 @@ import de.kugihan.dictionaryformids.general.CouldNotOpenFileException;
 import de.kugihan.dictionaryformids.general.DictionaryException;
 import de.kugihan.dictionaryformids.general.Util;
 
-
+/**
+ * NativeZipInputStreamAccess provides functionality for loading a dictionary from
+ * a zip archive.
+ *
+ */
 public class NativeZipInputStreamAccess extends DfMInputStreamAccess {
 
 	/**
@@ -51,7 +55,7 @@ public class NativeZipInputStreamAccess extends DfMInputStreamAccess {
 	}
 	
 	private ZipInputStream openZipStream() throws IOException {
-		 return new ZipInputStream(openFileConnectionStream());
+		return new ZipInputStream(openFileConnectionStream());
 	}
 
 	/**
@@ -84,20 +88,20 @@ public class NativeZipInputStreamAccess extends DfMInputStreamAccess {
 	 * @throws DictionaryException
 	 *             if an input error occurred
 	 */
-	private InputStream getInputStreamInternal(String fileName)
+	private InputStream getInputStreamInternal(final String fileName)
 			throws DictionaryException {
 		// find out where the dictionary is located on first run
 		if (dictionaryRoot == null) {
 			initializeDictionaryRoot(fileName);
 		}
 		// add path prefix to fileName
-		fileName = dictionaryRoot + fileName;
+		String absolutePath = dictionaryRoot + fileName;
 		ZipInputStream zipStream;
-    	ZipEntry zippedFile;
+    	ZipEntry zippedFile = null;
 		try {
 	    	zipStream = openZipStream(); 
 	    	while ((zippedFile = zipStream.getNextEntry()) != null) {
-	    		if (fileName.equals(zippedFile.getName())) {
+	    		if (absolutePath.equals(zippedFile.getName())) {
 	    			break;
 	    		} 
 	    	}
@@ -142,6 +146,33 @@ public class NativeZipInputStreamAccess extends DfMInputStreamAccess {
 			}
 		}
     	return fileExists;
+	}
+
+	/**
+	 * Checks if the current zip-file includes a jar file, which hints on an
+	 * included dictionary.
+	 * 
+	 * @return true if jar file was found
+	 * @throws DictionaryException if there was an error opening the file
+	 */
+	public final boolean hasJarDictionary() throws DictionaryException {
+		ZipInputStream zipStream;
+    	ZipEntry zippedFile = null;
+		try {
+	    	zipStream = openZipStream(); 
+	    	while ((zippedFile = zipStream.getNextEntry()) != null) {
+	    		if (zippedFile.getName().endsWith(".jar")) {
+	    			break;
+	    		}
+	    	}
+		} catch (IOException ioe) {
+			 throw new CouldNotOpenFileException(ioe);
+		}
+		if (zippedFile == null) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 }
