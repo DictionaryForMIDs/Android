@@ -2,8 +2,9 @@
 <resources>
 	<string name="app_name">DictionaryForMIDs</string>
 	<string name="no_files">No files found.</string>
-	<string name="to_top">[root]</string>
-	<string name="to_upper_level">[parent]</string>
+	<string name="to_top">/ (top)</string>
+	<string name="to_upper_level">.. (up)</string>
+	<string name="to_sdcard">/sdcard</string>
 	<string name="title_please_wait">Please wait</string>
 	<string name="msg_searching">Searching...</string>
 	<string name="copy_all">Copy all</string>
@@ -103,6 +104,5 @@
 	<string name="title_recent_dictionary">%3$s\n   %1$s: %2$s</string>
 	<string name="title_remove_from_list">Remove from list</string>
 	<string name="app_description">DictionaryForMIDs is a free multi-language dictionary for cell phones and PDAs</string>
-	<string name="to_sdcard">SD-Card</string>
 	<string name="hint_enter_word">Enter word to translate</string>
 </resources>
