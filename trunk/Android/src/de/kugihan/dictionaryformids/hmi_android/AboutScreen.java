@@ -35,15 +35,20 @@ public class AboutScreen extends Activity {
 		dictionaryView.setText(DictionaryDataFile.infoText);
 		
 		String version;
+		int versionCode;
 		try {
 			PackageInfo packageInfo = getPackageManager().getPackageInfo(
 					getPackageName(), 0);
 			version = packageInfo.versionName;
+			versionCode = packageInfo.versionCode;
 		} catch (NameNotFoundException e) {
 			version = getString(R.string.not_found);
+			versionCode = -1;
 		}
 		TextView versionView = (TextView) findViewById(R.id.Version);
-		versionView.setText(getString(R.string.title_version, version));
+		String versionString = getString(R.string.title_version, version,
+				versionCode);
+		versionView.setText(versionString);
 		
 		TextView b = (TextView) findViewById(R.id.Dictonary);
 	      b.setOnClickListener(new View.OnClickListener() {
