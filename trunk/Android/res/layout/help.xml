@@ -7,8 +7,7 @@
 		<LinearLayout android:id="@+id/LinearLayout01"
 			android:layout_height="wrap_content" android:layout_width="fill_parent">
 			<ImageButton android:id="@+id/ImageView01" android:src="@drawable/logo"
-				android:layout_height="wrap_content"
-				android:layout_width="wrap_content"></ImageButton>
+				android:layout_height="wrap_content" android:layout_width="wrap_content"></ImageButton>
 			<TextView android:id="@+id/TextView01" android:text="@string/title_help"
 				android:layout_weight="1" android:layout_height="fill_parent"
 				android:layout_width="fill_parent" android:gravity="center"
@@ -21,6 +20,5 @@
 			android:layout_height="wrap_content" android:linksClickable="true"
 			android:autoLink="web" android:text="@string/desc_see_website"
 			android:layout_width="fill_parent" android:paddingTop="20sp"></TextView>
-	
-</LinearLayout>
+	</LinearLayout>
 </ScrollView>
