@@ -31,7 +31,15 @@ import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
  */
 public class ChooseDictionary extends TabActivity {
 	
-	private static final int ID_DOWNLOAD = 0;
+	/**
+	 * ID of the dialog with instructions to download a dictionary.
+	 */
+	public static final int ID_DOWNLOAD = 0;
+
+	/**
+	 * ID of the dialog that asks for confirmation to clear the list of recently
+	 * loaded dictionaries.
+	 */
 	private static final int ID_CLEAR_RECENT = 1;
 
 	/**
@@ -81,15 +89,21 @@ public class ChooseDictionary extends TabActivity {
 		super.finishFromChild(child);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public final boolean onCreateOptionsMenu(final Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.choose_dictionary_options, menu);
 		return true;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+	public final boolean onOptionsItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.itemDownloadDictionaries:
 			showDialog(ID_DOWNLOAD);
@@ -105,8 +119,11 @@ public class ChooseDictionary extends TabActivity {
 		return false;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	protected Dialog onCreateDialog(int id) {
+	protected final Dialog onCreateDialog(final int id) {
 		if (id == ID_DOWNLOAD) {
 			Builder alertBuilder = new AlertDialog.Builder(this);
 			alertBuilder.setTitle(R.string.title_information);
@@ -154,8 +171,11 @@ public class ChooseDictionary extends TabActivity {
 		return super.onCreateDialog(id);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Object onRetainNonConfigurationInstance() {
+	public final Object onRetainNonConfigurationInstance() {
 		try {
 			dismissDialog(ID_DOWNLOAD);
 			dismissDialog(ID_CLEAR_RECENT);
@@ -165,8 +185,11 @@ public class ChooseDictionary extends TabActivity {
 		return super.onRetainNonConfigurationInstance();
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	protected void onDestroy() {
+	protected final void onDestroy() {
 		super.onDestroy();
 	}
 	

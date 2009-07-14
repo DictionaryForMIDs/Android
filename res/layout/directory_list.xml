@@ -3,23 +3,22 @@
 	android:layout_width="fill_parent" android:orientation="vertical"
 	android:layout_height="fill_parent">
 
-
 	<LinearLayout android:id="@+id/LinearLayout02"
 		android:layout_height="wrap_content" android:layout_width="fill_parent">
 		<Button android:layout_width="wrap_content" android:id="@+id/ButtonParent"
-			android:layout_weight="1" android:text=".." android:layout_height="wrap_content"
+			android:layout_weight="1" android:layout_height="wrap_content"
 			android:background="@android:color/background_light" android:padding="3sp"
-			android:layout_margin="5sp"></Button>
+			android:layout_margin="5sp" android:text="@string/to_upper_level"></Button>
 		<Button android:layout_width="wrap_content" android:id="@+id/ButtonCard"
-			android:layout_weight="1" android:text="/sdcard"
-			android:layout_height="wrap_content" android:background="@android:color/background_light"
-			android:padding="3sp" android:layout_margin="5sp"></Button>
+			android:layout_weight="1" android:layout_height="wrap_content"
+			android:background="@android:color/background_light" android:padding="3sp"
+			android:layout_margin="5sp" android:text="@string/to_sdcard"></Button>
 		<Button android:layout_width="wrap_content"
-			android:layout_weight="1" android:id="@+id/ButtonRoot" android:text="/"
+			android:layout_weight="1" android:id="@+id/ButtonRoot"
 			android:layout_height="wrap_content" android:background="@android:color/background_light"
-			android:padding="3sp" android:layout_margin="5sp"></Button>
-
+			android:padding="3sp" android:layout_margin="5sp" android:text="@string/to_top"></Button>
 	</LinearLayout>
+	
 	<TextView android:text="Path" android:layout_height="wrap_content"
 		android:id="@+id/PathView" android:layout_width="fill_parent"
 		android:textSize="17sp" android:background="@android:color/darker_gray"
@@ -35,6 +34,5 @@
 	<Button android:layout_height="wrap_content" android:id="@+id/okButton"
 		android:layout_width="fill_parent"
 		android:text="@string/button_load_dictionary_from_current_directory"></Button>
-
 
 </LinearLayout>
