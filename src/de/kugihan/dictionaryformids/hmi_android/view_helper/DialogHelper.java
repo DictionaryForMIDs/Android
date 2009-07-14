@@ -59,9 +59,15 @@ public final class DialogHelper {
 
 	/**
 	 * The ID of the dialog suggesting to extract the dictionary from the
-	 * archive.
+	 * archive for improved speed.
 	 */
 	public static final int ID_SUGGEST_DIRECTORY = 4;
+
+	/**
+	 * The ID of the dialog warning to extract the jar-dictionary form the
+	 * zip-archive.
+	 */
+	public static final int ID_WARN_EXTRACT_DICTIONARY = 5;
 	
 	/**
 	 * Saves the single instance of this class.
@@ -102,6 +108,7 @@ public final class DialogHelper {
 			activity.dismissDialog(ID_DICTIONARY_NOT_FOUND);
 			activity.dismissDialog(ID_FIRST_RUN);
 			activity.dismissDialog(ID_SUGGEST_DIRECTORY);
+			activity.dismissDialog(ID_WARN_EXTRACT_DICTIONARY);
 		} catch (IllegalArgumentException e) {
 			Log.v(DictionaryForMIDs.LOG_TAG, "IllegelArgumentException: " + e);
 		}
@@ -124,6 +131,8 @@ public final class DialogHelper {
 			return createFirstRunDialog();
 		} else if (id == ID_SUGGEST_DIRECTORY) {
 			return createSuggestDirectoryDialog();
+		} else if (id == ID_WARN_EXTRACT_DICTIONARY) {
+			return createWarnExtractDictionary();
 		} else {
 			return null;
 		}
@@ -168,7 +177,7 @@ public final class DialogHelper {
 				activity);
 		alertBuilder.setTitle(R.string.title_welcome);
 		alertBuilder.setMessage(R.string.msg_first_run);
-		alertBuilder.setNeutralButton(R.string.button_ok,
+		alertBuilder.setPositiveButton(R.string.button_ok,
 				new DialogInterface.OnClickListener() {
 					public void onClick(final DialogInterface dialog,
 							final int whichButton) {
@@ -176,6 +185,31 @@ public final class DialogHelper {
 						activity.showChooseDictionaryActivity();
 					}
 				});
+		alertBuilder.setCancelable(false);
+		return alertBuilder.create();
+	}
+
+	/**
+	 * Creates a dialog informing the user that the dictionary could not be
+	 * loaded from the selected archive, but still the archive includes another
+	 * archive that may be a dictionary.
+	 * 
+	 * @return the created dialog
+	 */
+	private Dialog createWarnExtractDictionary() {
+		Builder alertBuilder = new AlertDialog.Builder(
+				activity);
+		alertBuilder.setTitle(R.string.msg_dictionary_error);
+		alertBuilder.setMessage(R.string.msg_extract_dictionary);
+		alertBuilder.setPositiveButton(R.string.button_ok,
+				new DialogInterface.OnClickListener() {
+					public void onClick(final DialogInterface dialog,
+							final int whichButton) {
+						dialog.cancel();
+						activity.showChooseDictionaryActivity();
+					}
+				});
+		alertBuilder.setCancelable(false);
 		return alertBuilder.create();
 	}
 
