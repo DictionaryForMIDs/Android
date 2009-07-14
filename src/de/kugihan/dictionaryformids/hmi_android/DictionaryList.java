@@ -20,8 +20,10 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -31,6 +33,9 @@ import android.widget.Toast;
  */
 public class DictionaryList extends ListActivity implements ResultProvider {
 	
+	/**
+	 * The string identifying dictionaries in the assets folder.
+	 */
 	public static final String ASSET_PATH = "assetPath";
 
 	/**
@@ -62,6 +67,9 @@ public class DictionaryList extends ListActivity implements ResultProvider {
         super.onCreate(icicle);
         setContentView(R.layout.included_dictionary_list);
         fillWithDictionaries();
+        
+		TextView empty = (TextView) findViewById(android.R.id.empty);
+		empty.setOnClickListener(clickListener);
     }
 
 	/**
@@ -74,6 +82,10 @@ public class DictionaryList extends ListActivity implements ResultProvider {
 		exitWithDictionary(dictionary);
 	}
 
+	/**
+	 * Exists the view and returns the specified dictionary.
+	 * @param dictionary the dictionary to return
+	 */
 	private void exitWithDictionary(final String dictionary) {
 		resultCode = RESULT_OK;
 		returnData = new Intent();
@@ -82,7 +94,10 @@ public class DictionaryList extends ListActivity implements ResultProvider {
 		setResult(resultCode, returnData);
 		finish();
 	}
-	
+
+	/**
+	 * Searches for dictionaries in the assets folder and adds them to the view.
+	 */
     private void fillWithDictionaries() {
     	String[] dictionaries;
 		try {
@@ -106,6 +121,7 @@ public class DictionaryList extends ListActivity implements ResultProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public final Intent getReturnData() {
     	return returnData;
     }
@@ -113,7 +129,21 @@ public class DictionaryList extends ListActivity implements ResultProvider {
     /**
      * {@inheritDoc}
      */
+    @Override
     public final int getResultCode() {
     	return resultCode;
     }
+    
+    /**
+     * A listener for clicks on the download dictionaries field.
+     */
+    private OnClickListener clickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(final View v) {
+			ChooseDictionary parent = (ChooseDictionary) getParent();
+			parent.showDialog(ChooseDictionary.ID_DOWNLOAD);
+		}
+    	
+    };
 }
