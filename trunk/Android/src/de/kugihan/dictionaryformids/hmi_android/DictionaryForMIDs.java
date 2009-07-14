@@ -242,6 +242,17 @@ public class DictionaryForMIDs extends Activity {
 							DictionaryDataFile.supportedLanguages));
 			showSearchOptions();
 		} catch (DictionaryException e) {
+			if (inputStreamAccess instanceof NativeZipInputStreamAccess) {
+				NativeZipInputStreamAccess stream = (NativeZipInputStreamAccess) inputStreamAccess;
+				try {
+					if (stream.hasJarDictionary()) {
+						showDialog(DialogHelper.ID_WARN_EXTRACT_DICTIONARY);
+						return false;
+					}
+				} catch (DictionaryException e1) {
+					// ignore exception here
+				}
+			}
 			if (Preferences.isFirstRun()) {
 				showDialog(DialogHelper.ID_FIRST_RUN);
 			} else {
