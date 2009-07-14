@@ -12,9 +12,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import de.kugihan.dictionaryformids.hmi_android.R;
-import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +22,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
 
 /**
  * FileList represents an Activity that represents a file browser and
@@ -33,15 +31,40 @@ import android.widget.Toast;
  */
 public class FileList extends ListActivity implements ResultProvider {
 	
+	/**
+	 * The string identifying dictionaries in the file system.
+	 */
 	public static final String FILE_PATH = "filePath";
+
+	/**
+	 * The string identifying dictionaries in the archives.
+	 */
 	public static final String ZIP_PATH = "zipPath";
 	
+	private static final String BUNDLE_CURRENT_DIRECTORY = "currentDirectory";
+	
+	/**
+	 * The file system path to the sd-card.
+	 */
 	private static final String PATH_SDCARD = "/sdcard";
+	
+	/**
+	 * The file system path to the root folder.
+	 */
 	private static final String PATH_ROOT = "/";
+	
+	/**
+	 * The name of the dictionary's properties file.
+	 */
 	private static final String PROPERTIES_FILE = "DictionaryForMIDs.properties";
+	
+	/**
+	 * The array of supported archive file extensions.
+	 */
 	private static final String[] ARCHIVE_EXTENSIONS = { ".jar", ".zip" };
+	
 	private List<String> items = null;
-	private File currentDirectory;
+	private File currentDirectory = null;
 	
 	
 	/**
@@ -61,7 +84,19 @@ public class FileList extends ListActivity implements ResultProvider {
 	public final void onCreate(final Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.directory_list);
-        fillWithCard();
+        
+        // try to restore old data
+        if (icicle != null) {
+        	String path = icicle.getString(BUNDLE_CURRENT_DIRECTORY);
+        	if (path != null) {
+        		fill(new File(path));
+        	}
+        }
+        
+        // if current directory has not been restored load standard
+        if (currentDirectory == null) {
+        	fillWithCard();
+        }
         
         ((Button) findViewById(R.id.ButtonCard))
 				.setOnClickListener(clickListener);
@@ -72,6 +107,15 @@ public class FileList extends ListActivity implements ResultProvider {
 		((Button) findViewById(R.id.okButton))
 				.setOnClickListener(clickListener);
     }
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected final void onSaveInstanceState(final Bundle outState) {
+		outState.putString(BUNDLE_CURRENT_DIRECTORY, currentDirectory.getPath());
+		super.onSaveInstanceState(outState);
+	}
 
 	private void fill(final File parent) {
 		currentDirectory = parent;
@@ -117,8 +161,9 @@ public class FileList extends ListActivity implements ResultProvider {
 		} else {
 			((Button) findViewById(R.id.okButton)).setVisibility(View.GONE);
 		}
-		((TextView) findViewById(R.id.PathView)).setText(getString(
-				R.string.title_current_path, parent.getPath()));
+		final TextView pathView = (TextView) findViewById(R.id.PathView);
+		pathView.setText(getString(R.string.title_current_path, parent
+				.getPath()));
 	}
 
 	private void updateNavigationButtonState() {
