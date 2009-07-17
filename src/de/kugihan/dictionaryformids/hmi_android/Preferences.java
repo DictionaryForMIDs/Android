@@ -59,9 +59,10 @@ public class Preferences extends PreferenceActivity implements
 	private static boolean firstRun = false;
 	
 	/**
-	 * This type includes all supported search modes. 
+	 * This type includes all supported search modes.
 	 */
 	private enum SearchMode {
+		// Make sure order corresponds to R.array.search_mode_values
 		/**
 		 * Default search mode.
 		 */
