@@ -65,7 +65,7 @@
 	<string name="title_load_dictionary_first">Please load dictionary first.</string>
 	<string name="title_about_heading">Java application DictonaryForMIDs</string>
 	<string name="title_about_copyright_owner">Copyright by Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) and other contributors.</string>
-	<string name="attribute_url">http://dictionarymid.sourceforge.net/</string>
+	<string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
 	<string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
 	<string name="title_version">Version: %1$s\t(%2$d)</string>
 	<string name="title_about_copyright">DictionaryForMIDs Java application is free software: you can redistribute it and/or modify
@@ -89,12 +89,6 @@
 		<item>Words starting with search term</item>
 		<item>Words including search term</item>
 	</string-array>
-	<string-array name="search_mode_values">
-		<item>1</item>
-		<item>2</item>
-		<item>3</item>
-		<item>4</item>
-	</string-array>
 	<string name="title_help">DictionaryForMIDs Help</string>
 	<string name="desc_help">Use wildcard characters to refine your search:\n%1$c matches any series of characters\n%2$c matches any single character\n\nTo control sub-expression search:\n%3$c as the first character produces results starting with your search-entry\n%4$c after your entry produces results ending with it.\n\nPlease note: Adding wildcard characters overrides search mode preferences.</string>
 	<string name="desc_see_website">See website for more information:\n%1$s</string>
@@ -105,4 +99,11 @@
 	<string name="title_remove_from_list">Remove from list</string>
 	<string name="app_description">DictionaryForMIDs is a free multi-language dictionary for cell phones and PDAs</string>
 	<string name="hint_enter_word">Enter word to translate</string>
+<string name="title_pref_search_options">Search options</string>
+<string name="title_pref_search_mode">Search mode</string>
+<string name="title_pref_max_results">Max. results</string>
+<string name="title_pref_timeout">Timeout for searching</string>
+<string name="title_pref_display_options">Display options</string>
+<string name="title_pref_result_font_size">Font size for results</string>
+<string name="title_pref_ignore_font_styles">Ignore font styles</string>
 </resources>

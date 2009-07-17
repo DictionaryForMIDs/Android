@@ -19,6 +19,12 @@
 		<item>25</item>
 		<item>26</item>
 	</string-array>
+	<string-array name="search_mode_values">
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+		<item>3</item>
+	</string-array>
 	<string name="tag_tab_recent">tab_recent</string>
 	<string name="tag_tab_file">tab_file</string>
 	<string name="tag_tab_included">tab_included</string>
