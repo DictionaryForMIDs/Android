@@ -19,7 +19,7 @@ import android.widget.TextView;
  * 
  */
 public class HelpScreen extends Activity {
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -27,7 +27,7 @@ public class HelpScreen extends Activity {
 	protected final void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.help);
-		
+
 		TextView helpDescription = (TextView) findViewById(R.id.HelpDescription);
 		helpDescription.setText(getString(R.string.desc_help,
 				Util.wildcardAnySeriesOfCharacter,
@@ -38,6 +38,6 @@ public class HelpScreen extends Activity {
 		TextView helpWebsite = (TextView) findViewById(R.id.HelpWebsite);
 		helpWebsite.setText(getString(R.string.desc_see_website,
 				getString(R.string.attribute_url)));
-}
+	}
 
 }

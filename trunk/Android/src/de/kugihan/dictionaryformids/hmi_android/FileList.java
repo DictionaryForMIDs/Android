@@ -25,12 +25,12 @@ import android.widget.Toast;
 import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
 
 /**
- * FileList represents an Activity that represents a file browser and
- * allows the user to choose a dictionary to load.
+ * FileList represents an Activity that represents a file browser and allows the
+ * user to choose a dictionary to load.
  * 
  */
 public class FileList extends ListActivity implements ResultProvider {
-	
+
 	/**
 	 * The string identifying dictionaries in the file system.
 	 */
@@ -40,33 +40,32 @@ public class FileList extends ListActivity implements ResultProvider {
 	 * The string identifying dictionaries in the archives.
 	 */
 	public static final String ZIP_PATH = "zipPath";
-	
+
+	/**
+	 * The key of a string specifying the current directory of the file browser.
+	 */
 	private static final String BUNDLE_CURRENT_DIRECTORY = "currentDirectory";
-	
-	/**
-	 * The file system path to the sd-card.
-	 */
-	private static final String PATH_SDCARD = "/sdcard";
-	
-	/**
-	 * The file system path to the root folder.
-	 */
-	private static final String PATH_ROOT = "/";
-	
+
 	/**
 	 * The name of the dictionary's properties file.
 	 */
 	private static final String PROPERTIES_FILE = "DictionaryForMIDs.properties";
-	
+
 	/**
 	 * The array of supported archive file extensions.
 	 */
 	private static final String[] ARCHIVE_EXTENSIONS = { ".jar", ".zip" };
-	
+
+	/**
+	 * The list of items in the current directory.
+	 */
 	private List<String> items = null;
+
+	/**
+	 * The current directory.
+	 */
 	private File currentDirectory = null;
-	
-	
+
 	/**
 	 * The result returned to TabHost.
 	 */
@@ -76,29 +75,29 @@ public class FileList extends ListActivity implements ResultProvider {
 	 * The result code returned to TabHost.
 	 */
 	private int resultCode = RESULT_CANCELED;
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public final void onCreate(final Bundle icicle) {
-        super.onCreate(icicle);
-        setContentView(R.layout.directory_list);
-        
-        // try to restore old data
-        if (icicle != null) {
-        	String path = icicle.getString(BUNDLE_CURRENT_DIRECTORY);
-        	if (path != null) {
-        		fill(new File(path));
-        	}
-        }
-        
-        // if current directory has not been restored load standard
-        if (currentDirectory == null) {
-        	fillWithCard();
-        }
-        
-        ((Button) findViewById(R.id.ButtonCard))
+		super.onCreate(icicle);
+		setContentView(R.layout.directory_list);
+
+		// try to restore old data
+		if (icicle != null) {
+			String path = icicle.getString(BUNDLE_CURRENT_DIRECTORY);
+			if (path != null) {
+				fill(new File(path));
+			}
+		}
+
+		// if current directory has not been restored load standard
+		if (currentDirectory == null) {
+			fillWithCard();
+		}
+
+		((Button) findViewById(R.id.ButtonCard))
 				.setOnClickListener(clickListener);
 		((Button) findViewById(R.id.ButtonParent))
 				.setOnClickListener(clickListener);
@@ -106,24 +105,31 @@ public class FileList extends ListActivity implements ResultProvider {
 				.setOnClickListener(clickListener);
 		((Button) findViewById(R.id.okButton))
 				.setOnClickListener(clickListener);
-    }
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected final void onSaveInstanceState(final Bundle outState) {
-		outState.putString(BUNDLE_CURRENT_DIRECTORY, currentDirectory.getPath());
+		outState
+				.putString(BUNDLE_CURRENT_DIRECTORY, currentDirectory.getPath());
 		super.onSaveInstanceState(outState);
 	}
 
-	private void fill(final File parent) {
-		currentDirectory = parent;
+	/**
+	 * Fills the file browser with the content of the specified directory.
+	 * 
+	 * @param parentDirectory
+	 *            this directory's content will be displayed
+	 */
+	private void fill(final File parentDirectory) {
+		currentDirectory = parentDirectory;
 		updateNavigationButtonState();
 		items = new ArrayList<String>();
 		List<String> view = new ArrayList<String>();
 		boolean directoryIncludesDictionary = false;
-		for (File file : parent.listFiles()) {
+		for (File file : parentDirectory.listFiles()) {
 			String path = file.getPath();
 			String name = file.getName();
 			boolean isDictionaryFile = isDictionaryPropertiesFile(file);
@@ -162,19 +168,25 @@ public class FileList extends ListActivity implements ResultProvider {
 			((Button) findViewById(R.id.okButton)).setVisibility(View.GONE);
 		}
 		final TextView pathView = (TextView) findViewById(R.id.PathView);
-		pathView.setText(getString(R.string.title_current_path, parent
+		pathView.setText(getString(R.string.title_current_path, parentDirectory
 				.getPath()));
 	}
 
+	/**
+	 * Enables and disables navigation buttons according to the current
+	 * directory.
+	 */
 	private void updateNavigationButtonState() {
 		if (currentDirectory != null
-				&& currentDirectory.getPath().equals(PATH_ROOT)) {
+				&& currentDirectory.getPath().equals(
+						getString(R.string.attribute_root_path))) {
 			((Button) findViewById(R.id.ButtonRoot)).setEnabled(false);
 		} else {
 			((Button) findViewById(R.id.ButtonRoot)).setEnabled(true);
 		}
 		if (currentDirectory != null
-				&& currentDirectory.getPath().equals(PATH_SDCARD)) {
+				&& currentDirectory.getPath().equals(
+						getString(R.string.attribute_sdcard_path))) {
 			((Button) findViewById(R.id.ButtonCard)).setEnabled(false);
 		} else {
 			((Button) findViewById(R.id.ButtonCard)).setEnabled(true);
@@ -186,10 +198,27 @@ public class FileList extends ListActivity implements ResultProvider {
 		}
 	}
 
+	/**
+	 * Checks if the specified file exists and has the name of a dictionary
+	 * properties file.
+	 * 
+	 * @param file
+	 *            the file to analyze
+	 * @return true if the file exists and has the name of a dictionary
+	 *         properties file
+	 */
 	private boolean isDictionaryPropertiesFile(final File file) {
 		return file.isFile() && file.getName().equals(PROPERTIES_FILE);
 	}
 
+	/**
+	 * Checks if the file exists and if it has the extension of a supported
+	 * archive file.
+	 * 
+	 * @param file
+	 *            the file to analyze
+	 * @return true if the file exists and has a supported archive's extension
+	 */
 	private boolean isArchiveFile(final File file) {
 		if (!file.isFile()) {
 			return false;
@@ -213,24 +242,43 @@ public class FileList extends ListActivity implements ResultProvider {
 			fill(file);
 		} else if (isDictionaryPropertiesFile(file)) {
 			exitWithCurrentDirectory();
-		} else if (isArchiveFile(file))	{
+		} else if (isArchiveFile(file)) {
 			exitWithZipArchive(file.getPath());
 		} else {
-		    Toast.makeText(getBaseContext(), 
-		            R.string.msg_no_dictionary, 
-		            Toast.LENGTH_LONG).show();
+			Toast.makeText(getBaseContext(), R.string.msg_no_dictionary,
+					Toast.LENGTH_LONG).show();
 		}
 	}
-	
+
+	/**
+	 * Closes the activity and returns the specified zip file to the activity's
+	 * caller.
+	 * 
+	 * @param path
+	 *            the path of the zip file to return
+	 */
 	private void exitWithZipArchive(final String path) {
 		exitWithData(ZIP_PATH, path);
 	}
 
+	/**
+	 * Closes the activity and returns the current directory to the activity's
+	 * caller.
+	 */
 	private void exitWithCurrentDirectory() {
 		String data = currentDirectory.getPath();
 		exitWithData(FILE_PATH, data);
 	}
 
+	/**
+	 * Closes the activity and returns the specified dictionary to the
+	 * activity's caller.
+	 * 
+	 * @param dataName
+	 *            the type of the dictionary
+	 * @param data
+	 *            the path of the dictionary
+	 */
 	private void exitWithData(final String dataName, final String data) {
 		resultCode = RESULT_OK;
 		returnData = new Intent();
@@ -239,40 +287,52 @@ public class FileList extends ListActivity implements ResultProvider {
 		finish();
 	}
 
+	/**
+	 * Fills the view with the content of the current directory's parent
+	 * directory.
+	 */
 	private void fillWithParent() {
 		File file = currentDirectory.getParentFile();
 		if (file != null && file.isDirectory()) {
 			fill(file);
 		} else {
-		    Toast.makeText(getBaseContext(), 
-		    		R.string.msg_no_dictionary, 
-		            Toast.LENGTH_LONG).show();
+			Toast.makeText(getBaseContext(), R.string.msg_no_dictionary,
+					Toast.LENGTH_LONG).show();
 		}
 	}
 
+	/**
+	 * Fills the view with the content of the root directory.
+	 */
 	private void fillWithRoot() {
-		fill(new File(PATH_ROOT));
-	}
-	
-    private void fillWithCard() {
-		fill(new File(PATH_SDCARD));
+		fill(new File(getString(R.string.attribute_root_path)));
 	}
 
+	/**
+	 * Fills the view with the content of sdcard's root directory.
+	 */
+	private void fillWithCard() {
+		fill(new File(getString(R.string.attribute_sdcard_path)));
+	}
+
+	/**
+	 * Listener to handle clicks on the buttons.
+	 */
 	private OnClickListener clickListener = new OnClickListener() {
-        public void onClick(final View button) {
-        	switch (button.getId()) {
+		public void onClick(final View button) {
+			switch (button.getId()) {
 			case R.id.ButtonCard:
 				fillWithCard();
 				break;
-				
+
 			case R.id.ButtonParent:
 				fillWithParent();
 				break;
-				
+
 			case R.id.ButtonRoot:
 				fillWithRoot();
 				break;
-				
+
 			case R.id.okButton:
 				exitWithCurrentDirectory();
 				break;
@@ -280,20 +340,20 @@ public class FileList extends ListActivity implements ResultProvider {
 			default:
 				break;
 			}
-        }
-    };
+		}
+	};
 
-    /**
-     * {@inheritDoc}
-     */
-    public final Intent getReturnData() {
-    	return returnData;
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public final int getResultCode() {
-    	return resultCode;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public final Intent getReturnData() {
+		return returnData;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public final int getResultCode() {
+		return resultCode;
+	}
 }

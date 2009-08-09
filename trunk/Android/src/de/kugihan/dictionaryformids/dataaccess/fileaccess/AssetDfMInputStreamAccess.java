@@ -24,34 +24,38 @@ import de.kugihan.dictionaryformids.general.Util;
  * 
  */
 public class AssetDfMInputStreamAccess extends DfMInputStreamAccess {
-	
+
 	/**
 	 * The activity that provides the assets.
 	 */
 	private Activity activity = null;
-	
+
 	/**
 	 * The base directory in the assets folder that includes the dictionary.
 	 */
 	private String directory = null;
-	
+
 	/**
 	 * Creates an InputStream for loading a dictionary from the application's
 	 * assets.
 	 * 
-	 * @param activity the activity that provides the assets
-	 * @param directory the directory that includes the dictionary files
+	 * @param currentActivity
+	 *            the activity that provides the assets
+	 * @param dictionaryDirectory
+	 *            the directory that includes the dictionary files
 	 */
-	public AssetDfMInputStreamAccess(final Activity activity, final String directory) {
-		this.activity = activity;
-		this.directory = directory;
+	public AssetDfMInputStreamAccess(final Activity currentActivity,
+			final String dictionaryDirectory) {
+		activity = currentActivity;
+		directory = dictionaryDirectory;
 	}
 
-    /**
-     * {@inheritDoc}
-     */
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public final boolean fileExists(final String asset) throws DictionaryException {
+	public final boolean fileExists(final String asset)
+			throws DictionaryException {
 		boolean successfullyOpenedFile;
 		InputStream in = null;
 		String assetPath = getPath(asset);
@@ -78,16 +82,17 @@ public class AssetDfMInputStreamAccess extends DfMInputStreamAccess {
 	/**
 	 * Returns the path of the asset according to the base directory.
 	 * 
-	 * @param asset the path of a dictionary file
+	 * @param asset
+	 *            the path of a dictionary file
 	 * @return the absolute path to the asset
 	 */
 	private String getPath(final String asset) {
 		return directory + File.separator + asset;
 	}
 
-    /**
-     * {@inheritDoc}
-     */
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public final InputStream getInputStream(final String asset)
 			throws DictionaryException {

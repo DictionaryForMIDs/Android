@@ -8,7 +8,6 @@
 package de.kugihan.dictionaryformids.hmi_android;
 
 import de.kugihan.dictionaryformids.dataaccess.DictionaryDataFile;
-import de.kugihan.dictionaryformids.hmi_android.R;
 import android.app.Activity;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
