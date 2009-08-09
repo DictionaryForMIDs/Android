@@ -12,6 +12,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.DialogInterface.OnCancelListener;
 import android.util.Log;
 import android.widget.Toast;
@@ -36,6 +37,16 @@ public final class DialogHelper {
 	 * An additional message used by ID_DICTIONARY_NOT_FOUND.
 	 */
 	private static String translationErrorMessage = "";
+	
+	/**
+	 * The occurred exception during dictionary installation.
+	 */
+	private static Exception dictionaryInstallationException;
+	
+	/**
+	 * The intent specifiying the dictionary to load.
+	 */
+	private static Intent loadDictionary;
 	
 	/**
 	 * The ID of the indefinite search progress bar.
@@ -68,6 +79,16 @@ public final class DialogHelper {
 	 * zip-archive.
 	 */
 	public static final int ID_WARN_EXTRACT_DICTIONARY = 5;
+
+	/**
+	 * The ID of the dialog showing exceptions from dictionary installation.
+	 */
+	public static final int ID_INSTALLATION_EXCEPTION = 6;
+
+	/**
+	 * The ID of the dialog asking if the dictionary should be loaded.
+	 */
+	public static final int ID_CONFIRM_LOAD_DICTIONARY = 7;
 	
 	/**
 	 * Saves the single instance of this class.
@@ -109,6 +130,8 @@ public final class DialogHelper {
 			activity.dismissDialog(ID_FIRST_RUN);
 			activity.dismissDialog(ID_SUGGEST_DIRECTORY);
 			activity.dismissDialog(ID_WARN_EXTRACT_DICTIONARY);
+			activity.dismissDialog(ID_INSTALLATION_EXCEPTION);
+			activity.dismissDialog(ID_CONFIRM_LOAD_DICTIONARY);
 		} catch (IllegalArgumentException e) {
 			Log.v(DictionaryForMIDs.LOG_TAG, "IllegelArgumentException: " + e);
 		}
@@ -121,21 +144,28 @@ public final class DialogHelper {
 	 * @return the created dialog
 	 */
 	public Dialog onCreateDialog(final int id) {
+		Dialog result = null;
 		if (id == ID_SEARCHING) {
-			return createSearchingDialog();
+			result = createSearchingDialog();
 		} else if (id == ID_TRANSLATE_ERROR) {
-			return createTranslateErrorDialog();
+			result = createTranslateErrorDialog();
 		} else if (id == ID_DICTIONARY_NOT_FOUND) {
-			return createDictionaryNotFoundDialog();
+			result = createDictionaryNotFoundDialog();
 		} else if (id == ID_FIRST_RUN) {
-			return createFirstRunDialog();
+			result = createFirstRunDialog();
 		} else if (id == ID_SUGGEST_DIRECTORY) {
-			return createSuggestDirectoryDialog();
+			result = createSuggestDirectoryDialog();
 		} else if (id == ID_WARN_EXTRACT_DICTIONARY) {
-			return createWarnExtractDictionary();
-		} else {
-			return null;
+			result = createWarnExtractDictionary();
+		} else if (id == ID_INSTALLATION_EXCEPTION) {
+			result = createInstallationExceptionDialog();
+		} else if (id == ID_CONFIRM_LOAD_DICTIONARY) {
+			result = createConfirmLoadDictionary();
 		}
+		if (result != null) {
+			onPrepareDialog(id, result);
+		}
+		return result;
 	}
 
 	/**
@@ -168,6 +198,34 @@ public final class DialogHelper {
 	}
 
 	/**
+	 * Creates a dialog asking the user to confirm loading of a dictionary.
+	 * 
+	 * @return the created dialog
+	 */
+	private Dialog createConfirmLoadDictionary() {
+		Builder alertBuilder = new AlertDialog.Builder(
+				activity);
+		alertBuilder.setTitle(R.string.title_information);
+		alertBuilder.setMessage(R.string.msg_load_dictionary);
+		alertBuilder.setPositiveButton(R.string.button_ok,
+				new DialogInterface.OnClickListener() {
+					public void onClick(final DialogInterface dialog,
+							final int whichButton) {
+						dialog.cancel();
+						activity.loadDictionaryFromRemoteIntent(loadDictionary);
+						loadDictionary = null;
+					}
+				});
+		alertBuilder.setNegativeButton(R.string.button_cancel,
+				new DialogInterface.OnClickListener() {
+					public void onClick(final DialogInterface dialog,
+							final int whichButton) {
+						dialog.cancel();
+					}
+				});
+		return alertBuilder.create();
+	}
+	/**
 	 * Creates a dialog asking the user to pick a dictionary.
 	 * 
 	 * @return the created dialog
@@ -182,7 +240,7 @@ public final class DialogHelper {
 					public void onClick(final DialogInterface dialog,
 							final int whichButton) {
 						dialog.cancel();
-						activity.showChooseDictionaryActivity();
+						activity.startChooseDictionaryActivity();
 					}
 				});
 		alertBuilder.setCancelable(false);
@@ -206,7 +264,7 @@ public final class DialogHelper {
 					public void onClick(final DialogInterface dialog,
 							final int whichButton) {
 						dialog.cancel();
-						activity.showChooseDictionaryActivity();
+						activity.startChooseDictionaryActivity();
 					}
 				});
 		alertBuilder.setCancelable(false);
@@ -229,7 +287,7 @@ public final class DialogHelper {
 					public void onClick(final DialogInterface dialog,
 							final int whichButton) {
 						dialog.cancel();
-						activity.showChooseDictionaryActivity();
+						activity.startChooseDictionaryActivity();
 					}
 				});
 		return alertBuilder.create();
@@ -256,6 +314,27 @@ public final class DialogHelper {
 	}
 
 	/**
+	 * Creates a dialog informing the user of exceptions while installing new
+	 * dictionaries.
+	 * 
+	 * @return the created dialog
+	 */
+	private Dialog createInstallationExceptionDialog() {
+		Builder alertBuilder = new AlertDialog.Builder(
+				activity);
+		alertBuilder.setTitle(R.string.title_information);
+		alertBuilder.setMessage("");
+		alertBuilder.setNeutralButton(R.string.button_ok,
+				new DialogInterface.OnClickListener() {
+					public void onClick(final DialogInterface dialog,
+							final int whichButton) {
+						dialog.cancel();
+					}
+				});
+		return alertBuilder.create();
+	}
+	
+	/**
 	 * Creates a indeterminate progress bar informing the user that the
 	 * application is currently searching.
 	 * 
@@ -270,17 +349,29 @@ public final class DialogHelper {
 		loadingDialog.setOnCancelListener(cancelTranslationListener);
 		return loadingDialog;
 	}
-	
+
 	/**
 	 * Handles onPrepareDialog events.
 	 * 
-	 * @param id the id of the dialog
-	 * @param dialog the dialog that shall be prepared
+	 * @param id
+	 *            the id of the dialog
+	 * @param dialog
+	 *            the dialog that shall be prepared
 	 */
 	public void onPrepareDialog(final int id, final Dialog dialog) {
 		if (id == ID_TRANSLATE_ERROR) {
 			AlertDialog alert = (AlertDialog) dialog;
 			alert.setMessage(translationErrorMessage);
+		} else if (id == ID_INSTALLATION_EXCEPTION) {
+			AlertDialog alert = (AlertDialog) dialog;
+			String exceptionMessage = "Exception while installing:\n"
+					+ dictionaryInstallationException.getMessage();
+			if (dictionaryInstallationException.getCause() != null) {
+				exceptionMessage += "\n\nCause:\n"
+						+ dictionaryInstallationException.getCause();
+			}
+
+			alert.setMessage(exceptionMessage);
 		}
 	}
 
@@ -306,4 +397,23 @@ public final class DialogHelper {
 		translationErrorMessage = message;
 	}
 
+	/**
+	 * Sets the exception that occurred while installing a dictionary.
+	 * 
+	 * @param exception
+	 *            the occurred exception
+	 */
+	public static void setInstallationException(final Exception exception) {
+		dictionaryInstallationException = exception;
+	}
+
+	/**
+	 * Sets the intent that specifies the dictionary to load.
+	 * 
+	 * @param intent
+	 *            the intent specifying the dictionary to load
+	 */
+	public static void setLoadDictionary(final Intent intent) {
+		loadDictionary = intent;
+	}
 }
