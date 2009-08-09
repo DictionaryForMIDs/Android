@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<item name="dialog_suggest_update" type="id" />
+	<item name="dialog_installation_exception" type="id" />
+	<item name="dialog_confirm_installation" type="id" />
+	<item name="dialog_server_message" type="id" />
+	<item name="dialog_confirm_abort_installation" type="id" />
+	<item name="dialog_manual_download_instructions" type="id" />
+	<item name="dialog_confirm_clear_recent_dictionaries" type="id" />
+</resources>

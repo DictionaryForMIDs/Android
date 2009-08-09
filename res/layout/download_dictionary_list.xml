@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:orientation="vertical"
+	android:layout_height="fill_parent">
+	
+	<ListView android:id="@android:id/list" android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+	</ListView>
+	
+	<LinearLayout android:id="@android:id/empty"
+		android:layout_width="fill_parent" android:orientation="vertical"
+		android:layout_height="fill_parent" android:gravity="center">
+		<ProgressBar android:layout_height="wrap_content"
+			android:indeterminate="true" android:indeterminateBehavior="repeat"
+			android:layout_marginBottom="15sp" android:layout_width="wrap_content"
+			android:id="@+id/ProgressBar" android:visibility="gone"></ProgressBar>
+		<TextView android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:gravity="center"
+			android:id="@+id/TextViewMessage" android:text="@string/loading_download_dictionaries"
+			android:visibility="gone" />
+
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:id="@+id/TextViewError"
+			android:text="@string/msg_error_downloading_available_dictionaries"
+			android:gravity="center" android:visibility="gone"></TextView>
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:id="@+id/TextViewEmpty"
+			android:text="@string/no_download_dictionaries" android:gravity="center"></TextView>
+	</LinearLayout>
+	
+</LinearLayout>
