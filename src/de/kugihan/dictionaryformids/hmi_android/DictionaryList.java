@@ -83,7 +83,7 @@ public class DictionaryList extends ListActivity implements ResultProvider {
 	}
 
 	/**
-	 * Exists the view and returns the specified dictionary.
+	 * Exits the view and returns the specified dictionary.
 	 * @param dictionary the dictionary to return
 	 */
 	private void exitWithDictionary(final String dictionary) {
@@ -142,7 +142,8 @@ public class DictionaryList extends ListActivity implements ResultProvider {
 		@Override
 		public void onClick(final View v) {
 			ChooseDictionary parent = (ChooseDictionary) getParent();
-			parent.showDialog(ChooseDictionary.ID_DOWNLOAD);
+			final String downloadTag = getString(R.string.tag_tab_download);
+			parent.getTabHost().setCurrentTabByTag(downloadTag);
 		}
     	
     };

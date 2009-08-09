@@ -30,6 +30,15 @@ public class AndroidUtil extends Util {
 	 * @param newHandler the handler that receives dictionary messages
 	 */
 	public AndroidUtil(final Handler newHandler) {
+		setHandler(newHandler);
+	}
+	
+	/**
+	 * Updates the current handler.
+	 * 
+	 * @param newHandler the handler that receives dictionary messages
+	 */
+	public final void setHandler(final Handler newHandler) {
 		handler = newHandler;
 	}
 

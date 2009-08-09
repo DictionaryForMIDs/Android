@@ -21,10 +21,10 @@ import de.kugihan.dictionaryformids.dataaccess.content.FontStyle;
 import de.kugihan.dictionaryformids.dataaccess.content.RGBColour;
 import de.kugihan.dictionaryformids.general.DictionaryException;
 import de.kugihan.dictionaryformids.hmi_android.Preferences;
+import de.kugihan.dictionaryformids.hmi_android.R;
 import de.kugihan.dictionaryformids.hmi_common.content.ContentParser;
 import de.kugihan.dictionaryformids.hmi_common.content.StringColourItemText;
 import de.kugihan.dictionaryformids.hmi_common.content.StringColourItemTextPart;
-import de.kugihan.dictionaryformids.hmi_android.R;
 import de.kugihan.dictionaryformids.translation.SingleTranslation;
 import de.kugihan.dictionaryformids.translation.TextOfLanguage;
 import de.kugihan.dictionaryformids.translation.TranslationExecutionCallback;
@@ -37,6 +37,11 @@ import de.kugihan.dictionaryformids.translation.TranslationResult;
  */
 public class Translations extends BaseAdapter implements
 		TranslationExecutionCallback {
+
+	/**
+	 * Automatically generated serialization version ID. 
+	 */
+	private static final long serialVersionUID = 8675472684874783859L;
 
 	/**
 	 * The ContentParser to parse used to parse TranslationResutls.
