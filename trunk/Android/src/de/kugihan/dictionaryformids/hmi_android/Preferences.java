@@ -102,7 +102,23 @@ public class Preferences extends PreferenceActivity implements
 		/**
 		 * Dictionary files are included into the application.
 		 */
-		INCLUDED
+		INCLUDED;
+		
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String toString() {
+			if (ordinal() == DictionaryType.DIRECTORY.ordinal()) {
+				return "DIR";
+			} else if (ordinal() == DictionaryType.ARCHIVE.ordinal()) {
+				return "ZIP";
+			} else if (ordinal() == DictionaryType.INCLUDED.ordinal()) {
+				return "INC";
+			} else {
+				return "";
+			}
+		}
 	};
 	
 	/**
@@ -326,7 +342,7 @@ public class Preferences extends PreferenceActivity implements
 		setRecentDictionaries(new String[0]);
 	}
 	
-	private static void addRecentDictionaryUrl(DictionaryType type,
+	public static void addRecentDictionaryUrl(DictionaryType type,
 			String path, String[] languages) {
 		String dictionary = dictionaryToString(type, path, languages);
 		if (dictionary == null) {
