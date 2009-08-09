@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="fill_parent"
+	android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical">
+
+	<CheckedTextView android:id="@+id/languages"
+		android:layout_height="wrap_content" android:textSize="20sp"
+		android:layout_width="fill_parent" android:text="Lang1 Lang2" />
+
+	<CheckedTextView android:id="@+id/path"
+		android:layout_height="wrap_content" android:layout_width="fill_parent"
+		android:text="DIR: /sdcard/DictionaryForMIDs/dict/DfM_2.3.4_EnglishGerman_CE"
+		android:textSize="12sp" android:paddingLeft="10sp"
+		android:textColor="@android:color/darker_gray" />
+
+</LinearLayout>
