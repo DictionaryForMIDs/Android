@@ -28,4 +28,8 @@
 	<string name="tag_tab_recent">tab_recent</string>
 	<string name="tag_tab_file">tab_file</string>
 	<string name="tag_tab_included">tab_included</string>
+	<string name="tag_tab_download">tab_download</string>
+	<string name="attribute_market_search">market://search?q=pname:%1$s</string>
+	<string name="attribute_root_path">/</string>
+	<string name="attribute_sdcard_path">/sdcard</string>
 </resources>

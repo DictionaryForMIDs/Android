@@ -12,6 +12,35 @@
 	<string name="not_found">not found</string>
 	<string name="no_included_dictionaries">No included dictionaries found.\n\nClick here to download one.</string>
 	<string name="no_recent_dictionaries">No recently loaded dictionaries found.\n\nClick here to download one.</string>
+	<string name="loading_download_dictionaries">Please wait.\n\nLoading available dictionaries...</string>
+	<string name="no_download_dictionaries">Sorry, there are currently no dictionaries available for download.</string>
+	<string name="msg_error_downloading_available_dictionaries">An error occurred while downloading the list of available dictionaries.\n\n\nClick here to try again.\n\n\nDetails:\n%1$s</string>
+	<string name="msg_suggest_update">Your version of DictionaryForMIDs is outdated. Please update before downloading dictionaries.\nUpdate now?</string>
+	<string name="msg_confirm_installation">Download and install \"%1$s\" dictionary?\nSize: unknown</string>	
+	<string name="msg_confirm_installation_size">Download and install \"%1$s\" dictionary?\nSize: %2$s</string>
+	<string name="msg_installation_exception">Exception while installing:\n%1$s</string>	
+	<string name="msg_installation_exception_cause">Exception while installing:\n%1$s\n\nCause:\n%1$s</string>
+	<string name="msg_installation_already_started">Sorry, an installation is already active.</string>
+	<string name="msg_installation_finished">Dictionary installed!</string>	
+	<string name="msg_list_already_downloaded">List is already being downloaded.</string>
+	<string name="msg_installation_error">Installation error</string>
+	<string name="title_exception">Exception</string>
+	<string name="exception_failed_create_directory">Failed to create directory: %1$s</string>
+	<string name="exception_failed_create_file">Failed to create file: %1$s</string>
+	<string name="exception_failed_delete_file">Failed to remove file: %1$s</string>
+	<string name="title_installation_finished">Finished</string>
+	<string name="msg_successfully_installed_dictionary">Successfully installed dictionary.</string>
+	<string name="msg_installation_complete">Installation complete</string>
+	<string name="title_installation_status">Installation status</string>
+	<string name="msg_installing_dictionary">Installing dictionary...</string>
+	<string name="msg_installation_aborted">Installation aborted by user.</string>
+	<string name="msg_installation_status">Status: %1$,.2f%%</string>
+	<string name="msg_compressed_entry_not_found">In archive \"%1$s\" there was no entry matching the following pattern \"%2$s\"</string>
+	<string name="unit_byte">B</string>
+	<string name="unit_kilo_byte">KB</string>
+	<string name="unit_mega_byte">MB</string>
+	<string name="unit_giga_byte">GB</string>
+	<string name="file_size">%1$,.2f %2$s</string>
 	<string name="results_found_maximum">More than %1$d (maximum) results found.</string>
 	<string name="results_found_cancel">%1$d result(s) found before canceling.</string>
 	<string name="results_found_timeout">%1$d result(s) found before timeout.</string>
@@ -44,8 +73,10 @@
 	<string name="menu_preferences">Preferences</string>
 	<string name="menu_about">About</string>
 	<string name="menu_help">Help</string>
-	<string name="menu_download_dictionaries">Download...</string>
+	<string name="menu_download_dictionaries">Manually download...</string>
 	<string name="menu_clear_recent_dictionary_list">Clear recent...</string><string name="msg_enter_word_first">Please enter a word first.</string>
+	<string name="menu_reload_dictionary_list">Reload list</string>
+	<string name="menu_cancel_installation">Cancel installation</string>
 	<string name="msg_load_dictionary_first">Please load a dictionary first.</string>
 	<string name="msg_reload_dictionary">Please reload the dictionary.</string>
 	<string name="msg_exception">Exception occurred:\n%1$s</string>
@@ -54,6 +85,8 @@
 	<string name="button_do_not_show_again">Do not show again</string>
 	<string name="msg_download_dictionaries">Downloading a dictionary involves 4 steps (the following assumes you have a file manager like Astro installed):\n\n1.Choose and download a dictionary on the website that is opened after confirming this dialog. Note: Only dictionaries of version 2.4.4 or higher are supported.\n\n2.Extract the zip-file\'s content to a directory on your SD-card (e.g. using Astro).\n\n3.Optional: Extract the included jar-archive\'s content onto your SD-card for faster look-ups.\n\n4.Select the dictionary in the previously shown dialog.\n\nAlternatively, you could download and extract the dictionary using your PC, then transfer the files to your sd-card.</string>
 	<string name="msg_clear_recent_dictionaries_list">Clear list of recent dictionaries?</string>
+	<string name="msg_cancel_installation">Cancel current installation?</string>
+	<string name="msg_load_dictionary">Load new dictionary now?\n\nYou can always load it later from the list of recent dictionaries.</string>
 	<string name="button_load_dictionary_from_current_directory">Load dictionary from current directory</string>
 	<string name="msg_dictionary_error">Dictionary error</string>
 	<string name="msg_dictionary_not_found">Dictionary was not found.\n\nPlease select a dictionary using the following dialog.</string>
@@ -66,7 +99,11 @@
 	<string name="title_about_heading">Java application DictonaryForMIDs</string>
 	<string name="title_about_copyright_owner">Copyright by Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) and other contributors.</string>
 	<string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+	<string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/dict-dwn-list.php?p=%1$d&amp;v=%2$s</string>
 	<string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+	<string name="attribute_installation_directory">/sdcard/DictionaryForMIDs/dict/</string>
+	<string name="attribute_jar_directory">/sdcard/DictionaryForMIDs/jar/</string>
+	<string name="attribute_zip_directory">/sdcard/DictionaryForMIDs/zip/</string>
 	<string name="title_version">Version: %1$s\t(%2$d)</string>
 	<string name="title_about_copyright">DictionaryForMIDs Java application is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -95,15 +132,16 @@
 	<string name="tab_load_recent">Recent</string>
 	<string name="tab_load_from_file">From file</string>
 	<string name="tab_load_included">Included</string>
-	<string name="title_recent_dictionary">%3$s\n   %1$s: %2$s</string>
+	<string name="tab_load_download">Download</string>
+	<string name="title_recent_dictionary">%1$s: %2$s</string>
 	<string name="title_remove_from_list">Remove from list</string>
 	<string name="app_description">DictionaryForMIDs is a free multi-language dictionary for cell phones and PDAs</string>
 	<string name="hint_enter_word">Enter word to translate</string>
-<string name="title_pref_search_options">Search options</string>
-<string name="title_pref_search_mode">Search mode</string>
-<string name="title_pref_max_results">Max. results</string>
-<string name="title_pref_timeout">Timeout for searching</string>
-<string name="title_pref_display_options">Display options</string>
-<string name="title_pref_result_font_size">Font size for results</string>
-<string name="title_pref_ignore_font_styles">Ignore font styles</string>
+	<string name="title_pref_search_options">Search options</string>
+	<string name="title_pref_search_mode">Search mode</string>
+	<string name="title_pref_max_results">Max. results</string>
+	<string name="title_pref_timeout">Timeout for searching</string>
+	<string name="title_pref_display_options">Display options</string>
+	<string name="title_pref_result_font_size">Font size for results</string>
+	<string name="title_pref_ignore_font_styles">Ignore font styles</string>
 </resources>
