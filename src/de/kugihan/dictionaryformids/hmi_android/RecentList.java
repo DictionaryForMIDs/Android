@@ -19,19 +19,21 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import de.kugihan.dictionaryformids.hmi_android.Preferences.DictionaryType;
-import de.kugihan.dictionaryformids.hmi_android.R;
 import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
 
 /**
@@ -40,7 +42,7 @@ import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
  * 
  */
 public class RecentList extends ListActivity implements ResultProvider {
-	
+
 	/**
 	 * Caches the type of the entries.
 	 */
@@ -50,7 +52,12 @@ public class RecentList extends ListActivity implements ResultProvider {
 	 * Caches the path of the entries.
 	 */
 	private List<String> itemsPath = null;
-	
+
+	/**
+	 * Caches the languages of the entries.
+	 */
+	private List<String> itemsLanguages = null;
+
 	/**
 	 * The result returned to TabHost.
 	 */
@@ -60,28 +67,33 @@ public class RecentList extends ListActivity implements ResultProvider {
 	 * The result code returned to TabHost.
 	 */
 	private int resultCode = RESULT_CANCELED;
-	
+
+	/**
+	 * Handler to receive tasks that change the user interface.
+	 */
+	private Handler handler = new Handler();
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public final void onCreate(final Bundle icicle) {
-        super.onCreate(icicle);
-        setContentView(R.layout.recent_dictionary_list);
-        Preferences.attachToContext(getApplicationContext());
-        fillWithDictionaries();
-        
-        SharedPreferences preferences = PreferenceManager
+		super.onCreate(icicle);
+		setContentView(R.layout.recent_dictionary_list);
+		Preferences.attachToContext(getApplicationContext());
+		fillWithDictionaries();
+
+		SharedPreferences preferences = PreferenceManager
 				.getDefaultSharedPreferences(getBaseContext());
 		preferences
 				.registerOnSharedPreferenceChangeListener(preferenceChangeListener);
-		
+
 		registerForContextMenu(getListView());
-		
+
 		TextView empty = (TextView) findViewById(android.R.id.empty);
 		empty.setOnClickListener(clickListener);
-    }
-	
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -91,27 +103,44 @@ public class RecentList extends ListActivity implements ResultProvider {
 		final MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.recent_dictionary_context, menu);
 	}
-	
+
+	/**
+	 * Listener to react on preferences changes to reload the list of recent
+	 * dictionaries.
+	 */
 	private OnSharedPreferenceChangeListener preferenceChangeListener = new OnSharedPreferenceChangeListener() {
 		@Override
 		public void onSharedPreferenceChanged(
 				final SharedPreferences sharedPreferences, final String key) {
 			if (key.equals(Preferences.PREF_RECENT_DICTIONARIES)) {
-				// push font recent dictionaries change into list items
-				fillWithDictionaries();
+				handler.post(new Runnable() {
+					@Override
+					public void run() {
+						// push font recent dictionaries change into list items
+						fillWithDictionaries();
+					}
+				});
 			}
 		}
 	};
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected final void onListItemClick(final ListView l, final View v,
 			final int position, final long id) {
+		super.onListItemClick(l, v, position, id);
 		exitWithDictionary(position);
 	}
 
+	/**
+	 * Closes the application and returns the dictionary at the given position
+	 * to the calling activity.
+	 * 
+	 * @param position
+	 *            the position of the selected dictionary
+	 */
 	private void exitWithDictionary(final int position) {
 		resultCode = RESULT_OK;
 		returnData = new Intent();
@@ -122,12 +151,15 @@ public class RecentList extends ListActivity implements ResultProvider {
 		setResult(resultCode, returnData);
 		finish();
 	}
-	
-    private void fillWithDictionaries() {
-    	String[] dictionaries = Preferences.getRecentDictionaries();
-    	itemsType = new ArrayList<DictionaryType>();
-    	itemsPath = new ArrayList<String>();
-    	ArrayList<String> view = new ArrayList<String>();
+
+	/**
+	 * Fill the view with recently loaded dictionaries.
+	 */
+	private void fillWithDictionaries() {
+		String[] dictionaries = Preferences.getRecentDictionaries();
+		itemsType = new ArrayList<DictionaryType>();
+		itemsPath = new ArrayList<String>();
+		itemsLanguages = new ArrayList<String>();
 		for (String dictionary : dictionaries) {
 			JSONObject parts;
 			int type;
@@ -137,7 +169,8 @@ public class RecentList extends ListActivity implements ResultProvider {
 				parts = new JSONObject(dictionary);
 				type = parts.getInt("type");
 				path = parts.getString("path");
-				JSONArray languagesArray = new JSONArray(parts.getString("languages"));
+				JSONArray languagesArray = new JSONArray(parts
+						.getString("languages"));
 				for (int i = 0; i < languagesArray.length(); i++) {
 					languages += languagesArray.getString(i) + " ";
 				}
@@ -145,50 +178,38 @@ public class RecentList extends ListActivity implements ResultProvider {
 			} catch (JSONException e) {
 				continue;
 			}
-			String typeName;
-			if (type == DictionaryType.DIRECTORY.ordinal()) {
-				typeName = "DIR";
-			} else if (type == DictionaryType.ARCHIVE.ordinal()) {
-				typeName = "ZIP";
-			} else if (type == DictionaryType.INCLUDED.ordinal()) {
-				typeName = "INC";
-			} else {
-				continue;
-			}
 			itemsType.add(DictionaryType.values()[type]);
 			itemsPath.add(path);
-			view.add(getString(R.string.title_recent_dictionary, typeName,
-					path, languages));
+			itemsLanguages.add(languages);
 		}
-		ArrayAdapter<String> dictionaryList = new ArrayAdapter<String>(this,
-				R.layout.file_row, view);
+		ListAdapter dictionaryList = new ListAdapter();
 		setListAdapter(dictionaryList);
 	}
-    
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final Intent getReturnData() {
-    	return returnData;
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final int getResultCode() {
-    	return resultCode;
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    @Override
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final Intent getReturnData() {
+		return returnData;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final int getResultCode() {
+		return resultCode;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public final boolean onContextItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.itemRemoveFromList:
-	    	final AdapterContextMenuInfo menuInfo = (AdapterContextMenuInfo) item
+			final AdapterContextMenuInfo menuInfo = (AdapterContextMenuInfo) item
 					.getMenuInfo();
 			final int position = menuInfo.position;
 			DictionaryType type = itemsType.get(position);
@@ -199,18 +220,78 @@ public class RecentList extends ListActivity implements ResultProvider {
 			return super.onContextItemSelected(item);
 		}
 		return true;
-    }
-    
-    /**
-     * A listener for clicks on the download dictionaries field.
-     */
-    private OnClickListener clickListener = new OnClickListener() {
+	}
+
+	/**
+	 * A listener for clicks on the download dictionaries field.
+	 */
+	private OnClickListener clickListener = new OnClickListener() {
 
 		@Override
 		public void onClick(final View v) {
 			ChooseDictionary parent = (ChooseDictionary) getParent();
-			parent.showDialog(ChooseDictionary.ID_DOWNLOAD);
+			final String downloadTag = getString(R.string.tag_tab_download);
+			parent.getTabHost().setCurrentTabByTag(downloadTag);
 		}
-    	
-    };
+
+	};
+
+	/**
+	 * Implementation of the BaseAdapter to create a custom view of the recent
+	 * dictionary list.
+	 * 
+	 */
+	private class ListAdapter extends BaseAdapter {
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public int getCount() {
+			return itemsPath.size();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Object getItem(final int position) {
+			return itemsPath.get(position);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public long getItemId(final int position) {
+			return position;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public View getView(final int position, final View convertView,
+				final ViewGroup parent) {
+			View view;
+			if (convertView == null) {
+				LayoutInflater inflater = LayoutInflater.from(parent
+						.getContext());
+				view = inflater.inflate(R.layout.recent_dictionary_row, null);
+			} else {
+				view = convertView;
+			}
+			final String languagesString = itemsLanguages.get(position);
+			final String typeString = itemsType.get(position).toString();
+			final String pathString = itemsPath.get(position);
+			final String completePathString = getString(
+					R.string.title_recent_dictionary, typeString, pathString);
+			TextView languages = (TextView) view.findViewById(R.id.languages);
+			TextView path = (TextView) view.findViewById(R.id.path);
+			languages.setText(languagesString);
+			path.setText(completePathString);
+			return view;
+		}
+
+	}
 }
