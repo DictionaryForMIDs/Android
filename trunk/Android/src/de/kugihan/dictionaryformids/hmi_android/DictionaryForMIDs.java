@@ -164,10 +164,12 @@ public final class DictionaryForMIDs extends Activity {
 	 */
 	@Override
 	protected void onRestoreInstanceState(final Bundle savedInstanceState) {
-		final LanguageSpinnerAdapter languageSpinnerAdapter = new LanguageSpinnerAdapter(
-				DictionaryDataFile.supportedLanguages);
-		((Spinner) findViewById(R.id.selectLanguages))
-				.setAdapter(languageSpinnerAdapter);
+		if (DictionaryDataFile.supportedLanguages != null) {
+			final LanguageSpinnerAdapter languageSpinnerAdapter = new LanguageSpinnerAdapter(
+					DictionaryDataFile.supportedLanguages);
+			((Spinner) findViewById(R.id.selectLanguages))
+					.setAdapter(languageSpinnerAdapter);
+		}
 
 		loadLastNonConfigurationInstance();
 
