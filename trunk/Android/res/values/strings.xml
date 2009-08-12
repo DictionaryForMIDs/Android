@@ -21,6 +21,7 @@
 	<string name="msg_installation_exception">Exception while installing:\n%1$s</string>	
 	<string name="msg_installation_exception_cause">Exception while installing:\n%1$s\n\nCause:\n%1$s</string>
 	<string name="msg_installation_already_started">Sorry, an installation is already active.</string>
+	<string name="msg_installation_started">Installation may take a while, you can continue to use the application.</string>
 	<string name="msg_installation_finished">Dictionary installed!</string>	
 	<string name="msg_list_already_downloaded">List is already being downloaded.</string>
 	<string name="msg_installation_error">Installation error</string>
