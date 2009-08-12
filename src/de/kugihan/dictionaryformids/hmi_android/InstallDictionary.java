@@ -411,6 +411,9 @@ public final class InstallDictionary extends ListActivity implements
 		intent.putExtra(DictionaryInstallationService.BUNDLE_DICTIONARY_FILE,
 				dictionaryFile);
 		startService(intent);
+		
+		Toast.makeText(this, R.string.msg_installation_started,
+				Toast.LENGTH_LONG).show();
 	}
 
 	/**
