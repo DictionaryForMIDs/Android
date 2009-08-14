@@ -432,7 +432,7 @@ public final class DictionaryInstallationService extends Service {
 		}
 		boolean directoryWasCreated = true;
 		if (!file.getParentFile().exists()) {
-			directoryWasCreated = file.mkdirs();
+			directoryWasCreated = file.getParentFile().mkdirs();
 		}
 		if (!directoryWasCreated) {
 			throw new IOException(getString(
