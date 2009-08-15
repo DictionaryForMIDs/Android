@@ -7,8 +7,6 @@
  ******************************************************************************/
 package de.kugihan.dictionaryformids.hmi_android;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -38,38 +36,6 @@ public final class ChooseDictionary extends TabActivity {
 	 * tab.
 	 */
 	public static final String BUNDLE_SHOW_DICTIONARY_INSTALLATION = "showDictionaryInstallation";
-
-	/**
-	 * The interface used for distributing dialog events.
-	 * 
-	 */
-	public interface DialogCallback {
-		/**
-		 * This function is called when the parent onCreateDialog cannot handle
-		 * the specified dialogId.
-		 * 
-		 * @param dialogId
-		 *            the id of the dialog to create
-		 * @return the newly created dialog or null
-		 */
-		Dialog onCreateDialogListener(final int dialogId);
-
-		/**
-		 * This function is called when the parent onPrepareDialog cannot handle
-		 * the specified dialogId.
-		 * 
-		 * @param dialogId
-		 *            the id of the dialog to prepare
-		 * @param dialog
-		 *            the created dialog
-		 */
-		void onPrepareDialogListener(final int dialogId, final Dialog dialog);
-	}
-
-	/**
-	 * The list of dialog event listeners.
-	 */
-	private static ArrayList<DialogCallback> dialogListeners = new ArrayList<DialogCallback>();
 
 	/**
 	 * {@inheritDoc}
@@ -217,52 +183,8 @@ public final class ChooseDictionary extends TabActivity {
 					});
 			return alertBuilder.create();
 		} else {
-			// pass the call on to childs
-			Dialog dialog = null;
-			for (DialogCallback callback : dialogListeners) {
-				dialog = callback.onCreateDialogListener(id);
-				if (dialog != null) {
-					break;
-				}
-			}
-			if (dialog != null) {
-				return dialog;
-			}
+			return super.onCreateDialog(id);
 		}
-		return super.onCreateDialog(id);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void onPrepareDialog(final int id, final Dialog dialog) {
-		for (DialogCallback callback : dialogListeners) {
-			callback.onPrepareDialogListener(id, dialog);
-		}
-		super.onPrepareDialog(id, dialog);
-	}
-
-	/**
-	 * Register a new dialog event listener.
-	 * 
-	 * @param listener
-	 *            the listener to register
-	 */
-	public void registerDialogListener(final DialogCallback listener) {
-		// make sure the client is registered only once
-		removeDialogListener(listener);
-		dialogListeners.add(listener);
-	}
-
-	/**
-	 * Remove a registered dialog event listener.
-	 * 
-	 * @param listener
-	 *            the listener to remove
-	 */
-	public void removeDialogListener(final DialogCallback listener) {
-		dialogListeners.remove(listener);
 	}
 
 	/**
