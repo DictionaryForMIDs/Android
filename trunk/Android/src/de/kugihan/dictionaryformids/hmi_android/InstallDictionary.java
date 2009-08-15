@@ -27,6 +27,7 @@ import android.app.ListActivity;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnCancelListener;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
@@ -43,7 +44,6 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import de.kugihan.dictionaryformids.hmi_android.ChooseDictionary.DialogCallback;
 import de.kugihan.dictionaryformids.hmi_android.data.DictionaryListParser;
 import de.kugihan.dictionaryformids.hmi_android.data.DownloadDictionaryItem;
 import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
@@ -56,7 +56,7 @@ import de.kugihan.dictionaryformids.hmi_android.service.ServiceUpdateListener;
  * 
  */
 public final class InstallDictionary extends ListActivity implements
-		ResultProvider, DialogCallback {
+		ResultProvider {
 
 	/**
 	 * The encoding expected for server responses.
@@ -95,6 +95,12 @@ public final class InstallDictionary extends ListActivity implements
 	 * The key of a ArrayList of parcable DownloadDictionaryItems in a bundle.
 	 */
 	private static final String BUNDLE_DICTIONARIES = "dictionaries";
+	
+	/**
+	 * The key of an integer specifying the visible dialog when the activity was
+	 * destroyed.
+	 */
+	private static final String BUNDLE_VISIBLE_DIALOG_ID = "visibleDialogId";
 
 	/**
 	 * ID specifying the Android platform to the dictionary list service.
@@ -105,6 +111,12 @@ public final class InstallDictionary extends ListActivity implements
 	 * Bytes in a kilobyte.
 	 */
 	private static final int BYTES_PER_KILOBYTE = 1024;
+	
+	/**
+	 * The id of the currently visible dialog or -1 if no dialog is visible.
+	 * This is used to implement managed dialogs in TabHost.
+	 */
+	private int visibleDialogId = -1;
 
 	/**
 	 * List of all available dictionaries.
@@ -183,6 +195,12 @@ public final class InstallDictionary extends ListActivity implements
 						R.string.msg_error_downloading_available_dictionaries,
 						exception.toString()));
 			}
+			// restore the dialog that was visible before activity got re-created
+			visibleDialogId = savedInstanceState.getInt(BUNDLE_VISIBLE_DIALOG_ID);
+			if (visibleDialogId >= 0) {
+				showDialog(visibleDialogId);
+			}
+			// load the list if a download was active before activity got re-created
 			if (savedInstanceState.getBoolean(BUNDLE_ACTIVE_DOWNLOAD)) {
 				startListDownload();
 			} else {
@@ -192,30 +210,6 @@ public final class InstallDictionary extends ListActivity implements
 
 		TextView textViewError = (TextView) findViewById(R.id.TextViewError);
 		textViewError.setOnClickListener(retryDownload);
-
-		registerDialogListener();
-	}
-
-	/**
-	 * Registers the activity to listen for dialog events if the parent activity
-	 * is a ChooseDictionary class.
-	 */
-	private void registerDialogListener() {
-		if (getMainActivity() instanceof ChooseDictionary) {
-			ChooseDictionary chooseDictionary = (ChooseDictionary) getMainActivity();
-			chooseDictionary.registerDialogListener(this);
-		}
-	}
-
-	/**
-	 * Removes the listener for dialog events if the parent activity is a
-	 * ChooseDictionary class.
-	 */
-	private void removeDialogListener() {
-		if (getMainActivity() instanceof ChooseDictionary) {
-			ChooseDictionary chooseDictionary = (ChooseDictionary) getMainActivity();
-			chooseDictionary.removeDialogListener(this);
-		}
 	}
 
 	/**
@@ -235,7 +229,6 @@ public final class InstallDictionary extends ListActivity implements
 	 */
 	@Override
 	protected void onPause() {
-		removeDialogListener();
 		reactOnServiceUpdates = false;
 		DictionaryInstallationService.setUpdateListener(null);
 		getMainActivity().setProgressBarVisibility(false);
@@ -259,7 +252,6 @@ public final class InstallDictionary extends ListActivity implements
 	 */
 	@Override
 	protected void onResume() {
-		registerDialogListener();
 		int task = DictionaryInstallationService.pollLastType();
 		int percentage = DictionaryInstallationService.pollLastPercentage();
 		if (DictionaryInstallationService.isRunning() && task >= 0) {
@@ -282,6 +274,7 @@ public final class InstallDictionary extends ListActivity implements
 		outState.putSerializable(BUNDLE_EXCEPTION, exception);
 		outState.putInt(BUNDLE_SELECTED_ITEM, selectedItem);
 		outState.putBoolean(BUNDLE_ACTIVE_DOWNLOAD, listDownloadThread != null);
+		outState.putInt(BUNDLE_VISIBLE_DIALOG_ID, visibleDialogId);
 		super.onSaveInstanceState(outState);
 	}
 
@@ -427,7 +420,7 @@ public final class InstallDictionary extends ListActivity implements
 				@Override
 				public void run() {
 					exception = e;
-					showDialogInMainActivity(R.id.dialog_installation_exception);
+					showDialog(R.id.dialog_installation_exception);
 					updateProgres(10000);
 					getMainActivity().setProgressBarVisibility(false);
 					getMainActivity().setProgressBarIndeterminateVisibility(
@@ -614,10 +607,10 @@ public final class InstallDictionary extends ListActivity implements
 			throws JSONException {
 		DictionaryListParser parser = new DictionaryListParser(stringResult);
 		if (parser.forceUpdate()) {
-			showDialogInMainActivityFromThread(R.id.dialog_suggest_update);
+			showDialogFromThread(R.id.dialog_suggest_update);
 			return;
 		} else if (parser.mayUpdate()) {
-			showDialogInMainActivityFromThread(R.id.dialog_suggest_update);
+			showDialogFromThread(R.id.dialog_suggest_update);
 		}
 		handleServerMessage(parser);
 		dictionaries = parser.getDictionaries();
@@ -633,24 +626,36 @@ public final class InstallDictionary extends ListActivity implements
 		String message = parser.getServerMessage();
 		if (message != null && message.length() > 0) {
 			serverMessage = message;
-			showDialogInMainActivityFromThread(R.id.dialog_server_message);
+			showDialogFromThread(R.id.dialog_server_message);
 		}
 	}
 
 	/**
-	 * Shows a managed dialog on the main activity. This method can be called
+	 * Shows a managed dialog. This method can be called
 	 * from non-GUI threads.
 	 * 
 	 * @param dialogId
 	 *            the id of the dialog to show
 	 */
-	private void showDialogInMainActivityFromThread(final int dialogId) {
+	private void showDialogFromThread(final int dialogId) {
 		handler.post(new Runnable() {
 			@Override
 			public void run() {
-				showDialogInMainActivity(dialogId);
+				showDialog(dialogId);
 			}
 		});
+	}
+	
+	/**
+	 * Mark the given dialog id to be no longer visible.
+	 * 
+	 * @param dialogId
+	 *            id of the dialog that is no longer visible
+	 */
+	private void markDialogAsInvisible(final int dialogId) {
+		if (visibleDialogId == dialogId) {
+			visibleDialogId = -1;
+		}
 	}
 
 	/**
@@ -684,6 +689,13 @@ public final class InstallDictionary extends ListActivity implements
 							dialog.cancel();
 						}
 					});
+			alertBuilder.setOnCancelListener(new OnCancelListener() {
+				@Override
+				public void onCancel(final DialogInterface dialog) {
+					markDialogAsInvisible(id);
+				}
+			});
+			visibleDialogId = id;
 			return alertBuilder.create();
 
 		case R.id.dialog_installation_exception:
@@ -697,6 +709,13 @@ public final class InstallDictionary extends ListActivity implements
 							dialog.cancel();
 						}
 					});
+			exceptionAlert.setOnCancelListener(new OnCancelListener() {
+				@Override
+				public void onCancel(final DialogInterface dialog) {
+					markDialogAsInvisible(id);
+				}
+			});
+			visibleDialogId = id;
 			dialog = exceptionAlert.create();
 			onPrepareDialog(id, dialog);
 			return dialog;
@@ -720,6 +739,13 @@ public final class InstallDictionary extends ListActivity implements
 							dialog.cancel();
 						}
 					});
+			confirmationAlert.setOnCancelListener(new OnCancelListener() {
+				@Override
+				public void onCancel(final DialogInterface dialog) {
+					markDialogAsInvisible(id);
+				}
+			});
+			visibleDialogId = id;
 			dialog = confirmationAlert.create();
 			onPrepareDialog(id, dialog);
 			return dialog;
@@ -735,6 +761,13 @@ public final class InstallDictionary extends ListActivity implements
 							dialog.cancel();
 						}
 					});
+			messageAlert.setOnCancelListener(new OnCancelListener() {
+				@Override
+				public void onCancel(final DialogInterface dialog) {
+					markDialogAsInvisible(id);
+				}
+			});
+			visibleDialogId = id;
 			dialog = messageAlert.create();
 			onPrepareDialog(id, dialog);
 			return dialog;
@@ -758,6 +791,13 @@ public final class InstallDictionary extends ListActivity implements
 							dialog.cancel();
 						}
 					});
+			cancelInstallation.setOnCancelListener(new OnCancelListener() {
+				@Override
+				public void onCancel(final DialogInterface dialog) {
+					markDialogAsInvisible(id);
+				}
+			});
+			visibleDialogId = id;
 			return cancelInstallation.create();
 
 		default:
@@ -808,6 +848,7 @@ public final class InstallDictionary extends ListActivity implements
 
 		default:
 		}
+		visibleDialogId = id;
 		super.onPrepareDialog(id, dialog);
 	}
 
@@ -851,7 +892,7 @@ public final class InstallDictionary extends ListActivity implements
 		}
 
 		selectedItem = position;
-		showDialogInMainActivity(R.id.dialog_confirm_installation);
+		showDialog(R.id.dialog_confirm_installation);
 	}
 
 	/**
@@ -914,38 +955,12 @@ public final class InstallDictionary extends ListActivity implements
 			return true;
 
 		case R.id.itemCancelInstallation:
-			showDialogInMainActivity(R.id.dialog_confirm_abort_installation);
+			showDialog(R.id.dialog_confirm_abort_installation);
 			return true;
 
 		default:
 			return super.onMenuItemSelected(featureId, item);
 		}
-	}
-
-	/**
-	 * Shows a managed dialog in the activity's main activity.
-	 * 
-	 * @param dialogId
-	 *            the id of the dialog to show
-	 */
-	private void showDialogInMainActivity(final int dialogId) {
-		getMainActivity().showDialog(dialogId);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Dialog onCreateDialogListener(final int dialogId) {
-		return onCreateDialog(dialogId);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void onPrepareDialogListener(final int dialogId, final Dialog dialog) {
-		onPrepareDialog(dialogId, dialog);
 	}
 
 }
