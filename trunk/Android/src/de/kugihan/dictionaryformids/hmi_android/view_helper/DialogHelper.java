@@ -290,6 +290,12 @@ public final class DialogHelper {
 						activity.startChooseDictionaryActivity();
 					}
 				});
+		alertBuilder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
+			}
+		});
 		return alertBuilder.create();
 	}
 
