@@ -90,7 +90,7 @@
 	<string name="msg_load_dictionary">Load new dictionary now?\n\nYou can always load it later from the list of recent dictionaries.</string>
 	<string name="button_load_dictionary_from_current_directory">Load dictionary from current directory</string>
 	<string name="msg_dictionary_error">Dictionary error</string>
-	<string name="msg_dictionary_not_found">Dictionary was not found.\n\nPlease select a dictionary using the following dialog.</string>
+	<string name="msg_dictionary_not_found">Dictionary could not be loaded.\n\nYou can select a dictionary on the following dialog.</string>
 	<string name="msg_dictionary_load_error">Error while loading dictionary.</string>
 	<string name="msg_internal_dictionary_load_error">Error while loading internal dictionaries.\n\n%1$s</string>
 	<string name="title_current_path">&gt; %1$s</string>
