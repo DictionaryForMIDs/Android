@@ -210,20 +210,17 @@ public class Preferences extends PreferenceActivity implements
 	}
 	
 	public static boolean getLoadIncludedDictionary() {
-		return preferences.getInt(PREF_DICTIONARY_TYPE,
-				DictionaryType.DIRECTORY.ordinal()) == DictionaryType.INCLUDED
+		return preferences.getInt(PREF_DICTIONARY_TYPE, -1) == DictionaryType.INCLUDED
 				.ordinal();
 	}
-	
+
 	public static boolean getLoadArchiveDictionary() {
-		return preferences.getInt(PREF_DICTIONARY_TYPE,
-				DictionaryType.DIRECTORY.ordinal()) == DictionaryType.ARCHIVE
+		return preferences.getInt(PREF_DICTIONARY_TYPE, -1) == DictionaryType.ARCHIVE
 				.ordinal();
 	}
 
 	public static boolean getLoadDirectoryDictionary() {
-		return preferences.getInt(PREF_DICTIONARY_TYPE,
-				DictionaryType.DIRECTORY.ordinal()) == DictionaryType.DIRECTORY
+		return preferences.getInt(PREF_DICTIONARY_TYPE, -1) == DictionaryType.DIRECTORY
 				.ordinal();
 	}
 
