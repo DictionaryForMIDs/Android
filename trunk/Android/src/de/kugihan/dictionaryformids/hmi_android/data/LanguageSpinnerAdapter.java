@@ -35,6 +35,13 @@ public class LanguageSpinnerAdapter extends BaseAdapter {
 	private int[][] indices;
 
 	/**
+	 * Creates an empty adapter.
+	 */
+	public LanguageSpinnerAdapter() {
+		this(new LanguageDefinition[0]);
+	}
+	
+	/**
 	 * Creates a new instance representing the given data.
 	 * 
 	 * @param languages the languages to display
@@ -129,13 +136,7 @@ public class LanguageSpinnerAdapter extends BaseAdapter {
 		if (position == indices.length) {
 			TextView textView = (TextView) view
 					.findViewById(R.id.LoadDictionary);
-			int loadDictionaryCommand;
-			if (indices.length == 0) {
-				loadDictionaryCommand = R.string.title_load_dictionary_first;
-			} else {
-				loadDictionaryCommand = R.string.title_load_dictionary;
-			}
-			textView.setText(loadDictionaryCommand);
+			textView.setText(R.string.title_load_dictionary);
 			textView.setVisibility(View.VISIBLE);
 			((LinearLayout) view.findViewById(R.id.LanguageDirectionLayout))
 					.setVisibility(View.GONE);
