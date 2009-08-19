@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -58,6 +57,186 @@ import de.kugihan.dictionaryformids.hmi_android.service.ServiceUpdateListener;
 public final class InstallDictionary extends ListActivity implements
 		ResultProvider {
 
+	// TODO stop thread if activity will not be restored shortly
+	/**
+	 * Thread to download and parse a list of dictionaries independently from
+	 * the view.
+	 */
+	private static final class ListDownloadThread extends Thread {
+
+		/**
+		 * Interface specifying communication between the thread and the UI.
+		 * 
+		 */
+		public interface OnPostExecutionListener {
+			/**
+			 * Gets called when the thread has finished.
+			 * 
+			 * @param parser
+			 *            the parser created from the response
+			 */
+			void onPostExecution(DictionaryListParser parser);
+
+			/**
+			 * Gets called in case an exceptions occurred.
+			 * 
+			 * @param exception
+			 *            the occurred exception, either an IOException or a
+			 *            JSONException
+			 */
+			void onException(Exception exception);
+		}
+
+		/**
+		 * URL of the web-service providing the list of dictionaries.
+		 */
+		private final String dictionaryListUrl;
+
+		/**
+		 * The exception that occurred while processing or null.
+		 */
+		private Exception exception = null;
+
+		/**
+		 * The parser that was created from the server response or null.
+		 */
+		private DictionaryListParser parser = null;
+
+		/**
+		 * The listener that is informed about the results or null.
+		 */
+		private volatile OnPostExecutionListener listener = null;
+
+		/**
+		 * Object used for synchronizing access to the listener.
+		 */
+		private final Object syncObject = new Object();
+
+		/**
+		 * Creates a new thread that can download the given url and parse the
+		 * list dictionaries.
+		 * 
+		 * @param url
+		 *            an url pointing to the list of dictionaries
+		 */
+		public ListDownloadThread(final String url) {
+			this.dictionaryListUrl = url;
+		}
+
+		@Override
+		public void run() {
+			try {
+				final DictionaryListParser parser = downloadList(dictionaryListUrl);
+				returnParser(parser);
+			} catch (IOException e) {
+				returnException(e);
+			} catch (JSONException e) {
+				returnException(e);
+			}
+		}
+
+		/**
+		 * Returns the exception to the attached listener or saves it for later
+		 * retrieval if no listener is attached.
+		 * 
+		 * @param exception
+		 *            the that occurred
+		 */
+		private void returnException(final Exception exception) {
+			synchronized (syncObject) {
+				if (listener != null) {
+					listener.onException(exception);
+					this.exception = null;
+				} else {
+					this.exception = exception;
+				}
+			}
+		}
+
+		/**
+		 * Returns the parser to the attached listener or saves it for later
+		 * retrieval if no listener is attached.
+		 * 
+		 * @param parser
+		 *            the parser representing the list of dictionaries
+		 */
+		private void returnParser(final DictionaryListParser parser) {
+			synchronized (syncObject) {
+				if (listener != null) {
+					listener.onPostExecution(parser);
+					this.parser = null;
+				} else {
+					this.parser = parser;
+				}
+			}
+		}
+
+		/**
+		 * Downloads a the list of dictionaries.
+		 * 
+		 * @throws ClientProtocolException
+		 * @throws IOException
+		 *             if an input or output exception occurs
+		 * @throws JSONException
+		 *             if an exception occurs while parsing JSON data
+		 */
+		private DictionaryListParser downloadList(final String url)
+				throws IOException, JSONException {
+			final HttpClient client = new DefaultHttpClient();
+			final HttpGet httpGet = new HttpGet(url);
+
+			final HttpResponse response = client.execute(httpGet);
+			final HttpEntity entity = response.getEntity();
+			if (entity == null) {
+				throw new IOException("HttpResponse.getEntity() IS NULL");
+			}
+			final boolean isValidType = entity.getContentType().getValue().startsWith(
+					RESPONSE_CONTENT_TYPE);
+			if (!isValidType) {
+				final String message = "CONTENT_TYPE IS '"
+								+ entity.getContentType().getValue() + "'";
+				throw new IOException(message);
+			}
+
+			final BufferedReader reader = new BufferedReader(new InputStreamReader(
+					entity.getContent(), RESPONSE_ENCODING));
+
+			StringBuilder stringResult = new StringBuilder();
+
+			try {
+				for (String line = reader.readLine(); line != null; line = reader
+						.readLine()) {
+					stringResult.append(line);
+				}
+			} finally {
+				reader.close();
+			}
+
+			return new DictionaryListParser(stringResult);
+		}
+
+		/**
+		 * Attaches the listener to the thread or removes the current if
+		 * listener is null.
+		 * 
+		 * @param listener
+		 *            the listener to attach or null
+		 */
+		public void setOnPostExecutionListener(
+				final OnPostExecutionListener listener) {
+			synchronized (syncObject) {
+				this.listener = listener;
+				if (exception != null) {
+					returnException(exception);
+				}
+				if (parser != null) {
+					returnParser(parser);
+				}
+			}
+		}
+
+	}
+
 	/**
 	 * The encoding expected for server responses.
 	 */
@@ -67,11 +246,6 @@ public final class InstallDictionary extends ListActivity implements
 	 * The content type expected for server responses.
 	 */
 	private static final String RESPONSE_CONTENT_TYPE = "text/html";
-
-	/**
-	 * The key of a boolean specifying an active download in a bundle.
-	 */
-	private static final String BUNDLE_ACTIVE_DOWNLOAD = "activeDownload";
 
 	/**
 	 * The key of a integer specifying the id of the selected dictionary in a
@@ -95,7 +269,7 @@ public final class InstallDictionary extends ListActivity implements
 	 * The key of a ArrayList of parcable DownloadDictionaryItems in a bundle.
 	 */
 	private static final String BUNDLE_DICTIONARIES = "dictionaries";
-	
+
 	/**
 	 * The key of an integer specifying the visible dialog when the activity was
 	 * destroyed.
@@ -111,7 +285,7 @@ public final class InstallDictionary extends ListActivity implements
 	 * Bytes in a kilobyte.
 	 */
 	private static final int BYTES_PER_KILOBYTE = 1024;
-	
+
 	/**
 	 * The id of the currently visible dialog or -1 if no dialog is visible.
 	 * This is used to implement managed dialogs in TabHost.
@@ -164,7 +338,12 @@ public final class InstallDictionary extends ListActivity implements
 	 * Handle of the thread that currently downloads the list of dictionaries or
 	 * null.
 	 */
-	private Thread listDownloadThread = null;
+	private volatile ListDownloadThread listDownloadThread = null;
+	
+	/**
+	 * Object used to synchronize access to listDownloadThread.
+	 */
+	private final Object listDownloadThreadSync = new Object();
 
 	/**
 	 * {@inheritDoc}
@@ -186,6 +365,7 @@ public final class InstallDictionary extends ListActivity implements
 		} else {
 			dictionaries = savedInstanceState
 					.getParcelableArrayList(BUNDLE_DICTIONARIES);
+			updateList();
 			serverMessage = savedInstanceState.getString(BUNDLE_SERVER_MESSAGE);
 			exception = (Exception) savedInstanceState.get(BUNDLE_EXCEPTION);
 			selectedItem = savedInstanceState.getInt(BUNDLE_SELECTED_ITEM);
@@ -195,33 +375,96 @@ public final class InstallDictionary extends ListActivity implements
 						R.string.msg_error_downloading_available_dictionaries,
 						exception.toString()));
 			}
-			// restore the dialog that was visible before activity got re-created
-			visibleDialogId = savedInstanceState.getInt(BUNDLE_VISIBLE_DIALOG_ID);
+			// restore the dialog that was visible before activity got
+			// re-created
+			visibleDialogId = savedInstanceState
+					.getInt(BUNDLE_VISIBLE_DIALOG_ID);
 			if (visibleDialogId >= 0) {
 				showDialog(visibleDialogId);
-			}
-			// load the list if a download was active before activity got re-created
-			if (savedInstanceState.getBoolean(BUNDLE_ACTIVE_DOWNLOAD)) {
-				startListDownload();
-			} else {
-				updateList();
 			}
 		}
 
 		TextView textViewError = (TextView) findViewById(R.id.TextViewError);
 		textViewError.setOnClickListener(retryDownload);
+
+		// get handle to thread
+		Object object = getLastNonConfigurationInstance();
+		if (object instanceof ListDownloadThread) {
+			listDownloadThread = (ListDownloadThread) object;
+			showActiveListDownload();
+		}
 	}
 
 	/**
 	 * Listener to react on clicks to retry the download of the list.
 	 */
-	private OnClickListener retryDownload = new OnClickListener() {
+	private final OnClickListener retryDownload = new OnClickListener() {
 
 		@Override
 		public void onClick(final View v) {
 			startListDownload();
 		}
 
+	};
+
+	private final de.kugihan.dictionaryformids.hmi_android.InstallDictionary.ListDownloadThread.OnPostExecutionListener threadListener = new de.kugihan.dictionaryformids.hmi_android.InstallDictionary.ListDownloadThread.OnPostExecutionListener() {
+
+		/**
+		 * Parse the server message.
+		 * 
+		 * @param parser
+		 *            the object that includes the server message
+		 */
+		private void loadServerMessage(final DictionaryListParser parser) {
+			final String message = parser.getServerMessage();
+			if (message != null && message.length() > 0) {
+				serverMessage = message;
+			} else {
+				serverMessage = null;
+			}
+		}
+
+		@Override
+		public void onPostExecution(final DictionaryListParser parser) {
+			synchronized (listDownloadThreadSync) {
+				listDownloadThread = null;
+			}
+			loadServerMessage(parser);
+			if (parser.forceUpdate()) {
+				showDialogFromThread(R.id.dialog_suggest_update);
+				return;
+			} else if (parser.mayUpdate()) {
+				showDialogFromThread(R.id.dialog_suggest_update);
+			} else if (serverMessage != null) {
+				showDialogFromThread(R.id.dialog_server_message);
+			}
+			updateListFromThread(parser.getDictionaries());
+		}
+
+		@Override
+		public void onException(final Exception exception) {
+			synchronized (listDownloadThreadSync) {
+				listDownloadThread = null;
+			}
+			handler.post(new Runnable() {
+
+				@Override
+				public void run() {
+					InstallDictionary.this.exception = exception;
+					TextView textViewError = (TextView) findViewById(R.id.TextViewError);
+					TextView textViewMessage = (TextView) findViewById(R.id.TextViewMessage);
+					ProgressBar progressBar = (ProgressBar) findViewById(R.id.ProgressBar);
+					textViewError
+							.setText(getString(
+									R.string.msg_error_downloading_available_dictionaries,
+									exception.toString()));
+					textViewError.setVisibility(View.VISIBLE);
+					textViewMessage.setVisibility(View.GONE);
+					progressBar.setVisibility(View.GONE);
+				}
+
+			});
+		}
 	};
 
 	/**
@@ -233,6 +476,11 @@ public final class InstallDictionary extends ListActivity implements
 		DictionaryInstallationService.setUpdateListener(null);
 		getMainActivity().setProgressBarVisibility(false);
 		getMainActivity().setProgressBarIndeterminateVisibility(false);
+		synchronized (listDownloadThreadSync) {
+			if (listDownloadThread != null) {
+				listDownloadThread.setOnPostExecutionListener(null);
+			}
+		}
 		super.onPause();
 	}
 
@@ -241,8 +489,10 @@ public final class InstallDictionary extends ListActivity implements
 	 */
 	@Override
 	protected void onDestroy() {
-		if (listDownloadThread != null) {
-			listDownloadThread.interrupt();
+		synchronized (listDownloadThreadSync) {
+			if (listDownloadThread != null) {
+				listDownloadThread.interrupt();
+			}
 		}
 		super.onDestroy();
 	}
@@ -253,13 +503,18 @@ public final class InstallDictionary extends ListActivity implements
 	@Override
 	protected void onResume() {
 		int task = DictionaryInstallationService.pollLastType();
-		int percentage = DictionaryInstallationService.pollLastPercentage();
 		if (DictionaryInstallationService.isRunning() && task >= 0) {
 			getMainActivity().setProgressBarVisibility(true);
 			getMainActivity().setProgressBarIndeterminateVisibility(true);
 			reactOnServiceUpdates = true;
+			int percentage = DictionaryInstallationService.pollLastPercentage();
 			serviceListener.onProgressUpdate(task, percentage);
 			DictionaryInstallationService.setUpdateListener(serviceListener);
+		}
+		synchronized (listDownloadThreadSync) {
+			if (listDownloadThread != null) {
+				listDownloadThread.setOnPostExecutionListener(threadListener);
+			}
 		}
 		super.onResume();
 	}
@@ -273,9 +528,21 @@ public final class InstallDictionary extends ListActivity implements
 		outState.putString(BUNDLE_SERVER_MESSAGE, serverMessage);
 		outState.putSerializable(BUNDLE_EXCEPTION, exception);
 		outState.putInt(BUNDLE_SELECTED_ITEM, selectedItem);
-		outState.putBoolean(BUNDLE_ACTIVE_DOWNLOAD, listDownloadThread != null);
 		outState.putInt(BUNDLE_VISIBLE_DIALOG_ID, visibleDialogId);
 		super.onSaveInstanceState(outState);
+	}
+
+	@Override
+	public Object onRetainNonConfigurationInstance() {
+		Object result = super.onRetainNonConfigurationInstance();
+		synchronized (listDownloadThreadSync) {
+			if (listDownloadThread != null) {
+				listDownloadThread.setOnPostExecutionListener(null);
+				result = listDownloadThread;
+				listDownloadThread = null;
+			}
+		}
+		return result;
 	}
 
 	/**
@@ -298,10 +565,12 @@ public final class InstallDictionary extends ListActivity implements
 	 * view.
 	 */
 	private void startListDownload() {
-		if (listDownloadThread != null) {
-			Toast.makeText(this, R.string.msg_list_already_downloaded,
-					Toast.LENGTH_LONG).show();
-			return;
+		synchronized (listDownloadThreadSync) {
+			if (listDownloadThread != null) {
+				Toast.makeText(this, R.string.msg_list_already_downloaded,
+						Toast.LENGTH_LONG).show();
+				return;
+			}
 		}
 
 		// remove old data form view
@@ -310,6 +579,14 @@ public final class InstallDictionary extends ListActivity implements
 		updateList();
 
 		// show progress indicator
+		showActiveListDownload();
+
+		listDownloadThread = new ListDownloadThread(getDictionaryListUrl());
+		listDownloadThread.setOnPostExecutionListener(threadListener);
+		listDownloadThread.start();
+	}
+
+	private void showActiveListDownload() {
 		TextView textViewEmpty = (TextView) findViewById(R.id.TextViewEmpty);
 		TextView textViewError = (TextView) findViewById(R.id.TextViewError);
 		TextView textViewMessage = (TextView) findViewById(R.id.TextViewMessage);
@@ -319,57 +596,27 @@ public final class InstallDictionary extends ListActivity implements
 		textViewError.setText("");
 		textViewMessage.setVisibility(View.VISIBLE);
 		progressBar.setVisibility(View.VISIBLE);
+	}
 
-		listDownloadThread = new Thread() {
-			@Override
-			public void run() {
-				try {
-					downloadList();
-				} catch (IOException e) {
-					postException(e);
-					listDownloadThread = null;
-					return;
-				} catch (JSONException e) {
-					postException(e);
-					listDownloadThread = null;
-					return;
-				}
-				if (interrupted()) {
-					listDownloadThread = null;
-					return;
-				}
-				userInterfaceCallback.post(new Runnable() {
-					@Override
-					public void run() {
-						updateList();
-					}
-				});
-				listDownloadThread = null;
-			}
-
-			private void postException(final Exception e) {
-				if (interrupted()) {
-					return;
-				}
-				userInterfaceCallback.post(new Runnable() {
-					@Override
-					public void run() {
-						TextView textViewError = (TextView) findViewById(R.id.TextViewError);
-						TextView textViewMessage = (TextView) findViewById(R.id.TextViewMessage);
-						ProgressBar progressBar = (ProgressBar) findViewById(R.id.ProgressBar);
-						textViewError
-								.setText(getString(
-										R.string.msg_error_downloading_available_dictionaries,
-										e.toString()));
-						textViewError.setVisibility(View.VISIBLE);
-						textViewMessage.setVisibility(View.GONE);
-						progressBar.setVisibility(View.GONE);
-						exception = e;
-					}
-				});
-			}
-		};
-		listDownloadThread.start();
+	/**
+	 * Gets the url used for downloading the list of dictionires. It includes
+	 * platform and version information.
+	 * 
+	 * @return the url of the list of dictionaries
+	 */
+	private String getDictionaryListUrl() {
+		PackageInfo packageInfo;
+		int versionCode;
+		try {
+			packageInfo = getPackageManager().getPackageInfo(getPackageName(),
+					0);
+			versionCode = packageInfo.versionCode;
+		} catch (NameNotFoundException e) {
+			versionCode = -1;
+		}
+		String url = getString(R.string.attribute_dictionary_list_url,
+				ANDROID_PLATFORM, versionCode);
+		return url;
 	}
 
 	/**
@@ -404,7 +651,7 @@ public final class InstallDictionary extends ListActivity implements
 		intent.putExtra(DictionaryInstallationService.BUNDLE_DICTIONARY_FILE,
 				dictionaryFile);
 		startService(intent);
-		
+
 		Toast.makeText(this, R.string.msg_installation_started,
 				Toast.LENGTH_LONG).show();
 	}
@@ -412,14 +659,14 @@ public final class InstallDictionary extends ListActivity implements
 	/**
 	 * Listener to handle communication with the background service.
 	 */
-	private ServiceUpdateListener serviceListener = new ServiceUpdateListener() {
+	private final ServiceUpdateListener serviceListener = new ServiceUpdateListener() {
 
 		@Override
-		public void onExitWithException(final Exception e) {
+		public void onExitWithException(final Exception exception) {
 			handler.post(new Runnable() {
 				@Override
 				public void run() {
-					exception = e;
+					InstallDictionary.this.exception = exception;
 					showDialog(R.id.dialog_installation_exception);
 					updateProgres(10000);
 					getMainActivity().setProgressBarVisibility(false);
@@ -510,6 +757,19 @@ public final class InstallDictionary extends ListActivity implements
 		});
 	}
 
+	private void updateListFromThread(
+			final ArrayList<DownloadDictionaryItem> dictionaries) {
+		handler.post(new Runnable() {
+
+			@Override
+			public void run() {
+				InstallDictionary.this.dictionaries = dictionaries;
+				updateList();
+			}
+
+		});
+	}
+
 	/**
 	 * Updates the list of current dictionaries from the downloaded data.
 	 */
@@ -537,102 +797,7 @@ public final class InstallDictionary extends ListActivity implements
 	}
 
 	/**
-	 * Downloads a the list of dictionaries.
-	 * 
-	 * @throws ClientProtocolException
-	 * @throws IOException
-	 *             if an input or output exception occurs
-	 * @throws JSONException
-	 *             if an exception occurs while parsing JSON data
-	 */
-	public void downloadList() throws IOException, JSONException {
-		HttpClient client = new DefaultHttpClient();
-		HttpGet httpGet = new HttpGet(getDictionaryListUrl());
-
-		HttpResponse response = client.execute(httpGet);
-		HttpEntity entity = response.getEntity();
-		if (entity != null) {
-			if (entity.getContentType().getValue().startsWith(
-					RESPONSE_CONTENT_TYPE)) {
-				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(entity.getContent(),
-								RESPONSE_ENCODING));
-
-				StringBuilder stringResult = new StringBuilder();
-
-				try {
-					for (String line = reader.readLine(); line != null; line = reader
-							.readLine()) {
-						stringResult.append(line);
-					}
-				} finally {
-					reader.close();
-				}
-
-				parseDictionaryList(stringResult);
-			}
-		}
-	}
-
-	/**
-	 * Gets the url used for downloading the list of dictionires. It includes
-	 * platform and version information.
-	 * 
-	 * @return the url of the list of dictionaries
-	 */
-	private String getDictionaryListUrl() {
-		PackageInfo packageInfo;
-		int versionCode;
-		try {
-			packageInfo = getPackageManager().getPackageInfo(getPackageName(),
-					0);
-			versionCode = packageInfo.versionCode;
-		} catch (NameNotFoundException e) {
-			versionCode = -1;
-		}
-		String url = getString(R.string.attribute_dictionary_list_url,
-				ANDROID_PLATFORM, versionCode);
-		return url;
-	}
-
-	/**
-	 * Parses the list of dictionaries.
-	 * 
-	 * @param stringResult
-	 *            the server response
-	 * @throws JSONException
-	 *             if an exception while parsing JSON data occurred
-	 */
-	private void parseDictionaryList(final StringBuilder stringResult)
-			throws JSONException {
-		DictionaryListParser parser = new DictionaryListParser(stringResult);
-		if (parser.forceUpdate()) {
-			showDialogFromThread(R.id.dialog_suggest_update);
-			return;
-		} else if (parser.mayUpdate()) {
-			showDialogFromThread(R.id.dialog_suggest_update);
-		}
-		handleServerMessage(parser);
-		dictionaries = parser.getDictionaries();
-	}
-
-	/**
-	 * Parse the server message.
-	 * 
-	 * @param parser
-	 *            the object that includes the server message
-	 */
-	private void handleServerMessage(final DictionaryListParser parser) {
-		String message = parser.getServerMessage();
-		if (message != null && message.length() > 0) {
-			serverMessage = message;
-			showDialogFromThread(R.id.dialog_server_message);
-		}
-	}
-
-	/**
-	 * Shows a managed dialog. This method can be called
-	 * from non-GUI threads.
+	 * Shows a managed dialog. This method can be called from non-GUI threads.
 	 * 
 	 * @param dialogId
 	 *            the id of the dialog to show
@@ -645,7 +810,7 @@ public final class InstallDictionary extends ListActivity implements
 			}
 		});
 	}
-	
+
 	/**
 	 * Mark the given dialog id to be no longer visible.
 	 * 
@@ -663,12 +828,12 @@ public final class InstallDictionary extends ListActivity implements
 	 */
 	@Override
 	protected Dialog onCreateDialog(final int id) {
-		AlertDialog dialog;
+		Dialog dialog;
 		switch (id) {
 		case R.id.dialog_suggest_update:
 			Builder alertBuilder = new AlertDialog.Builder(this);
 			alertBuilder.setTitle(R.string.title_information);
-			alertBuilder.setMessage(R.string.msg_suggest_update);
+			alertBuilder.setMessage("");
 			alertBuilder.setPositiveButton(R.string.button_ok,
 					new DialogInterface.OnClickListener() {
 						public void onClick(final DialogInterface dialog,
@@ -689,14 +854,8 @@ public final class InstallDictionary extends ListActivity implements
 							dialog.cancel();
 						}
 					});
-			alertBuilder.setOnCancelListener(new OnCancelListener() {
-				@Override
-				public void onCancel(final DialogInterface dialog) {
-					markDialogAsInvisible(id);
-				}
-			});
-			visibleDialogId = id;
-			return alertBuilder.create();
+			dialog = alertBuilder.create();
+			break;
 
 		case R.id.dialog_installation_exception:
 			Builder exceptionAlert = new AlertDialog.Builder(this);
@@ -709,16 +868,8 @@ public final class InstallDictionary extends ListActivity implements
 							dialog.cancel();
 						}
 					});
-			exceptionAlert.setOnCancelListener(new OnCancelListener() {
-				@Override
-				public void onCancel(final DialogInterface dialog) {
-					markDialogAsInvisible(id);
-				}
-			});
-			visibleDialogId = id;
 			dialog = exceptionAlert.create();
-			onPrepareDialog(id, dialog);
-			return dialog;
+			break;
 
 		case R.id.dialog_confirm_installation:
 			Builder confirmationAlert = new AlertDialog.Builder(this);
@@ -739,16 +890,8 @@ public final class InstallDictionary extends ListActivity implements
 							dialog.cancel();
 						}
 					});
-			confirmationAlert.setOnCancelListener(new OnCancelListener() {
-				@Override
-				public void onCancel(final DialogInterface dialog) {
-					markDialogAsInvisible(id);
-				}
-			});
-			visibleDialogId = id;
 			dialog = confirmationAlert.create();
-			onPrepareDialog(id, dialog);
-			return dialog;
+			break;
 
 		case R.id.dialog_server_message:
 			Builder messageAlert = new AlertDialog.Builder(this);
@@ -761,16 +904,8 @@ public final class InstallDictionary extends ListActivity implements
 							dialog.cancel();
 						}
 					});
-			messageAlert.setOnCancelListener(new OnCancelListener() {
-				@Override
-				public void onCancel(final DialogInterface dialog) {
-					markDialogAsInvisible(id);
-				}
-			});
-			visibleDialogId = id;
 			dialog = messageAlert.create();
-			onPrepareDialog(id, dialog);
-			return dialog;
+			break;
 
 		case R.id.dialog_confirm_abort_installation:
 			Builder cancelInstallation = new AlertDialog.Builder(this);
@@ -791,18 +926,23 @@ public final class InstallDictionary extends ListActivity implements
 							dialog.cancel();
 						}
 					});
-			cancelInstallation.setOnCancelListener(new OnCancelListener() {
-				@Override
-				public void onCancel(final DialogInterface dialog) {
-					markDialogAsInvisible(id);
-				}
-			});
-			visibleDialogId = id;
-			return cancelInstallation.create();
+			dialog = cancelInstallation.create();
+			break;
 
 		default:
-			return super.onCreateDialog(id);
+			dialog = super.onCreateDialog(id);
 		}
+		if (dialog == null) {
+			return dialog;
+		}
+		dialog.setOnCancelListener(new OnCancelListener() {
+			@Override
+			public void onCancel(final DialogInterface dialog) {
+				markDialogAsInvisible(id);
+			}
+		});
+		onPrepareDialog(id, dialog);
+		return dialog;
 	}
 
 	/**
@@ -814,14 +954,14 @@ public final class InstallDictionary extends ListActivity implements
 		case R.id.dialog_installation_exception:
 			AlertDialog exceptionAlert = (AlertDialog) dialog;
 			String exceptionMessage;
-			if (exception.getCause() != null) {
-				exceptionMessage = getString(
-						R.string.msg_installation_exception_cause, exception
-								.getMessage(), exception.getCause());
-			} else {
+			if (exception.getCause() == null) {
 				exceptionMessage = getString(
 						R.string.msg_installation_exception, exception
 								.getMessage());
+			} else {
+				exceptionMessage = getString(
+						R.string.msg_installation_exception_cause, exception
+								.getMessage(), exception.getCause());
 			}
 			exceptionAlert.setMessage(exceptionMessage);
 			break;
@@ -844,6 +984,17 @@ public final class InstallDictionary extends ListActivity implements
 		case R.id.dialog_server_message:
 			AlertDialog messageAlert = (AlertDialog) dialog;
 			messageAlert.setMessage(serverMessage);
+			break;
+
+		case R.id.dialog_suggest_update:
+			final AlertDialog suggestUpdateAlert = (AlertDialog) dialog;
+			final String serverMessageCopy = serverMessage;
+			String details = getString(R.string.msg_suggest_update);
+			if (serverMessageCopy != null && serverMessageCopy.length() > 0) {
+				details = getString(R.string.msg_suggest_update_with_message,
+						serverMessageCopy);
+			}
+			suggestUpdateAlert.setMessage(details);
 			break;
 
 		default:
@@ -929,7 +1080,7 @@ public final class InstallDictionary extends ListActivity implements
 	/**
 	 * Handler to receive view updates from non-GUI threads.
 	 */
-	private Handler handler = new Handler();
+	private final Handler handler = new Handler();
 
 	/**
 	 * {@inheritDoc}
