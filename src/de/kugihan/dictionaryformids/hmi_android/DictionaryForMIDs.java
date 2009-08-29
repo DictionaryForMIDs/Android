@@ -77,6 +77,306 @@ import de.kugihan.dictionaryformids.translation.TranslationResult;
  */
 public final class DictionaryForMIDs extends Activity {
 
+	/**
+	 * Thread to load a dictionary without interrupting the UI.
+	 * 
+	 */
+	public final static class LoadDictionaryThread extends Thread {
+
+		/**
+		 * Interface specifying communication between the thread and the UI.
+		 * 
+		 */
+		public interface OnThreadResultListener {
+
+			/**
+			 * This function gets called when the dictionary could successfully
+			 * be loaded.
+			 * 
+			 * @param type
+			 *            the type of the loaded dictionary
+			 * @param path
+			 *            the path of the loaded dictionary
+			 * @param selectedIndex
+			 *            the id of the language that should be selected
+			 */
+			void onSuccess(final DictionaryType type, final String path,
+					final int selectedIndex);
+
+			/**
+			 * This function gets if an exception occurred while loading the
+			 * dictionary.
+			 * 
+			 * @param exception
+			 *            the exception that occurred while loading the
+			 *            dictionary
+			 * @param mayIncludeCompressedDictionary
+			 *            true if no dictionary but a jar file is found in an
+			 *            archive specified by the InputStream
+			 */
+			void onException(DictionaryException exception,
+					boolean mayIncludeCompressedDictionary);
+
+			/**
+			 * This function gets called if the thread exists because it was
+			 * interrupted.
+			 */
+			void onInterrupted();
+		}
+
+		/**
+		 * The listener that is informed about thread completion.
+		 */
+		private OnThreadResultListener listener = null;
+
+		/**
+		 * Object to synchronize access to the listener.
+		 */
+		private final Object listenerSync = new Object();
+
+		/**
+		 * Saves occurred exceptions.
+		 */
+		private DictionaryException exception = null;
+
+		/**
+		 * True if the archive does not represent a dictionary, but the archive
+		 * may include a compressed dictionary.
+		 */
+		private boolean mayIncludeCompressedDictionary = false;
+
+		/**
+		 * Current state of the thread.
+		 */
+		private ThreadState result = ThreadState.WORKING;
+
+		/**
+		 * Object to synchronize access to the result.
+		 */
+		private final Object resultSync = new Object();
+
+		/**
+		 * Path of the dictionary being loaded by the thread.
+		 */
+		private final String dictionaryPath;
+
+		/**
+		 * Type of the dictionary being loaded by the thread.
+		 */
+		private final DictionaryType dictionaryType;
+
+		/**
+		 * The language index to select after loading the dictionary.
+		 */
+		private final int selectedIndex;
+
+		/**
+		 * The current state of the thread.
+		 */
+		private enum ThreadState {
+			/**
+			 * Thread will inform listener of successfully finished loading.
+			 */
+			RETURNING_SUCCESS,
+			/**
+			 * Thread will inform listener of an interruption.
+			 */
+			RETURNING_INTERRUPTED,
+			/**
+			 * Thread will inform listener of an exception.
+			 */
+			RETURNING_EXCEPTION,
+			/**
+			 * Thread is currently loading a dictionary.
+			 */
+			WORKING,
+			/**
+			 * Thread finished and the result was delivered to a listener.
+			 */
+			DELIVERED
+		}
+
+		/**
+		 * The stream to load the dictionary from.
+		 */
+		private final DfMInputStreamAccess inputStreamAccess;
+
+		/**
+		 * Creates a new thread.
+		 * 
+		 * @param inputStreamAccess
+		 *            the stream to load the dictionary from
+		 */
+		private LoadDictionaryThread(
+				final DfMInputStreamAccess inputStreamAccess,
+				final DictionaryType dictionaryType,
+				final String dictionaryPath, final int selectedIndex) {
+			this.inputStreamAccess = inputStreamAccess;
+			this.dictionaryType = dictionaryType;
+			this.dictionaryPath = dictionaryPath;
+			this.selectedIndex = selectedIndex;
+		}
+
+		/**
+		 * Attaches the listener to the thread or removes the current one if
+		 * listener is null.
+		 * 
+		 * @param listener
+		 *            the listener to attach or null
+		 */
+		public void setOnThreadResultListener(
+				final OnThreadResultListener listener) {
+			synchronized (listenerSync) {
+				this.listener = listener;
+			}
+			// try to return already available results
+			pushResultToListener();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void run() {
+			FileAccessHandler.setDictionaryDataFileISAccess(inputStreamAccess);
+			DictionaryDataFile.useStandardPath = false;
+			try {
+				DictionaryDataFile.initValues(false);
+				if (interrupted()) {
+					exitAfterInterruption();
+					return;
+				}
+			} catch (DictionaryException e) {
+				if (interrupted()) {
+					exitAfterInterruption();
+					return;
+				}
+				boolean mayIncludeCompressedDictionary = false;
+				if (inputStreamAccess instanceof NativeZipInputStreamAccess) {
+					final NativeZipInputStreamAccess stream = (NativeZipInputStreamAccess) inputStreamAccess;
+					try {
+						mayIncludeCompressedDictionary = stream
+								.hasJarDictionary();
+					} catch (DictionaryException e1) {
+						// ignore
+					}
+				}
+				exitWithException(e, mayIncludeCompressedDictionary);
+				return;
+			}
+			exitSuccessfully();
+		}
+
+		/**
+		 * Handles the successfully loaded dictionaries.
+		 */
+		private void exitSuccessfully() {
+			synchronized (resultSync) {
+				result = ThreadState.RETURNING_SUCCESS;
+			}
+			pushResultToListener();
+		}
+
+		/**
+		 * Handles exits caused by exceptions.
+		 * 
+		 * @param exception
+		 *            the exception that occurred
+		 * @param mayIncludeCompressedDictionary
+		 *            true if the dictionary file may include a compressed
+		 *            dictionary
+		 */
+		private void exitWithException(final DictionaryException exception,
+				final boolean mayIncludeCompressedDictionary) {
+			synchronized (resultSync) {
+				this.exception = exception;
+				this.mayIncludeCompressedDictionary = mayIncludeCompressedDictionary;
+				result = ThreadState.RETURNING_EXCEPTION;
+			}
+			pushResultToListener();
+		}
+
+		/**
+		 * Handles exits caused by user interruption.
+		 */
+		private void exitAfterInterruption() {
+			synchronized (resultSync) {
+				result = ThreadState.RETURNING_INTERRUPTED;
+			}
+			pushResultToListener();
+		}
+
+		/**
+		 * Tries to push the result to the attached listener.
+		 */
+		private void pushResultToListener() {
+			synchronized (listenerSync) {
+				if (listener == null) {
+					return;
+				}
+				synchronized (resultSync) {
+					switch (result) {
+					case RETURNING_SUCCESS:
+						listener.onSuccess(dictionaryType, dictionaryPath,
+								selectedIndex);
+						result = ThreadState.DELIVERED;
+						break;
+
+					case RETURNING_EXCEPTION:
+						listener.onException(exception,
+								mayIncludeCompressedDictionary);
+						result = ThreadState.DELIVERED;
+						break;
+
+					case RETURNING_INTERRUPTED:
+						listener.onInterrupted();
+						result = ThreadState.DELIVERED;
+						break;
+
+					case WORKING:
+						// nothing to return yet
+						break;
+
+					case DELIVERED:
+						// result already returned
+						break;
+
+					default:
+						throw new IllegalArgumentException();
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Summarizes all objects that should be saved in
+	 * OnRetainNonConfigurationInstance.
+	 * 
+	 */
+	private final static class NonConfigurationInstance {
+		private final LoadDictionaryThread thread;
+		private final Translations translations;
+
+		public NonConfigurationInstance(final LoadDictionaryThread thread,
+				final Translations translations) {
+			this.thread = thread;
+			this.translations = translations;
+		}
+
+		public LoadDictionaryThread getThread() {
+			return thread;
+		}
+
+		public Translations getTranslations() {
+			return translations;
+		}
+	}
+
+	/**
+	 * Specifier of the dictionary property that holds the number of available
+	 * languages.
+	 */
 	private static final String DICTIONARY_PROPERTY_NUMBER_OF_AVAILABLE_LANGUAGES = "numberOfAvailableLanguages";
 
 	/**
@@ -113,22 +413,29 @@ public final class DictionaryForMIDs extends Activity {
 	/**
 	 * The message id for new translation results.
 	 */
-	private static final int THREAD_NEW_TRANSLATION_RESULT = 0;
+	private static final int THREAD_NEW_TRANSLATION_RESULT = 1;
 
 	/**
 	 * The message id for deleting previous translation results.
 	 */
-	private static final int THREAD_DELETE_PREVIOUS_TRANSLATION_RESULT = 1;
+	private static final int THREAD_DELETE_PREVIOUS_TRANSLATION_RESULT = 2;
 
 	/**
 	 * The message id for translation errors.
 	 */
-	public static final int THREAD_ERROR_MESSAGE = 2;
+	public static final int THREAD_ERROR_MESSAGE = 3;
 
 	/**
 	 * The request code identifying a {@link ChooseDictionary} activity.
 	 */
 	private static final int REQUEST_DICTIONARY_PATH = 0;
+
+	/**
+	 * The handle of the thread that loads the new dictionary or null.
+	 */
+	private LoadDictionaryThread loadDictionaryThread = null;
+
+	private final Object loadDictionaryThreadSync = new Object();
 
 	/**
 	 * The data of the translation results list.
@@ -164,19 +471,18 @@ public final class DictionaryForMIDs extends Activity {
 	 */
 	@Override
 	protected void onRestoreInstanceState(final Bundle savedInstanceState) {
+		final Spinner spinner = (Spinner) findViewById(R.id.selectLanguages);
 		if (DictionaryDataFile.supportedLanguages != null) {
 			final LanguageSpinnerAdapter languageSpinnerAdapter = new LanguageSpinnerAdapter(
 					DictionaryDataFile.supportedLanguages);
-			((Spinner) findViewById(R.id.selectLanguages))
-					.setAdapter(languageSpinnerAdapter);
+			spinner.setAdapter(languageSpinnerAdapter);
 		}
 
 		loadLastNonConfigurationInstance();
 
 		final int selectedLanguage = savedInstanceState
 				.getInt(BUNDLE_SELECTED_LANGUAGE);
-		((Spinner) findViewById(R.id.selectLanguages))
-				.setSelection(selectedLanguage);
+		spinner.setSelection(selectedLanguage);
 
 		final CharSequence statusMessage = savedInstanceState
 				.getCharSequence(BUNDLE_STATUS_MESSAGE);
@@ -199,15 +505,23 @@ public final class DictionaryForMIDs extends Activity {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final Object onRetainNonConfigurationInstance() {
-		return translations;
+	public Object onRetainNonConfigurationInstance() {
+		LoadDictionaryThread tempThread = null;
+		synchronized (loadDictionaryThreadSync) {
+			if (loadDictionaryThread != null) {
+				loadDictionaryThread.setOnThreadResultListener(null);
+				tempThread = loadDictionaryThread;
+				loadDictionaryThread = null;
+			}
+		}
+		return new NonConfigurationInstance(tempThread, translations);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final void onCreate(final Bundle savedInstanceState) {
+	public void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
@@ -222,14 +536,14 @@ public final class DictionaryForMIDs extends Activity {
 		preferences
 				.registerOnSharedPreferenceChangeListener(preferenceChangeListener);
 
-		TextView translationInput = (TextView) findViewById(R.id.TranslationInput);
+		final TextView translationInput = (TextView) findViewById(R.id.TranslationInput);
 		translationInput.setOnFocusChangeListener(focusChangeListener);
 		translationInput.setOnClickListener(clickListener);
 		translationInput.setOnTouchListener(touchListener);
 		translationInput.setOnEditorActionListener(editorActionListener);
 		translationInput.addTextChangedListener(textWatcher);
 
-		ListView translationListView = (ListView) findViewById(R.id.translationsListView);
+		final ListView translationListView = (ListView) findViewById(R.id.translationsListView);
 		translationListView.setAdapter(translations);
 		translationListView.setOnFocusChangeListener(focusChangeListener);
 		translationListView.setOnScrollListener(scrollListener);
@@ -242,8 +556,10 @@ public final class DictionaryForMIDs extends Activity {
 		((ImageButton) findViewById(R.id.swapLanguages))
 				.setOnClickListener(clickListener);
 
-		((Spinner) findViewById(R.id.selectLanguages))
-				.setOnItemSelectedListener(itemSelectedListener);
+		final Spinner languageSpinner = (Spinner) findViewById(R.id.selectLanguages);
+		languageSpinner.setAdapter(new LanguageSpinnerAdapter());
+		languageSpinner.setOnItemSelectedListener(languageSelectedListener);
+		languageSpinner.setOnTouchListener(languagesTouchListener);
 
 		TranslationExecution
 				.setTranslationExecutionCallback(translationCallback);
@@ -257,30 +573,38 @@ public final class DictionaryForMIDs extends Activity {
 			Util.setUtil(util);
 		}
 
-		Runnable onLoadDictionary = new Runnable() {
-			@Override
-			public void run() {
-				((Spinner) findViewById(R.id.selectLanguages))
-						.setSelection(Preferences.getSelectedLanguageIndex());
-			}
-		};
-
 		if (savedInstanceState == null) {
-			if (Preferences.getLoadIncludedDictionary()) {
-				startLoadDictionary(new AssetDfMInputStreamAccess(this,
-						Preferences.getDictionaryPath()), onLoadDictionary,
-						null);
-			} else if (Preferences.getLoadDirectoryDictionary()) {
-				startLoadDictionary(new FileDfMInputStreamAccess(Preferences
-						.getDictionaryPath()), onLoadDictionary, null);
-			} else if (Preferences.getLoadArchiveDictionary()) {
-				NativeZipInputStreamAccess inputStreamAccess;
-				inputStreamAccess = new NativeZipInputStreamAccess(Preferences
-						.getDictionaryPath());
-				startLoadDictionary(inputStreamAccess, onLoadDictionary, null);
+			if (Preferences.isFirstRun()) {
+				showDialog(DialogHelper.ID_FIRST_RUN);
+			} else {
+				final boolean silent = processIntent(getIntent());
+				loadLastUsedDictionary(silent);
 			}
-			onNewIntent(getIntent());
 		}
+	}
+
+	public void loadLastUsedDictionary(final boolean silent) {
+		DfMInputStreamAccess inputStreamAccess = null;
+		DictionaryType dictionaryType;
+
+		if (Preferences.getLoadIncludedDictionary()) {
+			inputStreamAccess = new AssetDfMInputStreamAccess(this, Preferences
+					.getDictionaryPath());
+			dictionaryType = DictionaryType.INCLUDED;
+		} else if (Preferences.getLoadDirectoryDictionary()) {
+			inputStreamAccess = new FileDfMInputStreamAccess(Preferences
+					.getDictionaryPath());
+			dictionaryType = DictionaryType.DIRECTORY;
+		} else if (Preferences.getLoadArchiveDictionary()) {
+			inputStreamAccess = new NativeZipInputStreamAccess(Preferences
+					.getDictionaryPath());
+			dictionaryType = DictionaryType.ARCHIVE;
+		} else {
+			return;
+		}
+		startLoadDictionary(inputStreamAccess, dictionaryType, Preferences
+				.getDictionaryPath(), Preferences.getSelectedLanguageIndex(),
+				silent);
 	}
 
 	/**
@@ -288,38 +612,66 @@ public final class DictionaryForMIDs extends Activity {
 	 */
 	@Override
 	protected void onNewIntent(final Intent intent) {
-		Bundle bundle = intent.getExtras();
-		if (bundle != null) {
-			if (bundle
-					.getBoolean(DictionaryInstallationService.BUNDLE_LOAD_DICTIONARY)) {
-				intent
-						.removeExtra(DictionaryInstallationService.BUNDLE_LOAD_DICTIONARY);
-				DialogHelper.setLoadDictionary(intent);
-				showDialog(DialogHelper.ID_CONFIRM_LOAD_DICTIONARY);
-			} else if (bundle
-					.getBoolean(DictionaryInstallationService.BUNDLE_SHOW_DICTIONARY_INSTALLATION)) {
-				intent
-						.removeExtra(DictionaryInstallationService.BUNDLE_SHOW_DICTIONARY_INSTALLATION);
-				startChooseDictionaryActivity(true);
-			} else {
-				Object exceptionObject = bundle
-						.get(DictionaryInstallationService.BUNDLE_EXCEPTION);
-				if (exceptionObject != null
-						&& exceptionObject instanceof Exception) {
-					DialogHelper
-							.setInstallationException((Exception) exceptionObject);
-					showDialog(DialogHelper.ID_INSTALLATION_EXCEPTION);
-					intent
-							.removeExtra(DictionaryInstallationService.BUNDLE_EXCEPTION);
-					return;
-				} else {
-					DialogHelper.setInstallationException(null);
-				}
-			}
-		} else {
-			DialogHelper.setInstallationException(null);
-		}
+		processIntent(intent);
 		super.onNewIntent(intent);
+	}
+
+	/**
+	 * Processes the given intent and reacts on included information.
+	 * 
+	 * @param intent
+	 *            the intent to process
+	 * @return true if the intent included meaningful information that has been
+	 *         reacted on
+	 */
+	private boolean processIntent(final Intent intent) {
+		final Bundle bundle = intent.getExtras();
+		if (bundle == null) {
+			return false;
+		}
+		if (hasNewDictionary(intent)) {
+			intent
+					.removeExtra(DictionaryInstallationService.BUNDLE_LOAD_DICTIONARY);
+			DialogHelper.setLoadDictionary(intent);
+			showDialog(DialogHelper.ID_CONFIRM_LOAD_DICTIONARY);
+			return true;
+		} else if (bundle
+				.getBoolean(DictionaryInstallationService.BUNDLE_SHOW_DICTIONARY_INSTALLATION)) {
+			intent
+					.removeExtra(DictionaryInstallationService.BUNDLE_SHOW_DICTIONARY_INSTALLATION);
+			startChooseDictionaryActivity(true);
+			return true;
+		} else {
+			final Object exceptionObject = bundle
+					.get(DictionaryInstallationService.BUNDLE_EXCEPTION);
+			if (exceptionObject instanceof Exception) {
+				DialogHelper
+						.setInstallationException((Exception) exceptionObject);
+				showDialog(DialogHelper.ID_INSTALLATION_EXCEPTION);
+				intent
+						.removeExtra(DictionaryInstallationService.BUNDLE_EXCEPTION);
+				return true;
+			} else {
+				DialogHelper.setInstallationException(null);
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Checks if the intent includes information about a new dictionary.
+	 * 
+	 * @param intent
+	 *            the intent to analyze
+	 * @return true if the intent includes information about a new dictionary
+	 */
+	private boolean hasNewDictionary(final Intent intent) {
+		Bundle bundle = intent.getExtras();
+		if (bundle == null) {
+			return false;
+		}
+		return bundle
+				.getBoolean(DictionaryInstallationService.BUNDLE_LOAD_DICTIONARY);
 	}
 
 	/**
@@ -328,11 +680,22 @@ public final class DictionaryForMIDs extends Activity {
 	 */
 	private void loadLastNonConfigurationInstance() {
 		Object lastConfiguration = getLastNonConfigurationInstance();
-		if (lastConfiguration != null
-				&& lastConfiguration instanceof Translations) {
-			translations = (Translations) getLastNonConfigurationInstance();
+		if (lastConfiguration == null) {
+			return;
+		}
+		NonConfigurationInstance data = (NonConfigurationInstance) lastConfiguration;
+		if (data.getTranslations() != null) {
+			translations = data.getTranslations();
 			((ListView) findViewById(R.id.translationsListView))
 					.setAdapter(translations);
+		}
+		if (data.getThread() != null) {
+			synchronized (loadDictionaryThreadSync) {
+				setProgressBarIndeterminateVisibility(true);
+				loadDictionaryThread = data.getThread();
+				loadDictionaryThread
+						.setOnThreadResultListener(createThreadListener(false));
+			}
 		}
 	}
 
@@ -340,7 +703,7 @@ public final class DictionaryForMIDs extends Activity {
 	 * Listener to react on preferences changes, for example to reload the view
 	 * with smaller/bigger font size.
 	 */
-	private OnSharedPreferenceChangeListener preferenceChangeListener = new OnSharedPreferenceChangeListener() {
+	private final OnSharedPreferenceChangeListener preferenceChangeListener = new OnSharedPreferenceChangeListener() {
 
 		@Override
 		public void onSharedPreferenceChanged(
@@ -366,91 +729,149 @@ public final class DictionaryForMIDs extends Activity {
 	 *            the runnable called on success
 	 * @param onFailure
 	 *            the runnable called on failure
+	 * @param exitSilently
+	 *            true if the thread should not display dialogs
 	 */
 	private void startLoadDictionary(
 			final DfMInputStreamAccess inputStreamAccess,
-			final Runnable onSuccess, final Runnable onFailure) {
-		final Handler userInterfaceCallback = new Handler();
+			final DictionaryType dictionaryType, final String dictionaryPath,
+			final int selectedIndex, final boolean exitSilently) {
+
+		// cancel running thread
+		if (loadDictionaryThread != null) {
+			synchronized (loadDictionaryThread) {
+				loadDictionaryThread.interrupt();
+			}
+		}
+
+		// remove previously shown, loadDictionary-related dialogs
+		removeDialog(DialogHelper.ID_DICTIONARY_NOT_FOUND);
+		removeDialog(DialogHelper.ID_FIRST_RUN);
+
+		deletePreviousTranslationResult();
 
 		setProgressBarIndeterminateVisibility(true);
+		loadDictionaryThread = new LoadDictionaryThread(inputStreamAccess,
+				dictionaryType, dictionaryPath, selectedIndex);
+		final LoadDictionaryThread.OnThreadResultListener threadListener = createThreadListener(exitSilently);
+		loadDictionaryThread.setOnThreadResultListener(threadListener);
+		loadDictionaryThread.start();
+	}
 
-		new Thread() {
+	private LoadDictionaryThread.OnThreadResultListener createThreadListener(
+			final boolean exitSilently) {
+		return new LoadDictionaryThread.OnThreadResultListener() {
+
 			@Override
-			public void run() {
-				// remove previous translation result from view
-				updateHandler.post(new Runnable() {
-					@Override
-					public void run() {
-						deletePreviousTranslationResult();
-					}
-				});
-				// load new dictionary
-				FileAccessHandler
-						.setDictionaryDataFileISAccess(inputStreamAccess);
-				DictionaryDataFile.useStandardPath = false;
-				try {
-					DictionaryDataFile.initValues(false);
-				} catch (DictionaryException e) {
-					if (inputStreamAccess instanceof NativeZipInputStreamAccess) {
-						NativeZipInputStreamAccess stream = (NativeZipInputStreamAccess) inputStreamAccess;
-						try {
-							if (stream.hasJarDictionary()) {
-								showDialogAndFail(DialogHelper.ID_WARN_EXTRACT_DICTIONARY);
-								return;
-							}
-						} catch (DictionaryException e1) {
-							// ignore
-						}
-					}
-					if (Preferences.isFirstRun()) {
-						showDialogAndFail(DialogHelper.ID_FIRST_RUN);
-					} else {
-						showDialogAndFail(DialogHelper.ID_DICTIONARY_NOT_FOUND);
-					}
-					return;
-				}
+			public void onSuccess(final DictionaryType type, final String path,
+					final int selectedIndex) {
+				forgetThread();
 				final LanguageSpinnerAdapter languageSpinnerAdapter = new LanguageSpinnerAdapter(
 						DictionaryDataFile.supportedLanguages);
-				userInterfaceCallback.post(new Runnable() {
+				updateHandler.post(new Runnable() {
 					public void run() {
 						((Spinner) findViewById(R.id.selectLanguages))
 								.setAdapter(languageSpinnerAdapter);
 						showSearchOptions();
+
+						String[] languages = new String[DictionaryDataFile.supportedLanguages.length];
+						for (int i = 0; i < DictionaryDataFile.supportedLanguages.length; i++) {
+							languages[i] = DictionaryDataFile.supportedLanguages[i].languageDisplayText;
+						}
+						Preferences.setLoadDictionary(type, path, languages);
+
+						((Spinner) findViewById(R.id.selectLanguages))
+								.setSelection(selectedIndex);
+
 					};
 				});
-				userInterfaceCallback.post(onSuccess);
 				hideProgressBar();
 			}
 
-			private void showDialogAndFail(final int dialog) {
-				userInterfaceCallback.post(new Runnable() {
-					@Override
-					public void run() {
-						showDialog(dialog);
-						hideProgressBar();
-					}
-				});
-				if (onFailure != null) {
-					userInterfaceCallback.post(onFailure);
+			@Override
+			public void onInterrupted() {
+				forgetThread();
+			}
+
+			@Override
+			public void onException(final DictionaryException exception,
+					final boolean mayIncludeCompressedDictionary) {
+				forgetThread();
+				hideProgressBar();
+				if (exitSilently) {
+					return;
+				}
+				if (mayIncludeCompressedDictionary) {
+					showDialogAndFail(DialogHelper.ID_WARN_EXTRACT_DICTIONARY);
+				} else if (Preferences.isFirstRun()) {
+					showDialogAndFail(DialogHelper.ID_FIRST_RUN);
+				} else {
+					showDialogAndFail(DialogHelper.ID_DICTIONARY_NOT_FOUND);
 				}
 			}
 
+			/**
+			 * Hides the progress bar. Can be called from non-UI threads.
+			 */
 			private void hideProgressBar() {
-				userInterfaceCallback.post(new Runnable() {
+				updateHandler.post(new Runnable() {
 					@Override
 					public void run() {
 						setProgressBarIndeterminateVisibility(false);
 					}
 				});
 			}
-		}.start();
+
+			/**
+			 * Shows the specified dialog in the UI and posts the onFailure
+			 * runnable.
+			 * 
+			 * @param dialog
+			 *            the id of the dialog to show
+			 */
+			private void showDialogAndFail(final int dialog) {
+				updateHandler.post(new Runnable() {
+					@Override
+					public void run() {
+						showDialog(dialog);
+						hideProgressBar();
+					}
+				});
+			}
+
+			private void forgetThread() {
+				synchronized (loadDictionaryThreadSync) {
+					if (loadDictionaryThread != null) {
+						loadDictionaryThread.setOnThreadResultListener(null);
+						loadDictionaryThread = null;
+					}
+				}
+			}
+		};
+	}
+
+	/**
+	 * Start the thread to load a new dictionary and update the view.
+	 * 
+	 * @param inputStreamAccess
+	 *            the input stream to load the dictionary
+	 * @param onSuccess
+	 *            the runnable called on success
+	 * @param onFailure
+	 *            the runnable called on failure
+	 */
+	private void startLoadDictionary(
+			final DfMInputStreamAccess inputStreamAccess,
+			final DictionaryType dictionaryType, final String dictionaryPath) {
+		startLoadDictionary(inputStreamAccess, dictionaryType, dictionaryPath,
+				0, false);
 	}
 
 	/**
 	 * The watcher of the search input field to show the search options when the
 	 * search input changes.
 	 */
-	private TextWatcher textWatcher = new TextWatcher() {
+	private final TextWatcher textWatcher = new TextWatcher() {
 
 		@Override
 		public void afterTextChanged(final Editable s) {
@@ -505,7 +926,7 @@ public final class DictionaryForMIDs extends Activity {
 	/**
 	 * Listener to react on button clicks.
 	 */
-	private OnClickListener clickListener = new OnClickListener() {
+	private final OnClickListener clickListener = new OnClickListener() {
 		public void onClick(final View button) {
 			switch (button.getId()) {
 			case R.id.StartTranslation:
@@ -736,8 +1157,8 @@ public final class DictionaryForMIDs extends Activity {
 	}
 
 	/**
-	 * Callback-object that transforms calls from the translation thread into
-	 * messages to the update handler of the user interface.
+	 * OnPostExecutionListener-object that transforms calls from the translation
+	 * thread into messages to the update handler of the user interface.
 	 */
 	private TranslationExecutionCallback translationCallback = new TranslationExecutionCallback() {
 
@@ -763,7 +1184,7 @@ public final class DictionaryForMIDs extends Activity {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final boolean onContextItemSelected(final MenuItem item) {
+	public boolean onContextItemSelected(final MenuItem item) {
 		ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
 		switch (item.getItemId()) {
 		case R.id.itemCopyAll:
@@ -788,7 +1209,7 @@ public final class DictionaryForMIDs extends Activity {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final boolean onCreateOptionsMenu(final Menu menu) {
+	public boolean onCreateOptionsMenu(final Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.options, menu);
 		return true;
@@ -798,8 +1219,7 @@ public final class DictionaryForMIDs extends Activity {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final boolean onMenuItemSelected(final int featureId,
-			final MenuItem item) {
+	public boolean onMenuItemSelected(final int featureId, final MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.itemAbout:
 			Intent aboutScreenIntent = new Intent(DictionaryForMIDs.this,
@@ -840,7 +1260,7 @@ public final class DictionaryForMIDs extends Activity {
 					Toast.LENGTH_LONG).show();
 			return;
 		}
-		if (((Spinner) findViewById(R.id.selectLanguages)).getChildCount() == 0) {
+		if (DictionaryDataFile.numberOfAvailableLanguages == 0) {
 			Toast.makeText(getBaseContext(),
 					R.string.msg_load_dictionary_first, Toast.LENGTH_LONG)
 					.show();
@@ -1081,42 +1501,16 @@ public final class DictionaryForMIDs extends Activity {
 		String assetPath = extras.getString(DictionaryList.ASSET_PATH);
 		if (filePath != null) {
 			startLoadDictionary(new FileDfMInputStreamAccess(filePath),
-					getOnLoadDictionary(filePath, DictionaryType.DIRECTORY),
-					null);
+					DictionaryType.DIRECTORY, filePath);
 		} else if (assetPath != null) {
 			startLoadDictionary(new AssetDfMInputStreamAccess(this, assetPath),
-					getOnLoadDictionary(assetPath, DictionaryType.INCLUDED),
-					null);
+					DictionaryType.INCLUDED, assetPath);
 		} else if (zipPath != null) {
 			NativeZipInputStreamAccess inputStreamAccess;
 			inputStreamAccess = new NativeZipInputStreamAccess(zipPath);
-			startLoadDictionary(inputStreamAccess, getOnLoadDictionary(zipPath,
-					DictionaryType.ARCHIVE), null);
+			startLoadDictionary(inputStreamAccess, DictionaryType.ARCHIVE,
+					zipPath);
 		}
-	}
-
-	/**
-	 * Creates a runnable to react on successfully loaded dictionaries.
-	 * 
-	 * @param path
-	 *            the path of the dictionary
-	 * @param dictionaryType
-	 *            the type of the dictionary
-	 * @return a runnable that makes the dictionary the first entry in the
-	 *         recently loaded dictionaries.
-	 */
-	private Runnable getOnLoadDictionary(final String path,
-			final DictionaryType dictionaryType) {
-		return new Runnable() {
-			@Override
-			public void run() {
-				String[] languages = new String[DictionaryDataFile.supportedLanguages.length];
-				for (int i = 0; i < DictionaryDataFile.supportedLanguages.length; i++) {
-					languages[i] = DictionaryDataFile.supportedLanguages[i].languageDisplayText;
-				}
-				Preferences.setLoadDictionary(dictionaryType, path, languages);
-			}
-		};
 	}
 
 	/**
@@ -1145,21 +1539,44 @@ public final class DictionaryForMIDs extends Activity {
 	 * Reacts on changes in the selection of the translation languages to open
 	 * the dialog for choosing a new dictionary if appropriate.
 	 */
-	private OnItemSelectedListener itemSelectedListener = new OnItemSelectedListener() {
+	private OnItemSelectedListener languageSelectedListener = new OnItemSelectedListener() {
 
 		@Override
-		public void onItemSelected(final AdapterView< ? > parent, final View v,
+		public void onItemSelected(final AdapterView<?> parent, final View v,
 				final int position, final long id) {
-			if (parent.getId() == R.id.selectLanguages) {
-				if (parent.getCount() > 0 && position == parent.getCount() - 1) {
-					startChooseDictionaryActivity();
+			assert (parent.getId() == R.id.selectLanguages);
+			final boolean isLoadDictionarySelected = position == parent
+					.getCount() - 1;
+			if (parent.getCount() > 1 && isLoadDictionarySelected) {
+				startChooseDictionaryActivity();
+				if (position != 0) {
 					parent.setSelection(0);
 				}
 			}
 		}
 
 		@Override
-		public void onNothingSelected(final AdapterView< ? > arg0) {
+		public void onNothingSelected(final AdapterView<?> arg0) {
+		}
+
+	};
+
+	/**
+	 * Reacts on touch events of the translation languages to open the dialog
+	 * for choosing a new dictionary if appropriate.
+	 */
+	private final OnTouchListener languagesTouchListener = new OnTouchListener() {
+
+		@Override
+		public boolean onTouch(final View view, final MotionEvent event) {
+			assert (view.getId() == R.id.selectLanguages);
+			final Spinner spinner = (Spinner) view;
+			if (spinner.getCount() != 1
+					|| event.getAction() != MotionEvent.ACTION_UP) {
+				return false;
+			}
+			startChooseDictionaryActivity();
+			return true;
 		}
 
 	};
