@@ -208,20 +208,21 @@ public class Preferences extends PreferenceActivity implements
 		editor.putInt(PREF_DICTIONARY_TYPE, type.ordinal());
 		editor.commit();
 	}
+
+	private static int getLoadDictionaryType() {
+		return preferences.getInt(PREF_DICTIONARY_TYPE, -1);
+	}
 	
 	public static boolean getLoadIncludedDictionary() {
-		return preferences.getInt(PREF_DICTIONARY_TYPE, -1) == DictionaryType.INCLUDED
-				.ordinal();
+		return getLoadDictionaryType() == DictionaryType.INCLUDED.ordinal();
 	}
 
 	public static boolean getLoadArchiveDictionary() {
-		return preferences.getInt(PREF_DICTIONARY_TYPE, -1) == DictionaryType.ARCHIVE
-				.ordinal();
+		return getLoadDictionaryType() == DictionaryType.ARCHIVE.ordinal();
 	}
 
 	public static boolean getLoadDirectoryDictionary() {
-		return preferences.getInt(PREF_DICTIONARY_TYPE, -1) == DictionaryType.DIRECTORY
-				.ordinal();
+		return getLoadDictionaryType() == DictionaryType.DIRECTORY.ordinal();
 	}
 
 	public static void setWarnOnTimeout(final boolean warnOnTimeout) {
