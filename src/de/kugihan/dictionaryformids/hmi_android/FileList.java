@@ -15,6 +15,7 @@ import java.util.List;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -186,7 +187,7 @@ public class FileList extends ListActivity implements ResultProvider {
 		}
 		if (currentDirectory != null
 				&& currentDirectory.getPath().equals(
-						getString(R.string.attribute_sdcard_path))) {
+						Environment.getExternalStorageDirectory())) {
 			((Button) findViewById(R.id.ButtonCard)).setEnabled(false);
 		} else {
 			((Button) findViewById(R.id.ButtonCard)).setEnabled(true);
@@ -312,7 +313,7 @@ public class FileList extends ListActivity implements ResultProvider {
 	 * Fills the view with the content of sdcard's root directory.
 	 */
 	private void fillWithCard() {
-		fill(new File(getString(R.string.attribute_sdcard_path)));
+		fill(Environment.getExternalStorageDirectory());
 	}
 
 	/**
