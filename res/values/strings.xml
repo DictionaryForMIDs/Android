@@ -139,6 +139,7 @@
 	<string name="title_remove_from_list">Remove from list</string>
 	<string name="app_description">DictionaryForMIDs is a free multi-language dictionary for cell phones and PDAs</string>
 	<string name="hint_enter_word">Enter word to translate</string>
+	<string name="hint_filter">Filter</string>
 	<string name="title_pref_search_options">Search options</string>
 	<string name="title_pref_search_mode">Search mode</string>
 	<string name="title_pref_max_results">Max. results</string>

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -32,6 +33,8 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -39,6 +42,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -386,6 +391,11 @@ public final class InstallDictionary extends ListActivity implements
 
 		TextView textViewError = (TextView) findViewById(R.id.TextViewError);
 		textViewError.setOnClickListener(retryDownload);
+		
+		final EditText editTextFilter = (EditText) findViewById(R.id.EditTextFilter);
+		editTextFilter.addTextChangedListener(filterTextWatcher);
+		final ImageButton clearFilterButton = (ImageButton) findViewById(R.id.ClearFilterButton);
+		clearFilterButton.setOnClickListener(clearFilterClickListener);
 
 		// get handle to thread
 		Object object = getLastNonConfigurationInstance();
@@ -763,6 +773,9 @@ public final class InstallDictionary extends ListActivity implements
 
 			@Override
 			public void run() {
+				// remove filter
+				((EditText) findViewById(R.id.EditTextFilter)).setText("");
+				// set data
 				InstallDictionary.this.dictionaries = dictionaries;
 				updateList();
 			}
@@ -774,9 +787,16 @@ public final class InstallDictionary extends ListActivity implements
 	 * Updates the list of current dictionaries from the downloaded data.
 	 */
 	private void updateList() {
+		final EditText editTextFilter = (EditText) findViewById(R.id.EditTextFilter);
+		final CharSequence lowerCaseFilter = editTextFilter.getText().toString().toLowerCase();
 		ArrayList<String> stringList = new ArrayList<String>();
 		for (DownloadDictionaryItem dictionary : dictionaries) {
-			stringList.add(dictionary.toString());
+			final String dictionaryName = dictionary.toString();
+			final boolean doesNotMatchFilter = !dictionaryName.toLowerCase().contains(lowerCaseFilter);
+			if (doesNotMatchFilter) {
+				continue;
+			}
+			stringList.add(dictionaryName);
 		}
 		ArrayAdapter<String> fileList;
 		fileList = new ArrayAdapter<String>(this, R.layout.file_row, stringList);
@@ -1081,6 +1101,42 @@ public final class InstallDictionary extends ListActivity implements
 	 * Handler to receive view updates from non-GUI threads.
 	 */
 	private final Handler handler = new Handler();
+
+	/**
+	 * Reacts on changes in the filter input. 
+	 */
+	private final TextWatcher filterTextWatcher = new TextWatcher() {
+		
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before,
+				int count) {
+		}
+
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count,
+				int after) {
+		}
+		
+		@Override
+		public void afterTextChanged(Editable s) {
+			if (dictionaries == null || dictionaries.size() == 0) {
+				return;
+			}
+			updateList();
+		}
+	};
+
+	/**
+	 * Reacts on clicks on the clear filter button.
+	 */
+	private final OnClickListener clearFilterClickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			final EditText editTextFilter = (EditText) findViewById(R.id.EditTextFilter);
+			editTextFilter.setText("");
+		}
+	};
 
 	/**
 	 * {@inheritDoc}

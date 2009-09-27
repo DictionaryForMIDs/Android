@@ -2,11 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:orientation="vertical"
 	android:layout_height="fill_parent">
+
+	<LinearLayout android:id="@+id/LinearLayout01"
+		android:layout_height="wrap_content" android:layout_width="fill_parent" android:orientation="horizontal">
+		<EditText android:layout_height="wrap_content" android:id="@+id/EditTextFilter"
+			android:hint="@string/hint_filter" android:layout_width="wrap_content" android:layout_weight="1" android:layout_gravity="center_vertical"></EditText>
+	<ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@android:drawable/ic_input_delete" android:id="@+id/ClearFilterButton" android:layout_gravity="center_vertical"></ImageButton></LinearLayout>
 	
+
 	<ListView android:id="@android:id/list" android:layout_width="fill_parent"
 		android:layout_height="wrap_content">
 	</ListView>
-	
+
 	<LinearLayout android:id="@android:id/empty"
 		android:layout_width="fill_parent" android:orientation="vertical"
 		android:layout_height="fill_parent" android:gravity="center">
@@ -27,5 +34,6 @@
 			android:layout_height="wrap_content" android:id="@+id/TextViewEmpty"
 			android:text="@string/no_download_dictionaries" android:gravity="center"></TextView>
 	</LinearLayout>
-	
+
+
 </LinearLayout>
