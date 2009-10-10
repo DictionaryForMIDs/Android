@@ -1062,7 +1062,24 @@ public final class InstallDictionary extends ListActivity implements
 			return;
 		}
 
-		selectedItem = position;
+		// TODO: refactor
+		// find array position from filtered list
+		final EditText editTextFilter = (EditText) findViewById(R.id.EditTextFilter);
+		final CharSequence lowerCaseFilter = editTextFilter.getText().toString().toLowerCase();
+		int displayPosition = -1;
+		for (int realPosition = 0; realPosition < dictionaries.size(); realPosition++) {
+			final DownloadDictionaryItem dictionary = dictionaries.get(realPosition);
+			final String dictionaryName = dictionary.toString();
+			final boolean doesNotMatchFilter = !dictionaryName.toLowerCase().contains(lowerCaseFilter);
+			if (doesNotMatchFilter) {
+				continue;
+			}
+			displayPosition++;
+			if (displayPosition == position) {
+				selectedItem = realPosition;
+				break;
+			}
+		}
 		showDialog(R.id.dialog_confirm_installation);
 	}
 
