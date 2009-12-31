@@ -301,6 +301,11 @@ public final class InstallDictionary extends ListActivity implements
 	 * List of all available dictionaries.
 	 */
 	private ArrayList<DownloadDictionaryItem> dictionaries = new ArrayList<DownloadDictionaryItem>();
+	
+	/**
+	 * Filtered list of dictionaries.
+	 */
+	private ArrayList<DownloadDictionaryItem> filteredDictionaries = new ArrayList<DownloadDictionaryItem>();
 
 	/**
 	 * The result returned to TabHost.
@@ -329,10 +334,10 @@ public final class InstallDictionary extends ListActivity implements
 	private String serverMessage = null;
 
 	/**
-	 * Saves the currently selected item to initialize a dialog for confirming
-	 * installation in onPrepareDialog.
+	 * Saves the currently selected item of the list of filtered dictionaries to
+	 * initialize a dialog for confirming installation in onPrepareDialog.
 	 */
-	private int selectedItem = -1;
+	private int selectedFilteredItem = -1;
 
 	/**
 	 * Receives updates to the user interface from background tasks.
@@ -368,18 +373,18 @@ public final class InstallDictionary extends ListActivity implements
 		if (savedInstanceState == null) {
 			startListDownload();
 		} else {
-			dictionaries = savedInstanceState
-					.getParcelableArrayList(BUNDLE_DICTIONARIES);
-			updateList();
 			serverMessage = savedInstanceState.getString(BUNDLE_SERVER_MESSAGE);
 			exception = (Exception) savedInstanceState.get(BUNDLE_EXCEPTION);
-			selectedItem = savedInstanceState.getInt(BUNDLE_SELECTED_ITEM);
+			selectedFilteredItem = savedInstanceState.getInt(BUNDLE_SELECTED_ITEM);
 			if (exception != null) {
 				TextView textViewError = (TextView) findViewById(R.id.TextViewError);
 				textViewError.setText(getString(
 						R.string.msg_error_downloading_available_dictionaries,
 						exception.toString()));
 			}
+			dictionaries = savedInstanceState
+					.getParcelableArrayList(BUNDLE_DICTIONARIES);
+			updateList();
 			// restore the dialog that was visible before activity got
 			// re-created
 			visibleDialogId = savedInstanceState
@@ -537,7 +542,7 @@ public final class InstallDictionary extends ListActivity implements
 		outState.putParcelableArrayList(BUNDLE_DICTIONARIES, dictionaries);
 		outState.putString(BUNDLE_SERVER_MESSAGE, serverMessage);
 		outState.putSerializable(BUNDLE_EXCEPTION, exception);
-		outState.putInt(BUNDLE_SELECTED_ITEM, selectedItem);
+		outState.putInt(BUNDLE_SELECTED_ITEM, selectedFilteredItem);
 		outState.putInt(BUNDLE_VISIBLE_DIALOG_ID, visibleDialogId);
 		super.onSaveInstanceState(outState);
 	}
@@ -650,9 +655,9 @@ public final class InstallDictionary extends ListActivity implements
 		getMainActivity().setProgressBarVisibility(true);
 		getMainActivity().setProgress(0);
 
-		String url = dictionaries.get(selectedItem).getLink();
-		String dictionaryName = dictionaries.get(selectedItem).getName();
-		String dictionaryFile = dictionaries.get(selectedItem).getFileName();
+		String url = filteredDictionaries.get(selectedFilteredItem).getLink();
+		String dictionaryName = filteredDictionaries.get(selectedFilteredItem).getName();
+		String dictionaryFile = filteredDictionaries.get(selectedFilteredItem).getFileName();
 
 		Intent intent = new Intent(this, DictionaryInstallationService.class);
 		intent.putExtra(DictionaryInstallationService.BUNDLE_URL, url);
@@ -787,20 +792,8 @@ public final class InstallDictionary extends ListActivity implements
 	 * Updates the list of current dictionaries from the downloaded data.
 	 */
 	private void updateList() {
-		final EditText editTextFilter = (EditText) findViewById(R.id.EditTextFilter);
-		final CharSequence lowerCaseFilter = editTextFilter.getText().toString().toLowerCase();
-		ArrayList<String> stringList = new ArrayList<String>();
-		for (DownloadDictionaryItem dictionary : dictionaries) {
-			final String dictionaryName = dictionary.toString();
-			final boolean doesNotMatchFilter = !dictionaryName.toLowerCase().contains(lowerCaseFilter);
-			if (doesNotMatchFilter) {
-				continue;
-			}
-			stringList.add(dictionaryName);
-		}
-		ArrayAdapter<String> fileList;
-		fileList = new ArrayAdapter<String>(this, R.layout.file_row, stringList);
-		setListAdapter(fileList);
+		updateFilteredDictionaries();
+		setListAdapter(getDictionaryAdapterFromFilteredList());
 
 		TextView textViewEmpty = (TextView) findViewById(R.id.TextViewEmpty);
 		TextView textViewError = (TextView) findViewById(R.id.TextViewError);
@@ -814,6 +807,41 @@ public final class InstallDictionary extends ListActivity implements
 		}
 		textViewMessage.setVisibility(View.GONE);
 		progressBar.setVisibility(View.GONE);
+	}
+
+	/**
+	 * Creates an adapter from the list of filtered dictionaries for use in a
+	 * list.
+	 * 
+	 * @return the adapter representing the data of the list of filtered
+	 *         dictionaries
+	 */
+	private ArrayAdapter<String> getDictionaryAdapterFromFilteredList() {
+		ArrayList<String> dictionaryNames = new ArrayList<String>();
+		for (DownloadDictionaryItem dictionary : filteredDictionaries) {
+			final String dictionaryName = dictionary.toString();
+			dictionaryNames.add(dictionaryName);
+		}
+		ArrayAdapter<String> dictionaryAdapter = new ArrayAdapter<String>(this, R.layout.file_row, dictionaryNames);
+		return dictionaryAdapter;
+	}
+
+	/**
+	 * Creates the list of filtered dictionaries using the current filter text
+	 * and list of dictionaries.
+	 */
+	private void updateFilteredDictionaries() {
+		final EditText editTextFilter = (EditText) findViewById(R.id.EditTextFilter);
+		final CharSequence lowerCaseFilter = editTextFilter.getText().toString().toLowerCase();
+		filteredDictionaries = new ArrayList<DownloadDictionaryItem>();
+		for (DownloadDictionaryItem dictionary : dictionaries) {
+			final String dictionaryName = dictionary.toString();
+			final boolean doesNotMatchFilter = !dictionaryName.toLowerCase().contains(lowerCaseFilter);
+			if (doesNotMatchFilter) {
+				continue;
+			}
+			filteredDictionaries.add(dictionary);
+		}
 	}
 
 	/**
@@ -988,8 +1016,8 @@ public final class InstallDictionary extends ListActivity implements
 
 		case R.id.dialog_confirm_installation:
 			AlertDialog confirmAlert = (AlertDialog) dialog;
-			final String name = dictionaries.get(selectedItem).getName();
-			final long size = dictionaries.get(selectedItem).getSize();
+			final String name = filteredDictionaries.get(selectedFilteredItem).getName();
+			final long size = filteredDictionaries.get(selectedFilteredItem).getSize();
 			String message;
 			if (size > 0) {
 				String sizeString = formatBytes(size);
@@ -1061,25 +1089,9 @@ public final class InstallDictionary extends ListActivity implements
 					Toast.LENGTH_LONG).show();
 			return;
 		}
+		
+		selectedFilteredItem = position;
 
-		// TODO: refactor
-		// find array position from filtered list
-		final EditText editTextFilter = (EditText) findViewById(R.id.EditTextFilter);
-		final CharSequence lowerCaseFilter = editTextFilter.getText().toString().toLowerCase();
-		int displayPosition = -1;
-		for (int realPosition = 0; realPosition < dictionaries.size(); realPosition++) {
-			final DownloadDictionaryItem dictionary = dictionaries.get(realPosition);
-			final String dictionaryName = dictionary.toString();
-			final boolean doesNotMatchFilter = !dictionaryName.toLowerCase().contains(lowerCaseFilter);
-			if (doesNotMatchFilter) {
-				continue;
-			}
-			displayPosition++;
-			if (displayPosition == position) {
-				selectedItem = realPosition;
-				break;
-			}
-		}
 		showDialog(R.id.dialog_confirm_installation);
 	}
 
