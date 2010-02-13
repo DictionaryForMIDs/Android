@@ -31,4 +31,13 @@
 	<string name="tag_tab_download">tab_download</string>
 	<string name="attribute_market_search">market://search?q=pname:%1$s</string>
 	<string name="attribute_root_path">/</string>
+	<string-array name="language_codes">
+		<item>@string/title_default_language_code</item>
+		<item>English</item>
+	</string-array>
+	<string-array name="language_code_values">
+		<item></item>
+		<item>en</item>
+		<item>de</item>
+	</string-array>
 </resources>

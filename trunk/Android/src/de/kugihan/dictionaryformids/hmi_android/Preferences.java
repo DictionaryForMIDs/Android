@@ -20,22 +20,23 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 /**
- * Preferences is an Activity that handles interaction with the preferences and
- * provides an API for all preferences.
+ * Preferences is an Activity that handles interaction with the
+ * preferencesInstance and provides an API for all preferencesInstance.
  * 
  * Before using this static class, it has to be attached to a Context using
  * attachToContext().
  */
 public class Preferences extends PreferenceActivity implements
 		OnSharedPreferenceChangeListener {
-	
+
 	/**
-	 * The version of the current preferences implementation.
+	 * The version of the current preferencesInstance implementation.
 	 */
 	private static final int CURRENT_PREF_VERSION = 1;
-	
+
 	private static final String PREF_DICTIONARY_TYPE = "dictionaryType";
 	private static final String PREF_VERSION = "preferencesVersion";
 	private static final String PREF_DICTIONARY_PATH = "dictionaryPath";
@@ -47,17 +48,18 @@ public class Preferences extends PreferenceActivity implements
 	private static final String PREF_SEARCH_MODE = "searchMode";
 	public static final String PREF_IGNORE_DICTIONARY_TEXT_STYLES = "ignoreDictionaryStyles";
 	public static final String PREF_RECENT_DICTIONARIES = "recentDictionaries";
+	public static final String PREF_LANGUAGE_CODE = "languageCode";
 
 	/**
 	 * Saves an instance of the application's shared preferences.
 	 */
-	private static SharedPreferences preferences = null;
-	
+	private static SharedPreferences preferencesInstance = null;
+
 	/**
 	 * Specifies if the application is run for the first time.
 	 */
 	private static boolean firstRun = false;
-	
+
 	/**
 	 * This type includes all supported search modes.
 	 */
@@ -67,22 +69,22 @@ public class Preferences extends PreferenceActivity implements
 		 * Default search mode.
 		 */
 		DEFAULT,
-		
+
 		/**
 		 * Find entries where a word exactly matches the search term.
 		 */
 		FIND_EXACT_MATCH,
-		
+
 		/**
 		 * Find entries where the beginning of a word exactly matches the search
 		 * term.
 		 */
 		FIND_ENTRIES_BEGINNING_WITH_SEARCH_TERM,
-		
+
 		/**
 		 * Find entries where a word includes the search term.
 		 */
-		FIND_ENTRIES_INCLUDING_SEARCH_TERM 
+		FIND_ENTRIES_INCLUDING_SEARCH_TERM
 	}
 
 	/**
@@ -93,17 +95,17 @@ public class Preferences extends PreferenceActivity implements
 		 * Dictionary files are located in a directory.
 		 */
 		DIRECTORY,
-		
+
 		/**
 		 * Dictionary files have been packed into an archive.
 		 */
 		ARCHIVE,
-		
+
 		/**
 		 * Dictionary files are included into the application.
 		 */
 		INCLUDED;
-		
+
 		/**
 		 * {@inheritDoc}
 		 */
@@ -120,33 +122,35 @@ public class Preferences extends PreferenceActivity implements
 			}
 		}
 	};
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected final void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		addPreferencesFromResource(R.xml.preferences);
-		
+
 		getPreferenceScreen().getSharedPreferences()
 				.registerOnSharedPreferenceChangeListener(this);
 		updateSummaries();
 	}
-	
+
 	/**
 	 * Connect the settings to the given context.
 	 * 
-	 * @param context the context for which the settings are handled
+	 * @param context
+	 *            the context for which the settings are handled
 	 */
 	public static void attachToContext(final Context context) {
-		preferences = PreferenceManager.getDefaultSharedPreferences(context);
-		firstRun = !preferences.contains(PREF_VERSION);
+		preferencesInstance = PreferenceManager
+				.getDefaultSharedPreferences(context);
+		firstRun = !preferencesInstance.contains(PREF_VERSION);
 		if (firstRun) {
 			saveCurrentVersion();
 		} else {
-			int preferencesVersion = preferences.getInt(PREF_VERSION,
+			int preferencesVersion = preferencesInstance.getInt(PREF_VERSION,
 					CURRENT_PREF_VERSION);
 			if (preferencesVersion < CURRENT_PREF_VERSION) {
 				// if needed later, migrate old settings into new format here
@@ -154,65 +158,68 @@ public class Preferences extends PreferenceActivity implements
 			}
 		}
 	}
-	
+
 	// TODO: extract all default values somewhere
-	
+
 	public static int getMaxResults() {
-		String string = preferences.getString(PREF_MAX_RESULTS, "100");
+		String string = preferencesInstance.getString(PREF_MAX_RESULTS, "100");
 		return Integer.parseInt(string);
 	}
-	
+
 	public static int getResultFontSize() {
-		String string = preferences.getString(PREF_RESULT_FONT_SIZE, "18");
+		String string = preferencesInstance.getString(PREF_RESULT_FONT_SIZE,
+				"18");
 		return Integer.parseInt(string);
 	}
-	
+
 	public static int getSearchTimeout() {
-		String string = preferences.getString(PREF_SEARCH_TIMEOUT, "30");
+		String string = preferencesInstance
+				.getString(PREF_SEARCH_TIMEOUT, "30");
 		return Integer.parseInt(string);
 	}
-	
+
 	public static boolean getIgnoreDictionaryTextStyles() {
-		return preferences.getBoolean(PREF_IGNORE_DICTIONARY_TEXT_STYLES, false);
+		return preferencesInstance.getBoolean(
+				PREF_IGNORE_DICTIONARY_TEXT_STYLES, false);
 	}
-	
+
 	public static void setSelectedLanguageIndex(final int selectedLanguageIndex) {
-		Editor editor = preferences.edit();
+		Editor editor = preferencesInstance.edit();
 		editor.putInt(PREF_SELECTED_LANGUAGE_INDEX, selectedLanguageIndex);
 		editor.commit();
 	}
-	
+
 	private static void saveCurrentVersion() {
-		Editor editor = preferences.edit();
+		Editor editor = preferencesInstance.edit();
 		editor.putInt(PREF_VERSION, CURRENT_PREF_VERSION);
 		editor.commit();
 	}
-	
+
 	public static boolean isFirstRun() {
 		return firstRun;
 	}
-	
+
 	public static int getSelectedLanguageIndex() {
-		return preferences.getInt(PREF_SELECTED_LANGUAGE_INDEX, 0);
+		return preferencesInstance.getInt(PREF_SELECTED_LANGUAGE_INDEX, 0);
 	}
-	
+
 	public static void setLoadDictionary(final DictionaryType type,
 			final String path, final String[] languages) {
 		setLoadDictionaryType(type);
 		setDictionaryPath(path);
 		addRecentDictionaryUrl(type, path, languages);
 	}
-	
+
 	private static void setLoadDictionaryType(final DictionaryType type) {
-		Editor editor = preferences.edit();
+		Editor editor = preferencesInstance.edit();
 		editor.putInt(PREF_DICTIONARY_TYPE, type.ordinal());
 		editor.commit();
 	}
 
 	private static int getLoadDictionaryType() {
-		return preferences.getInt(PREF_DICTIONARY_TYPE, -1);
+		return preferencesInstance.getInt(PREF_DICTIONARY_TYPE, -1);
 	}
-	
+
 	public static boolean getLoadIncludedDictionary() {
 		return getLoadDictionaryType() == DictionaryType.INCLUDED.ordinal();
 	}
@@ -226,51 +233,58 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	public static void setWarnOnTimeout(final boolean warnOnTimeout) {
-		Editor editor = preferences.edit();
+		Editor editor = preferencesInstance.edit();
 		editor.putBoolean(PREF_WARN_ON_TIMEOUT, warnOnTimeout);
 		editor.commit();
 	}
-	
+
 	public static boolean getWarnOnTimeout() {
-		return preferences.getBoolean(PREF_WARN_ON_TIMEOUT, true);
+		return preferencesInstance.getBoolean(PREF_WARN_ON_TIMEOUT, true);
 	}
-	
+
 	private static void setDictionaryPath(final String path) {
-		Editor editor = preferences.edit();
+		Editor editor = preferencesInstance.edit();
 		editor.putString(PREF_DICTIONARY_PATH, path);
 		editor.commit();
 	}
-	
+
 	public static String getDictionaryPath() {
-		return preferences.getString(PREF_DICTIONARY_PATH, "/sdcard/dict");
+		return preferencesInstance.getString(PREF_DICTIONARY_PATH,
+				"/sdcard/dict");
 	}
-	
+
+	public static String getLanguageCode() {
+		return preferencesInstance.getString(PREF_LANGUAGE_CODE, "");
+	}
+
 	private static int getSearchMode() {
-		String string = preferences.getString(PREF_SEARCH_MODE, ""
+		String string = preferencesInstance.getString(PREF_SEARCH_MODE, ""
 				+ SearchMode.DEFAULT.ordinal());
 		int value = Integer.parseInt(string);
 		return value;
 	}
-	
+
 	public static boolean getIsSearchModeDefault() {
 		return getSearchMode() == SearchMode.DEFAULT.ordinal();
 	}
-	
+
 	public static boolean getFindExactMatch() {
 		return getSearchMode() == SearchMode.FIND_EXACT_MATCH.ordinal();
 	}
-	
+
 	public static boolean getFindEntryBeginningWithSearchTerm() {
 		return getSearchMode() == SearchMode.FIND_ENTRIES_BEGINNING_WITH_SEARCH_TERM
 				.ordinal();
 	}
-	
+
 	public static boolean getFindEntryIncludingSearchTerm() {
-		return getSearchMode() == SearchMode.FIND_ENTRIES_INCLUDING_SEARCH_TERM.ordinal();
+		return getSearchMode() == SearchMode.FIND_ENTRIES_INCLUDING_SEARCH_TERM
+				.ordinal();
 	}
-	
+
 	public static String[] getRecentDictionaries() {
-		String stringData = preferences.getString(PREF_RECENT_DICTIONARIES, "");
+		String stringData = preferencesInstance.getString(
+				PREF_RECENT_DICTIONARIES, "");
 		JSONArray data;
 		String[] dictionaryEntries;
 		try {
@@ -288,8 +302,8 @@ public class Preferences extends PreferenceActivity implements
 		}
 		return dictionaryEntries;
 	}
-	
-	private static void setRecentDictionaries(String[] dictionaries) {
+
+	private static void setRecentDictionaries(final String[] dictionaries) {
 		JSONArray data = new JSONArray();
 		for (int i = 0; i < dictionaries.length; i++) {
 			if (dictionaries[i] == null || dictionaries[i].length() == 0) {
@@ -297,13 +311,14 @@ public class Preferences extends PreferenceActivity implements
 			}
 			data.put(dictionaries[i]);
 		}
-		
-		Editor editor = preferences.edit();
+
+		Editor editor = preferencesInstance.edit();
 		editor.putString(PREF_RECENT_DICTIONARIES, data.toString());
 		editor.commit();
 	}
-	
-	public static void removeRecentDictionary(String path, DictionaryType type) {
+
+	public static void removeRecentDictionary(final String path,
+			final DictionaryType type) {
 		String[] dictionaryUrls = getRecentDictionaries();
 		// find out if it exists in the list
 		int position = findDictionary(path, type, dictionaryUrls);
@@ -321,8 +336,8 @@ public class Preferences extends PreferenceActivity implements
 		setRecentDictionaries(newDictionaryUrls);
 		return;
 	}
-	
-	public static String typeToProtocolString(DictionaryType type) {
+
+	public static String typeToProtocolString(final DictionaryType type) {
 		String result;
 		if (type == DictionaryType.DIRECTORY) {
 			result = FileList.FILE_PATH;
@@ -335,13 +350,13 @@ public class Preferences extends PreferenceActivity implements
 		}
 		return result;
 	}
-	
+
 	public static void clearRecentDictionaryUrls() {
 		setRecentDictionaries(new String[0]);
 	}
-	
-	public static void addRecentDictionaryUrl(DictionaryType type,
-			String path, String[] languages) {
+
+	public static void addRecentDictionaryUrl(final DictionaryType type,
+			final String path, final String[] languages) {
 		String dictionary = dictionaryToString(type, path, languages);
 		if (dictionary == null) {
 			return;
@@ -358,7 +373,7 @@ public class Preferences extends PreferenceActivity implements
 			setRecentDictionaries(dictionaries);
 			return;
 		}
-		
+
 		// add new entry to the beginning
 		String[] biggerDictionaryUrls = new String[dictionaries.length + 1];
 		biggerDictionaryUrls[0] = dictionary;
@@ -371,9 +386,12 @@ public class Preferences extends PreferenceActivity implements
 	/**
 	 * Returns the index of the specified dictionary in the given array.
 	 * 
-	 * @param searchDictionaryPath the path of the dictionary to search for
-	 * @param searchType the type of the dictionary to search for
-	 * @param dictionaries the array to search in
+	 * @param searchDictionaryPath
+	 *            the path of the dictionary to search for
+	 * @param searchType
+	 *            the type of the dictionary to search for
+	 * @param dictionaries
+	 *            the array to search in
 	 * @return the index of the found string or -1
 	 */
 	private static int findDictionary(final String searchDictionaryPath,
@@ -401,9 +419,12 @@ public class Preferences extends PreferenceActivity implements
 	/**
 	 * Returns the dictionary URL specified by the parameters.
 	 * 
-	 * @param type the type of the dictionary
-	 * @param path the path of the dictionary
-	 * @param languages the languages included in the dictionary
+	 * @param type
+	 *            the type of the dictionary
+	 * @param path
+	 *            the path of the dictionary
+	 * @param languages
+	 *            the languages included in the dictionary
 	 * @return the URL of the dictionary
 	 */
 	private static String dictionaryToString(final DictionaryType type,
@@ -422,7 +443,7 @@ public class Preferences extends PreferenceActivity implements
 		}
 		return dictionary.toString();
 	}
-	
+
 	/**
 	 * Updates the summary descriptions in the view.
 	 */
@@ -435,16 +456,22 @@ public class Preferences extends PreferenceActivity implements
 				R.array.search_mode_values, "" + getSearchMode());
 		setListSummary(PREF_RESULT_FONT_SIZE, R.array.font_sizes,
 				R.array.font_size_values, "" + getResultFontSize());
+		setListSummary(PREF_LANGUAGE_CODE, R.array.language_codes,
+				R.array.language_code_values, getLanguageCode());
 	}
 
 	/**
 	 * Extracts the current value for a PreferenceList and updates the summary
 	 * to show the value's title.
 	 * 
-	 * @param preferencesId the ID of the PreferenceList to update
-	 * @param entriesResourceId the ID of the string-array entries
-	 * @param valuesResourceId the ID of the string-array values
-	 * @param currentValue the current value of the list
+	 * @param preferencesId
+	 *            the ID of the PreferenceList to update
+	 * @param entriesResourceId
+	 *            the ID of the string-array entries
+	 * @param valuesResourceId
+	 *            the ID of the string-array values
+	 * @param currentValue
+	 *            the current value of the list
 	 */
 	private void setListSummary(final String preferencesId,
 			final int entriesResourceId, final int valuesResourceId,
@@ -465,8 +492,17 @@ public class Preferences extends PreferenceActivity implements
 	 */
 	@Override
 	public final void onSharedPreferenceChanged(
-			final SharedPreferences sharedPreferences,
-			final String key) {
+			final SharedPreferences sharedPreferences, final String key) {
+		if (key.equals(PREF_LANGUAGE_CODE)) {
+			// set new locale
+			final String languageCode = getLanguageCode();
+			DictionaryForMIDs.setCustomLocale(languageCode, getBaseContext()
+					.getResources());
+			// tell user to restart application
+			Toast.makeText(getBaseContext(),
+					R.string.msg_restart_app_after_settings_changed,
+					Toast.LENGTH_LONG).show();
+		}
 		updateSummaries();
 	}
 }
