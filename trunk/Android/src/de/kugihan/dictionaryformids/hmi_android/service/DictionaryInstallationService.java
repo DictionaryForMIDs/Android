@@ -343,6 +343,7 @@ public final class DictionaryInstallationService extends Service {
 
 		if (listener != null) {
 			listener.onFinished(path);
+			stopSelf();
 			return;
 		}
 
@@ -378,6 +379,8 @@ public final class DictionaryInstallationService extends Service {
 		Preferences.attachToContext(getApplicationContext());
 		Preferences.addRecentDictionaryUrl(DictionaryType.DIRECTORY, path,
 				languages);
+		
+		stopSelf();
 	}
 
 	/**
@@ -392,6 +395,7 @@ public final class DictionaryInstallationService extends Service {
 
 		if (listener != null) {
 			listener.onExitWithException(exception);
+			stopSelf();
 			return;
 		}
 
@@ -416,6 +420,7 @@ public final class DictionaryInstallationService extends Service {
 				contentIntent);
 		notification.flags = Notification.FLAG_AUTO_CANCEL;
 		notificationManager.notify(NOTIFICATION_EXCEPTION, notification);
+		stopSelf();
 	}
 
 	/**
