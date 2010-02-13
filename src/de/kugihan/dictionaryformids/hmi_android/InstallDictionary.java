@@ -63,6 +63,7 @@ public final class InstallDictionary extends ListActivity implements
 		ResultProvider {
 
 	// TODO stop thread if activity will not be restored shortly
+	// TODO move thread to thread-package
 	/**
 	 * Thread to download and parse a list of dictionaries independently from
 	 * the view.

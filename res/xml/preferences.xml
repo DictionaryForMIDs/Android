@@ -1,16 +1,20 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<PreferenceCategory android:title="@string/title_pref_search_options">
-		<ListPreference android:key="searchMode" android:title="@string/title_pref_search_mode"
-			android:entries="@array/search_mode" android:entryValues="@array/search_mode_values"></ListPreference>
+		<ListPreference android:key="searchMode"
+			android:title="@string/title_pref_search_mode" android:entries="@array/search_mode"
+			android:entryValues="@array/search_mode_values"></ListPreference>
 		<EditTextPreference android:title="@string/title_pref_max_results"
 			android:key="maxResults" android:defaultValue="100" android:numeric="decimal" />
 		<EditTextPreference android:title="@string/title_pref_timeout"
 			android:key="searchTimeout" android:numeric="decimal"
 			android:defaultValue="30"></EditTextPreference>
 	</PreferenceCategory>
-	
+
 	<PreferenceCategory android:title="@string/title_pref_display_options">
+		<ListPreference android:key="languageCode"
+			android:entries="@array/language_codes" android:entryValues="@array/language_code_values"
+			android:title="@string/title_pref_language_code"></ListPreference>
 		<ListPreference android:key="resultFontSize"
 			android:title="@string/title_pref_result_font_size" android:entries="@array/font_sizes"
 			android:entryValues="@array/font_size_values"></ListPreference>

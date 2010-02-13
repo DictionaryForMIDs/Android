@@ -82,6 +82,7 @@
 	<string name="msg_load_dictionary_first">Please load a dictionary first.</string>
 	<string name="msg_reload_dictionary">Please reload the dictionary.</string>
 	<string name="msg_exception">Exception occurred:\n%1$s</string>
+	<string name="msg_restart_app_after_settings_changed">Restart the application for language settings to take effect.</string>
 	<string name="button_ok">OK</string>
 	<string name="button_cancel">Cancel</string>
 	<string name="button_do_not_show_again">Do not show again</string>
@@ -123,7 +124,8 @@
 	<string name="msg_slow_archive_loading">Translation was canceled after a timeout.\nYou could speed up translation by extracting the archived dictionary to a folder on your SD-card and choosing this folder as dictionary. Alternatively you can increase the timeout in the preferences dialog.</string>
 	<string name="msg_parsing_error">Error while parsing resource.\n\n%1$s</string>
 	<string name="msg_extract_dictionary">The selected archive could not be loaded, but seems to include a compressed dictionary. Please extract the included jar-file first.</string>
-	<string-array name="search_mode"><item>Standard</item>
+	<string-array name="search_mode">
+		<item>Standard</item>
 		<item>Words matching search term</item>
 		<item>Words starting with search term</item>
 		<item>Words including search term</item>
@@ -147,4 +149,6 @@
 	<string name="title_pref_display_options">Display options</string>
 	<string name="title_pref_result_font_size">Font size for results</string>
 	<string name="title_pref_ignore_font_styles">Ignore font styles</string>
+	<string name="title_pref_language_code">Language</string>
+	<string name="title_default_language_code">Default</string>
 </resources>

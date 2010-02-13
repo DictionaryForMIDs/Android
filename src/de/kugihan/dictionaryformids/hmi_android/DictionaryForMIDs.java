@@ -7,6 +7,8 @@
  ******************************************************************************/
 package de.kugihan.dictionaryformids.hmi_android;
 
+import java.util.Locale;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -14,6 +16,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -52,7 +55,6 @@ import android.widget.TextView.OnEditorActionListener;
 import de.kugihan.dictionaryformids.dataaccess.DictionaryDataFile;
 import de.kugihan.dictionaryformids.dataaccess.fileaccess.AssetDfMInputStreamAccess;
 import de.kugihan.dictionaryformids.dataaccess.fileaccess.DfMInputStreamAccess;
-import de.kugihan.dictionaryformids.dataaccess.fileaccess.FileAccessHandler;
 import de.kugihan.dictionaryformids.dataaccess.fileaccess.FileDfMInputStreamAccess;
 import de.kugihan.dictionaryformids.dataaccess.fileaccess.NativeZipInputStreamAccess;
 import de.kugihan.dictionaryformids.general.DictionaryException;
@@ -63,6 +65,8 @@ import de.kugihan.dictionaryformids.hmi_android.data.LanguageSpinnerAdapter;
 import de.kugihan.dictionaryformids.hmi_android.data.SingleTranslationHelper;
 import de.kugihan.dictionaryformids.hmi_android.data.Translations;
 import de.kugihan.dictionaryformids.hmi_android.service.DictionaryInstallationService;
+import de.kugihan.dictionaryformids.hmi_android.thread.LoadDictionaryThread;
+import de.kugihan.dictionaryformids.hmi_android.thread.LoadDictionaryThread.OnThreadResultListener;
 import de.kugihan.dictionaryformids.hmi_android.view_helper.DialogHelper;
 import de.kugihan.dictionaryformids.translation.SingleTranslation;
 import de.kugihan.dictionaryformids.translation.TranslationExecution;
@@ -78,296 +82,50 @@ import de.kugihan.dictionaryformids.translation.TranslationResult;
 public final class DictionaryForMIDs extends Activity {
 
 	/**
-	 * Thread to load a dictionary without interrupting the UI.
-	 * 
-	 */
-	public final static class LoadDictionaryThread extends Thread {
-
-		/**
-		 * Interface specifying communication between the thread and the UI.
-		 * 
-		 */
-		public interface OnThreadResultListener {
-
-			/**
-			 * This function gets called when the dictionary could successfully
-			 * be loaded.
-			 * 
-			 * @param type
-			 *            the type of the loaded dictionary
-			 * @param path
-			 *            the path of the loaded dictionary
-			 * @param selectedIndex
-			 *            the id of the language that should be selected
-			 */
-			void onSuccess(final DictionaryType type, final String path,
-					final int selectedIndex);
-
-			/**
-			 * This function gets if an exception occurred while loading the
-			 * dictionary.
-			 * 
-			 * @param exception
-			 *            the exception that occurred while loading the
-			 *            dictionary
-			 * @param mayIncludeCompressedDictionary
-			 *            true if no dictionary but a jar file is found in an
-			 *            archive specified by the InputStream
-			 */
-			void onException(DictionaryException exception,
-					boolean mayIncludeCompressedDictionary);
-
-			/**
-			 * This function gets called if the thread exists because it was
-			 * interrupted.
-			 */
-			void onInterrupted();
-		}
-
-		/**
-		 * The listener that is informed about thread completion.
-		 */
-		private OnThreadResultListener listener = null;
-
-		/**
-		 * Object to synchronize access to the listener.
-		 */
-		private final Object listenerSync = new Object();
-
-		/**
-		 * Saves occurred exceptions.
-		 */
-		private DictionaryException exception = null;
-
-		/**
-		 * True if the archive does not represent a dictionary, but the archive
-		 * may include a compressed dictionary.
-		 */
-		private boolean mayIncludeCompressedDictionary = false;
-
-		/**
-		 * Current state of the thread.
-		 */
-		private ThreadState result = ThreadState.WORKING;
-
-		/**
-		 * Object to synchronize access to the result.
-		 */
-		private final Object resultSync = new Object();
-
-		/**
-		 * Path of the dictionary being loaded by the thread.
-		 */
-		private final String dictionaryPath;
-
-		/**
-		 * Type of the dictionary being loaded by the thread.
-		 */
-		private final DictionaryType dictionaryType;
-
-		/**
-		 * The language index to select after loading the dictionary.
-		 */
-		private final int selectedIndex;
-
-		/**
-		 * The current state of the thread.
-		 */
-		private enum ThreadState {
-			/**
-			 * Thread will inform listener of successfully finished loading.
-			 */
-			RETURNING_SUCCESS,
-			/**
-			 * Thread will inform listener of an interruption.
-			 */
-			RETURNING_INTERRUPTED,
-			/**
-			 * Thread will inform listener of an exception.
-			 */
-			RETURNING_EXCEPTION,
-			/**
-			 * Thread is currently loading a dictionary.
-			 */
-			WORKING,
-			/**
-			 * Thread finished and the result was delivered to a listener.
-			 */
-			DELIVERED
-		}
-
-		/**
-		 * The stream to load the dictionary from.
-		 */
-		private final DfMInputStreamAccess inputStreamAccess;
-
-		/**
-		 * Creates a new thread.
-		 * 
-		 * @param inputStreamAccess
-		 *            the stream to load the dictionary from
-		 */
-		private LoadDictionaryThread(
-				final DfMInputStreamAccess inputStreamAccess,
-				final DictionaryType dictionaryType,
-				final String dictionaryPath, final int selectedIndex) {
-			this.inputStreamAccess = inputStreamAccess;
-			this.dictionaryType = dictionaryType;
-			this.dictionaryPath = dictionaryPath;
-			this.selectedIndex = selectedIndex;
-		}
-
-		/**
-		 * Attaches the listener to the thread or removes the current one if
-		 * listener is null.
-		 * 
-		 * @param listener
-		 *            the listener to attach or null
-		 */
-		public void setOnThreadResultListener(
-				final OnThreadResultListener listener) {
-			synchronized (listenerSync) {
-				this.listener = listener;
-			}
-			// try to return already available results
-			pushResultToListener();
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public void run() {
-			FileAccessHandler.setDictionaryDataFileISAccess(inputStreamAccess);
-			DictionaryDataFile.useStandardPath = false;
-			try {
-				DictionaryDataFile.initValues(false);
-				if (interrupted()) {
-					exitAfterInterruption();
-					return;
-				}
-			} catch (DictionaryException e) {
-				if (interrupted()) {
-					exitAfterInterruption();
-					return;
-				}
-				boolean mayIncludeCompressedDictionary = false;
-				if (inputStreamAccess instanceof NativeZipInputStreamAccess) {
-					final NativeZipInputStreamAccess stream = (NativeZipInputStreamAccess) inputStreamAccess;
-					try {
-						mayIncludeCompressedDictionary = stream
-								.hasJarDictionary();
-					} catch (DictionaryException e1) {
-						// ignore
-					}
-				}
-				exitWithException(e, mayIncludeCompressedDictionary);
-				return;
-			}
-			exitSuccessfully();
-		}
-
-		/**
-		 * Handles the successfully loaded dictionaries.
-		 */
-		private void exitSuccessfully() {
-			synchronized (resultSync) {
-				result = ThreadState.RETURNING_SUCCESS;
-			}
-			pushResultToListener();
-		}
-
-		/**
-		 * Handles exits caused by exceptions.
-		 * 
-		 * @param exception
-		 *            the exception that occurred
-		 * @param mayIncludeCompressedDictionary
-		 *            true if the dictionary file may include a compressed
-		 *            dictionary
-		 */
-		private void exitWithException(final DictionaryException exception,
-				final boolean mayIncludeCompressedDictionary) {
-			synchronized (resultSync) {
-				this.exception = exception;
-				this.mayIncludeCompressedDictionary = mayIncludeCompressedDictionary;
-				result = ThreadState.RETURNING_EXCEPTION;
-			}
-			pushResultToListener();
-		}
-
-		/**
-		 * Handles exits caused by user interruption.
-		 */
-		private void exitAfterInterruption() {
-			synchronized (resultSync) {
-				result = ThreadState.RETURNING_INTERRUPTED;
-			}
-			pushResultToListener();
-		}
-
-		/**
-		 * Tries to push the result to the attached listener.
-		 */
-		private void pushResultToListener() {
-			synchronized (listenerSync) {
-				if (listener == null) {
-					return;
-				}
-				synchronized (resultSync) {
-					switch (result) {
-					case RETURNING_SUCCESS:
-						listener.onSuccess(dictionaryType, dictionaryPath,
-								selectedIndex);
-						result = ThreadState.DELIVERED;
-						break;
-
-					case RETURNING_EXCEPTION:
-						listener.onException(exception,
-								mayIncludeCompressedDictionary);
-						result = ThreadState.DELIVERED;
-						break;
-
-					case RETURNING_INTERRUPTED:
-						listener.onInterrupted();
-						result = ThreadState.DELIVERED;
-						break;
-
-					case WORKING:
-						// nothing to return yet
-						break;
-
-					case DELIVERED:
-						// result already returned
-						break;
-
-					default:
-						throw new IllegalArgumentException();
-					}
-				}
-			}
-		}
-	}
-
-	/**
 	 * Summarizes all objects that should be saved in
 	 * OnRetainNonConfigurationInstance.
 	 * 
 	 */
-	private final static class NonConfigurationInstance {
+	private static final class NonConfigurationInstance {
+		
+		/**
+		 * The currently active load dictionary thread.
+		 */
 		private final LoadDictionaryThread thread;
+		
+		/**
+		 * The current list of translations.
+		 */
 		private final Translations translations;
 
+		/**
+		 * Constructs a new instance and initalizes all members.
+		 * 
+		 * @param thread
+		 *            the current load dictionary thread
+		 * @param translations
+		 *            the current translations
+		 */
 		public NonConfigurationInstance(final LoadDictionaryThread thread,
 				final Translations translations) {
 			this.thread = thread;
 			this.translations = translations;
 		}
 
+		/**
+		 * Returns the load dictionary thread.
+		 * 
+		 * @return the load dictionary thread
+		 */
 		public LoadDictionaryThread getThread() {
 			return thread;
 		}
 
+		/**
+		 * Returns the translations.
+		 * 
+		 * @return the translations
+		 */
 		public Translations getTranslations() {
 			return translations;
 		}
@@ -435,6 +193,9 @@ public final class DictionaryForMIDs extends Activity {
 	 */
 	private LoadDictionaryThread loadDictionaryThread = null;
 
+	/**
+	 * The object used to synchronize access on the load dictionary thread.
+	 */
 	private final Object loadDictionaryThreadSync = new Object();
 
 	/**
@@ -526,15 +287,19 @@ public final class DictionaryForMIDs extends Activity {
 
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
-		setContentView(R.layout.main);
-
-		dialogHelper = DialogHelper.getInstance(this);
-
+		// set up preferences
 		Preferences.attachToContext(getApplicationContext());
 		SharedPreferences preferences = PreferenceManager
 				.getDefaultSharedPreferences(getBaseContext());
 		preferences
 				.registerOnSharedPreferenceChangeListener(preferenceChangeListener);
+		
+		// set preferred locale for application
+		setCustomLocale(Preferences.getLanguageCode());
+
+		setContentView(R.layout.main);
+
+		dialogHelper = DialogHelper.getInstance(this);
 
 		final TextView translationInput = (TextView) findViewById(R.id.TranslationInput);
 		translationInput.setOnFocusChangeListener(focusChangeListener);
@@ -583,6 +348,43 @@ public final class DictionaryForMIDs extends Activity {
 		}
 	}
 
+	/**
+	 * Sets the locale of the current base context.
+	 * 
+	 * @param languageCode
+	 *            the language code of the new locale
+	 */
+	private void setCustomLocale(final String languageCode) {
+		if (languageCode.length() == 0) {
+			// use system default
+			return;
+		}
+		setCustomLocale(languageCode, getBaseContext().getResources());
+	}
+
+	/**
+	 * Sets the locale of the given base context's resources.
+	 * 
+	 * @param languageCode
+	 *            the language code of the new locale
+	 * @param resources
+	 *            the base context's resources
+	 */
+	public static void setCustomLocale(final String languageCode,
+			final Resources resources) {
+		final Locale locale = new Locale(languageCode);
+		Locale.setDefault(locale);
+		final Configuration config = new Configuration();
+		config.locale = locale;
+		resources.updateConfiguration(config, resources.getDisplayMetrics());
+	}
+
+	/**
+	 * Loads the last used dictionary.
+	 * 
+	 * @param silent
+	 *            true if the user should not be informed about loading results
+	 */
 	public void loadLastUsedDictionary(final boolean silent) {
 		DfMInputStreamAccess inputStreamAccess = null;
 		DictionaryType dictionaryType;
@@ -725,10 +527,12 @@ public final class DictionaryForMIDs extends Activity {
 	 * 
 	 * @param inputStreamAccess
 	 *            the input stream to load the dictionary
-	 * @param onSuccess
-	 *            the runnable called on success
-	 * @param onFailure
-	 *            the runnable called on failure
+	 * @param dictionaryType
+	 *            the type of the dictionary
+	 * @param dictionaryPath
+	 *            the path of the dictionary
+	 * @param selectedIndex
+	 *            the selected language index
 	 * @param exitSilently
 	 *            true if the thread should not display dialogs
 	 */
@@ -753,14 +557,21 @@ public final class DictionaryForMIDs extends Activity {
 		setProgressBarIndeterminateVisibility(true);
 		loadDictionaryThread = new LoadDictionaryThread(inputStreamAccess,
 				dictionaryType, dictionaryPath, selectedIndex);
-		final LoadDictionaryThread.OnThreadResultListener threadListener = createThreadListener(exitSilently);
+		final OnThreadResultListener threadListener = createThreadListener(exitSilently);
 		loadDictionaryThread.setOnThreadResultListener(threadListener);
 		loadDictionaryThread.start();
 	}
 
-	private LoadDictionaryThread.OnThreadResultListener createThreadListener(
+	/**
+	 * Creates a listener for thread results.
+	 * 
+	 * @param exitSilently
+	 *            true if the thread should exit silently
+	 * @return the thread result listener
+	 */
+	private OnThreadResultListener createThreadListener(
 			final boolean exitSilently) {
-		return new LoadDictionaryThread.OnThreadResultListener() {
+		return new OnThreadResultListener() {
 
 			@Override
 			public void onSuccess(final DictionaryType type, final String path,
@@ -855,10 +666,10 @@ public final class DictionaryForMIDs extends Activity {
 	 * 
 	 * @param inputStreamAccess
 	 *            the input stream to load the dictionary
-	 * @param onSuccess
-	 *            the runnable called on success
-	 * @param onFailure
-	 *            the runnable called on failure
+	 * @param dictionaryType
+	 *            the type of the dictionary
+	 * @param dictionaryPath
+	 *            the path of the dictionary
 	 */
 	private void startLoadDictionary(
 			final DfMInputStreamAccess inputStreamAccess,
