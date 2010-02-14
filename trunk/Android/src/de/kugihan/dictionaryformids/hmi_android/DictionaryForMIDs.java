@@ -289,7 +289,7 @@ public final class DictionaryForMIDs extends Activity {
 
 		// set up preferences
 		Preferences.attachToContext(getApplicationContext());
-		SharedPreferences preferences = PreferenceManager
+		final SharedPreferences preferences = PreferenceManager
 				.getDefaultSharedPreferences(getBaseContext());
 		preferences
 				.registerOnSharedPreferenceChangeListener(preferenceChangeListener);
@@ -331,7 +331,7 @@ public final class DictionaryForMIDs extends Activity {
 
 		Util util = Util.getUtil();
 		if (util instanceof AndroidUtil) {
-			AndroidUtil androidUtil = (AndroidUtil) util;
+			final AndroidUtil androidUtil = (AndroidUtil) util;
 			androidUtil.setHandler(updateHandler);
 		} else {
 			util = new AndroidUtil(updateHandler);
@@ -468,7 +468,7 @@ public final class DictionaryForMIDs extends Activity {
 	 * @return true if the intent includes information about a new dictionary
 	 */
 	private boolean hasNewDictionary(final Intent intent) {
-		Bundle bundle = intent.getExtras();
+		final Bundle bundle = intent.getExtras();
 		if (bundle == null) {
 			return false;
 		}
@@ -481,11 +481,11 @@ public final class DictionaryForMIDs extends Activity {
 	 * temporarily destroyed, e.g. after orientation changes.
 	 */
 	private void loadLastNonConfigurationInstance() {
-		Object lastConfiguration = getLastNonConfigurationInstance();
+		final Object lastConfiguration = getLastNonConfigurationInstance();
 		if (lastConfiguration == null) {
 			return;
 		}
-		NonConfigurationInstance data = (NonConfigurationInstance) lastConfiguration;
+		final NonConfigurationInstance data = (NonConfigurationInstance) lastConfiguration;
 		if (data.getTranslations() != null) {
 			translations = data.getTranslations();
 			((ListView) findViewById(R.id.translationsListView))
@@ -769,12 +769,12 @@ public final class DictionaryForMIDs extends Activity {
 	/**
 	 * Listener to react on actions in the search input field.
 	 */
-	private OnEditorActionListener editorActionListener = new OnEditorActionListener() {
+	private final OnEditorActionListener editorActionListener = new OnEditorActionListener() {
 
 		@Override
-		public boolean onEditorAction(final TextView v, final int actionId,
+		public boolean onEditorAction(final TextView view, final int actionId,
 				final KeyEvent event) {
-			if (v == findViewById(R.id.TranslationInput)) {
+			if (view == findViewById(R.id.TranslationInput)) {
 				if (actionId == EditorInfo.IME_ACTION_DONE) {
 					return false;
 				}
@@ -789,20 +789,20 @@ public final class DictionaryForMIDs extends Activity {
 	/**
 	 * Listener to react on changed focus to show or hide the search options.
 	 */
-	private OnFocusChangeListener focusChangeListener = new OnFocusChangeListener() {
+	private final OnFocusChangeListener focusChangeListener = new OnFocusChangeListener() {
 		@Override
-		public void onFocusChange(final View v, final boolean hasFocus) {
-			if (v == findViewById(R.id.TranslationInput)) {
+		public void onFocusChange(final View view, final boolean hasFocus) {
+			if (view == findViewById(R.id.TranslationInput)) {
 				if (hasFocus) {
 					showSearchOptions();
 					EditText text = (EditText) findViewById(R.id.TranslationInput);
 					text.selectAll();
 				}
-			} else if (v == findViewById(R.id.selectLanguages)) {
+			} else if (view == findViewById(R.id.selectLanguages)) {
 				if (!hasFocus) {
 					hideSearchOptions();
 				}
-			} else if (v == findViewById(R.id.translationsListView)) {
+			} else if (view == findViewById(R.id.translationsListView)) {
 				if (hasFocus) {
 					hideSearchOptions();
 				}
@@ -813,13 +813,13 @@ public final class DictionaryForMIDs extends Activity {
 	/**
 	 * Listener to react on scroll events to hide search options.
 	 */
-	private OnScrollListener scrollListener = new OnScrollListener() {
+	private final OnScrollListener scrollListener = new OnScrollListener() {
 
 		@Override
 		public void onScroll(final AbsListView view,
 				final int firstVisibleItem, final int visibleItemCount,
 				final int totalItemCount) {
-			ListView listView = (ListView) findViewById(R.id.translationsListView);
+			final ListView listView = (ListView) findViewById(R.id.translationsListView);
 			if (view == listView && listView.hasFocusable()
 					&& listView.getCount() > 0) {
 				hideSearchOptions();
@@ -836,7 +836,7 @@ public final class DictionaryForMIDs extends Activity {
 	/**
 	 * Listener to react on touch events to show or hide the search options.
 	 */
-	private OnTouchListener touchListener = new OnTouchListener() {
+	private final OnTouchListener touchListener = new OnTouchListener() {
 
 		@Override
 		public boolean onTouch(final View view, final MotionEvent event) {
@@ -855,12 +855,29 @@ public final class DictionaryForMIDs extends Activity {
 		}
 
 	};
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean onKeyUp(final int keyCode, final KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_SEARCH) {
+			final EditText text = (EditText) findViewById(R.id.TranslationInput);
+			if (text.isFocused()) {
+				text.selectAll();
+			} else {
+				text.requestFocus();
+			}
+			return true;
+		}
+		return false;
+	};
 
 	/**
 	 * Handler to process messages from non-GUI threads that need to interact
 	 * with the view.
 	 */
-	private Handler updateHandler = new Handler() {
+	private final Handler updateHandler = new Handler() {
 		@Override
 		public void handleMessage(final Message message) {
 			switch (message.what) {
@@ -883,7 +900,7 @@ public final class DictionaryForMIDs extends Activity {
 		}
 
 		private void handleTranslationThreadError(final Message message) {
-			String translationErrorMessage = getString(
+			final String translationErrorMessage = getString(
 					R.string.msg_translation_error, (String) message.obj);
 			DialogHelper.setTranslationErrorMessage(translationErrorMessage);
 			showDialog(DialogHelper.ID_TRANSLATE_ERROR);
@@ -894,10 +911,9 @@ public final class DictionaryForMIDs extends Activity {
 		}
 
 		private void handleNewTranslationResult(final Message message) {
-			TextView output;
 			boolean hideSearchOptions = true;
-			TranslationResult translationResult = (TranslationResult) message.obj;
-			output = (TextView) findViewById(R.id.output);
+			final TranslationResult translationResult = (TranslationResult) message.obj;
+			final TextView output = (TextView) findViewById(R.id.output);
 			if (translationResult.translationBreakOccurred) {
 				switch (translationResult.translationBreakReason) {
 				case TranslationResult.BreakReasonCancelMaxNrOfHitsReached:
