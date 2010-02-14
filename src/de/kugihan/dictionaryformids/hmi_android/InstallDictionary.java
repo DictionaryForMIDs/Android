@@ -7,18 +7,7 @@
  ******************************************************************************/
 package de.kugihan.dictionaryformids.hmi_android;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONException;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -53,6 +42,8 @@ import de.kugihan.dictionaryformids.hmi_android.data.DownloadDictionaryItem;
 import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
 import de.kugihan.dictionaryformids.hmi_android.service.DictionaryInstallationService;
 import de.kugihan.dictionaryformids.hmi_android.service.ServiceUpdateListener;
+import de.kugihan.dictionaryformids.hmi_android.thread.ListDownloadThread;
+import de.kugihan.dictionaryformids.hmi_android.thread.ListDownloadThread.OnPostExecutionListener;
 
 /**
  * InstallDictionary represents an Activity that allows a user to automatically
@@ -63,195 +54,6 @@ public final class InstallDictionary extends ListActivity implements
 		ResultProvider {
 
 	// TODO stop thread if activity will not be restored shortly
-	// TODO move thread to thread-package
-	/**
-	 * Thread to download and parse a list of dictionaries independently from
-	 * the view.
-	 */
-	private static final class ListDownloadThread extends Thread {
-
-		/**
-		 * Interface specifying communication between the thread and the UI.
-		 * 
-		 */
-		public interface OnPostExecutionListener {
-			/**
-			 * Gets called when the thread has finished.
-			 * 
-			 * @param parser
-			 *            the parser created from the response
-			 */
-			void onPostExecution(DictionaryListParser parser);
-
-			/**
-			 * Gets called in case an exceptions occurred.
-			 * 
-			 * @param exception
-			 *            the occurred exception, either an IOException or a
-			 *            JSONException
-			 */
-			void onException(Exception exception);
-		}
-
-		/**
-		 * URL of the web-service providing the list of dictionaries.
-		 */
-		private final String dictionaryListUrl;
-
-		/**
-		 * The exception that occurred while processing or null.
-		 */
-		private Exception exception = null;
-
-		/**
-		 * The parser that was created from the server response or null.
-		 */
-		private DictionaryListParser parser = null;
-
-		/**
-		 * The listener that is informed about the results or null.
-		 */
-		private volatile OnPostExecutionListener listener = null;
-
-		/**
-		 * Object used for synchronizing access to the listener.
-		 */
-		private final Object syncObject = new Object();
-
-		/**
-		 * Creates a new thread that can download the given url and parse the
-		 * list dictionaries.
-		 * 
-		 * @param url
-		 *            an url pointing to the list of dictionaries
-		 */
-		public ListDownloadThread(final String url) {
-			this.dictionaryListUrl = url;
-		}
-
-		@Override
-		public void run() {
-			try {
-				final DictionaryListParser parser = downloadList(dictionaryListUrl);
-				returnParser(parser);
-			} catch (IOException e) {
-				returnException(e);
-			} catch (JSONException e) {
-				returnException(e);
-			}
-		}
-
-		/**
-		 * Returns the exception to the attached listener or saves it for later
-		 * retrieval if no listener is attached.
-		 * 
-		 * @param exception
-		 *            the that occurred
-		 */
-		private void returnException(final Exception exception) {
-			synchronized (syncObject) {
-				if (listener != null) {
-					listener.onException(exception);
-					this.exception = null;
-				} else {
-					this.exception = exception;
-				}
-			}
-		}
-
-		/**
-		 * Returns the parser to the attached listener or saves it for later
-		 * retrieval if no listener is attached.
-		 * 
-		 * @param parser
-		 *            the parser representing the list of dictionaries
-		 */
-		private void returnParser(final DictionaryListParser parser) {
-			synchronized (syncObject) {
-				if (listener != null) {
-					listener.onPostExecution(parser);
-					this.parser = null;
-				} else {
-					this.parser = parser;
-				}
-			}
-		}
-
-		/**
-		 * Downloads a the list of dictionaries.
-		 * 
-		 * @throws ClientProtocolException
-		 * @throws IOException
-		 *             if an input or output exception occurs
-		 * @throws JSONException
-		 *             if an exception occurs while parsing JSON data
-		 */
-		private DictionaryListParser downloadList(final String url)
-				throws IOException, JSONException {
-			final HttpClient client = new DefaultHttpClient();
-			final HttpGet httpGet = new HttpGet(url);
-
-			final HttpResponse response = client.execute(httpGet);
-			final HttpEntity entity = response.getEntity();
-			if (entity == null) {
-				throw new IOException("HttpResponse.getEntity() IS NULL");
-			}
-			final boolean isValidType = entity.getContentType().getValue().startsWith(
-					RESPONSE_CONTENT_TYPE);
-			if (!isValidType) {
-				final String message = "CONTENT_TYPE IS '"
-								+ entity.getContentType().getValue() + "'";
-				throw new IOException(message);
-			}
-
-			final BufferedReader reader = new BufferedReader(new InputStreamReader(
-					entity.getContent(), RESPONSE_ENCODING));
-
-			StringBuilder stringResult = new StringBuilder();
-
-			try {
-				for (String line = reader.readLine(); line != null; line = reader
-						.readLine()) {
-					stringResult.append(line);
-				}
-			} finally {
-				reader.close();
-			}
-
-			return new DictionaryListParser(stringResult);
-		}
-
-		/**
-		 * Attaches the listener to the thread or removes the current if
-		 * listener is null.
-		 * 
-		 * @param listener
-		 *            the listener to attach or null
-		 */
-		public void setOnPostExecutionListener(
-				final OnPostExecutionListener listener) {
-			synchronized (syncObject) {
-				this.listener = listener;
-				if (exception != null) {
-					returnException(exception);
-				}
-				if (parser != null) {
-					returnParser(parser);
-				}
-			}
-		}
-
-	}
-
-	/**
-	 * The encoding expected for server responses.
-	 */
-	private static final String RESPONSE_ENCODING = "utf-8";
-
-	/**
-	 * The content type expected for server responses.
-	 */
-	private static final String RESPONSE_CONTENT_TYPE = "text/html";
 
 	/**
 	 * The key of a integer specifying the id of the selected dictionary in a
@@ -378,7 +180,7 @@ public final class InstallDictionary extends ListActivity implements
 			exception = (Exception) savedInstanceState.get(BUNDLE_EXCEPTION);
 			selectedFilteredItem = savedInstanceState.getInt(BUNDLE_SELECTED_ITEM);
 			if (exception != null) {
-				TextView textViewError = (TextView) findViewById(R.id.TextViewError);
+				final TextView textViewError = (TextView) findViewById(R.id.TextViewError);
 				textViewError.setText(getString(
 						R.string.msg_error_downloading_available_dictionaries,
 						exception.toString()));
@@ -395,7 +197,7 @@ public final class InstallDictionary extends ListActivity implements
 			}
 		}
 
-		TextView textViewError = (TextView) findViewById(R.id.TextViewError);
+		final TextView textViewError = (TextView) findViewById(R.id.TextViewError);
 		textViewError.setOnClickListener(retryDownload);
 		
 		final EditText editTextFilter = (EditText) findViewById(R.id.EditTextFilter);
@@ -404,7 +206,7 @@ public final class InstallDictionary extends ListActivity implements
 		clearFilterButton.setOnClickListener(clearFilterClickListener);
 
 		// get handle to thread
-		Object object = getLastNonConfigurationInstance();
+		final Object object = getLastNonConfigurationInstance();
 		if (object instanceof ListDownloadThread) {
 			listDownloadThread = (ListDownloadThread) object;
 			showActiveListDownload();
@@ -423,7 +225,10 @@ public final class InstallDictionary extends ListActivity implements
 
 	};
 
-	private final de.kugihan.dictionaryformids.hmi_android.InstallDictionary.ListDownloadThread.OnPostExecutionListener threadListener = new de.kugihan.dictionaryformids.hmi_android.InstallDictionary.ListDownloadThread.OnPostExecutionListener() {
+	/**
+	 * Listener to react on list downloads.
+	 */
+	private final OnPostExecutionListener threadListener = new OnPostExecutionListener() {
 
 		/**
 		 * Parse the server message.
@@ -467,9 +272,9 @@ public final class InstallDictionary extends ListActivity implements
 				@Override
 				public void run() {
 					InstallDictionary.this.exception = exception;
-					TextView textViewError = (TextView) findViewById(R.id.TextViewError);
-					TextView textViewMessage = (TextView) findViewById(R.id.TextViewMessage);
-					ProgressBar progressBar = (ProgressBar) findViewById(R.id.ProgressBar);
+					final TextView textViewError = (TextView) findViewById(R.id.TextViewError);
+					final TextView textViewMessage = (TextView) findViewById(R.id.TextViewMessage);
+					final ProgressBar progressBar = (ProgressBar) findViewById(R.id.ProgressBar);
 					textViewError
 							.setText(getString(
 									R.string.msg_error_downloading_available_dictionaries,
@@ -518,12 +323,12 @@ public final class InstallDictionary extends ListActivity implements
 	 */
 	@Override
 	protected void onResume() {
-		int task = DictionaryInstallationService.pollLastType();
+		final int task = DictionaryInstallationService.pollLastType();
 		if (DictionaryInstallationService.isRunning() && task >= 0) {
 			getMainActivity().setProgressBarVisibility(true);
 			getMainActivity().setProgressBarIndeterminateVisibility(true);
 			reactOnServiceUpdates = true;
-			int percentage = DictionaryInstallationService.pollLastPercentage();
+			final int percentage = DictionaryInstallationService.pollLastPercentage();
 			serviceListener.onProgressUpdate(task, percentage);
 			DictionaryInstallationService.setUpdateListener(serviceListener);
 		}
@@ -602,11 +407,14 @@ public final class InstallDictionary extends ListActivity implements
 		listDownloadThread.start();
 	}
 
+	/**
+	 * Modify user interface to show that there is an active download.
+	 */
 	private void showActiveListDownload() {
-		TextView textViewEmpty = (TextView) findViewById(R.id.TextViewEmpty);
-		TextView textViewError = (TextView) findViewById(R.id.TextViewError);
-		TextView textViewMessage = (TextView) findViewById(R.id.TextViewMessage);
-		ProgressBar progressBar = (ProgressBar) findViewById(R.id.ProgressBar);
+		final TextView textViewEmpty = (TextView) findViewById(R.id.TextViewEmpty);
+		final TextView textViewError = (TextView) findViewById(R.id.TextViewError);
+		final TextView textViewMessage = (TextView) findViewById(R.id.TextViewMessage);
+		final ProgressBar progressBar = (ProgressBar) findViewById(R.id.ProgressBar);
 		textViewEmpty.setVisibility(View.GONE);
 		textViewError.setVisibility(View.GONE);
 		textViewError.setText("");
@@ -773,6 +581,13 @@ public final class InstallDictionary extends ListActivity implements
 		});
 	}
 
+	/**
+	 * Updates the list of available dictionaries. This method can be called
+	 * from non-GUI threads.
+	 * 
+	 * @param dictionaries
+	 *            the list of dictionaries
+	 */
 	private void updateListFromThread(
 			final ArrayList<DownloadDictionaryItem> dictionaries) {
 		handler.post(new Runnable() {
@@ -823,8 +638,7 @@ public final class InstallDictionary extends ListActivity implements
 			final String dictionaryName = dictionary.toString();
 			dictionaryNames.add(dictionaryName);
 		}
-		ArrayAdapter<String> dictionaryAdapter = new ArrayAdapter<String>(this, R.layout.file_row, dictionaryNames);
-		return dictionaryAdapter;
+		return new ArrayAdapter<String>(this, R.layout.file_row, dictionaryNames);
 	}
 
 	/**
@@ -1138,18 +952,18 @@ public final class InstallDictionary extends ListActivity implements
 	private final TextWatcher filterTextWatcher = new TextWatcher() {
 		
 		@Override
-		public void onTextChanged(CharSequence s, int start, int before,
-				int count) {
+		public void onTextChanged(final CharSequence sequence, final int start,
+				final int before, final int count) {
 		}
 
 		@Override
-		public void beforeTextChanged(CharSequence s, int start, int count,
-				int after) {
+		public void beforeTextChanged(final CharSequence sequence,
+				final int start, final int count, final int after) {
 		}
 		
 		@Override
-		public void afterTextChanged(Editable s) {
-			if (dictionaries == null || dictionaries.size() == 0) {
+		public void afterTextChanged(final Editable s) {
+			if (dictionaries == null || dictionaries.isEmpty()) {
 				return;
 			}
 			updateList();
@@ -1162,7 +976,7 @@ public final class InstallDictionary extends ListActivity implements
 	private final OnClickListener clearFilterClickListener = new OnClickListener() {
 
 		@Override
-		public void onClick(View v) {
+		public void onClick(final View view) {
 			final EditText editTextFilter = (EditText) findViewById(R.id.EditTextFilter);
 			editTextFilter.setText("");
 		}
