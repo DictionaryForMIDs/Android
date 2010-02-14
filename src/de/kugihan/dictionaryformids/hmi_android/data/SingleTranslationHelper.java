@@ -78,7 +78,7 @@ public final class SingleTranslationHelper {
 	public static void setTranslation(final SingleTranslation translation)
 			throws DictionaryException {
 		reset();
-		ContentParser parser = new ContentParser();
+		final ContentParser parser = new ContentParser();
 		StringColourItemText colourItemText;
 		colourItemText = parser.determineItemsFromContent(translation
 				.getFromText(), true, true);
@@ -92,7 +92,7 @@ public final class SingleTranslationHelper {
 		all += fromRow + "\n";
 		toItems = new String[translation.getToTexts().size()][];
 		for (int j = 0; j < translation.getToTexts().size(); j++) {
-			TextOfLanguage element = (TextOfLanguage) translation.getToTexts()
+			final TextOfLanguage element = (TextOfLanguage) translation.getToTexts()
 					.elementAt(j);
 			colourItemText = parser.determineItemsFromContent(element, true, true);
 			toItems[j] = new String[colourItemText.size()];

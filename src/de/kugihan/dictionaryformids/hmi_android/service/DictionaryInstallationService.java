@@ -223,7 +223,7 @@ public final class DictionaryInstallationService extends Service {
 		if (thread == null) {
 			return;
 		}
-		Thread current = thread;
+		final Thread current = thread;
 		thread = null;
 		current.interrupt();
 	}
@@ -286,22 +286,22 @@ public final class DictionaryInstallationService extends Service {
 		lastSendPercentage = percentage;
 		final double progressBarPercentage = InstallDictionary
 				.getProgressBarLength(type, percentage) / 100.0;
-		int icon = R.drawable.defaulticon;
-		CharSequence tickerText = getText(R.string.msg_installing_dictionary);
-		long when = System.currentTimeMillis();
-		Context context = getApplicationContext();
-		CharSequence contentTitle = getText(R.string.title_installation_status);
-		CharSequence contentText = getString(R.string.msg_installation_status,
+		final int icon = R.drawable.defaulticon;
+		final CharSequence tickerText = getText(R.string.msg_installing_dictionary);
+		final long when = System.currentTimeMillis();
+		final Context context = getApplicationContext();
+		final CharSequence contentTitle = getText(R.string.title_installation_status);
+		final CharSequence contentText = getString(R.string.msg_installation_status,
 				progressBarPercentage);
 
-		Intent notificationIntent = new Intent(this, DictionaryForMIDs.class);
+		final Intent notificationIntent = new Intent(this, DictionaryForMIDs.class);
 		notificationIntent.putExtra(BUNDLE_SHOW_DICTIONARY_INSTALLATION, true);
-		PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+		final PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
 				notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 		// the next two lines initialize the Notification, using the
 		// configurations above
-		Notification notification = new Notification(icon, tickerText, when);
+		final Notification notification = new Notification(icon, tickerText, when);
 		notification.setLatestEventInfo(context, contentTitle, contentText,
 				contentIntent);
 		notificationManager.notify(NOTIFICATION_STATUS_UPDATE, notification);
@@ -399,23 +399,23 @@ public final class DictionaryInstallationService extends Service {
 			return;
 		}
 
-		int icon = R.drawable.defaulticon;
-		CharSequence tickerText = getText(R.string.msg_installation_error);
-		long when = System.currentTimeMillis();
-		Context context = getApplicationContext();
-		CharSequence contentTitle = getText(R.string.title_exception);
-		CharSequence contentText = exception.getMessage();
+		final int icon = R.drawable.defaulticon;
+		final CharSequence tickerText = getText(R.string.msg_installation_error);
+		final long when = System.currentTimeMillis();
+		final Context context = getApplicationContext();
+		final CharSequence contentTitle = getText(R.string.title_exception);
+		final CharSequence contentText = exception.getMessage();
 
 		// show exception
-		Intent notificationIntent = new Intent(this, DictionaryForMIDs.class);
+		final Intent notificationIntent = new Intent(this, DictionaryForMIDs.class);
 		notificationIntent.putExtra(BUNDLE_EXCEPTION, exception);
 		notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+		final PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
 				notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 		// the next two lines initialize the Notification, using the
 		// configurations above
-		Notification notification = new Notification(icon, tickerText, when);
+		final Notification notification = new Notification(icon, tickerText, when);
 		notification.setLatestEventInfo(context, contentTitle, contentText,
 				contentIntent);
 		notification.flags = Notification.FLAG_AUTO_CANCEL;
@@ -616,8 +616,7 @@ public final class DictionaryInstallationService extends Service {
 			FileOutputStream outputStream;
 			outputStream = new FileOutputStream(outputFile);
 
-			final HttpResponse response;
-			response = client.execute(httpGet);
+			final HttpResponse response = client.execute(httpGet);
 
 			if (isInterrupted()) {
 				outputStream.close();

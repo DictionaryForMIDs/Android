@@ -85,7 +85,7 @@ public class Translations extends BaseAdapter implements
 			final ViewGroup parent) {
 		View view = null;
 		if (convertView == null) {
-			LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+			final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 			view = inflater.inflate(R.layout.translation_row, null);
 		} else {
 			view = convertView;
@@ -136,15 +136,15 @@ public class Translations extends BaseAdapter implements
 	 */
 	private void addToLanguageRows(final View view,
 			final SingleTranslation result) {
-		LinearLayout toLanguagesRows = (LinearLayout) view
+		final LinearLayout toLanguagesRows = (LinearLayout) view
 				.findViewById(R.id.ToLanguageRows);
 		toLanguagesRows.removeAllViews();
 		for (int i = 0; i < result.getToTexts().size(); i++) {
-			LayoutInflater inflater = LayoutInflater.from(toLanguagesRows
+			final LayoutInflater inflater = LayoutInflater.from(toLanguagesRows
 					.getContext());
-			TextView toLanguageText = (TextView) inflater.inflate(
+			final TextView toLanguageText = (TextView) inflater.inflate(
 					R.layout.translation_part, null);
-			TextOfLanguage element = (TextOfLanguage) result.getToTexts()
+			final TextOfLanguage element = (TextOfLanguage) result.getToTexts()
 					.elementAt(i);
 			addTextToRow(element, toLanguageText);
 			toLanguagesRows.addView(toLanguageText);
@@ -161,7 +161,7 @@ public class Translations extends BaseAdapter implements
 	 */
 	private void addFromLanguageRow(final View view,
 			final SingleTranslation result) {
-		TextView fromLanguageText = (TextView) view
+		final TextView fromLanguageText = (TextView) view
 				.findViewById(R.id.FromLanguageText);
 		addTextToRow(result.getFromText(), fromLanguageText);
 	}
@@ -217,7 +217,7 @@ public class Translations extends BaseAdapter implements
 	 */
 	private void appendText(final TextView textView,
 			final StringColourItemTextPart itemTextPart) {
-		String textPart = itemTextPart.getText();
+		final String textPart = itemTextPart.getText();
 		textView.append(textPart);
 	}
 
@@ -238,8 +238,8 @@ public class Translations extends BaseAdapter implements
 				- itemTextPart.getText().length();
 		final int textStyle = itemTextPart.getStyle().style;
 		final RGBColour textColor = itemTextPart.getColour();
-		StyleSpan styleSpan = getStyleSpan(textStyle, textColor);
-		Spannable str = (Spannable) textView.getText();
+		final StyleSpan styleSpan = getStyleSpan(textStyle, textColor);
+		final Spannable str = (Spannable) textView.getText();
 		str.setSpan(styleSpan, oldStringLength, newStringLength,
 				Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 	}
@@ -277,7 +277,7 @@ public class Translations extends BaseAdapter implements
 		}
 		textPaint.setColor(Color.rgb(textColor.red, textColor.green,
 				textColor.blue));
-		StyleSpan styleSpan = new StyleSpan(style);
+		final StyleSpan styleSpan = new StyleSpan(style);
 		styleSpan.updateDrawState(textPaint);
 		return styleSpan;
 	}

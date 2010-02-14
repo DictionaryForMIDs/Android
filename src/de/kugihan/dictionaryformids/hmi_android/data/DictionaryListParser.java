@@ -39,7 +39,7 @@ public final class DictionaryListParser {
 	/**
 	 * List of all available dictionaries.
 	 */
-	private ArrayList<DownloadDictionaryItem> dictionaries
+	private final ArrayList<DownloadDictionaryItem> dictionaries
 		= new ArrayList<DownloadDictionaryItem>();
 
 	/**
@@ -53,7 +53,7 @@ public final class DictionaryListParser {
 	private void parseDictionaryList(final JSONArray array)
 			throws JSONException {
 		for (int i = 0; i < array.length(); i++) {
-			JSONObject dictionary = array.getJSONObject(i);
+			final JSONObject dictionary = array.getJSONObject(i);
 			parseDictionary(dictionary);
 		}
 	}
@@ -81,7 +81,7 @@ public final class DictionaryListParser {
 		if (!isDictionaryDataValid(url, name, fileName, size)) {
 			return false;
 		}
-		DownloadDictionaryItem item = new DownloadDictionaryItem(name, url,
+		final DownloadDictionaryItem item = new DownloadDictionaryItem(name, url,
 				fileName, size);
 		return dictionaries.add(item);
 	}
@@ -102,7 +102,7 @@ public final class DictionaryListParser {
 	private boolean isDictionaryDataValid(final String url, final String name,
 			final String fileName, final long size) {
 		final boolean isUrlProtocolSupported = !url.startsWith("http://")
-				&& !!url.startsWith("https://");
+				&& !url.startsWith("https://");
 		if (isUrlProtocolSupported) {
 			return false;
 		}
@@ -135,12 +135,12 @@ public final class DictionaryListParser {
 	 */
 	public DictionaryListParser(final StringBuilder stringResult)
 			throws JSONException {
-		JSONObject data = new JSONObject(stringResult.toString());
+		final JSONObject data = new JSONObject(stringResult.toString());
 		parseAttributes(data);
 		if (forceUpdate) {
 			return;
 		}
-		JSONArray array = data.getJSONArray("list");
+		final JSONArray array = data.getJSONArray("list");
 		parseDictionaryList(array);
 	}
 

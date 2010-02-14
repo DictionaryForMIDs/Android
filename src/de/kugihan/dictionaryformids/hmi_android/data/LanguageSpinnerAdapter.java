@@ -128,13 +128,13 @@ public class LanguageSpinnerAdapter extends BaseAdapter {
 			final ViewGroup parent) {
 		View view;
 		if (convertView == null) {
-			LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+			final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 			view = inflater.inflate(R.layout.languages, null);
 		} else {
 			view = convertView;
 		}
 		if (position == indices.length) {
-			TextView textView = (TextView) view
+			final TextView textView = (TextView) view
 					.findViewById(R.id.LoadDictionary);
 			textView.setText(R.string.title_load_dictionary);
 			textView.setVisibility(View.VISIBLE);
@@ -162,13 +162,13 @@ public class LanguageSpinnerAdapter extends BaseAdapter {
 			final ViewGroup parent) {
 		View view;
 		if (convertView == null) {
-			LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+			final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 			view = inflater.inflate(R.layout.languages_dropdown, null);
 		} else {
 			view = convertView;
 		}
 		if (position == indices.length) {
-			TextView textView = (TextView) view
+			final TextView textView = (TextView) view
 					.findViewById(R.id.LoadDictionary);
 			int loadDictionaryCommand;
 			if (indices.length == 0) {

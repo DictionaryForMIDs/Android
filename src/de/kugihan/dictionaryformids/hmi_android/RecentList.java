@@ -83,14 +83,14 @@ public class RecentList extends ListActivity implements ResultProvider {
 		Preferences.attachToContext(getApplicationContext());
 		fillWithDictionaries();
 
-		SharedPreferences preferences = PreferenceManager
+		final SharedPreferences preferences = PreferenceManager
 				.getDefaultSharedPreferences(getBaseContext());
 		preferences
 				.registerOnSharedPreferenceChangeListener(preferenceChangeListener);
 
 		registerForContextMenu(getListView());
 
-		TextView empty = (TextView) findViewById(android.R.id.empty);
+		final TextView empty = (TextView) findViewById(android.R.id.empty);
 		empty.setOnClickListener(clickListener);
 	}
 
@@ -108,7 +108,7 @@ public class RecentList extends ListActivity implements ResultProvider {
 	 * Listener to react on preferences changes to reload the list of recent
 	 * dictionaries.
 	 */
-	private OnSharedPreferenceChangeListener preferenceChangeListener = new OnSharedPreferenceChangeListener() {
+	private final OnSharedPreferenceChangeListener preferenceChangeListener = new OnSharedPreferenceChangeListener() {
 		@Override
 		public void onSharedPreferenceChanged(
 				final SharedPreferences sharedPreferences, final String key) {
@@ -128,9 +128,9 @@ public class RecentList extends ListActivity implements ResultProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected final void onListItemClick(final ListView l, final View v,
+	protected final void onListItemClick(final ListView list, final View view,
 			final int position, final long id) {
-		super.onListItemClick(l, v, position, id);
+		super.onListItemClick(list, view, position, id);
 		exitWithDictionary(position);
 	}
 
@@ -144,9 +144,9 @@ public class RecentList extends ListActivity implements ResultProvider {
 	private void exitWithDictionary(final int position) {
 		resultCode = RESULT_OK;
 		returnData = new Intent();
-		DictionaryType type = itemsType.get(position);
-		String typeProtocol = Preferences.typeToProtocolString(type);
-		String path = itemsPath.get(position);
+		final DictionaryType type = itemsType.get(position);
+		final String typeProtocol = Preferences.typeToProtocolString(type);
+		final String path = itemsPath.get(position);
 		returnData.putExtra(typeProtocol, path);
 		setResult(resultCode, returnData);
 		finish();
@@ -156,7 +156,7 @@ public class RecentList extends ListActivity implements ResultProvider {
 	 * Fill the view with recently loaded dictionaries.
 	 */
 	private void fillWithDictionaries() {
-		String[] dictionaries = Preferences.getRecentDictionaries();
+		final String[] dictionaries = Preferences.getRecentDictionaries();
 		itemsType = new ArrayList<DictionaryType>();
 		itemsPath = new ArrayList<String>();
 		itemsLanguages = new ArrayList<String>();
@@ -225,11 +225,11 @@ public class RecentList extends ListActivity implements ResultProvider {
 	/**
 	 * A listener for clicks on the download dictionaries field.
 	 */
-	private OnClickListener clickListener = new OnClickListener() {
+	private final OnClickListener clickListener = new OnClickListener() {
 
 		@Override
 		public void onClick(final View v) {
-			ChooseDictionary parent = (ChooseDictionary) getParent();
+			final ChooseDictionary parent = (ChooseDictionary) getParent();
 			final String downloadTag = getString(R.string.tag_tab_download);
 			parent.getTabHost().setCurrentTabByTag(downloadTag);
 		}
@@ -286,8 +286,8 @@ public class RecentList extends ListActivity implements ResultProvider {
 			final String pathString = itemsPath.get(position);
 			final String completePathString = getString(
 					R.string.title_recent_dictionary, typeString, pathString);
-			TextView languages = (TextView) view.findViewById(R.id.languages);
-			TextView path = (TextView) view.findViewById(R.id.path);
+			final TextView languages = (TextView) view.findViewById(R.id.languages);
+			final TextView path = (TextView) view.findViewById(R.id.path);
 			languages.setText(languagesString);
 			path.setText(completePathString);
 			return view;

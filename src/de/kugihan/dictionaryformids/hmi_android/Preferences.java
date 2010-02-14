@@ -11,8 +11,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import de.kugihan.dictionaryformids.hmi_android.R;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -150,7 +148,7 @@ public class Preferences extends PreferenceActivity implements
 		if (firstRun) {
 			saveCurrentVersion();
 		} else {
-			int preferencesVersion = preferencesInstance.getInt(PREF_VERSION,
+			final int preferencesVersion = preferencesInstance.getInt(PREF_VERSION,
 					CURRENT_PREF_VERSION);
 			if (preferencesVersion < CURRENT_PREF_VERSION) {
 				// if needed later, migrate old settings into new format here
@@ -162,18 +160,18 @@ public class Preferences extends PreferenceActivity implements
 	// TODO: extract all default values somewhere
 
 	public static int getMaxResults() {
-		String string = preferencesInstance.getString(PREF_MAX_RESULTS, "100");
+		final String string = preferencesInstance.getString(PREF_MAX_RESULTS, "100");
 		return Integer.parseInt(string);
 	}
 
 	public static int getResultFontSize() {
-		String string = preferencesInstance.getString(PREF_RESULT_FONT_SIZE,
+		final String string = preferencesInstance.getString(PREF_RESULT_FONT_SIZE,
 				"18");
 		return Integer.parseInt(string);
 	}
 
 	public static int getSearchTimeout() {
-		String string = preferencesInstance
+		final String string = preferencesInstance
 				.getString(PREF_SEARCH_TIMEOUT, "30");
 		return Integer.parseInt(string);
 	}
@@ -184,13 +182,13 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	public static void setSelectedLanguageIndex(final int selectedLanguageIndex) {
-		Editor editor = preferencesInstance.edit();
+		final Editor editor = preferencesInstance.edit();
 		editor.putInt(PREF_SELECTED_LANGUAGE_INDEX, selectedLanguageIndex);
 		editor.commit();
 	}
 
 	private static void saveCurrentVersion() {
-		Editor editor = preferencesInstance.edit();
+		final Editor editor = preferencesInstance.edit();
 		editor.putInt(PREF_VERSION, CURRENT_PREF_VERSION);
 		editor.commit();
 	}
@@ -211,7 +209,7 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	private static void setLoadDictionaryType(final DictionaryType type) {
-		Editor editor = preferencesInstance.edit();
+		final Editor editor = preferencesInstance.edit();
 		editor.putInt(PREF_DICTIONARY_TYPE, type.ordinal());
 		editor.commit();
 	}
@@ -233,7 +231,7 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	public static void setWarnOnTimeout(final boolean warnOnTimeout) {
-		Editor editor = preferencesInstance.edit();
+		final Editor editor = preferencesInstance.edit();
 		editor.putBoolean(PREF_WARN_ON_TIMEOUT, warnOnTimeout);
 		editor.commit();
 	}
@@ -243,7 +241,7 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	private static void setDictionaryPath(final String path) {
-		Editor editor = preferencesInstance.edit();
+		final Editor editor = preferencesInstance.edit();
 		editor.putString(PREF_DICTIONARY_PATH, path);
 		editor.commit();
 	}
@@ -258,10 +256,9 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	private static int getSearchMode() {
-		String string = preferencesInstance.getString(PREF_SEARCH_MODE, ""
+		final String string = preferencesInstance.getString(PREF_SEARCH_MODE, ""
 				+ SearchMode.DEFAULT.ordinal());
-		int value = Integer.parseInt(string);
-		return value;
+		return Integer.parseInt(string);
 	}
 
 	public static boolean getIsSearchModeDefault() {
@@ -283,7 +280,7 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	public static String[] getRecentDictionaries() {
-		String stringData = preferencesInstance.getString(
+		final String stringData = preferencesInstance.getString(
 				PREF_RECENT_DICTIONARIES, "");
 		JSONArray data;
 		String[] dictionaryEntries;
@@ -304,7 +301,7 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	private static void setRecentDictionaries(final String[] dictionaries) {
-		JSONArray data = new JSONArray();
+		final JSONArray data = new JSONArray();
 		for (int i = 0; i < dictionaries.length; i++) {
 			if (dictionaries[i] == null || dictionaries[i].length() == 0) {
 				continue;
@@ -312,16 +309,16 @@ public class Preferences extends PreferenceActivity implements
 			data.put(dictionaries[i]);
 		}
 
-		Editor editor = preferencesInstance.edit();
+		final Editor editor = preferencesInstance.edit();
 		editor.putString(PREF_RECENT_DICTIONARIES, data.toString());
 		editor.commit();
 	}
 
 	public static void removeRecentDictionary(final String path,
 			final DictionaryType type) {
-		String[] dictionaryUrls = getRecentDictionaries();
+		final String[] dictionaryUrls = getRecentDictionaries();
 		// find out if it exists in the list
-		int position = findDictionary(path, type, dictionaryUrls);
+		final int position = findDictionary(path, type, dictionaryUrls);
 		if (position < 0) {
 			return;
 		}
@@ -329,12 +326,11 @@ public class Preferences extends PreferenceActivity implements
 		for (int j = position; j < dictionaryUrls.length - 1; j++) {
 			dictionaryUrls[j] = dictionaryUrls[j + 1];
 		}
-		String[] newDictionaryUrls = new String[dictionaryUrls.length - 1];
+		final String[] newDictionaryUrls = new String[dictionaryUrls.length - 1];
 		for (int i = 0; i < newDictionaryUrls.length; i++) {
 			newDictionaryUrls[i] = dictionaryUrls[i];
 		}
 		setRecentDictionaries(newDictionaryUrls);
-		return;
 	}
 
 	public static String typeToProtocolString(final DictionaryType type) {
@@ -357,13 +353,13 @@ public class Preferences extends PreferenceActivity implements
 
 	public static void addRecentDictionaryUrl(final DictionaryType type,
 			final String path, final String[] languages) {
-		String dictionary = dictionaryToString(type, path, languages);
+		final String dictionary = dictionaryToString(type, path, languages);
 		if (dictionary == null) {
 			return;
 		}
-		String[] dictionaries = getRecentDictionaries();
+		final String[] dictionaries = getRecentDictionaries();
 		// find out if it already exists in list
-		int position = findDictionary(path, type, dictionaries);
+		final int position = findDictionary(path, type, dictionaries);
 		if (position >= 0) {
 			// move every dictionary one position later
 			for (int j = position; j >= 1; j--) {
@@ -375,7 +371,7 @@ public class Preferences extends PreferenceActivity implements
 		}
 
 		// add new entry to the beginning
-		String[] biggerDictionaryUrls = new String[dictionaries.length + 1];
+		final String[] biggerDictionaryUrls = new String[dictionaries.length + 1];
 		biggerDictionaryUrls[0] = dictionary;
 		for (int i = 0; i < dictionaries.length; i++) {
 			biggerDictionaryUrls[i + 1] = dictionaries[i];
@@ -399,9 +395,9 @@ public class Preferences extends PreferenceActivity implements
 		int position;
 		for (position = 0; position < dictionaries.length; position++) {
 			try {
-				JSONObject entry = new JSONObject(dictionaries[position]);
-				String entryPath = entry.getString("path");
-				int entryType = entry.getInt("type");
+				final JSONObject entry = new JSONObject(dictionaries[position]);
+				final String entryPath = entry.getString("path");
+				final int entryType = entry.getInt("type");
 				if (entryPath.equals(searchDictionaryPath)
 						&& searchType.ordinal() == entryType) {
 					break;
@@ -429,8 +425,8 @@ public class Preferences extends PreferenceActivity implements
 	 */
 	private static String dictionaryToString(final DictionaryType type,
 			final String path, final String[] languages) {
-		JSONObject dictionary = new JSONObject();
-		JSONArray abbreviationEntries = new JSONArray();
+		final JSONObject dictionary = new JSONObject();
+		final JSONArray abbreviationEntries = new JSONArray();
 		for (int i = 0; i < languages.length; i++) {
 			abbreviationEntries.put(languages[i]);
 		}
@@ -476,8 +472,8 @@ public class Preferences extends PreferenceActivity implements
 	private void setListSummary(final String preferencesId,
 			final int entriesResourceId, final int valuesResourceId,
 			final String currentValue) {
-		String[] arrayTitles = getResources().getStringArray(entriesResourceId);
-		String[] arrayValues = getResources().getStringArray(valuesResourceId);
+		final String[] arrayTitles = getResources().getStringArray(entriesResourceId);
+		final String[] arrayValues = getResources().getStringArray(valuesResourceId);
 		for (int i = 0; i < arrayValues.length; i++) {
 			if (arrayValues[i].equals(currentValue)) {
 				getPreferenceScreen().findPreference(preferencesId).setSummary(
