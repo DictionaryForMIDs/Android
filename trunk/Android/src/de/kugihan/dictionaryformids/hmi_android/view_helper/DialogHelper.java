@@ -175,7 +175,7 @@ public final class DialogHelper {
 	 * @return the created dialog
 	 */
 	private Dialog createSuggestDirectoryDialog() {
-		Builder alertBuilder = new AlertDialog.Builder(
+		final Builder alertBuilder = new AlertDialog.Builder(
 				activity);
 		alertBuilder.setTitle(R.string.title_information);
 		alertBuilder.setMessage(R.string.msg_slow_archive_loading);
@@ -203,7 +203,7 @@ public final class DialogHelper {
 	 * @return the created dialog
 	 */
 	private Dialog createConfirmLoadDictionary() {
-		Builder alertBuilder = new AlertDialog.Builder(
+		final Builder alertBuilder = new AlertDialog.Builder(
 				activity);
 		alertBuilder.setTitle(R.string.title_information);
 		alertBuilder.setMessage(R.string.msg_load_dictionary);
@@ -231,7 +231,7 @@ public final class DialogHelper {
 	 * @return the created dialog
 	 */
 	private Dialog createFirstRunDialog() {
-		Builder alertBuilder = new AlertDialog.Builder(
+		final Builder alertBuilder = new AlertDialog.Builder(
 				activity);
 		alertBuilder.setTitle(R.string.title_welcome);
 		alertBuilder.setMessage(R.string.msg_first_run);
@@ -255,7 +255,7 @@ public final class DialogHelper {
 	 * @return the created dialog
 	 */
 	private Dialog createWarnExtractDictionary() {
-		Builder alertBuilder = new AlertDialog.Builder(
+		final Builder alertBuilder = new AlertDialog.Builder(
 				activity);
 		alertBuilder.setTitle(R.string.msg_dictionary_error);
 		alertBuilder.setMessage(R.string.msg_extract_dictionary);
@@ -278,7 +278,7 @@ public final class DialogHelper {
 	 * @return the created dialog
 	 */
 	private Dialog createDictionaryNotFoundDialog() {
-		Builder alertBuilder = new AlertDialog.Builder(
+		final Builder alertBuilder = new AlertDialog.Builder(
 				activity);
 		alertBuilder.setTitle(R.string.msg_dictionary_error);
 		alertBuilder.setMessage(R.string.msg_dictionary_not_found);
@@ -292,7 +292,7 @@ public final class DialogHelper {
 				});
 		alertBuilder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
 			@Override
-			public void onClick(DialogInterface dialog, int which) {
+			public void onClick(final DialogInterface dialog, final int which) {
 				dialog.cancel();
 			}
 		});
@@ -305,7 +305,7 @@ public final class DialogHelper {
 	 * @return the created dialog
 	 */
 	private Dialog createTranslateErrorDialog() {
-		Builder alertBuilder = new AlertDialog.Builder(
+		final Builder alertBuilder = new AlertDialog.Builder(
 				activity);
 		alertBuilder.setTitle(R.string.title_translation_error);
 		alertBuilder.setMessage(translationErrorMessage);
@@ -326,7 +326,7 @@ public final class DialogHelper {
 	 * @return the created dialog
 	 */
 	private Dialog createInstallationExceptionDialog() {
-		Builder alertBuilder = new AlertDialog.Builder(
+		final Builder alertBuilder = new AlertDialog.Builder(
 				activity);
 		alertBuilder.setTitle(R.string.title_information);
 		alertBuilder.setMessage("");
@@ -347,7 +347,7 @@ public final class DialogHelper {
 	 * @return the created dialog
 	 */
 	private Dialog createSearchingDialog() {
-		ProgressDialog loadingDialog = new ProgressDialog(activity);
+		final ProgressDialog loadingDialog = new ProgressDialog(activity);
 		loadingDialog.setTitle(activity.getString(R.string.title_please_wait));
 		loadingDialog.setMessage(activity.getString(R.string.msg_searching));
 		loadingDialog.setIndeterminate(true);
@@ -366,10 +366,10 @@ public final class DialogHelper {
 	 */
 	public void onPrepareDialog(final int id, final Dialog dialog) {
 		if (id == ID_TRANSLATE_ERROR) {
-			AlertDialog alert = (AlertDialog) dialog;
+			final AlertDialog alert = (AlertDialog) dialog;
 			alert.setMessage(translationErrorMessage);
 		} else if (id == ID_INSTALLATION_EXCEPTION) {
-			AlertDialog alert = (AlertDialog) dialog;
+			final AlertDialog alert = (AlertDialog) dialog;
 			String exceptionMessage = "Exception while installing:\n"
 					+ dictionaryInstallationException.getMessage();
 			if (dictionaryInstallationException.getCause() != null) {
@@ -384,7 +384,7 @@ public final class DialogHelper {
 	/**
 	 * The listener handles cancel events of the translation progress dialog.
 	 */
-	private OnCancelListener cancelTranslationListener = new OnCancelListener() {
+	private final OnCancelListener cancelTranslationListener = new OnCancelListener() {
 		@Override
 		public void onCancel(final DialogInterface dialog) {
 			TranslationExecution.cancelLastTranslation();

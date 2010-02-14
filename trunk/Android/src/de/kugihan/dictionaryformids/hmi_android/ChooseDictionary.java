@@ -95,7 +95,7 @@ public final class ChooseDictionary extends TabActivity {
 	@Override
 	public void finishFromChild(final Activity child) {
 		if (child instanceof ResultProvider) {
-			ResultProvider list = (ResultProvider) child;
+			final ResultProvider list = (ResultProvider) child;
 			setResult(list.getResultCode(), list.getReturnData());
 		}
 		super.finishFromChild(child);
@@ -106,7 +106,7 @@ public final class ChooseDictionary extends TabActivity {
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu) {
-		MenuInflater inflater = getMenuInflater();
+		final MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.choose_dictionary_options, menu);
 		return true;
 	}
@@ -137,7 +137,7 @@ public final class ChooseDictionary extends TabActivity {
 	@Override
 	protected Dialog onCreateDialog(final int id) {
 		if (id == R.id.dialog_manual_download_instructions) {
-			Builder alertBuilder = new AlertDialog.Builder(this);
+			final Builder alertBuilder = new AlertDialog.Builder(this);
 			alertBuilder.setTitle(R.string.title_information);
 			alertBuilder.setMessage(R.string.msg_download_dictionaries);
 			alertBuilder.setPositiveButton(R.string.button_ok,
@@ -162,7 +162,7 @@ public final class ChooseDictionary extends TabActivity {
 					});
 			return alertBuilder.create();
 		} else if (id == R.id.dialog_confirm_clear_recent_dictionaries) {
-			Builder alertBuilder = new AlertDialog.Builder(this);
+			final Builder alertBuilder = new AlertDialog.Builder(this);
 			alertBuilder.setTitle(R.string.title_information);
 			alertBuilder
 					.setMessage(R.string.msg_clear_recent_dictionaries_list);

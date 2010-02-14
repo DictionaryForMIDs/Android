@@ -12,8 +12,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import android.app.Activity;
-
-import de.kugihan.dictionaryformids.dataaccess.fileaccess.DfMInputStreamAccess;
 import de.kugihan.dictionaryformids.general.CouldNotOpenFileException;
 import de.kugihan.dictionaryformids.general.DictionaryException;
 import de.kugihan.dictionaryformids.general.Util;
@@ -28,12 +26,12 @@ public class AssetDfMInputStreamAccess extends DfMInputStreamAccess {
 	/**
 	 * The activity that provides the assets.
 	 */
-	private Activity activity = null;
+	private final Activity activity;
 
 	/**
 	 * The base directory in the assets folder that includes the dictionary.
 	 */
-	private String directory = null;
+	private final String directory;
 
 	/**
 	 * Creates an InputStream for loading a dictionary from the application's
@@ -97,7 +95,7 @@ public class AssetDfMInputStreamAccess extends DfMInputStreamAccess {
 	public final InputStream getInputStream(final String asset)
 			throws DictionaryException {
 		InputStream in;
-		String assetPath = getPath(asset);
+		final String assetPath = getPath(asset);
 		try {
 			in = activity.getAssets().open(assetPath);
 		} catch (IOException e) {

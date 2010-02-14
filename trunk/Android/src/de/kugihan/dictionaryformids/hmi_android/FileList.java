@@ -81,13 +81,13 @@ public class FileList extends ListActivity implements ResultProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final void onCreate(final Bundle icicle) {
-		super.onCreate(icicle);
+	public final void onCreate(final Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 		setContentView(R.layout.directory_list);
 
 		// try to restore old data
-		if (icicle != null) {
-			String path = icicle.getString(BUNDLE_CURRENT_DIRECTORY);
+		if (savedInstanceState != null) {
+			final String path = savedInstanceState.getString(BUNDLE_CURRENT_DIRECTORY);
 			if (path != null) {
 				fill(new File(path));
 			}
@@ -128,13 +128,13 @@ public class FileList extends ListActivity implements ResultProvider {
 		currentDirectory = parentDirectory;
 		updateNavigationButtonState();
 		items = new ArrayList<String>();
-		List<String> view = new ArrayList<String>();
+		final List<String> view = new ArrayList<String>();
 		boolean directoryIncludesDictionary = false;
 		for (File file : parentDirectory.listFiles()) {
 			String path = file.getPath();
 			String name = file.getName();
-			boolean isDictionaryFile = isDictionaryPropertiesFile(file);
-			boolean isDictionaryArchive = isArchiveFile(file);
+			final boolean isDictionaryFile = isDictionaryPropertiesFile(file);
+			final boolean isDictionaryArchive = isArchiveFile(file);
 			if (file.isDirectory()) {
 				path += File.separator;
 				name += File.separator;
@@ -238,7 +238,7 @@ public class FileList extends ListActivity implements ResultProvider {
 	@Override
 	protected final void onListItemClick(final ListView l, final View v,
 			final int position, final long id) {
-		File file = new File(items.get(position));
+		final File file = new File(items.get(position));
 		if (file.isDirectory()) {
 			fill(file);
 		} else if (isDictionaryPropertiesFile(file)) {
@@ -319,7 +319,7 @@ public class FileList extends ListActivity implements ResultProvider {
 	/**
 	 * Listener to handle clicks on the buttons.
 	 */
-	private OnClickListener clickListener = new OnClickListener() {
+	private final OnClickListener clickListener = new OnClickListener() {
 		public void onClick(final View button) {
 			switch (button.getId()) {
 			case R.id.ButtonCard:

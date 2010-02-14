@@ -12,7 +12,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import de.kugihan.dictionaryformids.dataaccess.fileaccess.DfMInputStreamAccess;
 import de.kugihan.dictionaryformids.general.CouldNotOpenFileException;
 import de.kugihan.dictionaryformids.general.DictionaryException;
 import de.kugihan.dictionaryformids.general.Util;
@@ -28,7 +27,7 @@ public class FileDfMInputStreamAccess extends DfMInputStreamAccess {
 	 * Specifies the working directory, that all following path names are
 	 * relative to.
 	 */
-	private String directory;
+	private final String directory;
 	
 	/**
 	 * Creates a new InputStream that uses the files in the specified directory.
@@ -37,11 +36,12 @@ public class FileDfMInputStreamAccess extends DfMInputStreamAccess {
 	 *            the directory that includes the dictionary
 	 */
 	public FileDfMInputStreamAccess(final String baseDirectory) {
-		this.directory = baseDirectory;
-		boolean doesNotEndWithSeperator = baseDirectory != null
+		final boolean doesNotEndWithSeperator = baseDirectory != null
 				&& !baseDirectory.endsWith(File.separator);
 		if (doesNotEndWithSeperator) {
-			this.directory += File.separator;
+			directory = baseDirectory + File.separator;
+		} else {
+			directory = baseDirectory;
 		}
 	}
 
@@ -51,7 +51,7 @@ public class FileDfMInputStreamAccess extends DfMInputStreamAccess {
 	@Override
 	public final boolean fileExists(final String fileName)
 			throws DictionaryException {
-		File file = new File(directory + fileName);
+		final File file = new File(directory + fileName);
 		return file.exists();
 	}
 

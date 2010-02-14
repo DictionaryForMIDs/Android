@@ -46,11 +46,11 @@ public class AndroidUtil extends Util {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected final void outputMessage(final String message) {
-        Message m = new Message();
-        m.what = DictionaryForMIDs.THREAD_ERROR_MESSAGE;
-        m.obj = message;
-		handler.sendMessage(m);
+	protected final void outputMessage(final String messageString) {
+		final Message message = new Message();
+        message.what = DictionaryForMIDs.THREAD_ERROR_MESSAGE;
+        message.obj = messageString;
+		handler.sendMessage(message);
 	}
 
 }

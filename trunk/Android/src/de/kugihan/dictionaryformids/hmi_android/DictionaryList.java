@@ -13,9 +13,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import de.kugihan.dictionaryformids.hmi_android.R;
-import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
 
 /**
  * DictionaryList represents an Activity that shows internal dictionaries and
@@ -68,7 +66,7 @@ public class DictionaryList extends ListActivity implements ResultProvider {
         setContentView(R.layout.included_dictionary_list);
         fillWithDictionaries();
         
-		TextView empty = (TextView) findViewById(android.R.id.empty);
+		final TextView empty = (TextView) findViewById(android.R.id.empty);
 		empty.setOnClickListener(clickListener);
     }
 
@@ -78,7 +76,7 @@ public class DictionaryList extends ListActivity implements ResultProvider {
 	@Override
 	protected final void onListItemClick(final ListView l, final View v,
 			final int position, final long id) {
-		String dictionary = items.get(position);
+		final String dictionary = items.get(position);
 		exitWithDictionary(dictionary);
 	}
 
@@ -89,7 +87,7 @@ public class DictionaryList extends ListActivity implements ResultProvider {
 	private void exitWithDictionary(final String dictionary) {
 		resultCode = RESULT_OK;
 		returnData = new Intent();
-		String path = INTERNAL_DICT_PATH + File.separator + dictionary;
+		final String path = INTERNAL_DICT_PATH + File.separator + dictionary;
 		returnData.putExtra(ASSET_PATH, path);
 		setResult(resultCode, returnData);
 		finish();
@@ -113,7 +111,7 @@ public class DictionaryList extends ListActivity implements ResultProvider {
 			items.add(dictionary);
 		}
 		Collections.sort(items, String.CASE_INSENSITIVE_ORDER);
-		ArrayAdapter<String> dictionaryList = new ArrayAdapter<String>(this,
+		final ArrayAdapter<String> dictionaryList = new ArrayAdapter<String>(this,
 				R.layout.file_row, items);
 		setListAdapter(dictionaryList);
 	}
@@ -137,11 +135,11 @@ public class DictionaryList extends ListActivity implements ResultProvider {
     /**
      * A listener for clicks on the download dictionaries field.
      */
-    private OnClickListener clickListener = new OnClickListener() {
+    private final OnClickListener clickListener = new OnClickListener() {
 
 		@Override
 		public void onClick(final View v) {
-			ChooseDictionary parent = (ChooseDictionary) getParent();
+			final ChooseDictionary parent = (ChooseDictionary) getParent();
 			final String downloadTag = getString(R.string.tag_tab_download);
 			parent.getTabHost().setCurrentTabByTag(downloadTag);
 		}

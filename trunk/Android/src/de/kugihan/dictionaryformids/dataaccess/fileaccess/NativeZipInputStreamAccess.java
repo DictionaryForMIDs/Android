@@ -15,7 +15,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import de.kugihan.dictionaryformids.dataaccess.DictionaryDataFile;
-import de.kugihan.dictionaryformids.dataaccess.fileaccess.DfMInputStreamAccess;
 import de.kugihan.dictionaryformids.general.CouldNotOpenFileException;
 import de.kugihan.dictionaryformids.general.DictionaryException;
 import de.kugihan.dictionaryformids.general.Util;
@@ -30,7 +29,7 @@ public class NativeZipInputStreamAccess extends DfMInputStreamAccess {
 	/**
 	 * Path of the zip-file to which the class is attached.
 	 */
-	private String zipfile = null;
+	private final String zipfile;
 
 	/**
 	 * The path prefix that will be added to all requested files. This allows a
@@ -46,14 +45,27 @@ public class NativeZipInputStreamAccess extends DfMInputStreamAccess {
 	 *            the zip-file represented by the class
 	 */
 	public NativeZipInputStreamAccess(final String zipFilePath) {
-		this.zipfile = zipFilePath;
+		zipfile = zipFilePath;
 	}
 	
+	/**
+	 * Creates an input stream for this instance's zipfile.
+	 * 
+	 * @return the InputStream of this instance's zipfile
+	 * @throws IOException
+	 *             if an input/output exception occured
+	 */
 	private InputStream openFileConnectionStream() throws IOException {
-		FileInputStream inputStream = new FileInputStream(zipfile);
-		return inputStream;
+		return new FileInputStream(zipfile);
 	}
 	
+	/**
+	 * Creates a zip input stream for this instance's zipfile.
+	 * 
+	 * @return the ZipInputStream of this instance's zipfile
+	 * @throws IOException
+	 *             if an input/output exception occured
+	 */
 	private ZipInputStream openZipStream() throws IOException {
 		return new ZipInputStream(openFileConnectionStream());
 	}
@@ -72,7 +84,7 @@ public class NativeZipInputStreamAccess extends DfMInputStreamAccess {
 			throws DictionaryException {
 		dictionaryRoot = DictionaryDataFile.pathNameDataFiles + File.separator;
 		// check if file exists using newly set dictionaryRoot
-		boolean isRootInSubDirectory = fileExists(fileName);
+		final boolean isRootInSubDirectory = fileExists(fileName);
 		if (!isRootInSubDirectory) {
 			dictionaryRoot = "";
 		}
@@ -95,7 +107,7 @@ public class NativeZipInputStreamAccess extends DfMInputStreamAccess {
 			initializeDictionaryRoot(fileName);
 		}
 		// add path prefix to fileName
-		String absolutePath = dictionaryRoot + fileName;
+		final String absolutePath = dictionaryRoot + fileName;
 		ZipInputStream zipStream;
     	ZipEntry zippedFile = null;
 		try {
@@ -121,7 +133,7 @@ public class NativeZipInputStreamAccess extends DfMInputStreamAccess {
 	@Override
 	public final InputStream getInputStream(final String fileName)
 			throws DictionaryException {
-		InputStream zipStream = getInputStreamInternal(fileName);
+		final InputStream zipStream = getInputStreamInternal(fileName);
 		if (zipStream == null) {
 			Util.getUtil().log("File not found:" + fileName, Util.logLevel3);
 			throw new CouldNotOpenFileException(
@@ -136,8 +148,8 @@ public class NativeZipInputStreamAccess extends DfMInputStreamAccess {
 	@Override
 	public final boolean fileExists(final String fileName) 
 			throws DictionaryException {
-		InputStream inputStream = getInputStreamInternal(fileName);
-		boolean fileExists = (inputStream != null);
+		final InputStream inputStream = getInputStreamInternal(fileName);
+		final boolean fileExists = (inputStream != null);
 		if (fileExists) {
 			try {
 				inputStream.close();
@@ -156,22 +168,17 @@ public class NativeZipInputStreamAccess extends DfMInputStreamAccess {
 	 * @throws DictionaryException if there was an error opening the file
 	 */
 	public final boolean hasJarDictionary() throws DictionaryException {
-		ZipInputStream zipStream;
-    	ZipEntry zippedFile = null;
 		try {
-	    	zipStream = openZipStream(); 
+	    	final ZipInputStream zipStream = openZipStream(); 
+	    	ZipEntry zippedFile = null;
 	    	while ((zippedFile = zipStream.getNextEntry()) != null) {
 	    		if (zippedFile.getName().endsWith(".jar")) {
-	    			break;
+	    			return true;
 	    		}
 	    	}
+	    	return false;
 		} catch (IOException ioe) {
 			 throw new CouldNotOpenFileException(ioe);
-		}
-		if (zippedFile == null) {
-			return false;
-		} else {
-			return true;
 		}
 	}
 
