@@ -31,13 +31,61 @@
 	<string name="tag_tab_download">tab_download</string>
 	<string name="attribute_market_search">market://search?q=pname:%1$s</string>
 	<string name="attribute_root_path">/</string>
+	<string name="format_version">%1$s (%2$d %3$s)</string>
 	<string-array name="language_codes">
 		<item>@string/title_default_language_code</item>
+		<item>Dansk</item>
 		<item>English</item>
+		<item>Magyar</item>
+		<item>اردو</item>
+		<item>简体中文</item>
+		<item>繁體中文</item>
 	</string-array>
 	<string-array name="language_code_values">
 		<item></item>
+		<item>da</item>
 		<item>en</item>
-		<item>de</item>
+		<item>hu</item>
+		<item>ur-PK</item>
+		<item>zh-CN</item>
+		<item>zh-TW</item>
+	</string-array>
+	<!-- Array including two corresponding entries for each entry -->
+	<!-- <item>LANGUAGE_NAME</item><item>@string/languageNAME</item> -->
+	<!-- Used for translating languages -->
+	<!-- e.g. replace LANGUAGE_NAME with @string/languageNAME -->
+	<string-array name="language_localization">
+		<item>English</item>
+		<item>@string/language_english</item>
+		<item>Vietnamese</item>
+		<item>@string/language_vietnamese</item>
+		<item>Chinese</item>
+		<item>@string/language_chinese</item>
+		<item>Japanese</item>
+		<item>@string/language_japanese</item>
+		<item>Thai</item>
+		<item>@string/language_thai</item>
+		<item>Hindi</item>
+		<item>@string/language_hindi</item>
+		<item>Indonesian</item>
+		<item>@string/language_indonesian</item>
+		<item>French</item>
+		<item>@string/language_french</item>
+		<item>Spanish</item>
+		<item>@string/language_spanish</item>
+		<item>German</item>
+		<item>@string/language_german</item>
+		<item>Italian</item>
+		<item>@string/language_italian</item>
+		<item>Latin</item>
+		<item>@string/language_latin</item>
+		<item>Russian</item>
+		<item>@string/language_russian</item>
+		<item>Arabic</item>
+		<item>@string/language_arabic</item>
+		<item>Czech</item>
+		<item>@string/language_czech</item>
+		<item>Slovak</item>
+		<item>@string/language_slovak</item>
 	</string-array>
 </resources>
