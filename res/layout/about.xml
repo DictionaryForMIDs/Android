@@ -14,7 +14,7 @@
 				android:layout_height="fill_parent" android:gravity="center"
 				android:textSize="20sp" android:text="@string/title_about_heading" />
 		</LinearLayout>
-		
+
 		<TextView android:id="@+id/TextView04" android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:text="@string/title_about_copyright_owner"
 			android:linksClickable="true" android:autoLink="email"></TextView>
@@ -22,18 +22,27 @@
 			android:layout_height="wrap_content" android:linksClickable="true"
 			android:autoLink="web" android:text="@string/attribute_url"
 			android:paddingTop="10sp"></TextView>
+
 		<TextView android:layout_height="wrap_content" android:id="@+id/Version"
 			android:paddingTop="10sp" android:text="@string/title_version"
 			android:layout_width="fill_parent"></TextView>
-		<TextView android:id="@+id/TextView01" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="@string/title_about_copyright"
-			android:paddingTop="10sp" android:autoLink="web"></TextView>
+
 		<TextView android:id="@+id/TextView02" android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:text="@string/title_about_dictionary"
-			android:paddingTop="10sp"></TextView>
+			android:paddingTop="10sp" android:textStyle="bold"></TextView>
 		<TextView android:text="TextView03" android:layout_height="wrap_content"
 			android:id="@+id/Dictonary" android:autoLink="web"
 			android:layout_width="fill_parent"></TextView>
-			
+
+		<TextView android:text="@string/title_about_ui_translation"
+			android:id="@+id/TranslatorTitle" android:paddingTop="10sp"
+			android:layout_width="fill_parent" android:layout_height="wrap_content" android:textStyle="bold"></TextView>
+		<TextView android:text="@string/title_user_interface_translator"
+			android:id="@+id/Translator" android:layout_width="fill_parent"
+			android:layout_height="wrap_content"></TextView>
+
+		<TextView android:id="@+id/TextView01" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/title_about_copyright"
+			android:paddingTop="10sp" android:autoLink="web"></TextView>
 	</LinearLayout>
 </ScrollView>

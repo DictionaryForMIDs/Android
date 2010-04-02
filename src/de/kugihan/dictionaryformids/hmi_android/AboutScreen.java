@@ -7,6 +7,8 @@
  ******************************************************************************/
 package de.kugihan.dictionaryformids.hmi_android;
 
+import java.util.Locale;
+
 import de.kugihan.dictionaryformids.dataaccess.DictionaryDataFile;
 import android.app.Activity;
 import android.content.pm.PackageInfo;
@@ -44,10 +46,12 @@ public class AboutScreen extends Activity {
 			version = getString(R.string.not_found);
 			versionCode = -1;
 		}
+		final String localization = Locale.getDefault().toString();
+		final String versionStringCode = getString(R.string.format_version, version,
+				versionCode, localization);
+		final String versionText = getString(R.string.title_version, versionStringCode);
 		final TextView versionView = (TextView) findViewById(R.id.Version);
-		final String versionString = getString(R.string.title_version, version,
-				versionCode);
-		versionView.setText(versionString);
+		versionView.setText(versionText);
 
 		final TextView dictionary = (TextView) findViewById(R.id.Dictonary);
 		dictionary.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +60,15 @@ public class AboutScreen extends Activity {
 				finish();
 			}
 		});
+		
+		final String translator = getString(R.string.title_user_interface_translator);
+		final boolean isTranslatorGiven = translator.length() > 0;
+		if (!isTranslatorGiven) {
+			final TextView translatorTitle = (TextView) findViewById(R.id.TranslatorTitle);
+			final TextView translatorView = (TextView) findViewById(R.id.Translator);
+			translatorView.setVisibility(View.GONE);
+			translatorTitle.setVisibility(View.GONE);
+		}
 
 	}
 
