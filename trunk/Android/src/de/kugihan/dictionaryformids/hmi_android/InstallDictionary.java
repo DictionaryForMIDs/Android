@@ -44,6 +44,7 @@ import de.kugihan.dictionaryformids.hmi_android.service.DictionaryInstallationSe
 import de.kugihan.dictionaryformids.hmi_android.service.ServiceUpdateListener;
 import de.kugihan.dictionaryformids.hmi_android.thread.ListDownloadThread;
 import de.kugihan.dictionaryformids.hmi_android.thread.ListDownloadThread.OnPostExecutionListener;
+import de.kugihan.dictionaryformids.hmi_android.view_helper.LocalizationHelper;
 
 /**
  * InstallDictionary represents an Activity that allows a user to automatically
@@ -636,7 +637,9 @@ public final class InstallDictionary extends ListActivity implements
 		ArrayList<String> dictionaryNames = new ArrayList<String>();
 		for (DownloadDictionaryItem dictionary : filteredDictionaries) {
 			final String dictionaryName = dictionary.toString();
-			dictionaryNames.add(dictionaryName);
+			final String localizedName = LocalizationHelper
+					.getLocalizedDictionaryName(getResources(), dictionaryName);
+			dictionaryNames.add(localizedName);
 		}
 		return new ArrayAdapter<String>(this, R.layout.file_row, dictionaryNames);
 	}
@@ -651,7 +654,10 @@ public final class InstallDictionary extends ListActivity implements
 		filteredDictionaries = new ArrayList<DownloadDictionaryItem>();
 		for (DownloadDictionaryItem dictionary : dictionaries) {
 			final String dictionaryName = dictionary.toString();
-			final boolean doesNotMatchFilter = !dictionaryName.toLowerCase().contains(lowerCaseFilter);
+			final String localizedName = LocalizationHelper
+					.getLocalizedDictionaryName(getResources(), dictionaryName);
+			final boolean doesNotMatchFilter = !localizedName.toLowerCase()
+					.contains(lowerCaseFilter);
 			if (doesNotMatchFilter) {
 				continue;
 			}
@@ -833,13 +839,15 @@ public final class InstallDictionary extends ListActivity implements
 			AlertDialog confirmAlert = (AlertDialog) dialog;
 			final String name = filteredDictionaries.get(selectedFilteredItem).getName();
 			final long size = filteredDictionaries.get(selectedFilteredItem).getSize();
+			final String localizedName = LocalizationHelper
+					.getLocalizedDictionaryName(getResources(), name);
 			String message;
 			if (size > 0) {
 				String sizeString = formatBytes(size);
 				message = getString(R.string.msg_confirm_installation_size,
-						name, sizeString);
+						localizedName, sizeString);
 			} else {
-				message = getString(R.string.msg_confirm_installation, name);
+				message = getString(R.string.msg_confirm_installation, localizedName);
 			}
 			confirmAlert.setMessage(message);
 			break;
