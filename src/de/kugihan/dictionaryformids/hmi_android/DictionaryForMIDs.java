@@ -372,11 +372,38 @@ public final class DictionaryForMIDs extends Activity {
 	 */
 	public static void setCustomLocale(final String languageCode,
 			final Resources resources) {
-		final Locale locale = new Locale(languageCode);
+		final Locale locale = getLocaleFromLanguageCode(languageCode);
 		Locale.setDefault(locale);
 		final Configuration config = new Configuration();
 		config.locale = locale;
 		resources.updateConfiguration(config, resources.getDisplayMetrics());
+	}
+
+	/**
+	 * Parses the given language code for language, country and variant and
+	 * creates a corresponding locale.
+	 * 
+	 * @param languageCode
+	 *            the language code containing language-country-variant
+	 * @return the corresponding locale
+	 * @throws IllegalArgumentException
+	 *             if languageCode cannot be parsed
+	 */
+	private static Locale getLocaleFromLanguageCode(final String languageCode)
+			throws IllegalArgumentException {
+		final String parts[] = languageCode.split("-");
+		Locale locale;
+		if (parts.length == 1) {
+			locale = new Locale(languageCode);
+		} else if (parts.length == 2) {
+			locale = new Locale(parts[0], parts[1]);
+		} else if (parts.length == 3) {
+			locale = new Locale(parts[0], parts[1], parts[2]);
+		} else {
+			throw new IllegalArgumentException("languageCode contains "
+					+ parts.length + ". Expected 1, 2 or 3");
+		}
+		return locale;
 	}
 
 	/**

@@ -7,6 +7,7 @@
  ******************************************************************************/
 package de.kugihan.dictionaryformids.hmi_android.data;
 
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import de.kugihan.dictionaryformids.dataaccess.LanguageDefinition;
 import de.kugihan.dictionaryformids.hmi_android.R;
+import de.kugihan.dictionaryformids.hmi_android.view_helper.LocalizationHelper;
 
 /**
  * LanguageSpinnerAdapter is the class that handles the data for the language
@@ -141,16 +143,44 @@ public class LanguageSpinnerAdapter extends BaseAdapter {
 			((LinearLayout) view.findViewById(R.id.LanguageDirectionLayout))
 					.setVisibility(View.GONE);
 		} else {
-			((TextView) view.findViewById(R.id.languageFrom))
-					.setText(data[indices[position][0]].languageDisplayText);
-			((TextView) view.findViewById(R.id.languageTo))
-					.setText(data[indices[position][1]].languageDisplayText);
+			final Resources resources = view.getResources();
+			final String languageFromString = getLocalizedLanguage(resources, position, true);
+			final String languageToString = getLocalizedLanguage(resources, position, false);
+			final String formatString = view.getContext().getString(R.string.title_format_translation_direction, languageFromString, languageToString);
+			
+			final String parts[] = formatString.split("\t");
+			if (parts.length != 3) {
+				// parts should be LANGUAGE\tARROW\tLANGUAGE
+				throw new IllegalArgumentException("R.string.title_format_translation_direction is of wrong format");
+			}
+			
+			final TextView languageFrom = (TextView) view.findViewById(R.id.languageFrom);
+			languageFrom.setText(parts[0]);
+			final TextView directionIndicator = (TextView) view.findViewById(R.id.directionIndicator);
+			directionIndicator.setText(parts[1]);
+			final TextView languageTo = (TextView) view.findViewById(R.id.languageTo);
+			languageTo.setText(parts[2]);
 			((TextView) view.findViewById(R.id.LoadDictionary))
 					.setVisibility(View.GONE);
 			((LinearLayout) view.findViewById(R.id.LanguageDirectionLayout))
 					.setVisibility(View.VISIBLE);
 		}
 		return view;
+	}
+
+	/**
+	 * Returns the localized name of the first or second language at a specific
+	 * position.
+	 * 
+	 * @param position the position of the language in the language array
+	 * @param 
+	 * @return
+	 */
+	private String getLocalizedLanguage(final Resources resources,
+			final int position, final boolean firstLanguage) {
+		final int subPosition = firstLanguage ? 0 : 1;
+		final String languageDisplayText = data[indices[position][subPosition]].languageDisplayText;
+		return LocalizationHelper.getLanguageName(resources, languageDisplayText);
 	}
 	
 	/**
@@ -181,10 +211,23 @@ public class LanguageSpinnerAdapter extends BaseAdapter {
 			((LinearLayout) view.findViewById(R.id.LanguageDirectionLayout))
 					.setVisibility(View.GONE);
 		} else {
-			((TextView) view.findViewById(R.id.languageFrom))
-					.setText(data[indices[position][0]].languageDisplayText);
-			((TextView) view.findViewById(R.id.languageTo))
-					.setText(data[indices[position][1]].languageDisplayText);
+			final Resources resources = view.getResources();
+			final String languageFromString = getLocalizedLanguage(resources, position, true);
+			final String languageToString = getLocalizedLanguage(resources, position, false);
+			final String formatString = view.getContext().getString(R.string.title_format_translation_direction, languageFromString, languageToString);
+			
+			final String parts[] = formatString.split("\t");
+			if (parts.length != 3) {
+				// parts should be LANGUAGE\tARROW\tLANGUAGE
+				throw new IllegalArgumentException("R.string.title_format_translation_direction is of wrong format");
+			}
+			
+			final TextView languageFrom = (TextView) view.findViewById(R.id.languageFrom);
+			languageFrom.setText(parts[0]);
+			final TextView directionIndicator = (TextView) view.findViewById(R.id.directionIndicator);
+			directionIndicator.setText(parts[1]);
+			final TextView languageTo = (TextView) view.findViewById(R.id.languageTo);
+			languageTo.setText(parts[2]);
 			((TextView) view.findViewById(R.id.LoadDictionary))
 					.setVisibility(View.GONE);
 			((LinearLayout) view.findViewById(R.id.LanguageDirectionLayout))

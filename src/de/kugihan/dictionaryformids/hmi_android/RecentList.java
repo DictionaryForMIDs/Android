@@ -35,6 +35,7 @@ import android.widget.TextView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import de.kugihan.dictionaryformids.hmi_android.Preferences.DictionaryType;
 import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
+import de.kugihan.dictionaryformids.hmi_android.view_helper.LocalizationHelper;
 
 /**
  * DictionaryList represents an Activity that shows internal dictionaries and
@@ -172,7 +173,10 @@ public class RecentList extends ListActivity implements ResultProvider {
 				JSONArray languagesArray = new JSONArray(parts
 						.getString("languages"));
 				for (int i = 0; i < languagesArray.length(); i++) {
-					languages += languagesArray.getString(i) + " ";
+					final String language = languagesArray.getString(i);
+					final String localizedLanguage = LocalizationHelper
+							.getLanguageName(getResources(), language);
+					languages += localizedLanguage + " ";
 				}
 				languages = languages.trim();
 			} catch (JSONException e) {
