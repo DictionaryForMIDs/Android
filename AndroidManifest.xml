@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="de.kugihan.dictionaryformids.hmi_android" android:versionName="0.11.0" android:versionCode="65">
+	package="de.kugihan.dictionaryformids.hmi_android" android:versionName="0.11"
+	android:versionCode="67">
 	<application android:label="@string/app_name"
 		android:debuggable="false" android:icon="@drawable/defaulticon"
 		android:description="@string/app_description">
@@ -11,24 +12,37 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name=".AboutScreen" android:label="About Screen" android:configChanges="locale">
+		<activity android:name=".AboutScreen" android:label="@string/title_activity_about"
+			android:configChanges="locale">
 		</activity>
-		<activity android:name=".HelpScreen" android:label="Help Screen" android:configChanges="locale">
+		<activity android:name=".HelpScreen" android:label="@string/title_activity_help"
+			android:configChanges="locale">
 		</activity>
-		<activity android:name=".FileList" android:label="Choose Dictionary" android:configChanges="locale">
+		<activity android:name=".FileList" android:label="@string/title_activity_file_list"
+			android:configChanges="locale">
 		</activity>
-		<activity android:name=".ChooseDictionary" android:label="Choose Dictionary" android:configChanges="locale">
+		<activity android:name=".ChooseDictionary"
+			android:label="@string/title_activity_choose_dictionary"
+			android:configChanges="locale">
 		</activity>
-		<activity android:name=".DictionaryList" android:label="Choose Dictionary" android:configChanges="locale">
+		<activity android:name=".DictionaryList"
+			android:label="@string/title_activity_dictionary_list"
+			android:configChanges="locale">
 		</activity>
-		<activity android:name=".RecentList" android:label="Choose Dictionary" android:configChanges="locale">
+		<activity android:name=".RecentList" android:label="@string/title_activity_recent_list"
+			android:configChanges="locale">
 		</activity>
-		<activity android:name=".Preferences" android:label="Preferences" android:configChanges="locale">
+		<activity android:name=".Preferences" android:label="@string/title_activity_preferences"
+			android:configChanges="locale">
 		</activity>
-		<activity android:name=".InstallDictionary" android:label="Install Dictionary" android:configChanges="locale">
+		<activity android:name=".InstallDictionary"
+			android:label="@string/title_activity_install_dictionary"
+			android:configChanges="locale">
 		</activity>
 		<service android:name=".service.DictionaryInstallationService"></service>
 	</application>
-	<uses-sdk android:minSdkVersion="3" />
-	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+	<uses-sdk android:minSdkVersion="3" android:targetSdkVersion="4" />
+	<supports-screens android:anyDensity="true" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest> 
