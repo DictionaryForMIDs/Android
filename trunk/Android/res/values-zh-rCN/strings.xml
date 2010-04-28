@@ -163,6 +163,7 @@
 	<string name="msg_restart_app_after_settings_changed">重启此程序来应用语言设置。</string>
 	<string name="title_about_ui_translation">本土化：</string>
 	<string name="language_english">英文</string>
+	<string name="language_esperanto">世界语</string>
 	<string name="language_vietnamese">越南语</string>
 	<string name="language_chinese">中文</string>
 	<string name="language_japanese">日文</string>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!--
+		put the name of the current language into language_name, e.g. Deutsch
+		if this is the German language file
+	-->
+	<string name="language_name">Esperanto</string>
+
+	<!--
+		put the name/e-mail/website of the translator (that's probably you)
+		here, it will appear on the about screen; leave empty if you don't
+		want to be mentioned
+	-->
+	<string name="title_user_interface_translator"></string>
+	
+	<string name="app_name">DictionaryForMIDs</string>
+	<string name="no_files">Neniu dosiero trovita.</string>
+	<string name="to_top">/ (radiken)</string>
+	<string name="to_upper_level">.. (supren)</string>
+	<string name="to_sdcard">/sdcard</string>
+	<string name="title_please_wait">Bonvolu atendi</string>
+	<string name="msg_searching">Serĉas...</string>
+	<string name="copy_all">Kopias ĉion</string>
+	<string name="copy_word">Kopio: %1$s</string>
+	<string name="not_found">ne trovita</string>
+	<string name="no_included_dictionaries">Ne trovis inkluzivitajn vortarojn.\n\nKlaku ĉi tie por elŝuti unu.</string>
+	<string name="no_recent_dictionaries">Ne trovis lastatempe uzitajn vortarojn.\n\nKlaku ĉi tie por elŝuti unu.</string>
+	<string name="loading_download_dictionaries">Bonvolu atendi.\n\nSerĉas haveblajn vortarojn...</string>
+	<string name="no_download_dictionaries">Bedaŭrinde neniu vortaro estas nuntempe elŝutebla.</string>
+	<string name="msg_error_downloading_available_dictionaries">Okazis eraro dum elŝuto de la listo de haveblaj vortaroj.\n\n\nKlaku ĉi tie por reprovi.\n\n\nDetaloj:\n%1$s</string>
+	<string name="msg_suggest_update">Via versio de DictionaryForMIDs estas malaktuala. Bonvolu ĝisdatigi, antaŭ ol elŝuti vortarojn.\nĜisdatigi nun?</string>
+	<string name="msg_suggest_update_with_message">Via versio de DictionaryForMIDs estas malaktuala. Bonvolu ĝisdatigi, antaŭ ol elŝuti vortarojn.\nĜisdatigi nun?\n\nDetaloj: %1$s</string>
+	<string name="msg_confirm_installation">Elŝuti kaj instali \"%1$s\"n vortaron?\nGrandeco: nekonata</string>
+	<string name="msg_confirm_installation_size">Elŝuti kaj instali \"%1$s\"n vortaron?\nGrandeco: %2$s</string>
+	<string name="msg_installation_exception">Escepto dum instalo:\n%1$s</string>
+	<string name="msg_installation_exception_cause">Escepto dum instalo:\n%1$s\n\nKaŭzo:\n%1$s</string>
+	<string name="msg_installation_already_started">Bedaŭrinde instalo jam aktivas.</string>
+	<string name="msg_installation_started">Instalo eble okupos iom da tempo, sed vi povas daŭre uzi la aplikaĵon.</string>
+	<string name="msg_installation_finished">Vortaro instaliĝis!</string>
+	<string name="msg_list_already_downloaded">Listo jam elŝutiĝas.</string>
+	<string name="msg_installation_error">Instaleraro</string>
+	<string name="title_exception">Escepto</string>
+	<string name="exception_failed_create_directory">Ne povis krei dosierujon: %1$s</string>
+	<string name="exception_failed_create_file">Ne povis krei dosieron: %1$s</string>
+	<string name="exception_failed_delete_file">Ne povis forigi dosieron: %1$s</string>
+	<string name="title_installation_finished">Finis</string>
+	<string name="msg_successfully_installed_dictionary">Sukcese instalis vortaron.</string>
+	<string name="msg_installation_complete">Instalo kompleta</string>
+	<string name="title_installation_status">Instalstato</string>
+	<string name="msg_installing_dictionary">Instalas vortaron...</string>
+	<string name="msg_installation_aborted">Uzanto ĉesigis instalon.</string>
+	<string name="msg_installation_status">Stato: %1$,.2f%%</string>
+	<string name="msg_compressed_entry_not_found">En arkivo \"%1$s\" neniu ero kongruis kun la ŝablono \"%2$s\"</string>
+	<string name="unit_byte">B</string>
+	<string name="unit_kilo_byte">KB</string>
+	<string name="unit_mega_byte">MB</string>
+	<string name="unit_giga_byte">GB</string>
+	<string name="file_size">%1$,.2f %2$s</string>
+	<string name="results_found_maximum">Trovis pli ol %1$d rezultojn (maksimumon).</string>
+	<string name="results_found_cancel">Trovis %1$d rezulto(j)n antaŭ ĉesigo.</string>
+	<string name="results_found_timeout">Trovis %1$d rezulto(j)n antaŭ eltempiĝo.</string>
+	<string name="results_found">Trovis %1$d rezultojn.</string>
+	<string name="results_found_one">Trovis 1 rezulton.</string>
+	<string name="no_results_found">Bedaŭrinde neniu rezulto troviĝis.</string>
+	<string-array name="font_sizes">
+		<item>10sp</item>
+		<item>11sp</item>
+		<item>12sp</item>
+		<item>13sp</item>
+		<item>14sp</item>
+		<item>15sp</item>
+		<item>16sp</item>
+		<item>17sp</item>
+		<item>18sp</item>
+		<item>19sp</item>
+		<item>20sp</item>
+		<item>21sp</item>
+		<item>22sp</item>
+		<item>23sp</item>
+		<item>24sp</item>
+		<item>25sp</item>
+		<item>26sp</item>
+	</string-array>
+	<string name="title_translation_error">Okazis tradukeraro.</string>
+	<string name="msg_translation_error">Detaloj:\n\n%1$s</string>
+	<string name="msg_translation_cancelled">Traduko ĉesigita.</string>
+	<string name="menu_dictionary">Vortaro</string>
+	<string name="menu_preferences">Preferoj</string>
+	<string name="menu_about">Pri</string>
+	<string name="menu_help">Helpo</string>
+	<string name="menu_download_dictionaries">Elŝuti permane...</string>
+	<string name="menu_clear_recent_dictionary_list">Vakigi lastatempajn...</string>
+	<string name="msg_enter_word_first">Bonvolu enigi vorton antaŭe.</string>
+	<string name="menu_reload_dictionary_list">Rekonstrui liston</string>
+	<string name="menu_cancel_installation">Ĉesigi instalon</string>
+	<string name="msg_load_dictionary_first">Bonvolu malfermi vortaron antaŭe.</string>
+	<string name="msg_reload_dictionary">Bonvolu malfermi la vortaron denove.</string>
+	<string name="msg_exception">Okazis escepto:\n%1$s</string>
+	<string name="msg_restart_app_after_settings_changed">Restartigi la aplikaĵon, por ke lingvaj agordoj ekefiku.</string>
+	<string name="button_ok">Bone</string>
+	<string name="button_cancel">Nuligi</string>
+	<string name="button_do_not_show_again">Ne montru denove</string>
+	<string name="msg_download_dictionaries">Elŝuti vortaron necesigas 4 paŝojn (oni supozas ĉi tie, ke vi jam instalis dosieradministrilon kiel Astro):\n\n1.Elektu kaj elŝutu vortaron el la retejo, kiu aperos, post kiam vi fermos ĉi tiun mesaĝon. Noto: Nur vortaroj de versio 2.4.4 aŭ pli novaj estas subtenataj.\n\n2.Eltiru la enhavon de la zip-dosiero al dosierujo en via SD-karto (ekz. per Astro).\n\n3.Laŭvole: Eltiri la enhavon de la enpakita jar-arkivo al via SD-karto por plirapidigi serĉojn.\n\n4.Elektu la vortaron en la antaŭa dialogujo.\n\nAlternative, vi povus elŝuti kaj eltiri la vortaron per via komputilo, tiam transigi la dosierojn al via SD-karto.</string>
+	<string name="msg_clear_recent_dictionaries_list">Vakigi la liston de lastatempaj vortaroj?</string>
+	<string name="msg_cancel_installation">Ĉesigi la nunan instalon?</string>
+	<string name="msg_load_dictionary">Malfermi novan vortaron nun?\n\nVi povas ankaŭ poste malfermi ĝin per la listo de lastatempaj vortaroj.</string>
+	<string name="button_load_dictionary_from_current_directory">Malfermi vortaron el la aktuala dosierujo</string>
+	<string name="msg_dictionary_error">Vortareraro</string>
+	<string name="msg_dictionary_not_found">Vortaro ne esti malfermebla.\n\nVi povas elekti vortaron en la sekvanta dialogujo.</string>
+	<string name="msg_dictionary_load_error">Eraro dum malfermo de vortaro.</string>
+	<string name="msg_internal_dictionary_load_error">Eraro dum malfermo de internaj vortaroj.\n\n%1$s</string>
+	<string name="title_current_path">&gt; %1$s</string>
+	<string name="msg_no_dictionary">Elektita ero ne aspektas kiel vortaro.</string>
+	<string name="title_load_dictionary">Malfermi vortaron...</string>
+
+	<!--
+		specifies a translation direction, e.g. English -> German; if this
+		language is right-to-left you may want to swap %1$s and %2$s as well
+		as replace -&gt; with &lt;-
+	-->
+	<string name="title_format_translation_direction">%1$s\t-&gt;\t%2$s</string>
+	<string name="title_load_dictionary_first">Bonvolu malfermi vortaron antaŭe.</string>
+	<string name="title_about_heading">Ĝava aplikaĵo DictonaryForMIDs</string>
+	<string name="title_about_copyright_owner">Kopirajto de Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) kaj aliaj kontribuantoj.</string>
+	<string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+	<string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/dict-dwn-list.php?p=%1$d&amp;v=%2$s</string>
+	<string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+	<string name="attribute_installation_directory">/sdcard/DictionaryForMIDs/dict/</string>
+	<string name="attribute_jar_directory">/sdcard/DictionaryForMIDs/jar/</string>
+	<string name="attribute_zip_directory">/sdcard/DictionaryForMIDs/zip/</string>
+	<string name="title_version">Versio: %1$s</string>
+	<string name="title_about_copyright">La Ĝava aplikaĵo DictionaryForMIDs estas libera programo: vi povas redistribui ĝin kaj/aŭ modifi
+    ĝin sub la kondiĉoj de la Ĝenerala Publika Permesilo (General Public License, GPL) de GNU, eldonita de Free Software Foundation; aŭ versio 2 de la Permesilo aŭ
+    (je via elekto) iu ajn versio pli lastatempa. Vidu dosieron COPYING aŭ http://www.gnu.org/licenses/\n\nOni distribuas ĉi tiun programon esperante, ke ĝi estos utila,
+    sed SEN AJNA GARANTIO; sen eĉ la implicita garantio de VENDOTAŬGECO aŭ TAŬGECO POR APARTA CELO. Vidu la GPL por kromaj detaloj.
+	</string>
+	<string name="title_about_dictionary">Vortaro:</string>
+	<string name="title_information">Informoj</string>
+	<string name="title_welcome">Bonvenon!</string>
+	<string name="title_seconds">%1$d sek</string>
+	<string name="msg_first_run">Ŝajnas, ke vi lanĉas ĉi tiun programon je la unua fojo! Bonvolu elekti vortaron en la sekvanta ekrano.</string>
+	<string name="msg_slow_archive_loading">Traduko ĉesis post eltempiĝo.\nPor plirapidigi tradukadon vi povus eltiri la enpakitan vortaron al dosierujo en via SD-karto kaj elekti ĉi tiun dosierujon kiel vortaron. Aŭ vi povus plilongigi la eltempiĝon en viaj preferoj.</string>
+	<string name="msg_parsing_error">Eraro dum analizo de datumoj.\n\n%1$s</string>
+	<string name="msg_extract_dictionary">La elektita arkivo ne estis malfermebla, sed ŝajnas enhavi densigitan vortaron. Bonvolu eltiri la enpakitan jar-dosieron antaŭe.</string>
+	<string-array name="search_mode">
+		<item>Baza</item>
+		<item>Vortoj, kiuj egalas al via teksto</item>
+		<item>Vortoj, kiuj komenciĝas per via teksto</item>
+		<item>Vortoj, kiuj enhavas vian tekston</item>
+	</string-array>
+	<string name="title_help">Helpo pri DictionaryForMIDs</string>
+	<string name="desc_help">Uzu ĵokerajn signojn por rafini vian serĉon:\n%1$c trovas iun ajn sinsekvon de signoj\n%2$c trovas iun ajn unuopan signon\n\nPor pli stiri la serĉon:\n%3$c (kiel la unua signo) trovas rezultojn, kiuj komenciĝas per via teksto\n%4$c (postmetite) trovas rezultojn, kiuj finiĝas per via teksto.\n\nBonvolu noti: Se vi aldonos ĵokerajn signojn, tio superregos vian elektitan serĉmanieron.</string>
+	<string name="desc_see_website">Vidu retejon por pli da informoj:\n%1$s</string>
+	<string name="tab_load_recent">Lastatempa</string>
+	<string name="tab_load_from_file">De dosiero</string>
+	<string name="tab_load_included">Inkluzivita</string>
+	<string name="tab_load_download">Elŝuti</string>
+	<string name="title_activity_about">Pria Ekrano</string>
+	<string name="title_activity_help">Helpa Ekrano</string>
+	<string name="title_activity_choose_dictionary">Elekti vortaron</string>
+	<string name="title_activity_file_list">Elekti vortaron</string>
+	<string name="title_activity_dictionary_list">Elekti vortaron</string>
+	<string name="title_activity_recent_list">Elekti vortaron</string>
+	<string name="title_activity_preferences">Preferoj</string>
+	<string name="title_activity_install_dictionary">Instali vortaron</string>
+	<string name="title_recent_dictionary">%1$s: %2$s</string>
+	<string name="title_remove_from_list">Forigi el listo</string>
+	<string name="app_description">DictionaryForMIDs estas libera multlingva vortaro por poŝtelefonoj kaj poŝkomputiloj</string>
+	<string name="hint_enter_word">Tajpu vorton tradukotan</string>
+	<string name="hint_filter">Filtri</string>
+	<string name="title_pref_search_options">Serĉagordoj</string>
+	<string name="title_pref_search_mode">Serĉmaniero</string>
+	<string name="title_pref_max_results">Maksimumo da rezultoj</string>
+	<string name="title_pref_timeout">Eltempiĝo dum serĉo</string>
+	<string name="title_pref_display_options">Agordi aspekton</string>
+	<string name="title_pref_result_font_size">Tipara grando por rezultoj</string>
+	<string name="title_pref_ignore_font_styles">Ignori tiparajn stilojn</string>
+	<string name="title_pref_language_code">Lingvo</string>
+	<string name="title_default_language_code">Defaŭlta</string>
+	<string name="language_english">angla</string>
+	<string name="language_vietnamese">vjetnama</string>
+	<string name="language_chinese">ĉina</string>
+	<string name="language_japanese">japana</string>
+	<string name="language_thai">taja</string>
+	<string name="language_hindi">hindia</string>
+	<string name="language_indonesian">indonezia</string>
+	<string name="language_french">franca</string>
+	<string name="language_spanish">hispana</string>
+	<string name="language_german">germana</string>
+	<string name="language_italian">itala</string>
+	<string name="language_latin">latina</string>
+	<string name="language_russian">rusa</string>
+	<string name="language_arabic">araba</string>
+	<string name="language_czech">ĉeĥa</string>
+	<string name="language_slovak">slovaka</string>
+	<string name="title_about_ui_translation">Traduko:</string>
+</resources>
