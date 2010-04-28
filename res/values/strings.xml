@@ -180,6 +180,7 @@
 	<string name="title_pref_language_code">Language</string>
 	<string name="title_default_language_code">Default</string>
 	<string name="language_english">English</string>
+	<string name="language_esperanto">Esperanto</string>
 	<string name="language_vietnamese">Vietnamese</string>
 	<string name="language_chinese">Chinese</string>
 	<string name="language_japanese">Japanese</string>

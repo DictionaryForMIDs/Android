@@ -158,6 +158,7 @@
 	<string name="title_pref_language_code">Nyelv</string>
 	<string name="title_default_language_code">Alapbeállítás</string>
 	<string name="language_english">Angol</string>
+	<string name="language_esperanto">Esperanto</string>
 	<string name="language_vietnamese">Vietnami</string>
 	<string name="language_chinese">Kínai</string>
 	<string name="language_japanese">Japán</string>
