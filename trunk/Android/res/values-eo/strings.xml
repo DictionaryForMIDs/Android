@@ -11,7 +11,7 @@
 		here, it will appear on the about screen; leave empty if you don't
 		want to be mentioned
 	-->
-	<string name="title_user_interface_translator"></string>
+	<string name="title_user_interface_translator">Jacob Nordfalk kaj Simon Davies</string>
 	
 	<string name="app_name">DictionaryForMIDs</string>
 	<string name="no_files">Neniu dosiero trovita.</string>
@@ -20,8 +20,8 @@
 	<string name="to_sdcard">/sdcard</string>
 	<string name="title_please_wait">Bonvolu atendi</string>
 	<string name="msg_searching">Serĉas...</string>
-	<string name="copy_all">Kopias ĉion</string>
-	<string name="copy_word">Kopio: %1$s</string>
+	<string name="copy_all">Kopii ĉion</string>
+	<string name="copy_word">Kopii: %1$s</string>
 	<string name="not_found">ne trovita</string>
 	<string name="no_included_dictionaries">Ne trovis inkluzivitajn vortarojn.\n\nKlaku ĉi tie por elŝuti unu.</string>
 	<string name="no_recent_dictionaries">Ne trovis lastatempe uzitajn vortarojn.\n\nKlaku ĉi tie por elŝuti unu.</string>
@@ -96,17 +96,17 @@
 	<string name="msg_load_dictionary_first">Bonvolu malfermi vortaron antaŭe.</string>
 	<string name="msg_reload_dictionary">Bonvolu malfermi la vortaron denove.</string>
 	<string name="msg_exception">Okazis escepto:\n%1$s</string>
-	<string name="msg_restart_app_after_settings_changed">Restartigi la aplikaĵon, por ke lingvaj agordoj ekefiku.</string>
+	<string name="msg_restart_app_after_settings_changed">Restartu la programon, por ke lingvaj agordoj ekefiku.</string>
 	<string name="button_ok">Bone</string>
 	<string name="button_cancel">Nuligi</string>
 	<string name="button_do_not_show_again">Ne montru denove</string>
-	<string name="msg_download_dictionaries">Elŝuti vortaron necesigas 4 paŝojn (oni supozas ĉi tie, ke vi jam instalis dosieradministrilon kiel Astro):\n\n1.Elektu kaj elŝutu vortaron el la retejo, kiu aperos, post kiam vi fermos ĉi tiun mesaĝon. Noto: Nur vortaroj de versio 2.4.4 aŭ pli novaj estas subtenataj.\n\n2.Eltiru la enhavon de la zip-dosiero al dosierujo en via SD-karto (ekz. per Astro).\n\n3.Laŭvole: Eltiri la enhavon de la enpakita jar-arkivo al via SD-karto por plirapidigi serĉojn.\n\n4.Elektu la vortaron en la antaŭa dialogujo.\n\nAlternative, vi povus elŝuti kaj eltiri la vortaron per via komputilo, tiam transigi la dosierojn al via SD-karto.</string>
+	<string name="msg_download_dictionaries">Por elŝuti vortaron necesas 4 paŝojn (oni supozas ĉi tie, ke vi jam instalis dosieradministrilon kiel Astro):\n\n1.Elektu kaj elŝutu vortaron el la retejo, kiu aperos, post kiam vi fermos ĉi tiun mesaĝon. Noto: Nur vortaroj de versio 2.4.4 aŭ pli novaj estas subtenataj.\n\n2.Eltiru la enhavon de la zip-dosiero al dosierujo en via SD-karto (ekz. per Astro).\n\n3.Laŭvole: Eltiri la enhavon de la enpakita jar-arkivo al via SD-karto por plirapidigi serĉojn.\n\n4.Elektu la vortaron en la antaŭa dialogujo.\n\nAlternative, vi povus elŝuti kaj eltiri la vortaron per via komputilo, tiam transigi la dosierojn al via SD-karto.</string>
 	<string name="msg_clear_recent_dictionaries_list">Vakigi la liston de lastatempaj vortaroj?</string>
 	<string name="msg_cancel_installation">Ĉesigi la nunan instalon?</string>
 	<string name="msg_load_dictionary">Malfermi novan vortaron nun?\n\nVi povas ankaŭ poste malfermi ĝin per la listo de lastatempaj vortaroj.</string>
 	<string name="button_load_dictionary_from_current_directory">Malfermi vortaron el la aktuala dosierujo</string>
 	<string name="msg_dictionary_error">Vortareraro</string>
-	<string name="msg_dictionary_not_found">Vortaro ne esti malfermebla.\n\nVi povas elekti vortaron en la sekvanta dialogujo.</string>
+	<string name="msg_dictionary_not_found">Ne eblis malfermi vortaron.\n\nVi povas elekti vortaron en la sekvanta dialogujo.</string>
 	<string name="msg_dictionary_load_error">Eraro dum malfermo de vortaro.</string>
 	<string name="msg_internal_dictionary_load_error">Eraro dum malfermo de internaj vortaroj.\n\n%1$s</string>
 	<string name="title_current_path">&gt; %1$s</string>
@@ -129,7 +129,7 @@
 	<string name="attribute_jar_directory">/sdcard/DictionaryForMIDs/jar/</string>
 	<string name="attribute_zip_directory">/sdcard/DictionaryForMIDs/zip/</string>
 	<string name="title_version">Versio: %1$s</string>
-	<string name="title_about_copyright">La Ĝava aplikaĵo DictionaryForMIDs estas libera programo: vi povas redistribui ĝin kaj/aŭ modifi
+	<string name="title_about_copyright">La Java aplikaĵo DictionaryForMIDs estas libera programo: vi povas redistribui ĝin kaj/aŭ modifi
     ĝin sub la kondiĉoj de la Ĝenerala Publika Permesilo (General Public License, GPL) de GNU, eldonita de Free Software Foundation; aŭ versio 2 de la Permesilo aŭ
     (je via elekto) iu ajn versio pli lastatempa. Vidu dosieron COPYING aŭ http://www.gnu.org/licenses/\n\nOni distribuas ĉi tiun programon esperante, ke ĝi estos utila,
     sed SEN AJNA GARANTIO; sen eĉ la implicita garantio de VENDOTAŬGECO aŭ TAŬGECO POR APARTA CELO. Vidu la GPL por kromaj detaloj.
@@ -148,7 +148,7 @@
 		<item>Vortoj, kiuj komenciĝas per via teksto</item>
 		<item>Vortoj, kiuj enhavas vian tekston</item>
 	</string-array>
-	<string name="title_help">Helpo pri DictionaryForMIDs</string>
+	<string name="title_help">Helpo por DictionaryForMIDs</string>
 	<string name="desc_help">Uzu ĵokerajn signojn por rafini vian serĉon:\n%1$c trovas iun ajn sinsekvon de signoj\n%2$c trovas iun ajn unuopan signon\n\nPor pli stiri la serĉon:\n%3$c (kiel la unua signo) trovas rezultojn, kiuj komenciĝas per via teksto\n%4$c (postmetite) trovas rezultojn, kiuj finiĝas per via teksto.\n\nBonvolu noti: Se vi aldonos ĵokerajn signojn, tio superregos vian elektitan serĉmanieron.</string>
 	<string name="desc_see_website">Vidu retejon por pli da informoj:\n%1$s</string>
 	<string name="tab_load_recent">Lastatempa</string>
@@ -166,7 +166,7 @@
 	<string name="title_recent_dictionary">%1$s: %2$s</string>
 	<string name="title_remove_from_list">Forigi el listo</string>
 	<string name="app_description">DictionaryForMIDs estas libera multlingva vortaro por poŝtelefonoj kaj poŝkomputiloj</string>
-	<string name="hint_enter_word">Tajpu vorton tradukotan</string>
+	<string name="hint_enter_word">Entajpu vorton</string>
 	<string name="hint_filter">Filtri</string>
 	<string name="title_pref_search_options">Serĉagordoj</string>
 	<string name="title_pref_search_mode">Serĉmaniero</string>
