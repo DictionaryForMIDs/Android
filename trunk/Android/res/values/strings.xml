@@ -137,6 +137,7 @@
     GNU General Public License for more details.
 	</string>
 	<string name="title_about_dictionary">Dictionary:</string>
+	<string name="title_about_ui_translation">Localization:</string>
 	<string name="title_information">Info</string>
 	<string name="title_welcome">Welcome!</string>
 	<string name="title_seconds">%1$d sec</string>
@@ -196,5 +197,18 @@
 	<string name="language_arabic">Arabic</string>
 	<string name="language_czech">Czech</string>
 	<string name="language_slovak">Slovak</string>
-	<string name="title_about_ui_translation">Localization:</string>
+	<string name="language_bulgarian">Bulgarian</string>
+	<string name="language_catalan">Catalan</string>
+	<string name="language_persian">Persian</string>
+	<string name="language_finnish">Finnish</string>
+	<string name="language_greek">Greek</string>
+	<string name="language_hebrew">Hebrew</string>
+	<string name="language_croatian">Croatian</string>
+	<string name="language_hungarian">Hungarian</string>
+	<string name="language_lithuanian">Lithuanian</string>
+	<string name="language_dutch">Dutch</string>
+	<string name="language_polish">Polish</string>
+	<string name="language_portuguese">Portuguese</string>
+	<string name="language_swedish">Swedish</string>
+	<string name="language_norwegian">Norwegian</string>
 </resources>

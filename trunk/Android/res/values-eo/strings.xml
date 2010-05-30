@@ -135,6 +135,7 @@
     sed SEN AJNA GARANTIO; sen eĉ la implicita garantio de VENDOTAŬGECO aŭ TAŬGECO POR APARTA CELO. Vidu la GPL por kromaj detaloj.
 	</string>
 	<string name="title_about_dictionary">Vortaro:</string>
+	<string name="title_about_ui_translation">Traduko:</string>
 	<string name="title_information">Informoj</string>
 	<string name="title_welcome">Bonvenon!</string>
 	<string name="title_seconds">%1$d sek</string>
@@ -193,5 +194,18 @@
 	<string name="language_arabic">araba</string>
 	<string name="language_czech">ĉeĥa</string>
 	<string name="language_slovak">slovaka</string>
-	<string name="title_about_ui_translation">Traduko:</string>
+	<string name="language_bulgarian">bulgara</string>
+	<string name="language_catalan">kataluna</string>
+	<string name="language_persian">persa</string>
+	<string name="language_finnish">finna</string>
+	<string name="language_greek">greka</string>
+	<string name="language_hebrew">hebrea</string>
+	<string name="language_croatian">kroata</string>
+	<string name="language_hungarian">hungara</string>
+	<string name="language_lithuanian">litova</string>
+	<string name="language_dutch">nederlanda</string>
+	<string name="language_polish">pola</string>
+	<string name="language_portuguese">portugala</string>
+	<string name="language_swedish">sveda</string>
+	<string name="language_norwegian">norvega</string>
 </resources>

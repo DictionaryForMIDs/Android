@@ -7,7 +7,7 @@
 		here, it will appear on the about screen; leave empty if you don't
 		want to be mentioned
 	-->
-	<string name="title_user_interface_translator">Tine Haurum</string>
+	<string name="title_user_interface_translator">Tine Haurum, Jacob Nordfalk</string>
 	
 	<string name="app_name">DictionaryForMIDs</string>
 	<string name="no_files">Ingen filer fundet.</string>
@@ -118,6 +118,7 @@
 	<string name="title_version">Version: %1$s</string>
 	<string name="title_about_copyright">DictionaryForMIDs Java-program er gratis software: du kan redistribuere det og/eller ændre det under betingelserne i GNU General Public License som offentliggjort af Free Software Foundation; enten version 2 af licensen eller (efter dit valg) enhver senere version. Se filkopieringen eller http://www.gnu.org/licenses/\n\nDette program er distribueret i håb om at det vil være til nytte, men UDEN NOGEN GARENTI; selv uden den underforståede garanti for SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Se GNU General Public License for flere detaljer.</string>
 	<string name="title_about_dictionary">Ordbog:</string>
+	<string name="title_about_ui_translation">Oversættelse:</string>
 	<string name="title_information">Info</string>
 	<string name="title_welcome">Velkommen!</string>
 	<string name="title_seconds">%1$d sec</string>
@@ -169,4 +170,18 @@
 	<string name="language_arabic">Arabisk</string>
 	<string name="language_czech">Tjekkisk</string>
 	<string name="language_slovak">Slovakisk</string>
+	<string name="language_bulgarian">Bulgarsk</string>
+<!--	<string name="language_catalan">[no translation]</string> -->
+	<string name="language_persian">Persisk</string>
+	<string name="language_finnish">Finsk</string>
+	<string name="language_greek">Græsk</string>
+	<string name="language_hebrew">Hebraisk</string>
+	<string name="language_croatian">Kroatisk</string>
+	<string name="language_hungarian">Ungarsk</string>
+	<string name="language_lithuanian">Litauisk</string>
+	<string name="language_dutch">Hollandsk</string>
+	<string name="language_polish">Polsk</string>
+	<string name="language_portuguese">Portugisisk</string>
+	<string name="language_swedish">Svensk</string>
+	<string name="language_norwegian">Norsk</string>
 </resources>
