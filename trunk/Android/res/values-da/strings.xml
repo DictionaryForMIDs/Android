@@ -16,10 +16,10 @@
 	<string name="to_sdcard">/sdcard</string>
 	<string name="title_please_wait">Vent venligst</string>
 	<string name="msg_searching">Søger ...</string>
-	<string name="copy_all">Kopier alle</string>
+	<string name="copy_all">Kopier alt</string>
 	<string name="copy_word">Kopier: %1$s</string>
 	<string name="not_found">ikke fundet</string>
-	<string name="no_included_dictionaries">Ingen inkluderede ordbøger fundet. \n\nklik her for at hente en.</string>
+	<string name="no_included_dictionaries">Ingen inkluderede ordbøger fundet. \n\nKlik her for at hente en.</string>
 	<string name="no_recent_dictionaries">Ingen nyligt indlæste ordbøger findes. \n\nKlik her for at hente en.</string>
 	<string name="loading_download_dictionaries">vent venligst.\n\nhenter tilgængelige ordbøger...</string>
 	<string name="no_download_dictionaries">Beklager, der er i øjeblikket ingen ordbøger tilgængelige for download.</string>
