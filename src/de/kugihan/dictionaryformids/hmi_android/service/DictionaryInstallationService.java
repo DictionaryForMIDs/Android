@@ -29,6 +29,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Environment;
 import android.os.IBinder;
 import android.util.Log;
 import de.kugihan.dictionaryformids.hmi_android.DictionaryForMIDs;
@@ -516,9 +517,20 @@ public final class DictionaryInstallationService extends Service {
 				return;
 			}
 			handleUpdate(STATUS_CREATING_FOLDERS, 0);
+			
+			// check if sd card is available/accessible
+			final String storageState = Environment.getExternalStorageState();
+			if (!Environment.MEDIA_MOUNTED.equals(storageState)) {
+				// TODO: create resource string
+				handleException(new InterruptedException(
+						"External storage is not accessible. Please make sure your device is not connected via USB.\n\nStorage state: "
+								+ storageState));
+				return;
+			}
 
-			File zipDownloadDirectory = new File(
-					getString(R.string.attribute_zip_directory));
+			File zipDownloadDirectory = new File(getString(
+					R.string.attribute_zip_directory, Environment
+							.getExternalStorageDirectory()));
 			try {
 				createParentDirectories(zipDownloadDirectory);
 			} catch (IOException exception) {
@@ -533,7 +545,8 @@ public final class DictionaryInstallationService extends Service {
 			handleUpdate(STATUS_CREATING_FOLDERS, PERCENTAGE_BASE / 2);
 
 			File jarDirectory = new File(
-					getString(R.string.attribute_jar_directory));
+					getString(R.string.attribute_jar_directory, Environment
+							.getExternalStorageDirectory()));
 			try {
 				createParentDirectories(jarDirectory);
 			} catch (IOException exception) {
@@ -547,11 +560,15 @@ public final class DictionaryInstallationService extends Service {
 			}
 			handleUpdate(STATUS_CREATING_FOLDERS, PERCENTAGE_BASE);
 
-			final String zipFile = getString(R.string.attribute_zip_directory)
+			final String zipFile = getString(R.string.attribute_zip_directory,
+					Environment.getExternalStorageDirectory())
 					+ file + EXTENSION_ZIP_ARCHIVE;
-			final String jarFile = getString(R.string.attribute_jar_directory)
+			final String jarFile = getString(R.string.attribute_jar_directory,
+					Environment.getExternalStorageDirectory())
 					+ file + EXTENSION_JAR_ARCHIVE;
-			final String dictionaryDirectory = getString(R.string.attribute_installation_directory)
+			final String dictionaryDirectory = getString(
+					R.string.attribute_installation_directory, Environment
+							.getExternalStorageDirectory())
 					+ file + File.separator;
 
 			String resultPath;
