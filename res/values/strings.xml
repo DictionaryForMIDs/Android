@@ -28,6 +28,7 @@
 	<string name="loading_download_dictionaries">Please wait.\n\nLoading available dictionaries...</string>
 	<string name="no_download_dictionaries">Sorry, there are currently no dictionaries available for download.</string>
 	<string name="msg_error_downloading_available_dictionaries">An error occurred while downloading the list of available dictionaries.\n\n\nClick here to try again.\n\n\nDetails:\n%1$s</string>
+	<string name="msg_error_accessing_storage">External storage is not accessible. Please make sure your device is not connected via USB.\n\nCurrent storage state: %1$s</string>
 	<string name="msg_suggest_update">Your version of DictionaryForMIDs is outdated. Please update before downloading dictionaries.\nUpdate now?</string>
 	<string name="msg_suggest_update_with_message">Your version of DictionaryForMIDs is outdated. Please update before downloading dictionaries.\nUpdate now?\n\nDetails: %1$s</string>
 	<string name="msg_confirm_installation">Download and install \"%1$s\" dictionary?\nSize: unknown</string>	

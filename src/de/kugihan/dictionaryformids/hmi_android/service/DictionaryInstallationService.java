@@ -521,10 +521,8 @@ public final class DictionaryInstallationService extends Service {
 			// check if sd card is available/accessible
 			final String storageState = Environment.getExternalStorageState();
 			if (!Environment.MEDIA_MOUNTED.equals(storageState)) {
-				// TODO: create resource string
-				handleException(new InterruptedException(
-						"External storage is not accessible. Please make sure your device is not connected via USB.\n\nStorage state: "
-								+ storageState));
+				handleException(new InterruptedException(getString(
+						R.string.msg_error_accessing_storage, storageState)));
 				return;
 			}
 
