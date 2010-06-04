@@ -114,9 +114,6 @@
 	<string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
 	<string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/dict-dwn-list.php?p=%1$d&amp;v=%2$s</string>
 	<string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
-	<string name="attribute_installation_directory">/sdcard/DictionaryForMIDs/dict/</string>
-	<string name="attribute_jar_directory">/sdcard/DictionaryForMIDs/jar/</string>
-	<string name="attribute_zip_directory">/sdcard/DictionaryForMIDs/zip/</string>
 	<string name="title_version">版本: %1$s</string>
 	<string name="title_about_copyright">DictionaryForMIDs Java application is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
