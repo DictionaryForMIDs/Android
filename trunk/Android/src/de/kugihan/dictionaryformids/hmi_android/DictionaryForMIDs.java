@@ -157,6 +157,11 @@ public final class DictionaryForMIDs extends Activity {
 	 * a bundle.
 	 */
 	private static final String BUNDLE_SEARCH_OPTIONS_VISIBILITY = "searchOptionsVisibility";
+	
+	/**
+	 * The key of an integer specifying the number of currently displayed translations.
+	 */
+	private static final String BUNDLE_NUMBER_OF_TRANSLATIONS = "numberOfTranslations";
 
 	/**
 	 * The tag used for log messages.
@@ -224,6 +229,7 @@ public final class DictionaryForMIDs extends Activity {
 		outState.putInt(BUNDLE_HEADING_VISIBILITY,
 				((LinearLayout) findViewById(R.id.HeadingLayout))
 						.getVisibility());
+		outState.putInt(BUNDLE_NUMBER_OF_TRANSLATIONS, translations.getCount());
 		super.onSaveInstanceState(outState);
 	}
 
@@ -237,6 +243,11 @@ public final class DictionaryForMIDs extends Activity {
 			final LanguageSpinnerAdapter languageSpinnerAdapter = new LanguageSpinnerAdapter(
 					DictionaryDataFile.supportedLanguages);
 			spinner.setAdapter(languageSpinnerAdapter);
+		} else {
+			// When the previously loaded dictionary is not available any more
+			// (because Android used the memory while we were in background)
+			// we just reload the last dictionary
+			loadLastUsedDictionary(false);
 		}
 
 		loadLastNonConfigurationInstance();
@@ -244,9 +255,18 @@ public final class DictionaryForMIDs extends Activity {
 		final int selectedLanguage = savedInstanceState
 				.getInt(BUNDLE_SELECTED_LANGUAGE);
 		spinner.setSelection(selectedLanguage);
+		
+		final int previousNumberOfTranslations = savedInstanceState
+				.getInt(BUNDLE_NUMBER_OF_TRANSLATIONS);
 
-		final CharSequence statusMessage = savedInstanceState
+		CharSequence statusMessage = savedInstanceState
 				.getCharSequence(BUNDLE_STATUS_MESSAGE);
+		if (translations.isEmpty() && previousNumberOfTranslations > 0) {
+			// status could be something like 5 results found
+			// so clear it if there are no translations available
+			// and at least 1 translation was available before
+			statusMessage = "";
+		}
 		((TextView) findViewById(R.id.output)).setText(statusMessage);
 
 		final int headingVisiblity = savedInstanceState
