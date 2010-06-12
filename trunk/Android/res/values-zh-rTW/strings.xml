@@ -47,13 +47,13 @@
 	<string name="title_installation_status">安裝狀態</string>
 	<string name="msg_installing_dictionary">正在安裝辭典...</string>
 	<string name="msg_installation_aborted">安裝被使用者取消。</string>
-	<string name="msg_installation_status">狀態: %1$,.2f%%</string>
+	<string name="msg_installation_status">狀態: %1$.2f%%</string>
 	<string name="msg_compressed_entry_not_found">在檔案 \"%1$s\" 中沒有條目比對以下樣式 \"%2$s\"</string>
 	<string name="unit_byte">B</string>
 	<string name="unit_kilo_byte">KB</string>
 	<string name="unit_mega_byte">MB</string>
 	<string name="unit_giga_byte">GB</string>
-	<string name="file_size">%1$,.2f %2$s</string>
+	<string name="file_size">%1$.2f %2$s</string>
 	<string name="results_found_maximum">找到多餘 %1$d (最多) 個結果。</string>
 	<string name="results_found_cancel">取消之前找個 %1$d 結果。</string>
 	<string name="results_found_timeout">逾時之前找個 %1$d 結果。</string>

@@ -50,13 +50,13 @@
 	<string name="title_installation_status">Installation status</string>
 	<string name="msg_installing_dictionary">Installing dictionary...</string>
 	<string name="msg_installation_aborted">Installation aborted by user.</string>
-	<string name="msg_installation_status">Status: %1$,.2f%%</string>
+	<string name="msg_installation_status">Status: %1$.2f%%</string>
 	<string name="msg_compressed_entry_not_found">In archive \"%1$s\" there was no entry matching the following pattern \"%2$s\"</string>
 	<string name="unit_byte">B</string>
 	<string name="unit_kilo_byte">KB</string>
 	<string name="unit_mega_byte">MB</string>
 	<string name="unit_giga_byte">GB</string>
-	<string name="file_size">%1$,.2f %2$s</string>
+	<string name="file_size">%1$.2f %2$s</string>
 	<string name="results_found_maximum">More than %1$d (maximum) results found.</string>
 	<string name="results_found_cancel">%1$d result(s) found before canceling.</string>
 	<string name="results_found_timeout">%1$d result(s) found before timeout.</string>
