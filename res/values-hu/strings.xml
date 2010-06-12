@@ -47,13 +47,13 @@
 	<string name="title_installation_status">A telepítés állapota</string>
 	<string name="msg_installing_dictionary">A szótár telepítése folyamatban...</string>
 	<string name="msg_installation_aborted">A telepítést a felhasználó megszakította.</string>
-	<string name="msg_installation_status">Állapot: %1$,.2f%%</string>
+	<string name="msg_installation_status">Állapot: %1$.2f%%</string>
 	<string name="msg_compressed_entry_not_found">A(z) \"%1$s\" archívumban nincs a(z) \"%2$s\" mintához illeszthető bejegyzés</string>
 	<string name="unit_byte">B</string>
 	<string name="unit_kilo_byte">KB</string>
 	<string name="unit_mega_byte">MB</string>
 	<string name="unit_giga_byte">GB</string>
-	<string name="file_size">%1$,.2f %2$s</string>
+	<string name="file_size">%1$.2f %2$s</string>
 	<string name="results_found_maximum">A találatok száma nagyobb mint %1$d (a maximum).</string>
 	<string name="results_found_cancel">%1$d találat a törlés előtt.</string>
 	<string name="results_found_timeout">%1$d találat az idő lejárta előtt.</string>

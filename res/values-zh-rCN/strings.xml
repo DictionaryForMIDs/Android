@@ -47,13 +47,13 @@
 	<string name="title_installation_status">安装状态</string>
 	<string name="msg_installing_dictionary">正在安装辞典...</string>
 	<string name="msg_installation_aborted">安装被用户取消。</string>
-	<string name="msg_installation_status">状态: %1$,.2f%%</string>
+	<string name="msg_installation_status">状态: %1$.2f%%</string>
 	<string name="msg_compressed_entry_not_found">在文件 \"%1$s\" 中没有条目匹配以下样式 \"%2$s\"</string>
 	<string name="unit_byte">B</string>
 	<string name="unit_kilo_byte">KB</string>
 	<string name="unit_mega_byte">MB</string>
 	<string name="unit_giga_byte">GB</string>
-	<string name="file_size">%1$,.2f %2$s</string>
+	<string name="file_size">%1$.2f %2$s</string>
 	<string name="results_found_maximum">找到多余 %1$d (最多) 个结果。</string>
 	<string name="results_found_cancel">取消之前找个 %1$d 结果。</string>
 	<string name="results_found_timeout">超时之前找个 %1$d 结果。</string>

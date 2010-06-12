@@ -45,13 +45,13 @@
 	<string name="title_installation_status">Installations status</string>
 	<string name="msg_installing_dictionary">Installerer ordbog ...</string>
 	<string name="msg_installation_aborted">Installation afbrudt af bruger.</string>
-	<string name="msg_installation_status">Status: %1$,.2f%%</string>
+	<string name="msg_installation_status">Status: %1$.2f%%</string>
 	<string name="msg_compressed_entry_not_found">I arkivet \&quot;%1$s\&quot; var der ikke nogen entry der matcher det følgende mønster \&quot;%2$s\&quot;</string>
 	<string name="unit_byte">B</string>
 	<string name="unit_kilo_byte">KB</string>
 	<string name="unit_mega_byte">MB</string>
 	<string name="unit_giga_byte">GB</string>
-	<string name="file_size">%1$,.2f %2$s</string>
+	<string name="file_size">%1$.2f %2$s</string>
 	<string name="results_found_maximum">Flere end %1$d (maksimum) resultater fundet.</string>
 	<string name="results_found_cancel">%1$d resultat(er) fundet før anullering.</string>
 	<string name="results_found_timeout">%1$d resultat(er) fundet før timeout.</string>
