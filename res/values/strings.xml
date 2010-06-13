@@ -209,4 +209,6 @@
 	<string name="language_portuguese">Portuguese</string>
 	<string name="language_swedish">Swedish</string>
 	<string name="language_norwegian">Norwegian</string>
+	<string name="language_turkish">Turkish</string>
+	<string name="language_tagalog">Tagalog</string>
 </resources>
