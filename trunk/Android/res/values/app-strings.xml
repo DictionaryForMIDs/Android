@@ -94,5 +94,37 @@
 		<item>@string/language_czech</item>
 		<item>Slovak</item>
 		<item>@string/language_slovak</item>
+		<item>Bulgarian</item>
+		<item>@string/language_bulgarian</item>
+		<item>Catalan</item>
+		<item>@string/language_catalan</item>
+		<item>Persian</item>
+		<item>@string/language_persian</item>
+		<item>Finnish</item>
+		<item>@string/language_finnish</item>
+		<item>Greek</item>
+		<item>@string/language_greek</item>
+		<item>Hebrew</item>
+		<item>@string/language_hebrew</item>
+		<item>Croatian</item>
+		<item>@string/language_croatian</item>
+		<item>Hungarian</item>
+		<item>@string/language_hungarian</item>
+		<item>Lithuanian</item>
+		<item>@string/language_lithuanian</item>
+		<item>Dutch</item>
+		<item>@string/language_dutch</item>
+		<item>Polish</item>
+		<item>@string/language_polish</item>
+		<item>Portuguese</item>
+		<item>@string/language_portuguese</item>
+		<item>Swedish</item>
+		<item>@string/language_swedish</item>
+		<item>Norwegian</item>
+		<item>@string/language_norwegian</item>
+		<item>Turkish</item>
+		<item>@string/language_turkish</item>
+		<item>Tagalog</item>
+		<item>@string/language_tagalog</item>
 	</string-array>
 </resources>
