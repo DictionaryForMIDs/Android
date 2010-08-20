@@ -16,6 +16,11 @@ import android.os.Parcelable;
  * 
  */
 public final class DownloadDictionaryItem implements Parcelable {
+	
+	/**
+	 * The dictionaryId of the dictionary.
+	 */
+	private int dictionaryId;
 
 	/**
 	 * The name of the dictionary.
@@ -40,6 +45,8 @@ public final class DownloadDictionaryItem implements Parcelable {
 	/**
 	 * Constructor to fill all standard parameters.
 	 * 
+	 * @param id
+	 *            the id of the dictionary
 	 * @param name
 	 *            the name of the dictionary
 	 * @param link
@@ -49,12 +56,22 @@ public final class DownloadDictionaryItem implements Parcelable {
 	 * @param size
 	 *            the size of the dictionary
 	 */
-	public DownloadDictionaryItem(final String name, final String link,
-			final String fileName, final long size) {
+	public DownloadDictionaryItem(final int id, final String name,
+			final String link, final String fileName, final long size) {
+		dictionaryId = id;
 		dictionaryName = name;
 		dictionaryLink = link;
 		dictionaryFileName = fileName;
 		dictionarySize = size;
+	}
+	
+	/**
+	 * Returns the dictionaryId of the dictionary.
+	 * 
+	 * @return the dictionaryId of the dictionary
+	 */
+	public int getId() {
+		return dictionaryId;
 	}
 
 	/**

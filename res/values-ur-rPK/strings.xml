@@ -120,9 +120,6 @@
 	<string name="title_load_dictionary_first">پہلے لغت لوڈ کریں۔</string>
 	<string name="title_about_heading">جاوا ایپلی کیشن DictonaryForMIDs</string>
 	<string name="title_about_copyright_owner">حق تصنیف Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) اور دیگر معاونین۔</string>
-	<string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
-	<string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/dict-dwn-list.php?p=%1$d&amp;v=%2$s</string>
-	<string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
 	<string name="title_version">ورژن: %1$s\t(%2$d)</string>
 	<string name="title_about_copyright">DictionaryForMIDs جاوا ایپلی کیشن مفت سافٹ وئیر ہے: آپ اس کو Free Software Foundation کی شائع کردہ شرائط کے ذیر تحت بانٹ اور/یا تبدیل کر سکتے ہیں؛ یا لائسنس کا ورژن 2 یا پھر آپ کی مرضی کے مطابق، اس کے بعد کا کوئی ورژن۔ مثل COPYING یا http://www.gnu.org/licenses/ دیکھیں\n\n یہ پروگرام اس امید کے ساتھ بانٹا گیا ہے کہ یہ فائدہ مند ہو گا، لیکن یہ کسی بھی وارنٹی کے بغیر ہے؛ MERCHANTABILITY اور FITNESS FOR A PARTICULAR PURPOSE کی بھی وارنٹی کے بغیر۔ مزید تفاصیل کے لیے GNU General Public License دیکھیں۔</string>
 	<string name="title_about_dictionary">لغت:</string>

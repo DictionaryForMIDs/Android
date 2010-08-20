@@ -69,20 +69,21 @@ public final class DictionaryListParser {
 	 */
 	private boolean parseDictionary(final JSONObject dictionary)
 			throws JSONException {
-		final String url = dictionary.getString("url");
+		final int id = dictionary.getInt("id");
+		final String url = dictionary.getString("zipUrl");
 		final String name = dictionary.getString("name");
 		final String fileName = dictionary.getString("fileName");
 		long size;
 		try {
-			size = dictionary.getLong("size");
+			size = dictionary.getLong("zipSize");
 		} catch (JSONException e) {
 			size = 0;
 		}
 		if (!isDictionaryDataValid(url, name, fileName, size)) {
 			return false;
 		}
-		final DownloadDictionaryItem item = new DownloadDictionaryItem(name, url,
-				fileName, size);
+		final DownloadDictionaryItem item = new DownloadDictionaryItem(id,
+				name, url, fileName, size);
 		return dictionaries.add(item);
 	}
 
@@ -192,6 +193,22 @@ public final class DictionaryListParser {
 	 */
 	public ArrayList<DownloadDictionaryItem> getDictionaries() {
 		return dictionaries;
+	}
+	
+	/**
+	 * Returns the dictionary which has the given id.
+	 * 
+	 * @param id
+	 *            of the dictionary to return
+	 * @return the dictionary or null
+	 */
+	public DownloadDictionaryItem getDictionary(int id) {
+		for (DownloadDictionaryItem item : dictionaries) {
+			if (item.getId() == id) {
+				return item;
+			}
+		}
+		return null;
 	}
 
 }

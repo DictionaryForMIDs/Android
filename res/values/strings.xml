@@ -123,7 +123,7 @@
 	<string name="title_about_heading">Java application DictonaryForMIDs</string>
 	<string name="title_about_copyright_owner">Copyright by Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) and other contributors.</string>
 	<string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
-	<string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/dict-dwn-list.php?p=%1$d&amp;v=%2$s</string>
+	<string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
 	<string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
 	<string name="title_version">Version: %1$s</string>
 	<string name="title_about_copyright">DictionaryForMIDs Java application is free software: you can redistribute it and/or modify
