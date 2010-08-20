@@ -91,6 +91,11 @@ public final class DialogHelper {
 	public static final int ID_CONFIRM_LOAD_DICTIONARY = 7;
 	
 	/**
+	 * The ID of the dialog asking if the default dictionary should be downloaded and installed.
+	 */
+	public static final int ID_CONFIRM_INSTALL_DICTIONARY = 8;
+	
+	/**
 	 * Saves the single instance of this class.
 	 */
 	private static DialogHelper instance = null;
@@ -132,6 +137,7 @@ public final class DialogHelper {
 			activity.dismissDialog(ID_WARN_EXTRACT_DICTIONARY);
 			activity.dismissDialog(ID_INSTALLATION_EXCEPTION);
 			activity.dismissDialog(ID_CONFIRM_LOAD_DICTIONARY);
+			activity.dismissDialog(ID_CONFIRM_INSTALL_DICTIONARY);
 		} catch (IllegalArgumentException e) {
 			Log.v(DictionaryForMIDs.LOG_TAG, "IllegelArgumentException: " + e);
 		}
@@ -161,6 +167,8 @@ public final class DialogHelper {
 			result = createInstallationExceptionDialog();
 		} else if (id == ID_CONFIRM_LOAD_DICTIONARY) {
 			result = createConfirmLoadDictionary();
+		} else if (id == ID_CONFIRM_INSTALL_DICTIONARY) {
+			result = createConfirmInstallDictionaryDialog();
 		}
 		if (result != null) {
 			onPrepareDialog(id, result);
@@ -354,6 +362,37 @@ public final class DialogHelper {
 		loadingDialog.setCancelable(true);
 		loadingDialog.setOnCancelListener(cancelTranslationListener);
 		return loadingDialog;
+	}
+	
+	/**
+	 * Creates a dialog asking the user to confirm the automatic installation of
+	 * a preselected dictionary.
+	 * 
+	 * @return the created dialog
+	 */
+	private Dialog createConfirmInstallDictionaryDialog() {
+		final Builder alertBuilder = new AlertDialog.Builder(activity);
+		alertBuilder.setMessage(R.string.msg_auto_install).setPositiveButton(
+				R.string.button_ok, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						DictionaryForMIDs.startChooseDictionaryActivity(
+								activity, true, true);
+					}
+				});
+		alertBuilder.setNeutralButton(R.string.button_cancel,
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						// just close the dialog and do nothing
+					}
+				});
+		alertBuilder.setNegativeButton(R.string.button_do_not_show_again,
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						// don't show the dialog again
+						Preferences.removeAutoInstallDictionaryId();
+					}
+				});
+		return alertBuilder.create();
 	}
 
 	/**

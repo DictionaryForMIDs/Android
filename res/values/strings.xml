@@ -28,6 +28,7 @@
 	<string name="loading_download_dictionaries">Please wait.\n\nLoading available dictionaries...</string>
 	<string name="no_download_dictionaries">Sorry, there are currently no dictionaries available for download.</string>
 	<string name="msg_error_downloading_available_dictionaries">An error occurred while downloading the list of available dictionaries.\n\n\nClick here to try again.\n\n\nDetails:\n%1$s</string>
+	<string name="msg_error_dictionary_not_found">The dictionary with the id %1$d is currently not available.</string>
 	<string name="msg_error_accessing_storage">External storage is not accessible. Please make sure your device is not connected via USB.\n\nCurrent storage state: %1$s</string>
 	<string name="msg_suggest_update">Your version of DictionaryForMIDs is outdated. Please update before downloading dictionaries.\nUpdate now?</string>
 	<string name="msg_suggest_update_with_message">Your version of DictionaryForMIDs is outdated. Please update before downloading dictionaries.\nUpdate now?\n\nDetails: %1$s</string>
@@ -37,6 +38,7 @@
 	<string name="msg_installation_exception_cause">Exception while installing:\n%1$s\n\nCause:\n%1$s</string>
 	<string name="msg_installation_already_started">Sorry, an installation is already active.</string>
 	<string name="msg_installation_started">Installation may take a while, you can continue to use the application.</string>
+	<string name="msg_auto_installation_started">Downloading \"%1$s\" dictionary, this may take a while.\n\nYou can exit the application now, the progress is shown in the status bar.</string>
 	<string name="msg_installation_finished">Dictionary installed!</string>	
 	<string name="msg_list_already_downloaded">List is already being downloaded.</string>
 	<string name="msg_installation_error">Installation error</string>
@@ -100,6 +102,7 @@
 	<string name="button_ok">OK</string>
 	<string name="button_cancel">Cancel</string>
 	<string name="button_do_not_show_again">Do not show again</string>
+	<string name="button_exit">Exit</string>
 	<string name="msg_download_dictionaries">Downloading a dictionary involves 4 steps (the following assumes you have a file manager like Astro installed):\n\n1.Choose and download a dictionary on the website that is opened after confirming this dialog. Note: Only dictionaries of version 2.4.4 or higher are supported.\n\n2.Extract the zip-file\'s content to a directory on your SD-card (e.g. using Astro).\n\n3.Optional: Extract the included jar-archive\'s content onto your SD-card for faster look-ups.\n\n4.Select the dictionary in the previously shown dialog.\n\nAlternatively, you could download and extract the dictionary using your PC, then transfer the files to your sd-card.</string>
 	<string name="msg_clear_recent_dictionaries_list">Clear list of recent dictionaries?</string>
 	<string name="msg_cancel_installation">Cancel current installation?</string>
@@ -112,6 +115,7 @@
 	<string name="title_current_path">&gt; %1$s</string>
 	<string name="msg_no_dictionary">Selected item does not look like a dictionary.</string>
 	<string name="title_load_dictionary">Load Dictionary...</string>
+	<string name="msg_auto_install">Looks like you have not yet installed the dictionary data.\n\nDo you want to download and install it now?</string>
 
 	<!--
 		specifies a translation direction, e.g. English -> German; if this
