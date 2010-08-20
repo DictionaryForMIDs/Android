@@ -192,6 +192,11 @@ public final class DictionaryForMIDs extends Activity {
 	 * The request code identifying a {@link ChooseDictionary} activity.
 	 */
 	private static final int REQUEST_DICTIONARY_PATH = 0;
+	
+	/**
+	 * The result that instructs the activity to exit.
+	 */
+	public static final int RESULT_EXIT = RESULT_FIRST_USER;
 
 	/**
 	 * The handle of the thread that loads the new dictionary or null.
@@ -308,6 +313,7 @@ public final class DictionaryForMIDs extends Activity {
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
 		// set up preferences
+		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		Preferences.attachToContext(getApplicationContext());
 		final SharedPreferences preferences = PreferenceManager
 				.getDefaultSharedPreferences(getBaseContext());
@@ -359,7 +365,9 @@ public final class DictionaryForMIDs extends Activity {
 		}
 
 		if (savedInstanceState == null) {
-			if (Preferences.isFirstRun()) {
+			if (Preferences.hasAutoInstallDictionary()) {
+				showDialog(DialogHelper.ID_CONFIRM_INSTALL_DICTIONARY);
+			} else if (Preferences.isFirstRun()) {
 				showDialog(DialogHelper.ID_FIRST_RUN);
 			} else {
 				final boolean silent = processIntent(getIntent());
@@ -1340,8 +1348,17 @@ public final class DictionaryForMIDs extends Activity {
 	protected void onActivityResult(final int requestCode,
 			final int resultCode, final Intent data) {
 		if (requestCode == REQUEST_DICTIONARY_PATH) {
-			if (resultCode == RESULT_OK) {
+			switch (resultCode) {
+			case RESULT_OK:
 				loadDictionaryFromIntent(data);
+				break;
+
+			case RESULT_EXIT:
+				finish();
+				break;
+				
+			default:
+				break;
 			}
 		}
 		super.onActivityResult(requestCode, resultCode, data);
@@ -1403,10 +1420,47 @@ public final class DictionaryForMIDs extends Activity {
 	 */
 	private void startChooseDictionaryActivity(
 			final boolean showDictionaryInstallation) {
-		Intent i = new Intent(DictionaryForMIDs.this, ChooseDictionary.class);
+		startChooseDictionaryActivity(DictionaryForMIDs.this, showDictionaryInstallation);
+	}
+
+	/**
+	 * Starts the ChooseDictionary activity and optionally set the installation
+	 * tab as default tab.
+	 * 
+	 * @param activity
+	 *            the activity to use
+	 * @param showDictionaryInstallation
+	 *            true if the installation tab should be the default tab
+	 */
+	public static void startChooseDictionaryActivity(final Activity activity,
+			final boolean showDictionaryInstallation) {
+		startChooseDictionaryActivity(activity, showDictionaryInstallation, false);
+	}
+
+	/**
+	 * Starts the ChooseDictionary activity and optionally set the installation
+	 * tab as default tab.
+	 * 
+	 * @param activity
+	 *            the activity to use
+	 * @param showDictionaryInstallation
+	 *            true if the installation tab should be the default tab
+	 * @param autoInstallDictionary
+	 *            true if the auto-install-dictionary should be installed now
+	 */
+	public static void startChooseDictionaryActivity(final Activity activity,
+			final boolean showDictionaryInstallation,
+			final boolean autoInstallDictionary) {
+		int autoInstallId = 0;
+		if (autoInstallDictionary) {
+			autoInstallId = Preferences.getAutoInstallDictionaryId();
+		}
+		final Intent i = new Intent(activity.getApplicationContext(),
+				ChooseDictionary.class);
 		i.putExtra(ChooseDictionary.BUNDLE_SHOW_DICTIONARY_INSTALLATION,
 				showDictionaryInstallation);
-		startActivityForResult(i, REQUEST_DICTIONARY_PATH);
+		i.putExtra(InstallDictionary.INTENT_AUTO_INSTALL_ID, autoInstallId);
+		activity.startActivityForResult(i, REQUEST_DICTIONARY_PATH);
 	}
 
 	/**

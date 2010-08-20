@@ -84,6 +84,11 @@ public final class InstallDictionary extends ListActivity implements
 	 * destroyed.
 	 */
 	private static final String BUNDLE_VISIBLE_DIALOG_ID = "visibleDialogId";
+	
+	/**
+	 * The key of an integer > 0 specifying the dictionary that should be installed.
+	 */
+	public static final String INTENT_AUTO_INSTALL_ID = "autoInstallId";
 
 	/**
 	 * ID specifying the Android platform to the dictionary list service.
@@ -142,6 +147,12 @@ public final class InstallDictionary extends ListActivity implements
 	 * initialize a dialog for confirming installation in onPrepareDialog.
 	 */
 	private int selectedFilteredItem = -1;
+	
+	/**
+	 * Saves the dictionary that is currently being installed for
+	 * onPrepareDialog.
+	 */
+	private DownloadDictionaryItem dictionaryItem = null;
 
 	/**
 	 * Receives updates to the user interface from background tasks.
@@ -261,6 +272,44 @@ public final class InstallDictionary extends ListActivity implements
 				showDialogFromThread(R.id.dialog_server_message);
 			}
 			updateListFromThread(parser.getDictionaries());
+			
+			// handle auto install dictionary
+			final int dictionaryId = getIntent().getIntExtra(
+					INTENT_AUTO_INSTALL_ID, 0);
+			final boolean isAutoInstallAvailable = dictionaryId > 0;
+			if (!isAutoInstallAvailable) {
+				return;
+			}
+			final DownloadDictionaryItem dictionary = parser
+					.getDictionary(dictionaryId);
+			if (dictionary == null) {
+				showDialogFromThread(R.id.dialog_dictionary_not_found);
+				return;
+			}
+			final boolean result = DictionaryInstallationService
+					.startDictionaryInstallation(InstallDictionary.this,
+							dictionary.getLink(), dictionary.getName(),
+							dictionary.getFileName());
+			if (result) {
+				// TODO: uncomment the following line when auto-install has been tested
+				Preferences.removeAutoInstallDictionaryId();
+				// reset auto install id
+				getIntent().putExtra(INTENT_AUTO_INSTALL_ID, 0);
+				// show dialog
+				dictionaryItem = dictionary;
+				showDialogFromThread(R.id.dialog_auto_installing_dictionary);
+			} else {
+				handler.post(new Runnable() {
+					@Override
+					public void run() {
+						// send toast to UI thread
+						Toast.makeText(InstallDictionary.this,
+								R.string.msg_installation_already_started,
+								Toast.LENGTH_LONG).show();
+						return;
+					}
+				});
+			}
 		}
 
 		@Override
@@ -456,29 +505,19 @@ public final class InstallDictionary extends ListActivity implements
 	 * Starts the installation of a new dictionary.
 	 */
 	private void startDictionaryInstallation() {
-		if (DictionaryInstallationService.isRunning()) {
-			Toast.makeText(this, R.string.msg_installation_already_started,
-					Toast.LENGTH_LONG).show();
-			return;
+		final String url = filteredDictionaries.get(selectedFilteredItem)
+				.getLink();
+		final String dictionaryName = filteredDictionaries.get(
+				selectedFilteredItem).getName();
+		final String dictionaryFile = filteredDictionaries.get(
+				selectedFilteredItem).getFileName();
+		final boolean isInstalling = DictionaryInstallationService
+				.startDictionaryInstallation(this, url, dictionaryName,
+						dictionaryFile);
+		if (isInstalling) {
+			getMainActivity().setProgressBarVisibility(true);
+			getMainActivity().setProgress(0);
 		}
-
-		getMainActivity().setProgressBarVisibility(true);
-		getMainActivity().setProgress(0);
-
-		String url = filteredDictionaries.get(selectedFilteredItem).getLink();
-		String dictionaryName = filteredDictionaries.get(selectedFilteredItem).getName();
-		String dictionaryFile = filteredDictionaries.get(selectedFilteredItem).getFileName();
-
-		Intent intent = new Intent(this, DictionaryInstallationService.class);
-		intent.putExtra(DictionaryInstallationService.BUNDLE_URL, url);
-		intent.putExtra(DictionaryInstallationService.BUNDLE_DICTIONARY_NAME,
-				dictionaryName);
-		intent.putExtra(DictionaryInstallationService.BUNDLE_DICTIONARY_FILE,
-				dictionaryFile);
-		startService(intent);
-
-		Toast.makeText(this, R.string.msg_installation_started,
-				Toast.LENGTH_LONG).show();
 	}
 
 	/**
@@ -739,6 +778,41 @@ public final class InstallDictionary extends ListActivity implements
 					});
 			dialog = exceptionAlert.create();
 			break;
+			
+		case R.id.dialog_dictionary_not_found:
+			Builder notFoundAlert = new AlertDialog.Builder(this);
+			notFoundAlert.setTitle(R.string.title_information);
+			notFoundAlert.setMessage("");
+			notFoundAlert.setPositiveButton(R.string.button_ok,
+					new DialogInterface.OnClickListener() {
+						public void onClick(final DialogInterface dialog,
+								final int whichButton) {
+							dialog.cancel();
+						}
+					});
+			dialog = notFoundAlert.create();
+			break;
+			
+		case R.id.dialog_auto_installing_dictionary:
+			Builder installingAlert = new AlertDialog.Builder(this);
+			installingAlert.setTitle(R.string.title_information);
+			installingAlert.setMessage("");
+			installingAlert.setPositiveButton(R.string.button_ok,
+					new DialogInterface.OnClickListener() {
+						public void onClick(final DialogInterface dialog,
+								final int whichButton) {
+							dialog.cancel();
+						}
+					});
+			installingAlert.setNeutralButton(R.string.button_exit,
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							exitWithoutData(DictionaryForMIDs.RESULT_EXIT);
+						}
+					});
+			dialog = installingAlert.create();
+			break;
 
 		case R.id.dialog_confirm_installation:
 			Builder confirmationAlert = new AlertDialog.Builder(this);
@@ -833,6 +907,24 @@ public final class InstallDictionary extends ListActivity implements
 								.getMessage(), exception.getCause());
 			}
 			exceptionAlert.setMessage(exceptionMessage);
+			break;
+			
+		case R.id.dialog_dictionary_not_found:
+			AlertDialog notFoundAlert = (AlertDialog) dialog;
+			final int dictionaryId = getIntent().getIntExtra(
+					INTENT_AUTO_INSTALL_ID, 0);
+			final String notFoundMessage = getString(
+					R.string.msg_error_dictionary_not_found, dictionaryId);
+			notFoundAlert.setMessage(notFoundMessage);
+			break;
+			
+		case R.id.dialog_auto_installing_dictionary:
+			AlertDialog installAlert = (AlertDialog) dialog;
+			final String dictionaryName = LocalizationHelper.getLocalizedDictionaryName(
+					getResources(), dictionaryItem.getName());
+			final String installationStartedMessage = getString(
+					R.string.msg_auto_installation_started, dictionaryName);
+			installAlert.setMessage(installationStartedMessage);
 			break;
 
 		case R.id.dialog_confirm_installation:
@@ -930,6 +1022,20 @@ public final class InstallDictionary extends ListActivity implements
 		returnData = new Intent();
 		returnData.putExtra(FileList.FILE_PATH, path);
 		setResult(resultCode, returnData);
+		finish();
+	}
+	
+	/**
+	 * Closes the activity and returns the given result code to the calling
+	 * activity.
+	 * 
+	 * @param returnResultCode
+	 *            the result code returned to the calling activity
+	 */
+	private void exitWithoutData(final int returnResultCode) {
+		resultCode = returnResultCode;
+		returnData = null;
+		setResult(resultCode);
 		finish();
 	}
 
