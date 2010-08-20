@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
@@ -47,11 +48,17 @@ public class Preferences extends PreferenceActivity implements
 	public static final String PREF_IGNORE_DICTIONARY_TEXT_STYLES = "ignoreDictionaryStyles";
 	public static final String PREF_RECENT_DICTIONARIES = "recentDictionaries";
 	public static final String PREF_LANGUAGE_CODE = "languageCode";
+	private static final String PREF_AUTO_INSTALL_DICTIONARY = "autoInstallDictionary";
 
 	/**
 	 * Saves an instance of the application's shared preferences.
 	 */
 	private static SharedPreferences preferencesInstance = null;
+	
+	/**
+	 * Saves an instance of the application's resources.
+	 */
+	private static Resources resources = null;
 
 	/**
 	 * Specifies if the application is run for the first time.
@@ -142,11 +149,13 @@ public class Preferences extends PreferenceActivity implements
 	 *            the context for which the settings are handled
 	 */
 	public static void attachToContext(final Context context) {
+		resources = context.getResources();
 		preferencesInstance = PreferenceManager
 				.getDefaultSharedPreferences(context);
 		firstRun = !preferencesInstance.contains(PREF_VERSION);
 		if (firstRun) {
 			saveCurrentVersion();
+			saveAutoInstallDictionaryId();
 		} else {
 			final int preferencesVersion = preferencesInstance.getInt(PREF_VERSION,
 					CURRENT_PREF_VERSION);
@@ -157,7 +166,7 @@ public class Preferences extends PreferenceActivity implements
 		}
 	}
 
-	// TODO: extract all default values somewhere
+	// TODO: extract all default values to res/values/preferences.xml
 
 	public static int getMaxResults() {
 		final String string = preferencesInstance.getString(PREF_MAX_RESULTS, "100");
@@ -192,6 +201,13 @@ public class Preferences extends PreferenceActivity implements
 		editor.putInt(PREF_VERSION, CURRENT_PREF_VERSION);
 		editor.commit();
 	}
+	
+	private static void saveAutoInstallDictionaryId() {
+		final Editor editor = preferencesInstance.edit();
+		editor.putInt(PREF_AUTO_INSTALL_DICTIONARY, resources
+				.getInteger(R.integer.preferences_default_auto_install_id));
+		editor.commit();
+	}
 
 	public static boolean isFirstRun() {
 		return firstRun;
@@ -199,6 +215,30 @@ public class Preferences extends PreferenceActivity implements
 
 	public static int getSelectedLanguageIndex() {
 		return preferencesInstance.getInt(PREF_SELECTED_LANGUAGE_INDEX, 0);
+	}
+	
+	/**
+	 * Returns the ID of the dictionary to pre-install.
+	 * 
+	 * @return the dictionary ID or 0
+	 */
+	public static int getAutoInstallDictionaryId() {
+		return preferencesInstance.getInt(PREF_AUTO_INSTALL_DICTIONARY, 0);
+	}
+	
+	/**
+	 * Returns if a dictionary can be auto-installed.
+	 * 
+	 * @return true if a dictionary can be auto-installed
+	 */
+	public static boolean hasAutoInstallDictionary() {
+		return getAutoInstallDictionaryId() > 0;
+	}
+	
+	public static void removeAutoInstallDictionaryId() {
+		final Editor editor = preferencesInstance.edit();
+		editor.putInt(PREF_AUTO_INSTALL_DICTIONARY, 0);
+		editor.commit();
 	}
 
 	public static void setLoadDictionary(final DictionaryType type,
