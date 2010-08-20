@@ -36,8 +36,8 @@ import de.kugihan.dictionaryformids.hmi_android.DictionaryForMIDs;
 import de.kugihan.dictionaryformids.hmi_android.FileList;
 import de.kugihan.dictionaryformids.hmi_android.InstallDictionary;
 import de.kugihan.dictionaryformids.hmi_android.Preferences;
-import de.kugihan.dictionaryformids.hmi_android.R;
 import de.kugihan.dictionaryformids.hmi_android.Preferences.DictionaryType;
+import de.kugihan.dictionaryformids.hmi_android.R;
 
 /**
  * DictionaryInstallationService is the class for downloading and installing
@@ -880,5 +880,38 @@ public final class DictionaryInstallationService extends Service {
 		 * @return the amount of data to copy before calling the callback again
 		 */
 		long getSkipBetweenUpdates();
+	}
+
+	/**
+	 * Starts the service to download and install a new dictionary. Must be
+	 * called from UI thread.
+	 * 
+	 * @param context
+	 *            the context to use
+	 * @param url
+	 *            the url to download from
+	 * @param dictionaryName
+	 *            the display name of the dictionary
+	 * @param dictionaryFile
+	 *            the file name of the dictionary
+	 * @return true if the service was started, false if another installation is
+	 *         already active
+	 */
+	public static boolean startDictionaryInstallation(final Context context,
+			final String url, final String dictionaryName,
+			final String dictionaryFile) {
+		if (DictionaryInstallationService.isRunning()) {
+			return false;
+		}
+
+		Intent intent = new Intent(context, DictionaryInstallationService.class);
+		intent.putExtra(DictionaryInstallationService.BUNDLE_URL, url);
+		intent.putExtra(DictionaryInstallationService.BUNDLE_DICTIONARY_NAME,
+				dictionaryName);
+		intent.putExtra(DictionaryInstallationService.BUNDLE_DICTIONARY_FILE,
+				dictionaryFile);
+		context.startService(intent);
+
+		return true;
 	}
 }

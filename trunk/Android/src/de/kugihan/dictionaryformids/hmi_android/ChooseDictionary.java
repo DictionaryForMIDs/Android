@@ -75,6 +75,10 @@ public final class ChooseDictionary extends TabActivity {
 
 		final Intent downloadDictionary = new Intent(this,
 				InstallDictionary.class);
+		final int autoInstallId = getIntent().getIntExtra(
+				InstallDictionary.INTENT_AUTO_INSTALL_ID, 0);
+		downloadDictionary.putExtra(InstallDictionary.INTENT_AUTO_INSTALL_ID,
+				autoInstallId);
 		final String downloadTag = getString(R.string.tag_tab_download);
 		final CharSequence downloadTabTitle = getText(R.string.tab_load_download);
 		final TabSpec downloadDictionariesTab = tabHost.newTabSpec(downloadTag)
