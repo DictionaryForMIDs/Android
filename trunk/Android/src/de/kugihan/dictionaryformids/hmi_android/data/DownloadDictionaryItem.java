@@ -7,6 +7,8 @@
  ******************************************************************************/
 package de.kugihan.dictionaryformids.hmi_android.data;
 
+import de.kugihan.dictionaryformids.hmi_android.view_helper.LocalizationHelper;
+import android.content.res.Resources;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -26,6 +28,11 @@ public final class DownloadDictionaryItem implements Parcelable {
 	 * The name of the dictionary.
 	 */
 	private String dictionaryName;
+	
+	/**
+	 * The localized name of the dictionary.
+	 */
+	private String localizedName = null;
 
 	/**
 	 * The link of the dictionary.
@@ -81,6 +88,22 @@ public final class DownloadDictionaryItem implements Parcelable {
 	 */
 	public String getName() {
 		return dictionaryName;
+	}
+
+	/**
+	 * Returns the localized name of the dictionary. This value is created and
+	 * cached on first access.
+	 * 
+	 * @param resources
+	 *            the resources to use for localization
+	 * @return the localized name of the dictionary
+	 */
+	public String getLocalizedName(final Resources resources) {
+		if (localizedName == null) {
+			localizedName = LocalizationHelper.getLocalizedDictionaryName(
+					resources, dictionaryName);
+		}
+		return localizedName;
 	}
 
 	/**

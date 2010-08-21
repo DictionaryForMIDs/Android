@@ -675,9 +675,7 @@ public final class InstallDictionary extends ListActivity implements
 	private ArrayAdapter<String> getDictionaryAdapterFromFilteredList() {
 		ArrayList<String> dictionaryNames = new ArrayList<String>();
 		for (DownloadDictionaryItem dictionary : filteredDictionaries) {
-			final String dictionaryName = dictionary.toString();
-			final String localizedName = LocalizationHelper
-					.getLocalizedDictionaryName(getResources(), dictionaryName);
+			final String localizedName = dictionary.getLocalizedName(getResources());
 			dictionaryNames.add(localizedName);
 		}
 		return new ArrayAdapter<String>(this, R.layout.file_row, dictionaryNames);
@@ -692,9 +690,7 @@ public final class InstallDictionary extends ListActivity implements
 		final CharSequence lowerCaseFilter = editTextFilter.getText().toString().toLowerCase();
 		filteredDictionaries = new ArrayList<DownloadDictionaryItem>();
 		for (DownloadDictionaryItem dictionary : dictionaries) {
-			final String dictionaryName = dictionary.toString();
-			final String localizedName = LocalizationHelper
-					.getLocalizedDictionaryName(getResources(), dictionaryName);
+			final String localizedName = dictionary.getLocalizedName(getResources());
 			final boolean doesNotMatchFilter = !localizedName.toLowerCase()
 					.contains(lowerCaseFilter);
 			if (doesNotMatchFilter) {
