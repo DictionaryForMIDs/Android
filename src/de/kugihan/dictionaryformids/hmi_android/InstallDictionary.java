@@ -11,12 +11,12 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.ListActivity;
-import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.DialogInterface.OnCancelListener;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
@@ -28,8 +28,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -291,7 +291,6 @@ public final class InstallDictionary extends ListActivity implements
 							dictionary.getLink(), dictionary.getName(),
 							dictionary.getFileName());
 			if (result) {
-				// TODO: uncomment the following line when auto-install has been tested
 				Preferences.removeAutoInstallDictionaryId();
 				// reset auto install id
 				getIntent().putExtra(INTENT_AUTO_INSTALL_ID, 0);
