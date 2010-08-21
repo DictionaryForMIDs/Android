@@ -187,7 +187,7 @@ public class FileList extends ListActivity implements ResultProvider {
 		}
 		if (currentDirectory != null
 				&& currentDirectory.getPath().equals(
-						Environment.getExternalStorageDirectory())) {
+						Environment.getExternalStorageDirectory().getPath())) {
 			((Button) findViewById(R.id.ButtonCard)).setEnabled(false);
 		} else {
 			((Button) findViewById(R.id.ButtonCard)).setEnabled(true);
