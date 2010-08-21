@@ -9,4 +9,5 @@
 	<item name="dialog_confirm_clear_recent_dictionaries" type="id" />
 	<item name="dialog_dictionary_not_found" type="id" />
 	<item name="dialog_auto_installing_dictionary" type="id" />
+	<item name="dialog_finding_hidden_dictionaries" type="id" />
 </resources>

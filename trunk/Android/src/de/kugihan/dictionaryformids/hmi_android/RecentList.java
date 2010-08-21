@@ -7,6 +7,7 @@
  ******************************************************************************/
 package de.kugihan.dictionaryformids.hmi_android;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,11 +19,13 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -41,6 +44,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import de.kugihan.dictionaryformids.hmi_android.Preferences.DictionaryType;
 import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
+import de.kugihan.dictionaryformids.hmi_android.thread.HiddenDictionaryFinderTask;
 import de.kugihan.dictionaryformids.hmi_android.view_helper.LocalizationHelper;
 
 /**
@@ -79,6 +83,11 @@ public class RecentList extends ListActivity implements ResultProvider {
 	 * Handler to receive tasks that change the user interface.
 	 */
 	private Handler handler = new Handler();
+	
+	/**
+	 * Object to hold a findDictionaries searching for hidden dictionaries.
+	 */
+	private AsyncTask<String, Integer, ArrayList<File>> findDictionaries = null;
 
 	/**
 	 * {@inheritDoc}
@@ -162,6 +171,21 @@ public class RecentList extends ListActivity implements ResultProvider {
 						}
 					});
 			return alertBuilder.create();
+		} else if (id == R.id.dialog_finding_hidden_dictionaries) {
+			final ProgressDialog loadingDialog = new ProgressDialog(this);
+			loadingDialog.setTitle(getString(R.string.title_please_wait));
+			loadingDialog.setMessage(getString(R.string.msg_searching));
+			loadingDialog.setIndeterminate(true);
+			loadingDialog.setCancelable(true);
+			loadingDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+				@Override
+				public void onCancel(DialogInterface dialog) {
+					if (findDictionaries != null) {
+						findDictionaries.cancel(true);
+					}
+				}
+			});
+			return loadingDialog;
 		} else {
 			return super.onCreateDialog(id);
 		}
@@ -190,6 +214,11 @@ public class RecentList extends ListActivity implements ResultProvider {
 		case R.id.itemClearRecentDictionariesList:
 			showDialog(R.id.dialog_confirm_clear_recent_dictionaries);
 			break;
+			
+		case R.id.itemFindHiddenDictionaries:
+			findDictionaries = new HiddenDictionaryFinderTask(this,
+					R.id.dialog_finding_hidden_dictionaries).execute("");
+			break;
 
 		default:
 			break;
@@ -205,6 +234,7 @@ public class RecentList extends ListActivity implements ResultProvider {
 		try {
 			dismissDialog(R.id.dialog_manual_download_instructions);
 			dismissDialog(R.id.dialog_confirm_clear_recent_dictionaries);
+			dismissDialog(R.id.dialog_finding_hidden_dictionaries);
 		} catch (IllegalArgumentException e) {
 			// ignore exceptions here
 		}
