@@ -1,4 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/itemFindHiddenDictionaries" android:title="@string/menu_find_hidden_dictionaries"></item>
 	<item android:id="@+id/itemDownloadDictionaries" android:title="@string/menu_download_dictionaries"></item>
 	<item android:id="@+id/itemClearRecentDictionariesList"
 		android:title="@string/menu_clear_recent_dictionary_list"></item>

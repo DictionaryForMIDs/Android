@@ -390,16 +390,27 @@ public class Preferences extends PreferenceActivity implements
 	public static void clearRecentDictionaryUrls() {
 		setRecentDictionaries(new String[0]);
 	}
-
+	
 	public static void addRecentDictionaryUrl(final DictionaryType type,
 			final String path, final String[] languages) {
+		addRecentDictionaryUrl(type, path, languages, false);
+	}
+
+	public static void addRecentDictionaryUrl(final DictionaryType type,
+			final String path, final String[] languages,
+			final boolean ignoreExisting) {
 		final String dictionary = dictionaryToString(type, path, languages);
 		if (dictionary == null) {
 			return;
 		}
 		final String[] dictionaries = getRecentDictionaries();
+		
 		// find out if it already exists in list
 		final int position = findDictionary(path, type, dictionaries);
+		if (ignoreExisting && position >= 0) {
+			return;
+		}
+		
 		if (position >= 0) {
 			// move every dictionary one position later
 			for (int j = position; j >= 1; j--) {

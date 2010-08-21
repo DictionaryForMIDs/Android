@@ -92,7 +92,9 @@
 	<string name="menu_about">About</string>
 	<string name="menu_help">Help</string>
 	<string name="menu_download_dictionaries">Manually download...</string>
-	<string name="menu_clear_recent_dictionary_list">Clear recent...</string><string name="msg_enter_word_first">Please enter a word first.</string>
+	<string name="menu_find_hidden_dictionaries">Re-add hidden</string>
+	<string name="menu_clear_recent_dictionary_list">Clear recent...</string>
+	<string name="msg_enter_word_first">Please enter a word first.</string>
 	<string name="menu_reload_dictionary_list">Reload list</string>
 	<string name="menu_cancel_installation">Cancel installation</string>
 	<string name="msg_load_dictionary_first">Please load a dictionary first.</string>
