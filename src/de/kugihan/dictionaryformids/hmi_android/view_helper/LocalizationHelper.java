@@ -42,7 +42,7 @@ public class LocalizationHelper {
 		final String[] languages = resources.getStringArray(R.array.language_localization);
 		String localizedDictionaryName = dictionaryName;
 		for (int i = 0; i < languages.length - 1; i += 2) {
-			localizedDictionaryName = localizedDictionaryName.replaceAll(
+			localizedDictionaryName = localizedDictionaryName.replace(
 					languages[i], languages[i + 1]);
 		}
 		return localizedDictionaryName;
