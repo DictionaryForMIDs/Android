@@ -8,17 +8,9 @@
 package de.kugihan.dictionaryformids.hmi_android;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.TabActivity;
-import android.app.AlertDialog.Builder;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.Window;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
@@ -104,105 +96,4 @@ public final class ChooseDictionary extends TabActivity {
 		}
 		super.finishFromChild(child);
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean onCreateOptionsMenu(final Menu menu) {
-		final MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.choose_dictionary_options, menu);
-		return true;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean onOptionsItemSelected(final MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.itemDownloadDictionaries:
-			showDialog(R.id.dialog_manual_download_instructions);
-			break;
-
-		case R.id.itemClearRecentDictionariesList:
-			showDialog(R.id.dialog_confirm_clear_recent_dictionaries);
-			break;
-
-		default:
-			break;
-		}
-		return false;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected Dialog onCreateDialog(final int id) {
-		if (id == R.id.dialog_manual_download_instructions) {
-			final Builder alertBuilder = new AlertDialog.Builder(this);
-			alertBuilder.setTitle(R.string.title_information);
-			alertBuilder.setMessage(R.string.msg_download_dictionaries);
-			alertBuilder.setPositiveButton(R.string.button_ok,
-					new DialogInterface.OnClickListener() {
-						public void onClick(final DialogInterface dialog,
-								final int whichButton) {
-							dialog.cancel();
-							Intent downloadDictionaries = new Intent(
-									Intent.ACTION_VIEW);
-							downloadDictionaries
-									.setData(Uri
-											.parse(getString(R.string.attribute_dictionaries_url)));
-							startActivity(downloadDictionaries);
-						}
-					});
-			alertBuilder.setNegativeButton(R.string.button_cancel,
-					new DialogInterface.OnClickListener() {
-						public void onClick(final DialogInterface dialog,
-								final int whichButton) {
-							dialog.cancel();
-						}
-					});
-			return alertBuilder.create();
-		} else if (id == R.id.dialog_confirm_clear_recent_dictionaries) {
-			final Builder alertBuilder = new AlertDialog.Builder(this);
-			alertBuilder.setTitle(R.string.title_information);
-			alertBuilder
-					.setMessage(R.string.msg_clear_recent_dictionaries_list);
-			alertBuilder.setPositiveButton(R.string.button_ok,
-					new DialogInterface.OnClickListener() {
-						public void onClick(final DialogInterface dialog,
-								final int whichButton) {
-							Preferences.clearRecentDictionaryUrls();
-							dialog.cancel();
-						}
-					});
-			alertBuilder.setNegativeButton(R.string.button_cancel,
-					new DialogInterface.OnClickListener() {
-						public void onClick(final DialogInterface dialog,
-								final int whichButton) {
-							dialog.cancel();
-						}
-					});
-			return alertBuilder.create();
-		} else {
-			return super.onCreateDialog(id);
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Object onRetainNonConfigurationInstance() {
-		try {
-			dismissDialog(R.id.dialog_manual_download_instructions);
-			dismissDialog(R.id.dialog_confirm_clear_recent_dictionaries);
-		} catch (IllegalArgumentException e) {
-			// ignore exceptions here
-		}
-		return super.onRetainNonConfigurationInstance();
-	}
-
 }
