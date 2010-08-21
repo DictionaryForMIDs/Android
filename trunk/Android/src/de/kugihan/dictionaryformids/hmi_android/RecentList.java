@@ -14,25 +14,31 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.Dialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 import de.kugihan.dictionaryformids.hmi_android.Preferences.DictionaryType;
 import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
 import de.kugihan.dictionaryformids.hmi_android.view_helper.LocalizationHelper;
@@ -103,6 +109,106 @@ public class RecentList extends ListActivity implements ResultProvider {
 			final ContextMenuInfo menuInfo) {
 		final MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.recent_dictionary_context, menu);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Dialog onCreateDialog(final int id) {
+		if (id == R.id.dialog_manual_download_instructions) {
+			final Builder alertBuilder = new AlertDialog.Builder(this);
+			alertBuilder.setTitle(R.string.title_information);
+			alertBuilder.setMessage(R.string.msg_download_dictionaries);
+			alertBuilder.setPositiveButton(R.string.button_ok,
+					new DialogInterface.OnClickListener() {
+						public void onClick(final DialogInterface dialog,
+								final int whichButton) {
+							dialog.cancel();
+							Intent downloadDictionaries = new Intent(
+									Intent.ACTION_VIEW);
+							downloadDictionaries
+									.setData(Uri
+											.parse(getString(R.string.attribute_dictionaries_url)));
+							startActivity(downloadDictionaries);
+						}
+					});
+			alertBuilder.setNegativeButton(R.string.button_cancel,
+					new DialogInterface.OnClickListener() {
+						public void onClick(final DialogInterface dialog,
+								final int whichButton) {
+							dialog.cancel();
+						}
+					});
+			return alertBuilder.create();
+		} else if (id == R.id.dialog_confirm_clear_recent_dictionaries) {
+			final Builder alertBuilder = new AlertDialog.Builder(this);
+			alertBuilder.setTitle(R.string.title_information);
+			alertBuilder
+					.setMessage(R.string.msg_clear_recent_dictionaries_list);
+			alertBuilder.setPositiveButton(R.string.button_ok,
+					new DialogInterface.OnClickListener() {
+						public void onClick(final DialogInterface dialog,
+								final int whichButton) {
+							Preferences.clearRecentDictionaryUrls();
+							dialog.cancel();
+						}
+					});
+			alertBuilder.setNegativeButton(R.string.button_cancel,
+					new DialogInterface.OnClickListener() {
+						public void onClick(final DialogInterface dialog,
+								final int whichButton) {
+							dialog.cancel();
+						}
+					});
+			return alertBuilder.create();
+		} else {
+			return super.onCreateDialog(id);
+		}
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean onCreateOptionsMenu(final Menu menu) {
+		final MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.recent_dictionary_options, menu);
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean onOptionsItemSelected(final MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.itemDownloadDictionaries:
+			showDialog(R.id.dialog_manual_download_instructions);
+			break;
+
+		case R.id.itemClearRecentDictionariesList:
+			showDialog(R.id.dialog_confirm_clear_recent_dictionaries);
+			break;
+
+		default:
+			break;
+		}
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Object onRetainNonConfigurationInstance() {
+		try {
+			dismissDialog(R.id.dialog_manual_download_instructions);
+			dismissDialog(R.id.dialog_confirm_clear_recent_dictionaries);
+		} catch (IllegalArgumentException e) {
+			// ignore exceptions here
+		}
+		return super.onRetainNonConfigurationInstance();
 	}
 
 	/**
