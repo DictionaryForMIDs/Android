@@ -184,6 +184,7 @@ public final class InstallDictionary extends ListActivity implements
 
 		reactOnServiceUpdates = true;
 		DictionaryInstallationService.setUpdateListener(serviceListener);
+		DictionaryInstallationService.removePendingStatusNotifications(this);
 
 		if (savedInstanceState == null) {
 			startListDownload();

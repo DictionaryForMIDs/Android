@@ -273,6 +273,20 @@ public final class DictionaryInstallationService extends Service {
 	}
 
 	/**
+	 * Removes pending status notifications if the service is not running.
+	 * 
+	 * @param context the application context
+	 */
+	public static void removePendingStatusNotifications(Context context) {
+		if (DictionaryInstallationService.isRunning()) {
+			return;
+		}
+		((NotificationManager) context
+				.getSystemService(Context.NOTIFICATION_SERVICE))
+				.cancel(NOTIFICATION_STATUS_UPDATE);
+	}
+
+	/**
 	 * Handles an update of the installation thread's status.
 	 * 
 	 * @param type
