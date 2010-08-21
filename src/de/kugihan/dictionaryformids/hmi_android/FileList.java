@@ -208,8 +208,9 @@ public class FileList extends ListActivity implements ResultProvider {
 	 * @return true if the file exists and has the name of a dictionary
 	 *         properties file
 	 */
-	private boolean isDictionaryPropertiesFile(final File file) {
-		return file.isFile() && file.getName().equals(PROPERTIES_FILE);
+	public static boolean isDictionaryPropertiesFile(final File file) {
+		return file.isFile() && file.canRead()
+				&& file.getName().equals(PROPERTIES_FILE);
 	}
 
 	/**
