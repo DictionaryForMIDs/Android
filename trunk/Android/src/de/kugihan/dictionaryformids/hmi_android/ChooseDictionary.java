@@ -58,12 +58,14 @@ public final class ChooseDictionary extends TabActivity {
 				fileTabTitle).setContent(fileList);
 		tabHost.addTab(fileSystemTab);
 
-		final Intent includedDictionary = new Intent(this, DictionaryList.class);
-		final String includedTag = getString(R.string.tag_tab_included);
-		final CharSequence includedTabTitle = getText(R.string.tab_load_included);
-		final TabSpec includedDictionariesTab = tabHost.newTabSpec(includedTag)
-				.setIndicator(includedTabTitle).setContent(includedDictionary);
-		tabHost.addTab(includedDictionariesTab);
+		if (DictionaryList.hasDictionaries(getResources())) {
+			final Intent includedDictionary = new Intent(this, DictionaryList.class);
+			final String includedTag = getString(R.string.tag_tab_included);
+			final CharSequence includedTabTitle = getText(R.string.tab_load_included);
+			final TabSpec includedDictionariesTab = tabHost.newTabSpec(includedTag)
+					.setIndicator(includedTabTitle).setContent(includedDictionary);
+			tabHost.addTab(includedDictionariesTab);
+		}
 
 		final Intent downloadDictionary = new Intent(this,
 				InstallDictionary.class);

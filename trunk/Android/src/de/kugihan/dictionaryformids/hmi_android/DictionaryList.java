@@ -15,6 +15,7 @@ import java.util.List;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -115,6 +116,27 @@ public class DictionaryList extends ListActivity implements ResultProvider {
 				R.layout.file_row, items);
 		setListAdapter(dictionaryList);
 	}
+    
+	/**
+	 * Checks if there is any dictionary in the assets folder.
+	 * 
+	 * @param resources
+	 *            the resources to use
+	 * @return true if at least one dictionary is available
+	 */
+    public static boolean hasDictionaries(Resources resources) {
+    	String[] dictionaries;
+		try {
+			dictionaries = resources.getAssets().list(INTERNAL_DICT_PATH);
+		} catch (IOException e) {
+	        return false;
+		}
+		if (dictionaries.length > 0) {
+			return true;
+		} else {
+			return false;
+		}
+    }
     
     /**
      * {@inheritDoc}
