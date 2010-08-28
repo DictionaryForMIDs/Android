@@ -138,6 +138,7 @@ public final class DownloadDictionaryItem implements Parcelable {
 	 */
 	@Override
 	public void writeToParcel(final Parcel out, final int flags) {
+		out.writeInt(dictionaryId);
 		out.writeString(dictionaryName);
 		out.writeString(dictionaryLink);
 		out.writeString(dictionaryFileName);
@@ -164,6 +165,7 @@ public final class DownloadDictionaryItem implements Parcelable {
 	 *            the parcel to construct an instance
 	 */
 	private DownloadDictionaryItem(final Parcel in) {
+		dictionaryId = in.readInt();
 		dictionaryName = in.readString();
 		dictionaryLink = in.readString();
 		dictionaryFileName = in.readString();
