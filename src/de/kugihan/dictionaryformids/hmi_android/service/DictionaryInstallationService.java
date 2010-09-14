@@ -13,6 +13,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -38,6 +40,7 @@ import de.kugihan.dictionaryformids.hmi_android.InstallDictionary;
 import de.kugihan.dictionaryformids.hmi_android.Preferences;
 import de.kugihan.dictionaryformids.hmi_android.Preferences.DictionaryType;
 import de.kugihan.dictionaryformids.hmi_android.R;
+import de.kugihan.dictionaryformids.hmi_android.data.DownloadDictionaryItem;
 
 /**
  * DictionaryInstallationService is the class for downloading and installing
@@ -99,19 +102,9 @@ public final class DictionaryInstallationService extends Service {
 	public static final String BUNDLE_SHOW_DICTIONARY_INSTALLATION = "showDictionaryInstallation";
 
 	/**
-	 * The key of a string specifying the name of a dictionary in a bundle.
+	 * The key of a string specifying the download dictionary item in a bundle.
 	 */
-	public static final String BUNDLE_DICTIONARY_NAME = "name";
-
-	/**
-	 * The key of a string specifying the path of a dictionary in a bundle.
-	 */
-	public static final String BUNDLE_DICTIONARY_FILE = "file";
-
-	/**
-	 * The key of a string specifying the url of a dictionary in a bundle.
-	 */
-	public static final String BUNDLE_URL = "url";
+	public static final String BUNDLE_DOWNLOAD_DICTIONARY_ITEM = "downloadDictionaryItem";
 
 	/**
 	 * Status specifying the service is currently downloading files.
@@ -179,6 +172,44 @@ public final class DictionaryInstallationService extends Service {
 	 * Handle to the application's notification manager.
 	 */
 	private NotificationManager notificationManager = null;
+	
+	/**
+	 * Signature of Android 2.0+ function startForeground. Necessary for
+	 * compatibility with previous versions of the Android API.
+	 */
+	@SuppressWarnings("rawtypes")
+	private static final Class[] startForegroundSignature = new Class[] { int.class,
+			Notification.class };
+	/**
+	 * Signature of Android 2.0+ function stopForeground. Necessary for
+	 * compatibility with previous versions of the Android API.
+	 */
+	@SuppressWarnings("rawtypes")
+	private static final Class[] stopForegroundSignature = new Class[] { boolean.class };
+
+	/**
+	 * Object to hold Android 2.0+ function startForeground. Necessary for
+	 * compatibility with previous versions of the Android API.
+	 */
+	private Method startForeground;
+
+	/**
+	 * Object to hold Android 2.0+ function stopForeground. Necessary for
+	 * compatibility with previous versions of the Android API.
+	 */
+	private Method stopForeground;
+
+	/**
+	 * Object to hold parameters for Android 2.0+ function startForeground.
+	 * Necessary for compatibility with previous versions of the Android API.
+	 */
+	private final Object[] startForegroundArgs = new Object[2];
+
+	/**
+	 * Object to hold parameters for Android 2.0+ function stopForeground.
+	 * Necessary for compatibility with previous versions of the Android API.
+	 */
+	private final Object[] stopForegroundArgs = new Object[1];
 
 	/**
 	 * {@inheritDoc}
@@ -195,7 +226,68 @@ public final class DictionaryInstallationService extends Service {
 	public void onCreate() {
 		super.onCreate();
 		notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		notificationManager.cancel(NOTIFICATION_STATUS_UPDATE);
+		try {
+			// try to get handles to functions of API version 5 or later
+			startForeground = getClass().getMethod("startForeground", startForegroundSignature);
+			stopForeground = getClass().getMethod("stopForeground", stopForegroundSignature);
+		} catch (NoSuchMethodException e) {
+			startForeground = null;
+			stopForeground = null;
+		}
 	}
+	
+	/**
+	 * This is a wrapper around the new startForeground method, using the older
+	 * APIs if it is not available.
+	 */
+	void startForegroundCompat(int id, Notification notification) {
+		// If we have the new startForeground API, then use it.
+        if (startForeground != null) {
+            startForegroundArgs[0] = Integer.valueOf(id);
+            startForegroundArgs[1] = notification;
+            try {
+                startForeground.invoke(this, startForegroundArgs);
+            } catch (InvocationTargetException e) {
+                // Should not happen.
+                Log.w(DictionaryForMIDs.LOG_TAG, "Unable to invoke startForeground", e);
+            } catch (IllegalAccessException e) {
+                // Should not happen.
+                Log.w(DictionaryForMIDs.LOG_TAG, "Unable to invoke startForeground", e);
+            }
+            return;
+        }
+        
+        // Fall back on the old API.
+        setForeground(true);
+        notificationManager.notify(id, notification);
+    }
+    
+    /**
+     * This is a wrapper around the new stopForeground method, using the older
+     * APIs if it is not available.
+     */
+    void stopForegroundCompat(int id) {
+        // If we have the new stopForeground API, then use it.
+        if (stopForeground != null) {
+            stopForegroundArgs[0] = Boolean.TRUE;
+            try {
+                stopForeground.invoke(this, stopForegroundArgs);
+            } catch (InvocationTargetException e) {
+                // Should not happen.
+                Log.w(DictionaryForMIDs.LOG_TAG, "Unable to invoke stopForeground", e);
+            } catch (IllegalAccessException e) {
+                // Should not happen.
+                Log.w(DictionaryForMIDs.LOG_TAG, "Unable to invoke stopForeground", e);
+            }
+            return;
+        }
+        
+        // Fall back on the old API.  Note to cancel BEFORE changing the
+        // foreground state, since we could be killed at that point.
+        notificationManager.cancel(id);
+        setForeground(false);
+    }
 
 	/**
 	 * {@inheritDoc}
@@ -203,15 +295,12 @@ public final class DictionaryInstallationService extends Service {
 	@Override
 	public void onStart(final Intent intent, final int startId) {
 		super.onStart(intent, startId);
-		final String url = intent.getStringExtra(BUNDLE_URL);
-		final String dictionaryName = intent
-				.getStringExtra(BUNDLE_DICTIONARY_NAME);
-		final String dictionaryFile = intent
-				.getStringExtra(BUNDLE_DICTIONARY_FILE);
-		if (url == null || dictionaryName == null || dictionaryFile == null) {
+		final DownloadDictionaryItem dictionaryItem = (DownloadDictionaryItem) intent
+				.getParcelableExtra(BUNDLE_DOWNLOAD_DICTIONARY_ITEM);
+		if (dictionaryItem == null) {
 			handleException(new IllegalArgumentException());
 		} else {
-			startService(url, dictionaryName, dictionaryFile);
+			startService(dictionaryItem);
 		}
 	}
 
@@ -221,6 +310,7 @@ public final class DictionaryInstallationService extends Service {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
+		stopForegroundCompat(NOTIFICATION_STATUS_UPDATE);
 		if (thread == null) {
 			return;
 		}
@@ -232,17 +322,11 @@ public final class DictionaryInstallationService extends Service {
 	/**
 	 * Starts the installation service.
 	 * 
-	 * @param url
-	 *            the url of the dictionary
-	 * @param dictionaryName
-	 *            the name of dictionary
-	 * @param dictionaryFile
-	 *            the file name of the dictionary
+	 * @param item
+	 *            information about the dictionary to install
 	 */
-	private void startService(final String url, final String dictionaryName,
-			final String dictionaryFile) {
-		thread = new InstallDictionaryThread(dictionaryName, url,
-				dictionaryFile);
+	private void startService(final DownloadDictionaryItem item) {
+		thread = new InstallDictionaryThread(item);
 		thread.start();
 	}
 
@@ -320,6 +404,7 @@ public final class DictionaryInstallationService extends Service {
 		notification.setLatestEventInfo(context, contentTitle, contentText,
 				contentIntent);
 		notificationManager.notify(NOTIFICATION_STATUS_UPDATE, notification);
+		startForegroundCompat(NOTIFICATION_STATUS_UPDATE, notification);
 
 		if (listener != null) {
 			listener.onProgressUpdate(type, percentage);
@@ -347,14 +432,23 @@ public final class DictionaryInstallationService extends Service {
 	/**
 	 * Handles the result of the installation thread.
 	 * 
-	 * @param dictionaryName
-	 *            the name of the dictionary that has been installed
+	 * @param dictionaryItem
+	 *            the information of the dictionary that has been installed
 	 * @param path
 	 *            the path to the installed dictionary
 	 */
-	private void handleResult(final String dictionaryName, final String path) {
+	private void handleResult(final DownloadDictionaryItem dictionaryItem, final String path) {
 		// remove status notifications
 		notificationManager.cancel(NOTIFICATION_STATUS_UPDATE);
+		
+		final boolean hasAutoInstallDictionary = Preferences.hasAutoInstallDictionary();
+		final int id = dictionaryItem.getId();
+		final int autoInstallDictionaryId = Preferences.getAutoInstallDictionaryId();
+		if (hasAutoInstallDictionary && id == autoInstallDictionaryId) {
+			// remove the auto install id from preferences
+			// as we just installed that dictionary
+			Preferences.removeAutoInstallDictionaryId();
+		}
 
 		if (listener != null) {
 			listener.onFinished(path);
@@ -390,7 +484,7 @@ public final class DictionaryInstallationService extends Service {
 		notification.flags = Notification.FLAG_AUTO_CANCEL;
 		notificationManager.notify(NOTIFICATION_RESULT, notification);
 
-		final String[] languages = { dictionaryName };
+		final String[] languages = { dictionaryItem.getLocalizedName(getResources()) };
 		Preferences.attachToContext(getApplicationContext());
 		Preferences.addRecentDictionaryUrl(DictionaryType.DIRECTORY, path,
 				languages);
@@ -491,33 +585,15 @@ public final class DictionaryInstallationService extends Service {
 		/**
 		 * The name of the dictionary.
 		 */
-		private final String name;
-
-		/**
-		 * The url of the dictionary.
-		 */
-		private final String url;
-
-		/**
-		 * The file name of the dictionary.
-		 */
-		private final String file;
+		private final DownloadDictionaryItem dictionaryItem;
 
 		/**
 		 * Constructor that initializes the dictionary's values.
 		 * 
-		 * @param dictionaryName
-		 *            the name of the dictionary
-		 * @param dictionarUrl
-		 *            the url of the dictionary
-		 * @param dictionaryFile
-		 *            the file name of the dictionary
+		 * @param dictionaryItem the dictionary to install
 		 */
-		private InstallDictionaryThread(final String dictionaryName,
-				final String dictionarUrl, final String dictionaryFile) {
-			name = dictionaryName;
-			url = dictionarUrl;
-			file = dictionaryFile;
+		private InstallDictionaryThread(final DownloadDictionaryItem dictionaryItem) {
+			this.dictionaryItem = dictionaryItem;
 		}
 
 		/**
@@ -574,18 +650,18 @@ public final class DictionaryInstallationService extends Service {
 
 			final String zipFile = getString(R.string.attribute_zip_directory,
 					Environment.getExternalStorageDirectory())
-					+ file + EXTENSION_ZIP_ARCHIVE;
+					+ dictionaryItem.getFileName() + EXTENSION_ZIP_ARCHIVE;
 			final String jarFile = getString(R.string.attribute_jar_directory,
 					Environment.getExternalStorageDirectory())
-					+ file + EXTENSION_JAR_ARCHIVE;
+					+ dictionaryItem.getFileName() + EXTENSION_JAR_ARCHIVE;
 			final String dictionaryDirectory = getString(
 					R.string.attribute_installation_directory, Environment
 							.getExternalStorageDirectory())
-					+ file + File.separator;
+					+ dictionaryItem.getFileName() + File.separator;
 
 			String resultPath;
 			try {
-				downloadFile(url, zipFile);
+				downloadFile(dictionaryItem.getLink(), zipFile);
 				if (interrupted()) {
 					handleException(new InterruptedException(
 							getString(R.string.msg_installation_aborted)));
@@ -622,7 +698,7 @@ public final class DictionaryInstallationService extends Service {
 				Log.v(DictionaryForMIDs.LOG_TAG, "Failed to delete jar: "
 						+ jarFile);
 			}
-			handleResult(name, resultPath);
+			handleResult(dictionaryItem, resultPath);
 		}
 
 		/**
@@ -902,30 +978,24 @@ public final class DictionaryInstallationService extends Service {
 	 * 
 	 * @param context
 	 *            the context to use
-	 * @param url
-	 *            the url to download from
-	 * @param dictionaryName
-	 *            the display name of the dictionary
-	 * @param dictionaryFile
-	 *            the file name of the dictionary
+	 * @param dictionaryItem
+	 *            the dictionary item to install
 	 * @return true if the service was started, false if another installation is
 	 *         already active
 	 */
 	public static boolean startDictionaryInstallation(final Context context,
-			final String url, final String dictionaryName,
-			final String dictionaryFile) {
+			final DownloadDictionaryItem dictionaryItem) {
 		if (DictionaryInstallationService.isRunning()) {
 			return false;
 		}
 
 		Intent intent = new Intent(context, DictionaryInstallationService.class);
-		intent.putExtra(DictionaryInstallationService.BUNDLE_URL, url);
-		intent.putExtra(DictionaryInstallationService.BUNDLE_DICTIONARY_NAME,
-				dictionaryName);
-		intent.putExtra(DictionaryInstallationService.BUNDLE_DICTIONARY_FILE,
-				dictionaryFile);
+		intent.putExtra(
+				DictionaryInstallationService.BUNDLE_DOWNLOAD_DICTIONARY_ITEM,
+				dictionaryItem);
 		context.startService(intent);
 
 		return true;
+		
 	}
 }

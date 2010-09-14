@@ -97,6 +97,7 @@
 	<string name="msg_enter_word_first">Please enter a word first.</string>
 	<string name="menu_reload_dictionary_list">Reload list</string>
 	<string name="menu_cancel_installation">Cancel installation</string>
+	<string name="menu_reinstall_default_dictionary">Re-install default dictionary</string>
 	<string name="msg_load_dictionary_first">Please load a dictionary first.</string>
 	<string name="msg_reload_dictionary">Please reload the dictionary.</string>
 	<string name="msg_exception">Exception occurred:\n%1$s</string>
@@ -117,7 +118,7 @@
 	<string name="title_current_path">&gt; %1$s</string>
 	<string name="msg_no_dictionary">Selected item does not look like a dictionary.</string>
 	<string name="title_load_dictionary">Load Dictionary...</string>
-	<string name="msg_auto_install">Looks like you have not yet installed the dictionary data.\n\nDo you want to download and install it now?</string>
+	<string name="msg_auto_install">It looks like you have not yet installed your default dictionary.\n\nWould you like to download and install it now?</string>
 
 	<!--
 		specifies a translation direction, e.g. English -> German; if this
