@@ -44,6 +44,11 @@ public final class DialogHelper {
 	private static Exception dictionaryInstallationException;
 	
 	/**
+	 * The message to show to the user.
+	 */
+	private static String message;
+	
+	/**
 	 * The intent specifiying the dictionary to load.
 	 */
 	private static Intent loadDictionary;
@@ -96,6 +101,11 @@ public final class DialogHelper {
 	public static final int ID_CONFIRM_INSTALL_DICTIONARY = 8;
 	
 	/**
+	 * The ID of the dialog showing messages, e.g. from dictionary installation.
+	 */
+	public static final int ID_MESSAGE = 9;
+	
+	/**
 	 * Saves the single instance of this class.
 	 */
 	private static DialogHelper instance = null;
@@ -138,6 +148,7 @@ public final class DialogHelper {
 			activity.dismissDialog(ID_INSTALLATION_EXCEPTION);
 			activity.dismissDialog(ID_CONFIRM_LOAD_DICTIONARY);
 			activity.dismissDialog(ID_CONFIRM_INSTALL_DICTIONARY);
+			activity.dismissDialog(ID_MESSAGE);
 		} catch (IllegalArgumentException e) {
 			Log.v(DictionaryForMIDs.LOG_TAG, "IllegelArgumentException: " + e);
 		}
@@ -169,6 +180,8 @@ public final class DialogHelper {
 			result = createConfirmLoadDictionary();
 		} else if (id == ID_CONFIRM_INSTALL_DICTIONARY) {
 			result = createConfirmInstallDictionaryDialog();
+		} else if (id == ID_MESSAGE) {
+			result = createMessageDialog();
 		}
 		if (result != null) {
 			onPrepareDialog(id, result);
@@ -298,7 +311,8 @@ public final class DialogHelper {
 						activity.startChooseDictionaryActivity();
 					}
 				});
-		alertBuilder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
+		alertBuilder.setNegativeButton(R.string.button_cancel,
+				new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(final DialogInterface dialog, final int which) {
 				dialog.cancel();
@@ -339,6 +353,26 @@ public final class DialogHelper {
 		alertBuilder.setTitle(R.string.title_information);
 		alertBuilder.setMessage("");
 		alertBuilder.setNeutralButton(R.string.button_ok,
+				new DialogInterface.OnClickListener() {
+					public void onClick(final DialogInterface dialog,
+							final int whichButton) {
+						dialog.cancel();
+					}
+				});
+		return alertBuilder.create();
+	}
+
+	/**
+	 * Creates a dialog showing the user a message, e.g. from the installation service.
+	 * 
+	 * @return the created dialog
+	 */
+	private Dialog createMessageDialog() {
+		final Builder alertBuilder = new AlertDialog.Builder(
+				activity);
+		alertBuilder.setTitle(R.string.title_information);
+		alertBuilder.setMessage("");
+		alertBuilder.setPositiveButton(R.string.button_ok,
 				new DialogInterface.OnClickListener() {
 					public void onClick(final DialogInterface dialog,
 							final int whichButton) {
@@ -417,6 +451,9 @@ public final class DialogHelper {
 			}
 
 			alert.setMessage(exceptionMessage);
+		} else if (id == ID_MESSAGE) {
+			final AlertDialog alert = (AlertDialog) dialog;
+			alert.setMessage(message);
 		}
 	}
 
@@ -460,5 +497,14 @@ public final class DialogHelper {
 	 */
 	public static void setLoadDictionary(final Intent intent) {
 		loadDictionary = intent;
+	}
+	
+	/**
+	 * Sets the message that will be displayed to the user.
+	 * 
+	 * @param informationMessage the message to display
+	 */
+	public static void setMessage(final String informationMessage) {
+		message = informationMessage;
 	}
 }
