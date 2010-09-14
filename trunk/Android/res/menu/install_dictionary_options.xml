@@ -1,4 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 	<item android:id="@+id/itemReloadList" android:title="@string/menu_reload_dictionary_list"></item>
 	<item android:id="@+id/itemCancelInstallation" android:title="@string/menu_cancel_installation"></item>
+	<item android:id="@+id/itemReinstallDefaultDictionary" android:title="@string/menu_reinstall_default_dictionary"></item>
 </menu>
