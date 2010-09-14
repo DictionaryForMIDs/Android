@@ -204,11 +204,15 @@ public class Preferences extends PreferenceActivity implements
 	
 	private static void saveAutoInstallDictionaryId() {
 		final Editor editor = preferencesInstance.edit();
-		editor.putInt(PREF_AUTO_INSTALL_DICTIONARY, resources
-				.getInteger(R.integer.preferences_default_auto_install_id));
+		editor.putInt(PREF_AUTO_INSTALL_DICTIONARY, getOriginalAutoInstallId());
 		editor.commit();
 	}
 
+	public static int getOriginalAutoInstallId() {
+		return resources
+				.getInteger(R.integer.preferences_default_auto_install_id);
+	}
+	
 	public static boolean isFirstRun() {
 		return firstRun;
 	}
@@ -233,6 +237,17 @@ public class Preferences extends PreferenceActivity implements
 	 */
 	public static boolean hasAutoInstallDictionary() {
 		return getAutoInstallDictionaryId() > 0;
+	}
+	
+	/**
+	 * Checks if originally a dictionary could be auto-installed. It may already
+	 * be installed by now.
+	 * 
+	 * @return true if originally a dictionary was available for
+	 *         auto-installation
+	 */
+	public static boolean hasOriginalAutoInstallDictionary() {
+		return getOriginalAutoInstallId() > 0;
 	}
 	
 	public static void removeAutoInstallDictionaryId() {
