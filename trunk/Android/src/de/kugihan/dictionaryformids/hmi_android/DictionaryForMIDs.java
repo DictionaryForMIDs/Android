@@ -162,6 +162,11 @@ public final class DictionaryForMIDs extends Activity {
 	 * The key of an integer specifying the number of currently displayed translations.
 	 */
 	private static final String BUNDLE_NUMBER_OF_TRANSLATIONS = "numberOfTranslations";
+	
+	/**
+	 * The key of a String specifying the message to display to the user.
+	 */
+	public static final String BUNDLE_DISPLAY_MESSAGE = "displayMessage";
 
 	/**
 	 * The tag used for log messages.
@@ -365,7 +370,8 @@ public final class DictionaryForMIDs extends Activity {
 		}
 
 		if (savedInstanceState == null) {
-			if (Preferences.hasAutoInstallDictionary()) {
+			if (Preferences.hasAutoInstallDictionary()
+					&& !DictionaryInstallationService.isRunning()) {
 				showDialog(DialogHelper.ID_CONFIRM_INSTALL_DICTIONARY);
 			} else if (Preferences.isFirstRun()) {
 				showDialog(DialogHelper.ID_FIRST_RUN);
@@ -497,6 +503,11 @@ public final class DictionaryForMIDs extends Activity {
 			intent
 					.removeExtra(DictionaryInstallationService.BUNDLE_SHOW_DICTIONARY_INSTALLATION);
 			startChooseDictionaryActivity(true);
+			return true;
+		} else if (bundle.containsKey(BUNDLE_DISPLAY_MESSAGE)) {
+			DialogHelper.setMessage(bundle.getString(BUNDLE_DISPLAY_MESSAGE));
+			showDialog(DialogHelper.ID_MESSAGE);
+			intent.removeExtra(BUNDLE_DISPLAY_MESSAGE);
 			return true;
 		} else {
 			final Object exceptionObject = bundle
