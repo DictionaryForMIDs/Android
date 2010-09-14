@@ -128,7 +128,7 @@ public class FileList extends ListActivity implements ResultProvider {
 		currentDirectory = parentDirectory;
 		updateNavigationButtonState();
 		items = new ArrayList<String>();
-		final List<String> view = new ArrayList<String>();
+		final List<String> itemsFileName = new ArrayList<String>();
 		boolean directoryIncludesDictionary = false;
 		for (File file : parentDirectory.listFiles()) {
 			String path = file.getPath();
@@ -144,23 +144,23 @@ public class FileList extends ListActivity implements ResultProvider {
 				// display properties file to speed up loading of large
 				// dictionaries
 				items.clear();
-				view.clear();
+				itemsFileName.clear();
 				items.add(path);
-				view.add(name);
+				itemsFileName.add(name);
 				break;
 			} else if (!isDictionaryArchive) {
 				continue;
 			}
 			items.add(path);
-			view.add(name);
+			itemsFileName.add(name);
 		}
 		Collections.sort(items, String.CASE_INSENSITIVE_ORDER);
-		Collections.sort(view, String.CASE_INSENSITIVE_ORDER);
+		Collections.sort(itemsFileName, String.CASE_INSENSITIVE_ORDER);
 		ArrayAdapter<String> fileList;
 		if (findViewById(R.id.PathView).getVisibility() == View.GONE) {
 			fileList = new ArrayAdapter<String>(this, R.layout.file_row, items);
 		} else {
-			fileList = new ArrayAdapter<String>(this, R.layout.file_row, view);
+			fileList = new ArrayAdapter<String>(this, R.layout.file_row, itemsFileName);
 		}
 		setListAdapter(fileList);
 		if (directoryIncludesDictionary) {
