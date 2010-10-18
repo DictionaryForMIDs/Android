@@ -28,8 +28,10 @@
 	<string name="loading_download_dictionaries">Bonvolu atendi.\n\nSerĉas haveblajn vortarojn...</string>
 	<string name="no_download_dictionaries">Bedaŭrinde neniu vortaro estas nuntempe elŝutebla.</string>
 	<string name="msg_error_downloading_available_dictionaries">Okazis eraro dum elŝuto de la listo de haveblaj vortaroj.\n\n\nKlaku ĉi tie por reprovi.\n\n\nDetaloj:\n%1$s</string>
+	<string name="msg_error_dictionary_not_found">La vortaro kun id %1$d ne haveblas ĝuste nun.</string>
 	<string name="msg_suggest_update">Via versio de DictionaryForMIDs estas malaktuala. Bonvolu ĝisdatigi, antaŭ ol elŝuti vortarojn.\nĜisdatigi nun?</string>
 	<string name="msg_suggest_update_with_message">Via versio de DictionaryForMIDs estas malaktuala. Bonvolu ĝisdatigi, antaŭ ol elŝuti vortarojn.\nĜisdatigi nun?\n\nDetaloj: %1$s</string>
+	<string name="msg_auto_installation_started">Alŝutas vortaron \"%1$s\". Tio povas daŭri iom da tempo.\n\nVi volas elrir kaj labori kun aliaj programoj dume (la progreso estas montrata en la stata breto).</string>
 	<string name="msg_confirm_installation">Elŝuti kaj instali \"%1$s\"n vortaron?\nGrandeco: nekonata</string>
 	<string name="msg_confirm_installation_size">Elŝuti kaj instali \"%1$s\"n vortaron?\nGrandeco: %2$s</string>
 	<string name="msg_installation_exception">Escepto dum instalo:\n%1$s</string>
@@ -39,6 +41,8 @@
 	<string name="msg_installation_finished">Vortaro instaliĝis!</string>
 	<string name="msg_list_already_downloaded">Listo jam elŝutiĝas.</string>
 	<string name="msg_installation_error">Instaleraro</string>
+	<string name="msg_enter_word_first">Unue entajpu vorton.</string>
+	<string name="msg_auto_install">Ŝajnas ke vi ankoraŭ ne instalis vortaron.\n\nĈu vi volas elŝuti kaj instali vortaron nun?</string>
 	<string name="title_exception">Escepto</string>
 	<string name="exception_failed_create_directory">Ne povis krei dosierujon: %1$s</string>
 	<string name="exception_failed_create_file">Ne povis krei dosieron: %1$s</string>
@@ -90,7 +94,6 @@
 	<string name="menu_help">Helpo</string>
 	<string name="menu_download_dictionaries">Elŝuti permane...</string>
 	<string name="menu_clear_recent_dictionary_list">Vakigi lastatempajn...</string>
-	<string name="msg_enter_word_first">Bonvolu enigi vorton antaŭe.</string>
 	<string name="menu_reload_dictionary_list">Rekonstrui liston</string>
 	<string name="menu_cancel_installation">Ĉesigi instalon</string>
 	<string name="msg_load_dictionary_first">Bonvolu malfermi vortaron antaŭe.</string>
@@ -99,6 +102,7 @@
 	<string name="msg_restart_app_after_settings_changed">Restartu la programon, por ke lingvaj agordoj ekefiku.</string>
 	<string name="button_ok">Bone</string>
 	<string name="button_cancel">Nuligi</string>
+	<string name="button_exit">Eliri</string>
 	<string name="button_do_not_show_again">Ne montru denove</string>
 	<string name="msg_download_dictionaries">Por elŝuti vortaron necesas 4 paŝojn (oni supozas ĉi tie, ke vi jam instalis dosieradministrilon kiel Astro):\n\n1.Elektu kaj elŝutu vortaron el la retejo, kiu aperos, post kiam vi fermos ĉi tiun mesaĝon. Noto: Nur vortaroj de versio 2.4.4 aŭ pli novaj estas subtenataj.\n\n2.Eltiru la enhavon de la zip-dosiero al dosierujo en via SD-karto (ekz. per Astro).\n\n3.Laŭvole: Eltiri la enhavon de la enpakita jar-arkivo al via SD-karto por plirapidigi serĉojn.\n\n4.Elektu la vortaron en la antaŭa dialogujo.\n\nAlternative, vi povus elŝuti kaj eltiri la vortaron per via komputilo, tiam transigi la dosierojn al via SD-karto.</string>
 	<string name="msg_clear_recent_dictionaries_list">Vakigi la liston de lastatempaj vortaroj?</string>
