@@ -10,6 +10,8 @@ package de.kugihan.dictionaryformids.hmi_android;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,6 +45,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import de.kugihan.dictionaryformids.hmi_android.Preferences.DictionaryType;
+import de.kugihan.dictionaryformids.hmi_android.data.ExternalStorageState;
 import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
 import de.kugihan.dictionaryformids.hmi_android.thread.HiddenDictionaryFinderTask;
 import de.kugihan.dictionaryformids.hmi_android.view_helper.LocalizationHelper;
@@ -88,6 +91,19 @@ public class RecentList extends ListActivity implements ResultProvider {
 	 * Object to hold a findDictionaries searching for hidden dictionaries.
 	 */
 	private AsyncTask<String, Integer, ArrayList<File>> findDictionaries = null;
+	
+	/**
+	 * Observer to receive notifications if the state of external storage changes. 
+	 */
+	private final Observer externalStorageWatcher = new Observer() {
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void update(Observable observable, Object data) {
+			handleExternalStorageState();
+		}
+	};
 
 	/**
 	 * {@inheritDoc}
@@ -108,6 +124,19 @@ public class RecentList extends ListActivity implements ResultProvider {
 
 		final TextView empty = (TextView) findViewById(android.R.id.empty);
 		empty.setOnClickListener(clickListener);
+		
+		ExternalStorageState.createInstance(getBaseContext());
+		ExternalStorageState.getInstance().addObserver(externalStorageWatcher);
+		handleExternalStorageState();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void onDestroy() {
+		ExternalStorageState.getInstance().deleteObserver(externalStorageWatcher);
+		super.onDestroy();
 	}
 
 	/**
@@ -433,5 +462,17 @@ public class RecentList extends ListActivity implements ResultProvider {
 			return view;
 		}
 
+	}
+
+	/**
+	 * Reacts on changes to the state of the external storage.
+	 */
+	private void handleExternalStorageState() {
+		final TextView externalStorageGoneView = (TextView) findViewById(R.id.TextViewExternalStorageInaccessible);
+		if (ExternalStorageState.getInstance().isExternalStorageReadable()) {
+			externalStorageGoneView.setVisibility(View.GONE);
+		} else {
+			externalStorageGoneView.setVisibility(View.VISIBLE);
+		}
 	}
 }

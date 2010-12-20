@@ -42,6 +42,7 @@
 	<string name="msg_installation_finished">Dictionary installed!</string>	
 	<string name="msg_list_already_downloaded">List is already being downloaded.</string>
 	<string name="msg_installation_error">Installation error</string>
+	<string name="msg_external_storage_inaccessible">External storage is currently inaccessible.</string>
 	<string name="title_exception">Exception</string>
 	<string name="exception_failed_create_directory">Failed to create directory: %1$s</string>
 	<string name="exception_failed_create_file">Failed to create file: %1$s</string>

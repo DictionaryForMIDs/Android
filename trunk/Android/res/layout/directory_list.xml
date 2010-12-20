@@ -18,6 +18,11 @@
 			android:layout_height="wrap_content" android:background="@android:color/background_light"
 			android:padding="3sp" android:layout_margin="5sp" android:text="@string/to_top"></Button>
 	</LinearLayout>
+
+	<TextView android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:id="@+id/TextViewExternalStorageInaccessible"
+		android:text="@string/msg_external_storage_inaccessible"
+		android:gravity="center_horizontal" android:textColor="#ffff00"></TextView>
 	
 	<TextView android:text="Path" android:layout_height="wrap_content"
 		android:id="@+id/PathView" android:layout_width="fill_parent"
