@@ -11,6 +11,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -23,6 +25,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import de.kugihan.dictionaryformids.hmi_android.data.ExternalStorageState;
 import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
 
 /**
@@ -76,6 +79,19 @@ public class FileList extends ListActivity implements ResultProvider {
 	 * The result code returned to TabHost.
 	 */
 	private int resultCode = RESULT_CANCELED;
+	
+	/**
+	 * Observer to receive notifications if the state of external storage changes. 
+	 */
+	private final Observer externalStorageWatcher = new Observer() {
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void update(Observable observable, Object data) {
+			handleExternalStorageState();
+		}
+	};
 
 	/**
 	 * {@inheritDoc}
@@ -84,6 +100,11 @@ public class FileList extends ListActivity implements ResultProvider {
 	public final void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.directory_list);
+		
+		// load state of external storage
+		ExternalStorageState.createInstance(getBaseContext());
+		ExternalStorageState.getInstance().addObserver(externalStorageWatcher);
+		handleExternalStorageState();
 
 		// try to restore old data
 		if (savedInstanceState != null) {
@@ -95,7 +116,11 @@ public class FileList extends ListActivity implements ResultProvider {
 
 		// if current directory has not been restored load standard
 		if (currentDirectory == null) {
-			fillWithCard();
+			if (ExternalStorageState.getInstance().isExternalStorageReadable()) {
+				fillWithCard();
+			} else {
+				fillWithRoot();
+			}
 		}
 
 		((Button) findViewById(R.id.ButtonCard))
@@ -117,6 +142,15 @@ public class FileList extends ListActivity implements ResultProvider {
 				.putString(BUNDLE_CURRENT_DIRECTORY, currentDirectory.getPath());
 		super.onSaveInstanceState(outState);
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void onDestroy() {
+		ExternalStorageState.getInstance().deleteObserver(externalStorageWatcher);
+		super.onDestroy();
+	}
 
 	/**
 	 * Fills the file browser with the content of the specified directory.
@@ -130,7 +164,12 @@ public class FileList extends ListActivity implements ResultProvider {
 		items = new ArrayList<String>();
 		final List<String> itemsFileName = new ArrayList<String>();
 		boolean directoryIncludesDictionary = false;
-		for (File file : parentDirectory.listFiles()) {
+		File files[] = parentDirectory.listFiles();
+		if (files == null) {
+			// make sure files is an array
+			files = new File[0];
+		}
+		for (File file : files) {
 			String path = file.getPath();
 			String name = file.getName();
 			final boolean isDictionaryFile = isDictionaryPropertiesFile(file);
@@ -185,7 +224,9 @@ public class FileList extends ListActivity implements ResultProvider {
 		} else {
 			((Button) findViewById(R.id.ButtonRoot)).setEnabled(true);
 		}
-		if (currentDirectory != null
+		if (!ExternalStorageState.getInstance().isExternalStorageReadable()) {
+			((Button) findViewById(R.id.ButtonCard)).setEnabled(false);
+		} else if (currentDirectory != null
 				&& currentDirectory.getPath().equals(
 						Environment.getExternalStorageDirectory().getPath())) {
 			((Button) findViewById(R.id.ButtonCard)).setEnabled(false);
@@ -314,7 +355,17 @@ public class FileList extends ListActivity implements ResultProvider {
 	 * Fills the view with the content of sdcard's root directory.
 	 */
 	private void fillWithCard() {
-		fill(Environment.getExternalStorageDirectory());
+		File file = null;
+		final String state = Environment.getExternalStorageState();
+		if (state.equals(Environment.MEDIA_MOUNTED)
+				|| state.equals(Environment.MEDIA_MOUNTED_READ_ONLY)) {
+			file = Environment.getExternalStorageDirectory();
+		}
+		if (file == null) {
+			fillWithRoot();
+		} else {
+			fill(file);
+		}
 	}
 
 	/**
@@ -344,6 +395,37 @@ public class FileList extends ListActivity implements ResultProvider {
 			}
 		}
 	};
+
+	/**
+	 * Reacts on changes to the state of the external storage.
+	 */
+	private void handleExternalStorageState() {
+		final TextView externalStorageGoneView = (TextView) findViewById(R.id.TextViewExternalStorageInaccessible);
+		if (ExternalStorageState.getInstance().isExternalStorageReadable()) {
+			externalStorageGoneView.setVisibility(View.GONE);
+		} else {
+			externalStorageGoneView.setVisibility(View.VISIBLE);
+			if (isCurrentDirectoryOnExternalStorage()) {
+				fillWithRoot();
+			}
+		}
+		updateNavigationButtonState();
+	}
+
+	/**
+	 * Checks if the current directory specifies a path on the external storage.
+	 * 
+	 * @return true if the current directory specifies a path on the external
+	 *         storage
+	 */
+	private boolean isCurrentDirectoryOnExternalStorage() {
+		if (currentDirectory == null) {
+			return false;
+		}
+		final String currentPath = currentDirectory.getAbsolutePath();
+		final String externalPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+		return currentPath.startsWith(externalPath);
+	}
 
 	/**
 	 * {@inheritDoc}
