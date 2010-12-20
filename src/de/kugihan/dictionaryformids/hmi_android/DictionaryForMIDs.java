@@ -11,6 +11,7 @@ import java.util.Locale;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,32 +27,32 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
 import android.view.View.OnCreateContextMenuListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
+import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.AbsListView.OnScrollListener;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 import de.kugihan.dictionaryformids.dataaccess.DictionaryDataFile;
 import de.kugihan.dictionaryformids.dataaccess.fileaccess.AssetDfMInputStreamAccess;
 import de.kugihan.dictionaryformids.dataaccess.fileaccess.DfMInputStreamAccess;
@@ -374,6 +375,7 @@ public final class DictionaryForMIDs extends Activity {
 					&& !DictionaryInstallationService.isRunning()) {
 				showDialog(DialogHelper.ID_CONFIRM_INSTALL_DICTIONARY);
 			} else if (Preferences.isFirstRun()) {
+				processIntent(getIntent());
 				showDialog(DialogHelper.ID_FIRST_RUN);
 			} else {
 				final boolean silent = processIntent(getIntent());
@@ -492,7 +494,13 @@ public final class DictionaryForMIDs extends Activity {
 		if (bundle == null) {
 			return false;
 		}
-		if (hasNewDictionary(intent)) {
+		if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+			// load string
+			final String query = intent.getStringExtra(SearchManager.QUERY);
+			// copy string to input field
+			final TextView translationInput = (TextView) findViewById(R.id.TranslationInput);
+			translationInput.setText(query);
+		} else if (hasNewDictionary(intent)) {
 			intent
 					.removeExtra(DictionaryInstallationService.BUNDLE_LOAD_DICTIONARY);
 			DialogHelper.setLoadDictionary(intent);
@@ -660,6 +668,16 @@ public final class DictionaryForMIDs extends Activity {
 						((Spinner) findViewById(R.id.selectLanguages))
 								.setSelection(selectedIndex);
 
+						// start search according to intent
+						final String translationInput = ((TextView) findViewById(R.id.TranslationInput))
+								.getText().toString();
+						final String query = getIntent().getStringExtra(SearchManager.QUERY);
+						final boolean hasSearchIntent = Intent.ACTION_SEARCH.equals(getIntent()
+								.getAction());
+						if (hasSearchIntent && translationInput.equals(query)) {
+							getIntent().removeExtra(SearchManager.QUERY);
+							startTranslation();
+						}
 					};
 				});
 				hideProgressBar();
