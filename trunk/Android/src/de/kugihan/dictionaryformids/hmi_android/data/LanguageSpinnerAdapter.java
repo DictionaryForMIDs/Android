@@ -60,11 +60,11 @@ public class LanguageSpinnerAdapter extends BaseAdapter {
 		indices = new int[searchableLanguages * (data.length - 1)][2];
 		int counter = 0;
 		for (int i = 0; i < data.length; i++) {
+			if (!data[i].isSearchable) {
+				continue;
+			}
 			for (int j = 0; j < data.length; j++) {
 				if (i == j) {
-					continue;
-				}
-				if (!data[i].isSearchable) {
 					continue;
 				}
 				indices[counter][0] = i;
