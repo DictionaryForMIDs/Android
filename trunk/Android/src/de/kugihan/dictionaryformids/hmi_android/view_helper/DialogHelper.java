@@ -443,13 +443,16 @@ public final class DialogHelper {
 			alert.setMessage(translationErrorMessage);
 		} else if (id == ID_INSTALLATION_EXCEPTION) {
 			final AlertDialog alert = (AlertDialog) dialog;
-			String exceptionMessage = "Exception while installing:\n"
-					+ dictionaryInstallationException.getMessage();
-			if (dictionaryInstallationException.getCause() != null) {
-				exceptionMessage += "\n\nCause:\n"
-						+ dictionaryInstallationException.getCause();
+			String exceptionMessage = "Exception while installing:\n";
+			if (dictionaryInstallationException != null) {
+					exceptionMessage += dictionaryInstallationException.getMessage();
+					if (dictionaryInstallationException.getCause() != null) {
+						exceptionMessage += "\n\nCause:\n"
+								+ dictionaryInstallationException.getCause();
+					}
+			} else {
+				exceptionMessage += "<null>";
 			}
-
 			alert.setMessage(exceptionMessage);
 		} else if (id == ID_MESSAGE) {
 			final AlertDialog alert = (AlertDialog) dialog;
