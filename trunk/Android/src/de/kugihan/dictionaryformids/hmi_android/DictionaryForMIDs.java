@@ -500,6 +500,14 @@ public final class DictionaryForMIDs extends Activity {
 			// copy string to input field
 			final TextView translationInput = (TextView) findViewById(R.id.TranslationInput);
 			translationInput.setText(query);
+			// start search if dictionary finished loading
+			final Spinner spinner = (Spinner) findViewById(R.id.selectLanguages);
+			final boolean isDictionaryLoaded = loadDictionaryThread == null
+					&& !spinner.getAdapter().isEmpty() && spinner.getSelectedItem() != null;
+			if (isDictionaryLoaded) {
+				getIntent().removeExtra(SearchManager.QUERY);
+				startTranslation();
+			}
 		} else if (hasNewDictionary(intent)) {
 			intent
 					.removeExtra(DictionaryInstallationService.BUNDLE_LOAD_DICTIONARY);
@@ -1537,5 +1545,4 @@ public final class DictionaryForMIDs extends Activity {
 		}
 
 	};
-
 }
