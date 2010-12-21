@@ -962,7 +962,7 @@ public final class DictionaryForMIDs extends Activity {
 			}
 			return true;
 		}
-		return false;
+		return super.onKeyUp(keyCode, event);
 	};
 
 	/**
