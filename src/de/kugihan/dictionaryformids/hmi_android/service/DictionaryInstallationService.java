@@ -790,7 +790,6 @@ public final class DictionaryInstallationService extends Service {
 			ZipFile zipFile = new ZipFile(sourceFile);
 			Enumeration<? extends ZipEntry> entries = zipFile.entries();
 			String resultPath = null;
-			long readLength = 0;
 			int elementIndex = -1;
 			final float elementProgressSize = (float) PERCENTAGE_BASE
 					/ (float) zipFile.size();
@@ -845,7 +844,6 @@ public final class DictionaryInstallationService extends Service {
 				if (file.getName().matches(selectPathPattern)) {
 					resultPath = file.getParent();
 				}
-				readLength += entry.getSize();
 			}
 			return resultPath;
 		}
