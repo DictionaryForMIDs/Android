@@ -19,15 +19,18 @@
 	<string name="to_upper_level">.. (up)</string>
 	<string name="to_sdcard">/sdcard</string>
 	<string name="title_please_wait">Please wait</string>
-	<string name="msg_searching">Searching...</string>
+	<string name="msg_searching">Searching…</string>
 	<string name="copy_all">Copy all</string>
 	<string name="copy_word">Copy: %1$s</string>
 	<string name="not_found">not found</string>
-	<string name="no_included_dictionaries">No included dictionaries found.\n\nClick here to download one.</string>
-	<string name="no_recent_dictionaries">No recently loaded dictionaries found.\n\nClick here to download one.</string>
-	<string name="loading_download_dictionaries">Please wait.\n\nLoading available dictionaries...</string>
+	<string name="no_included_dictionaries">No included dictionaries found.\n\nTab here to download one.</string>
+	<string name="no_starred_words">No starred words found.\n\nTab the star icon of a dictionary entry to star it.</string>
+	<string name="starred_words_current_dictionary">Current: %1$d</string>
+	<string name="starred_words_all_dictionaries">All: %1$d</string>
+	<string name="no_recent_dictionaries">No recently loaded dictionaries found.\n\nTab here to download one.</string>
+	<string name="loading_download_dictionaries">Please wait.\n\nLoading available dictionaries…</string>
 	<string name="no_download_dictionaries">Sorry, there are currently no dictionaries available for download.</string>
-	<string name="msg_error_downloading_available_dictionaries">An error occurred while downloading the list of available dictionaries.\n\n\nClick here to try again.\n\n\nDetails:\n%1$s</string>
+	<string name="msg_error_downloading_available_dictionaries">An error occurred while downloading the list of available dictionaries.\n\n\nTab here to try again.\n\n\nDetails:\n%1$s</string>
 	<string name="msg_error_dictionary_not_found">The dictionary with the id %1$d is currently not available.</string>
 	<string name="msg_error_accessing_storage">External storage is not accessible. Please make sure your device is not connected via USB.\n\nCurrent storage state: %1$s</string>
 	<string name="msg_suggest_update">Your version of DictionaryForMIDs is outdated. Please update before downloading dictionaries.\nUpdate now?</string>
@@ -43,7 +46,9 @@
 	<string name="msg_list_already_downloaded">List is already being downloaded.</string>
 	<string name="msg_installation_error">Installation error</string>
 	<string name="msg_external_storage_inaccessible">External storage is currently inaccessible.</string>
+	<string name="msg_exported_starred_words">Successfully exported words to external storage.</string>
 	<string name="title_exception">Exception</string>
+	<string name="title_activity_starred_words">Starred Words</string>
 	<string name="exception_failed_create_directory">Failed to create directory: %1$s</string>
 	<string name="exception_failed_create_file">Failed to create file: %1$s</string>
 	<string name="exception_failed_delete_file">Failed to remove file: %1$s</string>
@@ -51,7 +56,7 @@
 	<string name="msg_successfully_installed_dictionary">Successfully installed dictionary.</string>
 	<string name="msg_installation_complete">Installation complete</string>
 	<string name="title_installation_status">Installation status</string>
-	<string name="msg_installing_dictionary">Installing dictionary...</string>
+	<string name="msg_installing_dictionary">Installing dictionary…</string>
 	<string name="msg_installation_aborted">Installation aborted by user.</string>
 	<string name="msg_installation_status">Status: %1$.2f%%</string>
 	<string name="msg_compressed_entry_not_found">In archive \"%1$s\" there was no entry matching the following pattern \"%2$s\"</string>
@@ -92,9 +97,11 @@
 	<string name="menu_preferences">Preferences</string>
 	<string name="menu_about">About</string>
 	<string name="menu_help">Help</string>
-	<string name="menu_download_dictionaries">Manually download...</string>
+	<string name="menu_starred">Starred</string>
+	<string name="menu_export_all_starred">Export all</string>
+	<string name="menu_download_dictionaries">Manually download…</string>
 	<string name="menu_find_hidden_dictionaries">Re-add hidden</string>
-	<string name="menu_clear_recent_dictionary_list">Clear recent...</string>
+	<string name="menu_clear_recent_dictionary_list">Clear recent…</string>
 	<string name="msg_enter_word_first">Please enter a word first.</string>
 	<string name="menu_reload_dictionary_list">Reload list</string>
 	<string name="menu_cancel_installation">Cancel installation</string>
@@ -118,7 +125,7 @@
 	<string name="msg_internal_dictionary_load_error">Error while loading internal dictionaries.\n\n%1$s</string>
 	<string name="title_current_path">&gt; %1$s</string>
 	<string name="msg_no_dictionary">Selected item does not look like a dictionary.</string>
-	<string name="title_load_dictionary">Load Dictionary...</string>
+	<string name="title_load_dictionary">Load Dictionary…</string>
 	<string name="msg_auto_install">It looks like you have not yet installed your default dictionary.\n\nWould you like to download and install it now?</string>
 
 	<!--
@@ -185,6 +192,7 @@
 	<string name="title_pref_result_font_size">Font size for results</string>
 	<string name="title_pref_ignore_font_styles">Ignore font styles</string>
 	<string name="title_pref_language_code">Language</string>
+	<string name="title_pref_enable_starred_words">Enable starred words</string>
 	<string name="title_default_language_code">Default</string>
 	<string name="language_english">English</string>
 	<string name="language_esperanto">Esperanto</string>

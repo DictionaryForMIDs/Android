@@ -2,7 +2,7 @@
  * DictionaryForMIDs - a free multi-language dictionary for mobile devices.
  * Copyright (C) 2005, 2006, 2009 Gert Nuber (dict@kugihan.de) and
  * Achim Weimert (achim.weimert@gmail.com)
- * 
+ *
  * GPL applies - see file COPYING for copyright statement.
  ******************************************************************************/
 package de.kugihan.dictionaryformids.hmi_android;
@@ -24,7 +24,7 @@ import android.widget.Toast;
 /**
  * Preferences is an Activity that handles interaction with the
  * preferencesInstance and provides an API for all preferencesInstance.
- * 
+ *
  * Before using this static class, it has to be attached to a Context using
  * attachToContext().
  */
@@ -49,12 +49,13 @@ public class Preferences extends PreferenceActivity implements
 	public static final String PREF_RECENT_DICTIONARIES = "recentDictionaries";
 	public static final String PREF_LANGUAGE_CODE = "languageCode";
 	private static final String PREF_AUTO_INSTALL_DICTIONARY = "autoInstallDictionary";
+	public static final String PREF_STARRED_WORDS = "starredWords";
 
 	/**
 	 * Saves an instance of the application's shared preferences.
 	 */
 	private static SharedPreferences preferencesInstance = null;
-	
+
 	/**
 	 * Saves an instance of the application's resources.
 	 */
@@ -144,7 +145,7 @@ public class Preferences extends PreferenceActivity implements
 
 	/**
 	 * Connect the settings to the given context.
-	 * 
+	 *
 	 * @param context
 	 *            the context for which the settings are handled
 	 */
@@ -201,7 +202,7 @@ public class Preferences extends PreferenceActivity implements
 		editor.putInt(PREF_VERSION, CURRENT_PREF_VERSION);
 		editor.commit();
 	}
-	
+
 	private static void saveAutoInstallDictionaryId() {
 		final Editor editor = preferencesInstance.edit();
 		editor.putInt(PREF_AUTO_INSTALL_DICTIONARY, getOriginalAutoInstallId());
@@ -212,7 +213,7 @@ public class Preferences extends PreferenceActivity implements
 		return resources
 				.getInteger(R.integer.preferences_default_auto_install_id);
 	}
-	
+
 	public static boolean isFirstRun() {
 		return firstRun;
 	}
@@ -220,36 +221,36 @@ public class Preferences extends PreferenceActivity implements
 	public static int getSelectedLanguageIndex() {
 		return preferencesInstance.getInt(PREF_SELECTED_LANGUAGE_INDEX, 0);
 	}
-	
+
 	/**
 	 * Returns the ID of the dictionary to pre-install.
-	 * 
+	 *
 	 * @return the dictionary ID or 0
 	 */
 	public static int getAutoInstallDictionaryId() {
 		return preferencesInstance.getInt(PREF_AUTO_INSTALL_DICTIONARY, 0);
 	}
-	
+
 	/**
 	 * Returns if a dictionary can be auto-installed.
-	 * 
+	 *
 	 * @return true if a dictionary can be auto-installed
 	 */
 	public static boolean hasAutoInstallDictionary() {
 		return getAutoInstallDictionaryId() > 0;
 	}
-	
+
 	/**
 	 * Checks if originally a dictionary could be auto-installed. It may already
 	 * be installed by now.
-	 * 
+	 *
 	 * @return true if originally a dictionary was available for
 	 *         auto-installation
 	 */
 	public static boolean hasOriginalAutoInstallDictionary() {
 		return getOriginalAutoInstallId() > 0;
 	}
-	
+
 	public static void removeAutoInstallDictionaryId() {
 		final Editor editor = preferencesInstance.edit();
 		editor.putInt(PREF_AUTO_INSTALL_DICTIONARY, 0);
@@ -318,6 +319,16 @@ public class Preferences extends PreferenceActivity implements
 
 	public static boolean getIsSearchModeDefault() {
 		return getSearchMode() == SearchMode.DEFAULT.ordinal();
+	}
+
+	public static boolean getIsStarredWordsEnabled() {
+		return preferencesInstance.getBoolean(PREF_STARRED_WORDS, false);
+	}
+
+	public static void setIsStarredWordsEnabled(final boolean isEnabled) {
+		final Editor editor = preferencesInstance.edit();
+		editor.putBoolean(PREF_STARRED_WORDS, isEnabled);
+		editor.commit();
 	}
 
 	public static boolean getFindExactMatch() {
@@ -405,7 +416,7 @@ public class Preferences extends PreferenceActivity implements
 	public static void clearRecentDictionaryUrls() {
 		setRecentDictionaries(new String[0]);
 	}
-	
+
 	public static void addRecentDictionaryUrl(final DictionaryType type,
 			final String path, final String[] languages) {
 		addRecentDictionaryUrl(type, path, languages, false);
@@ -419,13 +430,13 @@ public class Preferences extends PreferenceActivity implements
 			return;
 		}
 		final String[] dictionaries = getRecentDictionaries();
-		
+
 		// find out if it already exists in list
 		final int position = findDictionary(path, type, dictionaries);
 		if (ignoreExisting && position >= 0) {
 			return;
 		}
-		
+
 		if (position >= 0) {
 			// move every dictionary one position later
 			for (int j = position; j >= 1; j--) {
@@ -447,7 +458,7 @@ public class Preferences extends PreferenceActivity implements
 
 	/**
 	 * Returns the index of the specified dictionary in the given array.
-	 * 
+	 *
 	 * @param searchDictionaryPath
 	 *            the path of the dictionary to search for
 	 * @param searchType
@@ -480,7 +491,7 @@ public class Preferences extends PreferenceActivity implements
 
 	/**
 	 * Returns the dictionary URL specified by the parameters.
-	 * 
+	 *
 	 * @param type
 	 *            the type of the dictionary
 	 * @param path
@@ -525,7 +536,7 @@ public class Preferences extends PreferenceActivity implements
 	/**
 	 * Extracts the current value for a PreferenceList and updates the summary
 	 * to show the value's title.
-	 * 
+	 *
 	 * @param preferencesId
 	 *            the ID of the PreferenceList to update
 	 * @param entriesResourceId
