@@ -2,7 +2,7 @@
  * DictionaryForMIDs - a free multi-language dictionary for mobile devices.
  * Copyright (C) 2005, 2006, 2009 Gert Nuber (dict@kugihan.de) and
  * Achim Weimert (achim.weimert@gmail.com)
- * 
+ *
  * GPL applies - see file COPYING for copyright statement.
  ******************************************************************************/
 package de.kugihan.dictionaryformids.hmi_android;
@@ -35,14 +35,11 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnCreateContextMenuListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.EditText;
@@ -63,13 +60,13 @@ import de.kugihan.dictionaryformids.general.Util;
 import de.kugihan.dictionaryformids.hmi_android.Preferences.DictionaryType;
 import de.kugihan.dictionaryformids.hmi_android.data.AndroidUtil;
 import de.kugihan.dictionaryformids.hmi_android.data.LanguageSpinnerAdapter;
-import de.kugihan.dictionaryformids.hmi_android.data.SingleTranslationHelper;
-import de.kugihan.dictionaryformids.hmi_android.data.Translations;
+import de.kugihan.dictionaryformids.hmi_android.data.TranslationsAdapter;
 import de.kugihan.dictionaryformids.hmi_android.service.DictionaryInstallationService;
 import de.kugihan.dictionaryformids.hmi_android.thread.LoadDictionaryThread;
 import de.kugihan.dictionaryformids.hmi_android.thread.LoadDictionaryThread.OnThreadResultListener;
 import de.kugihan.dictionaryformids.hmi_android.view_helper.DialogHelper;
-import de.kugihan.dictionaryformids.translation.SingleTranslation;
+import de.kugihan.dictionaryformids.hmi_android.view_helper.TranslationScrollListener;
+import de.kugihan.dictionaryformids.translation.SingleTranslationExtension;
 import de.kugihan.dictionaryformids.translation.TranslationExecution;
 import de.kugihan.dictionaryformids.translation.TranslationExecutionCallback;
 import de.kugihan.dictionaryformids.translation.TranslationParameters;
@@ -78,44 +75,44 @@ import de.kugihan.dictionaryformids.translation.TranslationResult;
 /**
  * DictionaryForMIDs is the main Activity of the application. Most of the user
  * interaction will be handled by this class.
- * 
+ *
  */
 public final class DictionaryForMIDs extends Activity {
 
 	/**
 	 * Summarizes all objects that should be saved in
 	 * OnRetainNonConfigurationInstance.
-	 * 
+	 *
 	 */
 	private static final class NonConfigurationInstance {
-		
+
 		/**
 		 * The currently active load dictionary thread.
 		 */
 		private final LoadDictionaryThread thread;
-		
+
 		/**
 		 * The current list of translations.
 		 */
-		private final Translations translations;
+		private final TranslationsAdapter translations;
 
 		/**
 		 * Constructs a new instance and initalizes all members.
-		 * 
+		 *
 		 * @param thread
 		 *            the current load dictionary thread
 		 * @param translations
 		 *            the current translations
 		 */
 		public NonConfigurationInstance(final LoadDictionaryThread thread,
-				final Translations translations) {
+				final TranslationsAdapter translations) {
 			this.thread = thread;
 			this.translations = translations;
 		}
 
 		/**
 		 * Returns the load dictionary thread.
-		 * 
+		 *
 		 * @return the load dictionary thread
 		 */
 		public LoadDictionaryThread getThread() {
@@ -124,10 +121,10 @@ public final class DictionaryForMIDs extends Activity {
 
 		/**
 		 * Returns the translations.
-		 * 
+		 *
 		 * @return the translations
 		 */
-		public Translations getTranslations() {
+		public TranslationsAdapter getTranslations() {
 			return translations;
 		}
 	}
@@ -158,12 +155,12 @@ public final class DictionaryForMIDs extends Activity {
 	 * a bundle.
 	 */
 	private static final String BUNDLE_SEARCH_OPTIONS_VISIBILITY = "searchOptionsVisibility";
-	
+
 	/**
 	 * The key of an integer specifying the number of currently displayed translations.
 	 */
 	private static final String BUNDLE_NUMBER_OF_TRANSLATIONS = "numberOfTranslations";
-	
+
 	/**
 	 * The key of a String specifying the message to display to the user.
 	 */
@@ -198,7 +195,12 @@ public final class DictionaryForMIDs extends Activity {
 	 * The request code identifying a {@link ChooseDictionary} activity.
 	 */
 	private static final int REQUEST_DICTIONARY_PATH = 0;
-	
+
+	/**
+	 * The request code identifying a {@link StarredWordsList} activity.
+	 */
+	private static final int REQUEST_STARRED_WORDS = 1;
+
 	/**
 	 * The result that instructs the activity to exit.
 	 */
@@ -217,12 +219,14 @@ public final class DictionaryForMIDs extends Activity {
 	/**
 	 * The data of the translation results list.
 	 */
-	private Translations translations = new Translations();
+	private TranslationsAdapter translations = null;
 
 	/**
 	 * The helper for all dialogs.
 	 */
 	private DialogHelper dialogHelper;
+
+	private final TranslationScrollListener onScrollListener = new TranslationScrollListener(null);
 
 	/**
 	 * {@inheritDoc}
@@ -266,7 +270,7 @@ public final class DictionaryForMIDs extends Activity {
 		final int selectedLanguage = savedInstanceState
 				.getInt(BUNDLE_SELECTED_LANGUAGE);
 		spinner.setSelection(selectedLanguage);
-		
+
 		final int previousNumberOfTranslations = savedInstanceState
 				.getInt(BUNDLE_NUMBER_OF_TRANSLATIONS);
 
@@ -325,11 +329,13 @@ public final class DictionaryForMIDs extends Activity {
 				.getDefaultSharedPreferences(getBaseContext());
 		preferences
 				.registerOnSharedPreferenceChangeListener(preferenceChangeListener);
-		
+
 		// set preferred locale for application
 		setCustomLocale(Preferences.getLanguageCode());
 
 		setContentView(R.layout.main);
+
+		translations = new TranslationsAdapter();
 
 		dialogHelper = DialogHelper.getInstance(this);
 
@@ -343,10 +349,9 @@ public final class DictionaryForMIDs extends Activity {
 		final ListView translationListView = (ListView) findViewById(R.id.translationsListView);
 		translationListView.setAdapter(translations);
 		translationListView.setOnFocusChangeListener(focusChangeListener);
-		translationListView.setOnScrollListener(scrollListener);
+		translationListView.setOnScrollListener(onScrollListener);
 		translationListView.setOnTouchListener(touchListener);
-		translationListView
-				.setOnCreateContextMenuListener(createContextMenuListener);
+		registerForContextMenu(translationListView);
 
 		((ImageButton) findViewById(R.id.StartTranslation))
 				.setOnClickListener(clickListener);
@@ -386,7 +391,7 @@ public final class DictionaryForMIDs extends Activity {
 
 	/**
 	 * Sets the locale of the current base context.
-	 * 
+	 *
 	 * @param languageCode
 	 *            the language code of the new locale
 	 */
@@ -400,7 +405,7 @@ public final class DictionaryForMIDs extends Activity {
 
 	/**
 	 * Sets the locale of the given base context's resources.
-	 * 
+	 *
 	 * @param languageCode
 	 *            the language code of the new locale
 	 * @param resources
@@ -418,7 +423,7 @@ public final class DictionaryForMIDs extends Activity {
 	/**
 	 * Parses the given language code for language, country and variant and
 	 * creates a corresponding locale.
-	 * 
+	 *
 	 * @param languageCode
 	 *            the language code containing language-country-variant
 	 * @return the corresponding locale
@@ -444,11 +449,11 @@ public final class DictionaryForMIDs extends Activity {
 
 	/**
 	 * Loads the last used dictionary.
-	 * 
+	 *
 	 * @param silent
 	 *            true if the user should not be informed about loading results
 	 */
-	public void loadLastUsedDictionary(final boolean silent) {
+	private void loadLastUsedDictionary(final boolean silent) {
 		DfMInputStreamAccess inputStreamAccess = null;
 		DictionaryType dictionaryType;
 
@@ -483,7 +488,7 @@ public final class DictionaryForMIDs extends Activity {
 
 	/**
 	 * Processes the given intent and reacts on included information.
-	 * 
+	 *
 	 * @param intent
 	 *            the intent to process
 	 * @return true if the intent included meaningful information that has been
@@ -544,7 +549,7 @@ public final class DictionaryForMIDs extends Activity {
 
 	/**
 	 * Checks if the intent includes information about a new dictionary.
-	 * 
+	 *
 	 * @param intent
 	 *            the intent to analyze
 	 * @return true if the intent includes information about a new dictionary
@@ -599,6 +604,9 @@ public final class DictionaryForMIDs extends Activity {
 					.equals(Preferences.PREF_IGNORE_DICTIONARY_TEXT_STYLES)) {
 				// push style information change into list items
 				translations.notifyDataSetChanged();
+			} else if (key.equals(Preferences.PREF_STARRED_WORDS)) {
+				// push starred words option to list items
+				translations.notifyDataSetChanged();
 			}
 		}
 
@@ -606,7 +614,7 @@ public final class DictionaryForMIDs extends Activity {
 
 	/**
 	 * Start the thread to load a new dictionary and update the view.
-	 * 
+	 *
 	 * @param inputStreamAccess
 	 *            the input stream to load the dictionary
 	 * @param dictionaryType
@@ -646,7 +654,7 @@ public final class DictionaryForMIDs extends Activity {
 
 	/**
 	 * Creates a listener for thread results.
-	 * 
+	 *
 	 * @param exitSilently
 	 *            true if the thread should exit silently
 	 * @return the thread result listener
@@ -662,6 +670,7 @@ public final class DictionaryForMIDs extends Activity {
 				final LanguageSpinnerAdapter languageSpinnerAdapter = new LanguageSpinnerAdapter(
 						DictionaryDataFile.supportedLanguages);
 				updateHandler.post(new Runnable() {
+					@Override
 					public void run() {
 						((Spinner) findViewById(R.id.selectLanguages))
 								.setAdapter(languageSpinnerAdapter);
@@ -728,7 +737,7 @@ public final class DictionaryForMIDs extends Activity {
 			/**
 			 * Shows the specified dialog in the UI and posts the onFailure
 			 * runnable.
-			 * 
+			 *
 			 * @param dialog
 			 *            the id of the dialog to show
 			 */
@@ -755,7 +764,7 @@ public final class DictionaryForMIDs extends Activity {
 
 	/**
 	 * Start the thread to load a new dictionary and update the view.
-	 * 
+	 *
 	 * @param inputStreamAccess
 	 *            the input stream to load the dictionary
 	 * @param dictionaryType
@@ -802,7 +811,7 @@ public final class DictionaryForMIDs extends Activity {
 
 	/**
 	 * Hides the search options.
-	 * 
+	 *
 	 * @param force
 	 *            specifies if the search options should always be hidden
 	 */
@@ -830,6 +839,7 @@ public final class DictionaryForMIDs extends Activity {
 	 * Listener to react on button clicks.
 	 */
 	private final OnClickListener clickListener = new OnClickListener() {
+		@Override
 		public void onClick(final View button) {
 			switch (button.getId()) {
 			case R.id.StartTranslation:
@@ -903,29 +913,6 @@ public final class DictionaryForMIDs extends Activity {
 	};
 
 	/**
-	 * Listener to react on scroll events to hide search options.
-	 */
-	private final OnScrollListener scrollListener = new OnScrollListener() {
-
-		@Override
-		public void onScroll(final AbsListView view,
-				final int firstVisibleItem, final int visibleItemCount,
-				final int totalItemCount) {
-			final ListView listView = (ListView) findViewById(R.id.translationsListView);
-			if (view == listView && listView.hasFocusable()
-					&& listView.getCount() > 0) {
-				hideSearchOptions();
-			}
-		}
-
-		@Override
-		public void onScrollStateChanged(final AbsListView view,
-				final int scrollState) {
-		}
-
-	};
-
-	/**
 	 * Listener to react on touch events to show or hide the search options.
 	 */
 	private final OnTouchListener touchListener = new OnTouchListener() {
@@ -947,7 +934,7 @@ public final class DictionaryForMIDs extends Activity {
 		}
 
 	};
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -1043,6 +1030,7 @@ public final class DictionaryForMIDs extends Activity {
 			}
 			// show results
 			translations.newTranslationResult(translationResult);
+			onScrollListener.setDictionaryIdentifier(DictionaryDataFile.dictionaryAbbreviation);
 			// hide search options if results have been found
 			if (hideSearchOptions) {
 				hideSearchOptions(true);
@@ -1079,7 +1067,7 @@ public final class DictionaryForMIDs extends Activity {
 	 * OnPostExecutionListener-object that transforms calls from the translation
 	 * thread into messages to the update handler of the user interface.
 	 */
-	private TranslationExecutionCallback translationCallback = new TranslationExecutionCallback() {
+	private final TranslationExecutionCallback translationCallback = new TranslationExecutionCallback() {
 
 		@Override
 		public void deletePreviousTranslationResult() {
@@ -1103,24 +1091,9 @@ public final class DictionaryForMIDs extends Activity {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean onContextItemSelected(final MenuItem item) {
-		ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-		switch (item.getItemId()) {
-		case R.id.itemCopyAll:
-			clipboardManager.setText(SingleTranslationHelper.getAll());
-			break;
-
-		case R.id.itemCopyFromWord:
-			clipboardManager.setText(SingleTranslationHelper.getFromRow());
-			break;
-
-		case R.id.itemCopyToWord:
-			clipboardManager.setText(SingleTranslationHelper.getToRows());
-			break;
-
-		default:
-			return super.onContextItemSelected(item);
-		}
+	public boolean onCreateOptionsMenu(final Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.options, menu);
 		return true;
 	}
 
@@ -1128,10 +1101,10 @@ public final class DictionaryForMIDs extends Activity {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean onCreateOptionsMenu(final Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.options, menu);
-		return true;
+	public boolean onPrepareOptionsMenu(final Menu menu) {
+		final MenuItem item = menu.findItem(R.id.itemStarred);
+		item.setVisible(Preferences.getIsStarredWordsEnabled());
+		return super.onPrepareOptionsMenu(menu);
 	}
 
 	/**
@@ -1160,6 +1133,11 @@ public final class DictionaryForMIDs extends Activity {
 			Intent helpIntent = new Intent(DictionaryForMIDs.this,
 					HelpScreen.class);
 			startActivity(helpIntent);
+			return true;
+
+		case R.id.itemStarred:
+			Intent starredIntent = new Intent(DictionaryForMIDs.this, StarredWordsList.class);
+			startActivityForResult(starredIntent, REQUEST_STARRED_WORDS);
 			return true;
 
 		default:
@@ -1227,7 +1205,7 @@ public final class DictionaryForMIDs extends Activity {
 
 	/**
 	 * Apply search modifiers on the search word.
-	 * 
+	 *
 	 * @param searchWord
 	 *            the search input to apply the modifiers on
 	 */
@@ -1264,7 +1242,7 @@ public final class DictionaryForMIDs extends Activity {
 
 	/**
 	 * Creates the TranslationParamters from the current state.
-	 * 
+	 *
 	 * @param searchTerm
 	 *            the term to search for
 	 * @param numberOfAvailableLanguages
@@ -1330,53 +1308,89 @@ public final class DictionaryForMIDs extends Activity {
 	}
 
 	/**
-	 * Listener to create a context menu.
+	 * {@inheritDoc}
 	 */
-	private OnCreateContextMenuListener createContextMenuListener = new OnCreateContextMenuListener() {
-		@Override
-		public void onCreateContextMenu(final ContextMenu menu, final View v,
-				final ContextMenuInfo contextMenuInfo) {
-			loadTranslation(contextMenuInfo);
-			initializeMenu(menu);
+	@Override
+	public void onCreateContextMenu(final ContextMenu menu, final View v,
+			final ContextMenuInfo contextMenuInfo) {
+		// get selected translation
+		final ListView list = (ListView) findViewById(R.id.translationsListView);
+		final AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) contextMenuInfo;
+		final SingleTranslationExtension translation = (SingleTranslationExtension) list
+				.getItemAtPosition(menuInfo.position);
+
+		// load texts from translation
+		String fromText = null;
+		String toTexts = null;
+		try {
+			fromText = translation.getFromTextAsString();
+			toTexts = translation.getToTextsAsString("\n");
+		} catch (DictionaryException e) {
+			Log.d(LOG_TAG, "Parsing error", e);
+			Toast.makeText(getBaseContext(), R.string.msg_parsing_error, Toast.LENGTH_SHORT).show();
 		}
 
-		private void loadTranslation(final ContextMenuInfo contextMenuInfo) {
-			ListView list = (ListView) findViewById(R.id.translationsListView);
-			AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) contextMenuInfo;
-			SingleTranslation translation = (SingleTranslation) list
-					.getItemAtPosition(menuInfo.position);
+		initializeMenu(menu, fromText, toTexts);
+		Log.d(LOG_TAG, "onCreateContextMenu");
+	}
 
-			try {
-				SingleTranslationHelper.setTranslation(translation);
-			} catch (DictionaryException e) {
-				Toast.makeText(getBaseContext(), R.string.msg_parsing_error,
-						Toast.LENGTH_SHORT).show();
-			}
-		}
+	/**
+	 * Initializes the given context menu for copying translations.
+	 *
+	 * @param menu
+	 *            the menu to initialize
+	 * @param fromText
+	 *            the fromText to use
+	 * @param toTexts
+	 *            the toTexts to use
+	 */
+	private void initializeMenu(final ContextMenu menu, final String fromText, final String toTexts) {
+		final MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.translation_context, menu);
 
-		private void initializeMenu(final ContextMenu menu) {
-			final MenuInflater inflater = getMenuInflater();
-			inflater.inflate(R.menu.translation_context, menu);
+		final ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
 
-			final MenuItem copyFromWord = menu.findItem(R.id.itemCopyFromWord);
-			if (SingleTranslationHelper.getFromRow().length() == 0) {
-				copyFromWord.setVisible(false);
-				copyFromWord.setEnabled(false);
-			}
-			final String copyFromWordTitle = getString(R.string.copy_word,
-					SingleTranslationHelper.getFromRow());
+		final MenuItem copyFromWord = menu.findItem(R.id.itemCopyFromWord);
+		if (fromText == null || fromText.length() == 0) {
+			copyFromWord.setVisible(false);
+			copyFromWord.setEnabled(false);
+		} else {
+			final String copyFromWordTitle = getString(R.string.copy_word, fromText);
 			copyFromWord.setTitle(copyFromWordTitle);
-
-			final MenuItem copyToWord = menu.findItem(R.id.itemCopyToWord);
-			if (SingleTranslationHelper.getToRows().length() == 0) {
-				copyToWord.setVisible(false);
-				copyToWord.setEnabled(false);
-			}
-			final String copyToWordTitle = getString(R.string.copy_word,
-					SingleTranslationHelper.getToRows());
-			copyToWord.setTitle(copyToWordTitle);
+			copyFromWord.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+				@Override
+				public boolean onMenuItemClick(MenuItem item) {
+					clipboardManager.setText(fromText);
+					return true;
+				}
+			});
 		}
-	};
+
+		final MenuItem copyToWord = menu.findItem(R.id.itemCopyToWord);
+		if (toTexts == null || toTexts.length() == 0) {
+			copyToWord.setVisible(false);
+			copyToWord.setEnabled(false);
+		} else {
+			final String copyToWordTitle = getString(R.string.copy_word, toTexts);
+			copyToWord.setTitle(copyToWordTitle);
+			copyToWord.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+				@Override
+				public boolean onMenuItemClick(MenuItem item) {
+					clipboardManager.setText(toTexts);
+					return true;
+				}
+			});
+		}
+
+		final MenuItem copyAll = menu.findItem(R.id.itemCopyAll);
+		copyAll.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				clipboardManager.setText(fromText + "\n" + toTexts);
+				return true;
+			}
+		});
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -1393,17 +1407,20 @@ public final class DictionaryForMIDs extends Activity {
 			case RESULT_EXIT:
 				finish();
 				break;
-				
+
 			default:
 				break;
 			}
+		} else if (requestCode == REQUEST_STARRED_WORDS) {
+			// reload data set to push changes to stars to the view
+			translations.notifyDataSetChanged();
 		}
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	/**
 	 * Loads a dictionary specified by an intent in the GUI thread.
-	 * 
+	 *
 	 * @param data
 	 *            the intent specifying a dictionary
 	 */
@@ -1418,7 +1435,7 @@ public final class DictionaryForMIDs extends Activity {
 
 	/**
 	 * Loads a dictionary that is specified by an intent.
-	 * 
+	 *
 	 * @param data
 	 *            the intent specifying a dictionary
 	 */
@@ -1451,7 +1468,7 @@ public final class DictionaryForMIDs extends Activity {
 	/**
 	 * Starts the ChooseDictionary activity and optionally set the installation
 	 * tab as default tab.
-	 * 
+	 *
 	 * @param showDictionaryInstallation
 	 *            true if the installation tab should be the default tab
 	 */
@@ -1463,7 +1480,7 @@ public final class DictionaryForMIDs extends Activity {
 	/**
 	 * Starts the ChooseDictionary activity and optionally set the installation
 	 * tab as default tab.
-	 * 
+	 *
 	 * @param activity
 	 *            the activity to use
 	 * @param showDictionaryInstallation
@@ -1477,7 +1494,7 @@ public final class DictionaryForMIDs extends Activity {
 	/**
 	 * Starts the ChooseDictionary activity and optionally set the installation
 	 * tab as default tab.
-	 * 
+	 *
 	 * @param activity
 	 *            the activity to use
 	 * @param showDictionaryInstallation
@@ -1504,7 +1521,7 @@ public final class DictionaryForMIDs extends Activity {
 	 * Reacts on changes in the selection of the translation languages to open
 	 * the dialog for choosing a new dictionary if appropriate.
 	 */
-	private OnItemSelectedListener languageSelectedListener = new OnItemSelectedListener() {
+	private final OnItemSelectedListener languageSelectedListener = new OnItemSelectedListener() {
 
 		@Override
 		public void onItemSelected(final AdapterView<?> parent, final View v,

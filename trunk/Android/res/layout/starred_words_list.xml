@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RadioGroup
+        android:id="@+id/listState"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:checkedButton="@+id/showFromCurrentDictionary"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/showFromCurrentDictionary"
+            android:layout_weight="1"
+            android:text="@string/starred_words_current_dictionary"
+            android:visibility="invisible" />
+
+        <RadioButton
+            android:id="@+id/showFromAllDictionaries"
+            android:layout_weight="1"
+            android:text="@string/starred_words_all_dictionaries"
+            android:visibility="invisible" />
+    </RadioGroup>
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+    </ListView>
+
+    <TextView
+        android:id="@android:id/empty"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clickable="false"
+        android:gravity="center"
+        android:text="@string/no_starred_words" />
+
+</LinearLayout>
