@@ -2,4 +2,5 @@
 <item android:title="@string/menu_preferences" android:id="@+id/itemPreferences"></item>
 <item android:id="@+id/itemHelp" android:title="@string/menu_help"></item>
 <item android:id="@+id/itemAbout" android:title="@string/menu_about"></item>
+<item android:id="@+id/itemStarred" android:title="@string/menu_starred"></item>
 </menu>
