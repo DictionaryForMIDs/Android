@@ -2,7 +2,7 @@
  * DictionaryForMIDs - a free multi-language dictionary for mobile devices.
  * Copyright (C) 2005, 2006, 2009 Gert Nuber (dict@kugihan.de) and
  * Achim Weimert (achim.weimert@gmail.com)
- * 
+ *
  * GPL applies - see file COPYING for copyright statement.
  ******************************************************************************/
 package de.kugihan.dictionaryformids.hmi_android.service;
@@ -45,7 +45,7 @@ import de.kugihan.dictionaryformids.hmi_android.data.DownloadDictionaryItem;
 /**
  * DictionaryInstallationService is the class for downloading and installing
  * dictionaries in the background.
- * 
+ *
  */
 public final class DictionaryInstallationService extends Service {
 
@@ -172,7 +172,7 @@ public final class DictionaryInstallationService extends Service {
 	 * Handle to the application's notification manager.
 	 */
 	private NotificationManager notificationManager = null;
-	
+
 	/**
 	 * Signature of Android 2.0+ function startForeground. Necessary for
 	 * compatibility with previous versions of the Android API.
@@ -236,58 +236,58 @@ public final class DictionaryInstallationService extends Service {
 			stopForeground = null;
 		}
 	}
-	
+
 	/**
 	 * This is a wrapper around the new startForeground method, using the older
 	 * APIs if it is not available.
 	 */
 	void startForegroundCompat(int id, Notification notification) {
 		// If we have the new startForeground API, then use it.
-        if (startForeground != null) {
-            startForegroundArgs[0] = Integer.valueOf(id);
-            startForegroundArgs[1] = notification;
-            try {
-                startForeground.invoke(this, startForegroundArgs);
-            } catch (InvocationTargetException e) {
-                // Should not happen.
-                Log.w(DictionaryForMIDs.LOG_TAG, "Unable to invoke startForeground", e);
-            } catch (IllegalAccessException e) {
-                // Should not happen.
-                Log.w(DictionaryForMIDs.LOG_TAG, "Unable to invoke startForeground", e);
-            }
-            return;
-        }
-        
-        // Fall back on the old API.
-        setForeground(true);
-        notificationManager.notify(id, notification);
-    }
-    
-    /**
-     * This is a wrapper around the new stopForeground method, using the older
-     * APIs if it is not available.
-     */
-    void stopForegroundCompat(int id) {
-        // If we have the new stopForeground API, then use it.
-        if (stopForeground != null) {
-            stopForegroundArgs[0] = Boolean.TRUE;
-            try {
-                stopForeground.invoke(this, stopForegroundArgs);
-            } catch (InvocationTargetException e) {
-                // Should not happen.
-                Log.w(DictionaryForMIDs.LOG_TAG, "Unable to invoke stopForeground", e);
-            } catch (IllegalAccessException e) {
-                // Should not happen.
-                Log.w(DictionaryForMIDs.LOG_TAG, "Unable to invoke stopForeground", e);
-            }
-            return;
-        }
-        
-        // Fall back on the old API.  Note to cancel BEFORE changing the
-        // foreground state, since we could be killed at that point.
-        notificationManager.cancel(id);
-        setForeground(false);
-    }
+		if (startForeground != null) {
+			startForegroundArgs[0] = Integer.valueOf(id);
+			startForegroundArgs[1] = notification;
+			try {
+				startForeground.invoke(this, startForegroundArgs);
+			} catch (InvocationTargetException e) {
+				// Should not happen.
+				Log.w(DictionaryForMIDs.LOG_TAG, "Unable to invoke startForeground", e);
+			} catch (IllegalAccessException e) {
+				// Should not happen.
+				Log.w(DictionaryForMIDs.LOG_TAG, "Unable to invoke startForeground", e);
+			}
+			return;
+		}
+
+		// Fall back on the old API.
+		setForeground(true);
+		notificationManager.notify(id, notification);
+	}
+
+	/**
+	 * This is a wrapper around the new stopForeground method, using the older
+	 * APIs if it is not available.
+	 */
+	void stopForegroundCompat(int id) {
+		// If we have the new stopForeground API, then use it.
+		if (stopForeground != null) {
+			stopForegroundArgs[0] = Boolean.TRUE;
+			try {
+				stopForeground.invoke(this, stopForegroundArgs);
+			} catch (InvocationTargetException e) {
+				// Should not happen.
+				Log.w(DictionaryForMIDs.LOG_TAG, "Unable to invoke stopForeground", e);
+			} catch (IllegalAccessException e) {
+				// Should not happen.
+				Log.w(DictionaryForMIDs.LOG_TAG, "Unable to invoke stopForeground", e);
+			}
+			return;
+		}
+
+		// Fall back on the old API. Note to cancel BEFORE changing the
+		// foreground state, since we could be killed at that point.
+		notificationManager.cancel(id);
+		setForeground(false);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -330,7 +330,7 @@ public final class DictionaryInstallationService extends Service {
 
 	/**
 	 * Starts the installation service.
-	 * 
+	 *
 	 * @param item
 	 *            information about the dictionary to install
 	 */
@@ -341,18 +341,17 @@ public final class DictionaryInstallationService extends Service {
 
 	/**
 	 * Overwrites the current update listener.
-	 * 
+	 *
 	 * @param updateListener
 	 *            the new update listener
 	 */
-	public static void setUpdateListener(
-			final ServiceUpdateListener updateListener) {
+	public static void setUpdateListener(final ServiceUpdateListener updateListener) {
 		DictionaryInstallationService.listener = updateListener;
 	}
 
 	/**
 	 * Checks if there is an active installation thread.
-	 * 
+	 *
 	 * @return true if there is an active installation thread
 	 */
 	public static boolean isRunning() {
@@ -367,21 +366,21 @@ public final class DictionaryInstallationService extends Service {
 
 	/**
 	 * Removes pending status notifications if the service is not running.
-	 * 
-	 * @param context the application context
+	 *
+	 * @param context
+	 *            the application context
 	 */
 	public static void removePendingStatusNotifications(Context context) {
 		if (DictionaryInstallationService.isRunning()) {
 			return;
 		}
-		((NotificationManager) context
-				.getSystemService(Context.NOTIFICATION_SERVICE))
+		((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE))
 				.cancel(NOTIFICATION_STATUS_UPDATE);
 	}
 
 	/**
 	 * Handles an update of the installation thread's status.
-	 * 
+	 *
 	 * @param type
 	 *            the current type of action performed by the installation
 	 *            thread
@@ -392,8 +391,8 @@ public final class DictionaryInstallationService extends Service {
 	private void handleUpdate(final int type, final int percentage) {
 		lastSendType = type;
 		lastSendPercentage = percentage;
-		final double progressBarPercentage = InstallDictionary
-				.getProgressBarLength(type, percentage) / 100.0;
+		final double progressBarPercentage = InstallDictionary.getProgressBarLength(type,
+				percentage) / 100.0;
 		final int icon = R.drawable.defaulticon;
 		final CharSequence tickerText = getText(R.string.msg_installing_dictionary);
 		final long when = System.currentTimeMillis();
@@ -404,14 +403,13 @@ public final class DictionaryInstallationService extends Service {
 
 		final Intent notificationIntent = new Intent(this, DictionaryForMIDs.class);
 		notificationIntent.putExtra(BUNDLE_SHOW_DICTIONARY_INSTALLATION, true);
-		final PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-				notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+		final PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
+				PendingIntent.FLAG_UPDATE_CURRENT);
 
 		// the next two lines initialize the Notification, using the
 		// configurations above
 		final Notification notification = new Notification(icon, tickerText, when);
-		notification.setLatestEventInfo(context, contentTitle, contentText,
-				contentIntent);
+		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
 		notificationManager.notify(NOTIFICATION_STATUS_UPDATE, notification);
 		startForegroundCompat(NOTIFICATION_STATUS_UPDATE, notification);
 
@@ -422,7 +420,7 @@ public final class DictionaryInstallationService extends Service {
 
 	/**
 	 * Returns the last sent update type.
-	 * 
+	 *
 	 * @return the last sent update type
 	 */
 	public static int pollLastType() {
@@ -431,7 +429,7 @@ public final class DictionaryInstallationService extends Service {
 
 	/**
 	 * Returns the last sent percentage.
-	 * 
+	 *
 	 * @return the last sent percentage
 	 */
 	public static int pollLastPercentage() {
@@ -440,7 +438,7 @@ public final class DictionaryInstallationService extends Service {
 
 	/**
 	 * Handles the result of the installation thread.
-	 * 
+	 *
 	 * @param dictionaryItem
 	 *            the information of the dictionary that has been installed
 	 * @param path
@@ -449,7 +447,7 @@ public final class DictionaryInstallationService extends Service {
 	private void handleResult(final DownloadDictionaryItem dictionaryItem, final String path) {
 		// remove status notifications
 		notificationManager.cancel(NOTIFICATION_STATUS_UPDATE);
-		
+
 		final boolean hasAutoInstallDictionary = Preferences.hasAutoInstallDictionary();
 		final int id = dictionaryItem.getId();
 		final int autoInstallDictionaryId = Preferences.getAutoInstallDictionaryId();
@@ -476,34 +474,30 @@ public final class DictionaryInstallationService extends Service {
 		final CharSequence contentTitle = getText(R.string.title_installation_finished);
 		final CharSequence contentText = getText(R.string.msg_successfully_installed_dictionary);
 
-		final Intent notificationIntent = new Intent(this,
-				DictionaryForMIDs.class);
+		final Intent notificationIntent = new Intent(this, DictionaryForMIDs.class);
 		notificationIntent.putExtra(BUNDLE_LOAD_DICTIONARY, true);
 		notificationIntent.putExtra(FileList.FILE_PATH, path);
 		notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		final PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-				notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+		final PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
+				PendingIntent.FLAG_UPDATE_CURRENT);
 
 		// the next two lines initialize the Notification, using the
 		// configurations above
-		final Notification notification = new Notification(icon, tickerText,
-				when);
-		notification.setLatestEventInfo(context, contentTitle, contentText,
-				contentIntent);
+		final Notification notification = new Notification(icon, tickerText, when);
+		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
 		notification.flags = Notification.FLAG_AUTO_CANCEL;
 		notificationManager.notify(NOTIFICATION_RESULT, notification);
 
 		final String[] languages = { dictionaryItem.getLocalizedName(getResources()) };
 		Preferences.attachToContext(getApplicationContext());
-		Preferences.addRecentDictionaryUrl(DictionaryType.DIRECTORY, path,
-				languages);
-		
+		Preferences.addRecentDictionaryUrl(DictionaryType.DIRECTORY, path, languages);
+
 		stopSelf();
 	}
 
 	/**
 	 * Handles exception thrown by the installation thread.
-	 * 
+	 *
 	 * @param exception
 	 *            the exception thrown by the installation thread
 	 */
@@ -528,14 +522,13 @@ public final class DictionaryInstallationService extends Service {
 		final Intent notificationIntent = new Intent(this, DictionaryForMIDs.class);
 		notificationIntent.putExtra(BUNDLE_EXCEPTION, exception);
 		notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		final PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-				notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+		final PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
+				PendingIntent.FLAG_UPDATE_CURRENT);
 
 		// the next two lines initialize the Notification, using the
 		// configurations above
 		final Notification notification = new Notification(icon, tickerText, when);
-		notification.setLatestEventInfo(context, contentTitle, contentText,
-				contentIntent);
+		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
 		notification.flags = Notification.FLAG_AUTO_CANCEL;
 		notificationManager.notify(NOTIFICATION_EXCEPTION, notification);
 		stopSelf();
@@ -543,7 +536,7 @@ public final class DictionaryInstallationService extends Service {
 
 	/**
 	 * Creates the parent directory of a file if it does not yet exist.
-	 * 
+	 *
 	 * @param file
 	 *            the file's parent directory will be created
 	 * @throws IOException
@@ -558,15 +551,14 @@ public final class DictionaryInstallationService extends Service {
 			directoryWasCreated = file.getParentFile().mkdirs();
 		}
 		if (!directoryWasCreated) {
-			throw new IOException(getString(
-					R.string.exception_failed_create_directory, file
-							.getParentFile().toString()));
+			throw new IOException(getString(R.string.exception_failed_create_directory, file
+					.getParentFile().toString()));
 		}
 	}
 
 	/**
 	 * Creates a new file, removes previously existing files.
-	 * 
+	 *
 	 * @param file
 	 *            the file to create
 	 * @throws IOException
@@ -575,20 +567,19 @@ public final class DictionaryInstallationService extends Service {
 	private void createFile(final File file) throws IOException {
 		if (file.exists()) {
 			if (!file.delete()) {
-				throw new IOException(getString(
-						R.string.exception_failed_delete_file, file.toString()));
+				throw new IOException(getString(R.string.exception_failed_delete_file,
+						file.toString()));
 			}
 		}
 		if (!file.createNewFile()) {
-			throw new IOException(getString(
-					R.string.exception_failed_create_file, file.toString()));
+			throw new IOException(getString(R.string.exception_failed_create_file, file.toString()));
 		}
 	}
 
 	/**
 	 * InstallDictionaryThread implements the thread for downloading and
 	 * installing a new dictionary.
-	 * 
+	 *
 	 */
 	private final class InstallDictionaryThread extends Thread {
 		/**
@@ -598,8 +589,9 @@ public final class DictionaryInstallationService extends Service {
 
 		/**
 		 * Constructor that initializes the dictionary's values.
-		 * 
-		 * @param dictionaryItem the dictionary to install
+		 *
+		 * @param dictionaryItem
+		 *            the dictionary to install
 		 */
 		private InstallDictionaryThread(final DownloadDictionaryItem dictionaryItem) {
 			this.dictionaryItem = dictionaryItem;
@@ -616,7 +608,7 @@ public final class DictionaryInstallationService extends Service {
 				return;
 			}
 			handleUpdate(STATUS_CREATING_FOLDERS, 0);
-			
+
 			// check if sd card is available/accessible
 			final String storageState = Environment.getExternalStorageState();
 			if (!Environment.MEDIA_MOUNTED.equals(storageState)) {
@@ -625,9 +617,8 @@ public final class DictionaryInstallationService extends Service {
 				return;
 			}
 
-			File zipDownloadDirectory = new File(getString(
-					R.string.attribute_zip_directory, Environment
-							.getExternalStorageDirectory()));
+			File zipDownloadDirectory = new File(getString(R.string.attribute_zip_directory,
+					Environment.getExternalStorageDirectory()));
 			try {
 				createParentDirectories(zipDownloadDirectory);
 			} catch (IOException exception) {
@@ -641,9 +632,8 @@ public final class DictionaryInstallationService extends Service {
 			}
 			handleUpdate(STATUS_CREATING_FOLDERS, PERCENTAGE_BASE / 2);
 
-			File jarDirectory = new File(
-					getString(R.string.attribute_jar_directory, Environment
-							.getExternalStorageDirectory()));
+			File jarDirectory = new File(getString(R.string.attribute_jar_directory,
+					Environment.getExternalStorageDirectory()));
 			try {
 				createParentDirectories(jarDirectory);
 			} catch (IOException exception) {
@@ -663,10 +653,10 @@ public final class DictionaryInstallationService extends Service {
 			final String jarFile = getString(R.string.attribute_jar_directory,
 					Environment.getExternalStorageDirectory())
 					+ dictionaryItem.getFileName() + EXTENSION_JAR_ARCHIVE;
-			final String dictionaryDirectory = getString(
-					R.string.attribute_installation_directory, Environment
-							.getExternalStorageDirectory())
-					+ dictionaryItem.getFileName() + File.separator;
+			final String dictionaryDirectory = getString(R.string.attribute_installation_directory,
+					Environment.getExternalStorageDirectory())
+					+ dictionaryItem.getFileName()
+					+ File.separator;
 
 			String resultPath;
 			try {
@@ -684,9 +674,8 @@ public final class DictionaryInstallationService extends Service {
 					return;
 				}
 				handleUpdate(STATUS_EXTRACTING_JAR, PERCENTAGE_BASE);
-				resultPath = extractAllMatchingEntries(jarFile,
-						dictionaryDirectory, PATTERN_EXTRACT_PATH,
-						PATTERN_RETURN_PATH, PATTERN_DELETE_FROM_PATH);
+				resultPath = extractAllMatchingEntries(jarFile, dictionaryDirectory,
+						PATTERN_EXTRACT_PATH, PATTERN_RETURN_PATH, PATTERN_DELETE_FROM_PATH);
 			} catch (IOException e) {
 				handleException(e);
 				return;
@@ -699,20 +688,18 @@ public final class DictionaryInstallationService extends Service {
 			// clean up
 			File zipDeleteFile = new File(zipFile);
 			if (!zipDeleteFile.delete()) {
-				Log.v(DictionaryForMIDs.LOG_TAG, "Failed to delete zip: "
-						+ zipFile);
+				Log.v(DictionaryForMIDs.LOG_TAG, "Failed to delete zip: " + zipFile);
 			}
 			File jarDeleteFile = new File(jarFile);
 			if (!jarDeleteFile.delete()) {
-				Log.v(DictionaryForMIDs.LOG_TAG, "Failed to delete jar: "
-						+ jarFile);
+				Log.v(DictionaryForMIDs.LOG_TAG, "Failed to delete jar: " + jarFile);
 			}
 			handleResult(dictionaryItem, resultPath);
 		}
 
 		/**
 		 * Downloads the file specified by url.
-		 * 
+		 *
 		 * @param downloadUrl
 		 *            the url of the file to download
 		 * @param destinationFile
@@ -720,8 +707,8 @@ public final class DictionaryInstallationService extends Service {
 		 * @throws IOException
 		 *             if an input or output exception occurred
 		 */
-		private void downloadFile(final String downloadUrl,
-				final String destinationFile) throws IOException {
+		private void downloadFile(final String downloadUrl, final String destinationFile)
+				throws IOException {
 			HttpClient client = new DefaultHttpClient();
 			HttpGet httpGet = new HttpGet(downloadUrl);
 
@@ -746,14 +733,12 @@ public final class DictionaryInstallationService extends Service {
 
 						@Override
 						public long getSkipBetweenUpdates() {
-							return entity.getContentLength() * 2
-									/ PERCENTAGE_BASE;
+							return entity.getContentLength() * 2 / PERCENTAGE_BASE;
 						}
 
 						@Override
 						public void onUpdate(final long copiedLength) {
-							int percentage = (int) (copiedLength
-									* PERCENTAGE_BASE / entity
+							int percentage = (int) (copiedLength * PERCENTAGE_BASE / entity
 									.getContentLength());
 							handleUpdate(STATUS_DOWNLOADING, percentage);
 						}
@@ -769,15 +754,14 @@ public final class DictionaryInstallationService extends Service {
 					}
 				} catch (IOException e) {
 					// ignore exceptions here
-					Log.v(DictionaryForMIDs.LOG_TAG,
-							"Exception while closing stream: " + e);
+					Log.v(DictionaryForMIDs.LOG_TAG, "Exception while closing stream: " + e);
 				}
 			}
 		}
 
 		/**
 		 * Extracts all matching entries of an archive.
-		 * 
+		 *
 		 * @param sourceFile
 		 *            the archive to extract
 		 * @param destinationDirectory
@@ -794,14 +778,12 @@ public final class DictionaryInstallationService extends Service {
 		 */
 		public String extractAllMatchingEntries(final String sourceFile,
 				final String destinationDirectory, final String filePattern,
-				final String selectPathPattern, final String pathDeletePattern)
-				throws IOException {
+				final String selectPathPattern, final String pathDeletePattern) throws IOException {
 			ZipFile zipFile = new ZipFile(sourceFile);
 			Enumeration<? extends ZipEntry> entries = zipFile.entries();
 			String resultPath = null;
 			int elementIndex = -1;
-			final float elementProgressSize = (float) PERCENTAGE_BASE
-					/ (float) zipFile.size();
+			final float elementProgressSize = (float) PERCENTAGE_BASE / (float) zipFile.size();
 			while (entries.hasMoreElements()) {
 				elementIndex++;
 				final int currentStart = (int) (elementIndex * elementProgressSize);
@@ -810,12 +792,9 @@ public final class DictionaryInstallationService extends Service {
 					handleUpdate(STATUS_EXTRACTING_DICTIONARY, currentStart);
 				}
 				final ZipEntry entry = entries.nextElement();
-				String fileName = entry.getName().replaceFirst(
-						pathDeletePattern, "");
-				File file = new File(destinationDirectory + File.separator
-						+ fileName);
-				final boolean fileNameMatchesPattern = entry.getName().matches(
-						filePattern);
+				String fileName = entry.getName().replaceFirst(pathDeletePattern, "");
+				File file = new File(destinationDirectory + File.separator + fileName);
+				final boolean fileNameMatchesPattern = entry.getName().matches(filePattern);
 				if (!fileNameMatchesPattern) {
 					continue;
 				}
@@ -840,10 +819,8 @@ public final class DictionaryInstallationService extends Service {
 						public void onUpdate(final long copiedLength) {
 							final int currentFilePercentage = (int) (copiedLength
 									* elementProgressSize / entry.getSize());
-							final int percentage = currentStart
-									+ currentFilePercentage;
-							handleUpdate(STATUS_EXTRACTING_DICTIONARY,
-									percentage);
+							final int percentage = currentStart + currentFilePercentage;
+							handleUpdate(STATUS_EXTRACTING_DICTIONARY, percentage);
 						}
 
 					};
@@ -859,7 +836,7 @@ public final class DictionaryInstallationService extends Service {
 
 		/**
 		 * Extracts the first matching entry from the archive.
-		 * 
+		 *
 		 * @param sourceFile
 		 *            the archive to extract
 		 * @param destinationFile
@@ -870,14 +847,12 @@ public final class DictionaryInstallationService extends Service {
 		 *             if an input or output exception occurred
 		 */
 		public void extractFirstMatchingEntry(final String sourceFile,
-				final String destinationFile, final String filePattern)
-				throws IOException {
+				final String destinationFile, final String filePattern) throws IOException {
 			ZipFile zipFile = new ZipFile(sourceFile);
 			Enumeration<? extends ZipEntry> entries = zipFile.entries();
 			while (entries.hasMoreElements()) {
 				final ZipEntry entry = entries.nextElement();
-				final boolean fileNameMatchesPattern = entry.getName().matches(
-						filePattern);
+				final boolean fileNameMatchesPattern = entry.getName().matches(filePattern);
 				if (!fileNameMatchesPattern) {
 					continue;
 				}
@@ -899,8 +874,8 @@ public final class DictionaryInstallationService extends Service {
 
 					@Override
 					public void onUpdate(final long copiedLength) {
-						final int percentage = (int) (copiedLength
-								* PERCENTAGE_BASE / entry.getSize());
+						final int percentage = (int) (copiedLength * PERCENTAGE_BASE / entry
+								.getSize());
 						handleUpdate(STATUS_EXTRACTING_JAR, percentage);
 					}
 
@@ -908,15 +883,14 @@ public final class DictionaryInstallationService extends Service {
 				copyStreams(input, output, callback);
 				return;
 			}
-			final String message = getString(
-					R.string.msg_compressed_entry_not_found, sourceFile,
+			final String message = getString(R.string.msg_compressed_entry_not_found, sourceFile,
 					filePattern);
 			throw new FileNotFoundException(message);
 		}
 
 		/**
 		 * Copies an input stream into an output stream.
-		 * 
+		 *
 		 * @param input
 		 *            the input stream to copy
 		 * @param output
@@ -926,10 +900,8 @@ public final class DictionaryInstallationService extends Service {
 		 * @throws IOException
 		 *             if an input or output exception occurred
 		 */
-		public void copyStreams(final InputStream input,
-				final OutputStream output,
-				final CopyStreamStatusCallback statusCallback)
-				throws IOException {
+		public void copyStreams(final InputStream input, final OutputStream output,
+				final CopyStreamStatusCallback statusCallback) throws IOException {
 			byte[] buffer = new byte[COPY_BUFFER_SIZE];
 			int length;
 			long copiedLength = 0;
@@ -958,13 +930,13 @@ public final class DictionaryInstallationService extends Service {
 	/**
 	 * An interface that defines communication between the thread copying data
 	 * and the GUI.
-	 * 
+	 *
 	 */
 	private interface CopyStreamStatusCallback {
 
 		/**
 		 * The method that is called after when some data has been read.
-		 * 
+		 *
 		 * @param copiedLength
 		 *            the length of the copied data
 		 */
@@ -973,7 +945,7 @@ public final class DictionaryInstallationService extends Service {
 		/**
 		 * The amount of data to copy before calling the callback again. Must be
 		 * greater than 0.
-		 * 
+		 *
 		 * @return the amount of data to copy before calling the callback again
 		 */
 		long getSkipBetweenUpdates();
@@ -982,7 +954,7 @@ public final class DictionaryInstallationService extends Service {
 	/**
 	 * Starts the service to download and install a new dictionary. Must be
 	 * called from UI thread.
-	 * 
+	 *
 	 * @param context
 	 *            the context to use
 	 * @param dictionaryItem
@@ -997,12 +969,11 @@ public final class DictionaryInstallationService extends Service {
 		}
 
 		Intent intent = new Intent(context, DictionaryInstallationService.class);
-		intent.putExtra(
-				DictionaryInstallationService.BUNDLE_DOWNLOAD_DICTIONARY_ITEM,
+		intent.putExtra(DictionaryInstallationService.BUNDLE_DOWNLOAD_DICTIONARY_ITEM,
 				dictionaryItem);
 		context.startService(intent);
 
 		return true;
-		
+
 	}
 }

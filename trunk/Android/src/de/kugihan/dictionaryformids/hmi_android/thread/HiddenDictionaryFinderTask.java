@@ -16,16 +16,15 @@ import de.kugihan.dictionaryformids.hmi_android.R;
  * HiddenDictionaryFinderTask is an asynchronous task to search installed
  * dictionaries that are not on the list of recent dictionaries and add them
  * there. A progress dialog can be shown during the search.
- * 
+ *
  */
-public class HiddenDictionaryFinderTask extends
-		AsyncTask<String, Integer, ArrayList<File>> {
+public class HiddenDictionaryFinderTask extends AsyncTask<String, Integer, ArrayList<File>> {
 
 	/**
 	 * The id of the dialog to display while searching.
 	 */
 	private final int progressDialogId;
-	
+
 	/**
 	 * Handle to the activity.
 	 */
@@ -33,9 +32,11 @@ public class HiddenDictionaryFinderTask extends
 
 	/**
 	 * Creates a new instance and attaches it to the given activity.
-	 * 
-	 * @param activity the activity to attach to
-	 * @param dialogId the id of the dialog to display while searching
+	 *
+	 * @param activity
+	 *            the activity to attach to
+	 * @param dialogId
+	 *            the id of the dialog to display while searching
 	 */
 	public HiddenDictionaryFinderTask(final Activity activity, final int dialogId) {
 		this.activity = activity;
@@ -60,8 +61,7 @@ public class HiddenDictionaryFinderTask extends
 		// check if sd card is available/accessible
 		final String storageState = Environment.getExternalStorageState();
 		if (!Environment.MEDIA_MOUNTED.equals(storageState)) {
-			Toast.makeText(activity, R.string.msg_error_accessing_storage,
-					Toast.LENGTH_LONG);
+			Toast.makeText(activity, R.string.msg_error_accessing_storage, Toast.LENGTH_LONG);
 			return dictionaries;
 		}
 
@@ -102,8 +102,8 @@ public class HiddenDictionaryFinderTask extends
 	protected void onPostExecute(final ArrayList<File> result) {
 		for (File file : result) {
 			final String[] languages = { file.getName() };
-			Preferences.addRecentDictionaryUrl(DictionaryType.DIRECTORY,
-					file.getPath(), languages, true);
+			Preferences.addRecentDictionaryUrl(DictionaryType.DIRECTORY, file.getPath(), languages,
+					true);
 		}
 		activity.dismissDialog(progressDialogId);
 	}
