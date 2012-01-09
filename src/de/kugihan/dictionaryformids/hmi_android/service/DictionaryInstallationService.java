@@ -294,7 +294,6 @@ public final class DictionaryInstallationService extends Service {
 	 */
 	@Override
 	public void onStart(final Intent intent, final int startId) {
-		super.onStart(intent, startId);
 		final DownloadDictionaryItem dictionaryItem = (DownloadDictionaryItem) intent
 				.getParcelableExtra(BUNDLE_DOWNLOAD_DICTIONARY_ITEM);
 		if (dictionaryItem == null) {
@@ -302,6 +301,16 @@ public final class DictionaryInstallationService extends Service {
 		} else {
 			startService(dictionaryItem);
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int onStartCommand(final Intent intent, final int flags, final int startId) {
+		onStart(intent, startId);
+		// make sure intent is redelivered if service gets killed
+		return START_REDELIVER_INTENT;
 	}
 
 	/**
