@@ -70,6 +70,11 @@ public class HiddenDictionaryFinderTask extends
 				Environment.getExternalStorageDirectory());
 		final File dictionaryDirectory = new File(dictionaryDirectoryPath);
 
+		// make sure path exists
+		if (!dictionaryDirectory.isDirectory()) {
+			return dictionaries;
+		}
+
 		// enumerate dictionary folders
 		for (File file : dictionaryDirectory.listFiles()) {
 			if (!file.isDirectory() || !file.canRead()) {
