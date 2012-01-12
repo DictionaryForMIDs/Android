@@ -1294,9 +1294,6 @@ public final class DictionaryForMIDs extends Activity {
 	 *            the search term to modify
 	 */
 	public static void makeWordMatchBeginning(final StringBuffer searchWord) {
-		if (searchWord.charAt(0) != Util.noSearchSubExpressionCharacter) {
-			searchWord.insert(0, "" + Util.noSearchSubExpressionCharacter);
-		}
 		if (searchWord.charAt(searchWord.length() - 1) != Util.wildcardAnySeriesOfCharacter) {
 			searchWord.append(Util.wildcardAnySeriesOfCharacter);
 		}
