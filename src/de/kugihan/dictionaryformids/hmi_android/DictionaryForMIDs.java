@@ -181,6 +181,15 @@ public final class DictionaryForMIDs extends Activity {
 			// scroll to top
 			((ListView) findViewById(R.id.translationsListView))
 					.setSelectionFromTop(0, 0);
+			onScrollListener.setDictionaryIdentifier(DictionaryDataFile.dictionaryAbbreviation);
+			// try closing search progress dialog
+			if (!Preferences.getSearchAsYouType()) {
+				try {
+					dismissDialog(DialogHelper.ID_SEARCHING);
+				} catch (IllegalArgumentException e) {
+					// ignore, dialog was already closed
+				}
+			}
 		}
 	}
 
