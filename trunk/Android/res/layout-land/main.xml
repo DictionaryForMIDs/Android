@@ -17,14 +17,24 @@
 			android:layout_margin="10sp" android:layout_weight="4"
 			android:layout_width="wrap_content"></TextView>
 	</LinearLayout>
-	
+
 	<LinearLayout android:layout_height="wrap_content"
 		android:layout_width="fill_parent" android:id="@+id/InputLayout">
-		<EditText android:layout_height="wrap_content" android:id="@+id/TranslationInput"
-			android:minWidth="50px" android:layout_weight="1"
-			android:layout_width="wrap_content" android:hint="@string/hint_enter_word"
-			android:maxLines="1" android:selectAllOnFocus="true"
-			android:imeOptions="actionDone"></EditText>
+		<RelativeLayout android:layout_height="wrap_content"
+			android:layout_width="wrap_content" android:layout_weight="1">
+			<EditText android:layout_height="wrap_content" android:id="@+id/TranslationInput"
+				android:minWidth="50px" android:layout_width="fill_parent"
+				android:hint="@string/hint_enter_word" android:selectAllOnFocus="true"
+				android:imeOptions="actionDone" android:maxLines="1"
+				android:paddingRight="40dip"></EditText>
+			<ProgressBar android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:id="@+id/ProgressBarSearchAsYouType"
+				android:layout_centerVertical="true" android:layout_alignParentRight="true"
+				android:indeterminate="true" android:layout_marginRight="10dip"
+				android:focusable="false" android:maxHeight="25dip" android:maxWidth="25dip"
+				android:minHeight="25dip" android:minWidth="25dip" android:visibility="gone"
+				style="@android:style/Widget.ProgressBar.Inverse"></ProgressBar>
+		</RelativeLayout>
 		<ImageButton android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:src="@drawable/ic_btn_search"
 			android:id="@+id/StartTranslation" android:paddingLeft="30sp"

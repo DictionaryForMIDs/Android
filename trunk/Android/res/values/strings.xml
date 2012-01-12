@@ -188,6 +188,7 @@
 	<string name="title_pref_search_mode">Search mode</string>
 	<string name="title_pref_max_results">Max. results</string>
 	<string name="title_pref_timeout">Timeout for searching</string>
+	<string name="title_pref_search_as_you_type">Search as you type</string>
 	<string name="title_pref_display_options">Display options</string>
 	<string name="title_pref_result_font_size">Font size for results</string>
 	<string name="title_pref_ignore_font_styles">Ignore font styles</string>

@@ -50,6 +50,7 @@ public class Preferences extends PreferenceActivity implements
 	public static final String PREF_LANGUAGE_CODE = "languageCode";
 	private static final String PREF_AUTO_INSTALL_DICTIONARY = "autoInstallDictionary";
 	public static final String PREF_STARRED_WORDS = "starredWords";
+	private static final String PREF_SEARCH_AS_YOU_TYPE = "searchAsYouType";
 
 	/**
 	 * Saves an instance of the application's shared preferences.
@@ -189,6 +190,10 @@ public class Preferences extends PreferenceActivity implements
 	public static boolean getIgnoreDictionaryTextStyles() {
 		return preferencesInstance.getBoolean(
 				PREF_IGNORE_DICTIONARY_TEXT_STYLES, false);
+	}
+
+	public static boolean getSearchAsYouType() {
+		return preferencesInstance.getBoolean(PREF_SEARCH_AS_YOU_TYPE, true);
 	}
 
 	public static void setSelectedLanguageIndex(final int selectedLanguageIndex) {
