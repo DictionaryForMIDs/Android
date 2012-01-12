@@ -40,7 +40,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
-import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
@@ -293,6 +292,11 @@ public final class DictionaryForMIDs extends Activity {
 	private final TranslationScrollListener onScrollListener = new TranslationScrollListener(null);
 
 	/**
+	 * Remembers the last search direction to detect selection changes.
+	 */
+	private int lastLanguageSelectionPosition = -1;
+
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -334,6 +338,9 @@ public final class DictionaryForMIDs extends Activity {
 		final int selectedLanguage = savedInstanceState
 				.getInt(BUNDLE_SELECTED_LANGUAGE);
 		spinner.setSelection(selectedLanguage);
+		// set last selected language and spinner selection
+		lastLanguageSelectionPosition = savedInstanceState.getInt(BUNDLE_SELECTED_LANGUAGE);
+		spinner.setSelection(lastLanguageSelectionPosition);
 
 		final int previousNumberOfTranslations = savedInstanceState
 				.getInt(BUNDLE_NUMBER_OF_TRANSLATIONS);
@@ -739,6 +746,9 @@ public final class DictionaryForMIDs extends Activity {
 			}
 		}
 
+		// reset last selected language to make sure search-as-you-type triggers
+		lastLanguageSelectionPosition = -1;
+
 		// remove previously shown, loadDictionary-related dialogs
 		removeDialog(DialogHelper.ID_DICTIONARY_NOT_FOUND);
 		removeDialog(DialogHelper.ID_FIRST_RUN);
@@ -1070,7 +1080,6 @@ public final class DictionaryForMIDs extends Activity {
 		public void handleMessage(final Message message) {
 			switch (message.what) {
 			case THREAD_NEW_TRANSLATION_RESULT:
-				handleNewTranslationResult(message);
 				break;
 
 			case THREAD_DELETE_PREVIOUS_TRANSLATION_RESULT:
@@ -1573,6 +1582,17 @@ public final class DictionaryForMIDs extends Activity {
 					parent.setSelection(0);
 				}
 			}
+			if (!Preferences.getSearchAsYouType() || lastLanguageSelectionPosition == position) {
+				return;
+			}
+			lastLanguageSelectionPosition = position;
+			// start search if there is a search term
+			final String translationInput = ((TextView) findViewById(R.id.TranslationInput))
+					.getText().toString();
+			if (translationInput.length() == 0) {
+				return;
+			}
+			startTranslation();
 		}
 
 		@Override
