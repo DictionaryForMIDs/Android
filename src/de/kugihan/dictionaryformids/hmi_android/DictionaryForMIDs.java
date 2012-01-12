@@ -996,6 +996,7 @@ public final class DictionaryForMIDs extends Activity {
 	private final OnClickListener clickListener = new OnClickListener() {
 		@Override
 		public void onClick(final View button) {
+			final EditText inputText = (EditText) findViewById(R.id.TranslationInput);
 			switch (button.getId()) {
 			case R.id.StartTranslation:
 				showDialog(DialogHelper.ID_SEARCHING);
@@ -1015,6 +1016,11 @@ public final class DictionaryForMIDs extends Activity {
 
 			case R.id.TranslationInput:
 				showSearchOptions();
+				break;
+
+			case R.id.ClearInput:
+				inputText.setText("");
+				showSoftKeyboard();
 				break;
 
 			default:
