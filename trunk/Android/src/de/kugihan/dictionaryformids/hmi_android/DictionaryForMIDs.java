@@ -446,6 +446,13 @@ public final class DictionaryForMIDs extends Activity {
 		languageSpinner.setAdapter(new LanguageSpinnerAdapter());
 		languageSpinner.setOnItemSelectedListener(languageSelectedListener);
 		languageSpinner.setOnTouchListener(languagesTouchListener);
+		languageSpinner.setOnLongClickListener(new View.OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				startChooseDictionaryActivity();
+				return true;
+			}
+		});
 
 		Util util = Util.getUtil();
 		if (util instanceof AndroidUtil) {
