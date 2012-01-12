@@ -10,6 +10,8 @@ package de.kugihan.dictionaryformids.hmi_android;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.Observable;
+import java.util.Observer;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -40,6 +42,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -49,6 +53,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
@@ -62,7 +67,6 @@ import de.kugihan.dictionaryformids.general.DictionaryException;
 import de.kugihan.dictionaryformids.general.Util;
 import de.kugihan.dictionaryformids.hmi_android.Preferences.DictionaryType;
 import de.kugihan.dictionaryformids.hmi_android.data.AndroidUtil;
-import de.kugihan.dictionaryformids.hmi_android.data.AutoSearchTranslations;
 import de.kugihan.dictionaryformids.hmi_android.data.LanguageSpinnerAdapter;
 import de.kugihan.dictionaryformids.hmi_android.data.TranslationsAdapter;
 import de.kugihan.dictionaryformids.hmi_android.service.DictionaryInstallationService;
@@ -71,8 +75,6 @@ import de.kugihan.dictionaryformids.hmi_android.thread.LoadDictionaryThread.OnTh
 import de.kugihan.dictionaryformids.hmi_android.view_helper.DialogHelper;
 import de.kugihan.dictionaryformids.hmi_android.view_helper.TranslationScrollListener;
 import de.kugihan.dictionaryformids.translation.SingleTranslationExtension;
-import de.kugihan.dictionaryformids.translation.TranslationExecution;
-import de.kugihan.dictionaryformids.translation.TranslationExecutionCallback;
 import de.kugihan.dictionaryformids.translation.TranslationParameters;
 import de.kugihan.dictionaryformids.translation.TranslationResult;
 
@@ -393,23 +395,21 @@ public final class DictionaryForMIDs extends Activity {
 		setCustomLocale(Preferences.getLanguageCode());
 
 		setContentView(R.layout.main);
+		final ViewStub stub = (ViewStub) findViewById(R.id.InputLayoutStub);
+		if (!Preferences.getSearchAsYouType()) {
+			stub.setLayoutResource(R.layout.search_bar);
+		}
+		stub.inflate();
 
-		translations = new TranslationsAdapter();
+		translations = new TranslationsAdapter(null);
 
 		dialogHelper = DialogHelper.getInstance(this);
-		
-		translations.registerDataSetObserver(translationsObserver);
 
-		final EditText translationInput = (EditText) findViewById(R.id.TranslationInput);
-		translationInput.setOnFocusChangeListener(focusChangeListener);
-		translationInput.setOnClickListener(clickListener);
-		translationInput.setOnTouchListener(touchListener);
-		translationInput.setOnEditorActionListener(editorActionListener);
-		translationInput.addTextChangedListener(textWatcher);
-		if (Preferences.getSearchAsYouType()) {
-			// TODO: select correct view
-		}
-		
+		translations.registerDataSetObserver(translationsObserver);
+		translations.getFilterStateObservable().addObserver(onFilterStateChangedObserver);
+
+		setupSearchBar();
+
 		final ListView translationListView = (ListView) findViewById(R.id.translationsListView);
 		translationListView.setAdapter(translations);
 		translationListView.setOnFocusChangeListener(focusChangeListener);
@@ -417,8 +417,6 @@ public final class DictionaryForMIDs extends Activity {
 		translationListView.setOnTouchListener(touchListener);
 		registerForContextMenu(translationListView);
 
-		((ImageButton) findViewById(R.id.StartTranslation))
-				.setOnClickListener(clickListener);
 		((ImageButton) findViewById(R.id.swapLanguages))
 				.setOnClickListener(clickListener);
 
@@ -426,9 +424,6 @@ public final class DictionaryForMIDs extends Activity {
 		languageSpinner.setAdapter(new LanguageSpinnerAdapter());
 		languageSpinner.setOnItemSelectedListener(languageSelectedListener);
 		languageSpinner.setOnTouchListener(languagesTouchListener);
-
-		TranslationExecution
-				.setTranslationExecutionCallback(translationCallback);
 
 		Util util = Util.getUtil();
 		if (util instanceof AndroidUtil) {
@@ -450,14 +445,37 @@ public final class DictionaryForMIDs extends Activity {
 				final boolean silent = processIntent(getIntent());
 				loadLastUsedDictionary(silent);
 			}
-		}		
+		}
 	}
-	
+
+	/**
+	 *
+	 */
+	private void setupSearchBar() {
+		final EditText translationInput = (EditText) findViewById(R.id.TranslationInput);
+		translationInput.setOnFocusChangeListener(focusChangeListener);
+		translationInput.setOnClickListener(clickListener);
+		translationInput.setOnTouchListener(touchListener);
+		translationInput.setOnEditorActionListener(editorActionListener);
+		translationInput.addTextChangedListener(textWatcher);
+
+		final ImageButton startTranslation = (ImageButton) findViewById(R.id.StartTranslation);
+		if (startTranslation != null) {
+			startTranslation.setOnClickListener(clickListener);
+		}
+		final ImageButton clearInput = (ImageButton) findViewById(R.id.ClearInput);
+		if (clearInput != null) {
+			clearInput.setOnClickListener(clickListener);
+		}
+	}
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		// unregister obserer for adapter as adapter is used in re-created activity
+		// unregister observer for adapter as adapter is used in re-created
+		// activity
 		translations.unregisterDataSetObserver(translationsObserver);
+		translations.getFilterStateObservable().deleteObserver(onFilterStateChangedObserver);
 	}
 
 	/**
@@ -649,9 +667,10 @@ public final class DictionaryForMIDs extends Activity {
 		if (data.getTranslations() != null) {
 			translations = data.getTranslations();
 			translations.registerDataSetObserver(translationsObserver);
-			translations.setActivity(this);
 			((ListView) findViewById(R.id.translationsListView))
 					.setAdapter(translations);
+			onFilterStateChangedObserver.update(translations.getFilterStateObservable(), translations.isFilterActive());
+			translations.getFilterStateObservable().addObserver(onFilterStateChangedObserver);
 		}
 		if (data.getThread() != null) {
 			synchronized (loadDictionaryThreadSync) {
@@ -717,7 +736,8 @@ public final class DictionaryForMIDs extends Activity {
 		removeDialog(DialogHelper.ID_DICTIONARY_NOT_FOUND);
 		removeDialog(DialogHelper.ID_FIRST_RUN);
 
-		deletePreviousTranslationResult();
+		// remove results from view
+		translations.clearData();
 
 		setProgressBarIndeterminateVisibility(true);
 		loadDictionaryThread = new LoadDictionaryThread(inputStreamAccess,
@@ -865,29 +885,12 @@ public final class DictionaryForMIDs extends Activity {
 		@Override
 		public void afterTextChanged(final Editable s) {
 			if (Preferences.getSearchAsYouType()) {
-				updateHandler.post(new Runnable() {
-					@Override
-					public void run() {
-						if (searchAsYouTypeDelay != null) {
-							searchAsYouTypeDelay.cancel();
-							searchAsYouTypeDelay.purge();
-						}
-						searchAsYouTypeDelay = new Timer();
-						searchAsYouTypeDelay.schedule(new TimerTask() {
-							@Override
-							public void run() {
-								updateHandler.post(new Runnable() {
-									@Override
-									public void run() {
-										translations.getFilter().filter(s);					
-									}
-								});
-							}
-						}, 500);
-					}
-				});
+				final EditText text = (EditText) findViewById(R.id.TranslationInput);
+				if (text.getText().length() == 0) {
+					return;
+				}
+				startTranslation();
 			}
-
 			showSearchOptions();
 		}
 
@@ -1086,50 +1089,6 @@ public final class DictionaryForMIDs extends Activity {
 			DialogHelper.setTranslationErrorMessage(translationErrorMessage);
 			showDialog(DialogHelper.ID_TRANSLATE_ERROR);
 		}
-
-		private void handleNewTranslationResult(final Message message) {
-			final TranslationResult translationResult = (TranslationResult) message.obj;
-			// show results
-			translations.newTranslationResult(translationResult);
-			onScrollListener.setDictionaryIdentifier(DictionaryDataFile.dictionaryAbbreviation);
-			// hide search options if results have been found
-			if (translationResult.numberOfFoundTranslations() > 0) {
-				hideSearchOptions(true);
-			} else {
-				showSearchOptions();
-			}
-
-			// close search dialog
-			try {
-				dismissDialog(DialogHelper.ID_SEARCHING);
-			} catch (IllegalArgumentException e) {
-				Log.v(LOG_TAG, "IllegelArgumentException: " + e);
-			}
-		}
-	};
-
-	/**
-	 * OnPostExecutionListener-object that transforms calls from the translation
-	 * thread into messages to the update handler of the user interface.
-	 */
-	private final TranslationExecutionCallback translationCallback = new TranslationExecutionCallback() {
-
-		@Override
-		public void deletePreviousTranslationResult() {
-			Message message = new Message();
-			message.what = THREAD_DELETE_PREVIOUS_TRANSLATION_RESULT;
-			DictionaryForMIDs.this.updateHandler.sendMessage(message);
-		}
-
-		@Override
-		public void newTranslationResult(
-				final TranslationResult resultOfTranslation) {
-			Message message = new Message();
-			message.what = THREAD_NEW_TRANSLATION_RESULT;
-			message.obj = resultOfTranslation;
-			DictionaryForMIDs.this.updateHandler.sendMessage(message);
-		}
-
 	};
 
 	/**
@@ -1211,34 +1170,25 @@ public final class DictionaryForMIDs extends Activity {
 
 		applySearchModeModifiers(searchWord);
 
-		Util util = Util.getUtil();
-		int numberOfAvailableLanguages;
-		try {
-			numberOfAvailableLanguages = util
-					.getDictionaryPropertyInt(DICTIONARY_PROPERTY_NUMBER_OF_AVAILABLE_LANGUAGES);
-		} catch (DictionaryException e) {
-			Toast.makeText(getBaseContext(), R.string.msg_reload_dictionary,
-					Toast.LENGTH_LONG).show();
-			return;
-		}
-		TranslationParameters translationParametersObj = getTranslationParameters(
-				searchWord.toString(), numberOfAvailableLanguages);
-		TranslationExecution.cancelLastTranslation();
-		TranslationExecution.setTranslationExecutionCallback(translationCallback);
+		cancelActiveTranslation();
 
-		hideSoftKeyboard();
+		translations.setTranslationParameters(getTranslationParameters("",
+				DictionaryDataFile.numberOfAvailableLanguages));
+		translations.getFilter().filter(searchWord.toString());
+	}
 
-		hideSearchOptions(true);
+	/**
+	 * Checks if there currently is a dictionary loaded and available for
+	 * searching.
+	 *
+	 * @return true if a dictionary is available
+	 */
+	private static boolean isDictionaryAvailable() {
+		return DictionaryDataFile.numberOfAvailableLanguages > 0;
+	}
 
-		showDialog(DialogHelper.ID_SEARCHING);
-		try {
-			TranslationExecution.executeTranslation(translationParametersObj);
-		} catch (DictionaryException e) {
-			dismissDialog(DialogHelper.ID_SEARCHING);
-			Toast.makeText(getBaseContext(),
-					getString(R.string.msg_exception, e.getMessage()),
-					Toast.LENGTH_LONG).show();
-		}
+	public void cancelActiveTranslation() {
+		translations.cancelActiveFilter();
 	}
 
 	/**
@@ -1248,6 +1198,16 @@ public final class DictionaryForMIDs extends Activity {
 		InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		manager.hideSoftInputFromWindow(findViewById(R.id.TranslationInput)
 				.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS, null);
+	}
+
+	/**
+	 * Shows the soft keyboard for inputing translation terms.
+	 */
+	private void showSoftKeyboard() {
+		final View input = findViewById(R.id.TranslationInput);
+		input.requestFocus();
+		final InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		manager.showSoftInput(input, InputMethodManager.SHOW_IMPLICIT);
 	}
 
 	/**
@@ -1636,5 +1596,40 @@ public final class DictionaryForMIDs extends Activity {
 
 	};
 
-	private TranslationsObserver translationsObserver = new TranslationsObserver();
+	private final TranslationsObserver translationsObserver = new TranslationsObserver();
+
+	/**
+	 * Observer to react on changes to the translation filter state.
+	 */
+	private final Observer onFilterStateChangedObserver = new Observer() {
+		@Override
+		public void update(final Observable observable, final Object state) {
+			if (!Preferences.getSearchAsYouType()) {
+				return;
+			}
+			runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					final ProgressBar bar = (ProgressBar) findViewById(R.id.ProgressBarSearchAsYouType);
+					final boolean isFilterActive = (Boolean) state;
+					if (isFilterActive) {
+						if (bar != null) {
+							bar.setVisibility(View.VISIBLE);
+						}
+					} else {
+						// try hiding the progress bar after filter completed
+						if (bar != null) {
+							bar.setVisibility(View.GONE);
+						}
+						// try hiding the search dialog
+						try {
+							dismissDialog(DialogHelper.ID_SEARCHING);
+						} catch (IllegalArgumentException e) {
+							// ignore
+						}
+					}
+				}
+			});
+		}
+	};
 }
