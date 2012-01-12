@@ -2,18 +2,18 @@
  * DictionaryForMIDs - a free multi-language dictionary for mobile devices.
  * Copyright (C) 2005, 2006, 2009 Gert Nuber (dict@kugihan.de) and
  * Achim Weimert (achim.weimert@gmail.com)
- * 
+ *
  * GPL applies - see file COPYING for copyright statement.
  ******************************************************************************/
 package de.kugihan.dictionaryformids.hmi_android.view_helper;
 
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.DialogInterface.OnCancelListener;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 import de.kugihan.dictionaryformids.hmi_android.DictionaryForMIDs;
@@ -23,45 +23,45 @@ import de.kugihan.dictionaryformids.hmi_android.R;
 /**
  * A helper class encapsulating all functionality for handling dialogs for
  * {@link DictionaryForMIDs}.
- * 
+ *
  */
 public final class DialogHelper {
-	
+
 	/**
 	 * The activity this helper has been attached to.
 	 */
 	private final DictionaryForMIDs activity;
-	
+
 	/**
 	 * An additional message used by ID_DICTIONARY_NOT_FOUND.
 	 */
 	private static String translationErrorMessage = "";
-	
+
 	/**
 	 * The occurred exception during dictionary installation.
 	 */
 	private static Exception dictionaryInstallationException;
-	
+
 	/**
 	 * The message to show to the user.
 	 */
 	private static String message;
-	
+
 	/**
 	 * The intent specifiying the dictionary to load.
 	 */
 	private static Intent loadDictionary;
-	
+
 	/**
 	 * The ID of the indefinite search progress bar.
 	 */
 	public static final int ID_SEARCHING = 0;
-	
+
 	/**
 	 * The ID of the translation error dialog.
 	 */
 	public static final int ID_TRANSLATE_ERROR = 1;
-	
+
 	/**
 	 * The ID of the dictionary error dialog.
 	 */
@@ -93,17 +93,17 @@ public final class DialogHelper {
 	 * The ID of the dialog asking if the dictionary should be loaded.
 	 */
 	public static final int ID_CONFIRM_LOAD_DICTIONARY = 7;
-	
+
 	/**
 	 * The ID of the dialog asking if the default dictionary should be downloaded and installed.
 	 */
 	public static final int ID_CONFIRM_INSTALL_DICTIONARY = 8;
-	
+
 	/**
 	 * The ID of the dialog showing messages, e.g. from dictionary installation.
 	 */
 	public static final int ID_MESSAGE = 9;
-	
+
 	/**
 	 * Saves the single instance of this class.
 	 */
@@ -112,7 +112,7 @@ public final class DialogHelper {
 	/**
 	 * Returns a DialogHelper that has been attached to the given activity. All
 	 * previous activities' dialogs are closed.
-	 * 
+	 *
 	 * @param mainActivity the activity this helper is attached to
 	 * @return the new instance
 	 */
@@ -126,13 +126,13 @@ public final class DialogHelper {
 
 	/**
 	 * The constructor attaches the class to an activity.
-	 * 
+	 *
 	 * @param mainActivity the activity this helper is attached to
 	 */
 	private DialogHelper(final DictionaryForMIDs mainActivity) {
 		this.activity = mainActivity;
 	}
-	
+
 	/**
 	 * Dismisses all dialogs.
 	 */
@@ -152,10 +152,10 @@ public final class DialogHelper {
 			Log.v(DictionaryForMIDs.LOG_TAG, "IllegelArgumentException: " + e);
 		}
 	}
-	
+
 	/**
 	 * Handles onCreateDialog events.
-	 * 
+	 *
 	 * @param id the id of the dialog
 	 * @return the created dialog
 	 */
@@ -191,7 +191,7 @@ public final class DialogHelper {
 	/**
 	 * Creates a dialog suggesting the user to extract the currently used zipped
 	 * archive to a directory on the sd card.
-	 * 
+	 *
 	 * @return the created dialog
 	 */
 	private Dialog createSuggestDirectoryDialog() {
@@ -201,6 +201,7 @@ public final class DialogHelper {
 		alertBuilder.setMessage(R.string.msg_slow_archive_loading);
 		alertBuilder.setPositiveButton(R.string.button_ok,
 				new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(final DialogInterface dialog,
 							final int whichButton) {
 						dialog.cancel();
@@ -208,6 +209,7 @@ public final class DialogHelper {
 				});
 		alertBuilder.setNegativeButton(R.string.button_do_not_show_again,
 				new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(final DialogInterface dialog,
 							final int whichButton) {
 						dialog.cancel();
@@ -219,7 +221,7 @@ public final class DialogHelper {
 
 	/**
 	 * Creates a dialog asking the user to confirm loading of a dictionary.
-	 * 
+	 *
 	 * @return the created dialog
 	 */
 	private Dialog createConfirmLoadDictionary() {
@@ -229,6 +231,7 @@ public final class DialogHelper {
 		alertBuilder.setMessage(R.string.msg_load_dictionary);
 		alertBuilder.setPositiveButton(R.string.button_ok,
 				new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(final DialogInterface dialog,
 							final int whichButton) {
 						dialog.cancel();
@@ -238,6 +241,7 @@ public final class DialogHelper {
 				});
 		alertBuilder.setNegativeButton(R.string.button_cancel,
 				new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(final DialogInterface dialog,
 							final int whichButton) {
 						dialog.cancel();
@@ -247,7 +251,7 @@ public final class DialogHelper {
 	}
 	/**
 	 * Creates a dialog asking the user to pick a dictionary.
-	 * 
+	 *
 	 * @return the created dialog
 	 */
 	private Dialog createFirstRunDialog() {
@@ -257,6 +261,7 @@ public final class DialogHelper {
 		alertBuilder.setMessage(R.string.msg_first_run);
 		alertBuilder.setPositiveButton(R.string.button_ok,
 				new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(final DialogInterface dialog,
 							final int whichButton) {
 						dialog.cancel();
@@ -271,7 +276,7 @@ public final class DialogHelper {
 	 * Creates a dialog informing the user that the dictionary could not be
 	 * loaded from the selected archive, but still the archive includes another
 	 * archive that may be a dictionary.
-	 * 
+	 *
 	 * @return the created dialog
 	 */
 	private Dialog createWarnExtractDictionary() {
@@ -281,6 +286,7 @@ public final class DialogHelper {
 		alertBuilder.setMessage(R.string.msg_extract_dictionary);
 		alertBuilder.setPositiveButton(R.string.button_ok,
 				new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(final DialogInterface dialog,
 							final int whichButton) {
 						dialog.cancel();
@@ -294,7 +300,7 @@ public final class DialogHelper {
 	/**
 	 * Creates a dialog informing the user that the selected dictionary could
 	 * not be found.
-	 * 
+	 *
 	 * @return the created dialog
 	 */
 	private Dialog createDictionaryNotFoundDialog() {
@@ -304,6 +310,7 @@ public final class DialogHelper {
 		alertBuilder.setMessage(R.string.msg_dictionary_not_found);
 		alertBuilder.setNeutralButton(R.string.button_ok,
 				new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(final DialogInterface dialog,
 							final int whichButton) {
 						dialog.cancel();
@@ -322,7 +329,7 @@ public final class DialogHelper {
 
 	/**
 	 * Creates a dialog informing the user of errors while translating.
-	 * 
+	 *
 	 * @return the created dialog
 	 */
 	private Dialog createTranslateErrorDialog() {
@@ -332,6 +339,7 @@ public final class DialogHelper {
 		alertBuilder.setMessage(translationErrorMessage);
 		alertBuilder.setNeutralButton(R.string.button_ok,
 				new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(final DialogInterface dialog,
 							final int whichButton) {
 						dialog.cancel();
@@ -343,7 +351,7 @@ public final class DialogHelper {
 	/**
 	 * Creates a dialog informing the user of exceptions while installing new
 	 * dictionaries.
-	 * 
+	 *
 	 * @return the created dialog
 	 */
 	private Dialog createInstallationExceptionDialog() {
@@ -353,6 +361,7 @@ public final class DialogHelper {
 		alertBuilder.setMessage("");
 		alertBuilder.setNeutralButton(R.string.button_ok,
 				new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(final DialogInterface dialog,
 							final int whichButton) {
 						dialog.cancel();
@@ -363,7 +372,7 @@ public final class DialogHelper {
 
 	/**
 	 * Creates a dialog showing the user a message, e.g. from the installation service.
-	 * 
+	 *
 	 * @return the created dialog
 	 */
 	private Dialog createMessageDialog() {
@@ -373,6 +382,7 @@ public final class DialogHelper {
 		alertBuilder.setMessage("");
 		alertBuilder.setPositiveButton(R.string.button_ok,
 				new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(final DialogInterface dialog,
 							final int whichButton) {
 						dialog.cancel();
@@ -380,11 +390,11 @@ public final class DialogHelper {
 				});
 		return alertBuilder.create();
 	}
-	
+
 	/**
 	 * Creates a indeterminate progress bar informing the user that the
 	 * application is currently searching.
-	 * 
+	 *
 	 * @return the created dialog
 	 */
 	private Dialog createSearchingDialog() {
@@ -396,17 +406,18 @@ public final class DialogHelper {
 		loadingDialog.setOnCancelListener(cancelTranslationListener);
 		return loadingDialog;
 	}
-	
+
 	/**
 	 * Creates a dialog asking the user to confirm the automatic installation of
 	 * a preselected dictionary.
-	 * 
+	 *
 	 * @return the created dialog
 	 */
 	private Dialog createConfirmInstallDictionaryDialog() {
 		final Builder alertBuilder = new AlertDialog.Builder(activity);
 		alertBuilder.setMessage(R.string.msg_auto_install).setPositiveButton(
 				R.string.button_ok, new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(DialogInterface dialog, int whichButton) {
 						DictionaryForMIDs.startChooseDictionaryActivity(
 								activity, true, true);
@@ -414,12 +425,14 @@ public final class DialogHelper {
 				});
 		alertBuilder.setNeutralButton(R.string.button_cancel,
 				new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(DialogInterface dialog, int whichButton) {
 						// just close the dialog and do nothing
 					}
 				});
 		alertBuilder.setNegativeButton(R.string.button_do_not_show_again,
 				new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(DialogInterface dialog, int whichButton) {
 						// don't show the dialog again
 						Preferences.removeAutoInstallDictionaryId();
@@ -430,7 +443,7 @@ public final class DialogHelper {
 
 	/**
 	 * Handles onPrepareDialog events.
-	 * 
+	 *
 	 * @param id
 	 *            the id of the dialog
 	 * @param dialog
@@ -474,7 +487,7 @@ public final class DialogHelper {
 
 	/**
 	 * Sets the message that is displayed by the TranslationErrorDialog.
-	 * 
+	 *
 	 * @param message the message to display
 	 */
 	public static void setTranslationErrorMessage(final String message) {
@@ -483,7 +496,7 @@ public final class DialogHelper {
 
 	/**
 	 * Sets the exception that occurred while installing a dictionary.
-	 * 
+	 *
 	 * @param exception
 	 *            the occurred exception
 	 */
@@ -493,17 +506,17 @@ public final class DialogHelper {
 
 	/**
 	 * Sets the intent that specifies the dictionary to load.
-	 * 
+	 *
 	 * @param intent
 	 *            the intent specifying the dictionary to load
 	 */
 	public static void setLoadDictionary(final Intent intent) {
 		loadDictionary = intent;
 	}
-	
+
 	/**
 	 * Sets the message that will be displayed to the user.
-	 * 
+	 *
 	 * @param informationMessage the message to display
 	 */
 	public static void setMessage(final String informationMessage) {
