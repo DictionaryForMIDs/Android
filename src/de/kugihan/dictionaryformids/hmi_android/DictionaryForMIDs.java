@@ -313,6 +313,11 @@ public final class DictionaryForMIDs extends Activity {
 	@Override
 	protected void onRestoreInstanceState(final Bundle savedInstanceState) {
 		final Spinner spinner = (Spinner) findViewById(R.id.selectLanguages);
+
+		// Temporarily remove spinner listener
+		final OnItemSelectedListener listener = spinner.getOnItemSelectedListener();
+		spinner.setOnItemSelectedListener(null);
+
 		if (DictionaryDataFile.supportedLanguages != null) {
 			final LanguageSpinnerAdapter languageSpinnerAdapter = new LanguageSpinnerAdapter(
 					DictionaryDataFile.supportedLanguages);
@@ -326,9 +331,6 @@ public final class DictionaryForMIDs extends Activity {
 
 		loadLastNonConfigurationInstance();
 
-		final int selectedLanguage = savedInstanceState
-				.getInt(BUNDLE_SELECTED_LANGUAGE);
-		spinner.setSelection(selectedLanguage);
 		// set last selected language and spinner selection
 		lastLanguageSelectionPosition = savedInstanceState.getInt(BUNDLE_SELECTED_LANGUAGE);
 		spinner.setSelection(lastLanguageSelectionPosition);
@@ -359,8 +361,13 @@ public final class DictionaryForMIDs extends Activity {
 		// temporarily remove listeners to make sure setText is ignored in input field
 		final EditText translationInput = (EditText) findViewById(R.id.TranslationInput);
 		translationInput.removeTextChangedListener(textWatcher);
+		final OnFocusChangeListener focusListener = translationInput.getOnFocusChangeListener();
+		translationInput.setOnFocusChangeListener(null);
+
 		super.onRestoreInstanceState(savedInstanceState);
 		translationInput.addTextChangedListener(textWatcher);
+		translationInput.setOnFocusChangeListener(focusListener);
+		spinner.setOnItemSelectedListener(listener);
 	}
 
 	/**
