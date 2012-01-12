@@ -1103,6 +1103,7 @@ public final class DictionaryForMIDs extends Activity {
 			if (text.isFocused()) {
 				text.selectAll();
 			}
+			showSoftKeyboard();
 			return true;
 		}
 		return super.onKeyUp(keyCode, event);
