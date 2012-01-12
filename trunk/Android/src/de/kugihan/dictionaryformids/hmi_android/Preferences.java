@@ -44,13 +44,13 @@ public class Preferences extends PreferenceActivity implements
 	public static final String PREF_MAX_RESULTS = "maxResults";
 	public static final String PREF_SEARCH_TIMEOUT = "searchTimeout";
 	private static final String PREF_WARN_ON_TIMEOUT = "warnOnTimeout";
-	private static final String PREF_SEARCH_MODE = "searchMode";
+	public static final String PREF_SEARCH_MODE = "searchMode";
 	public static final String PREF_IGNORE_DICTIONARY_TEXT_STYLES = "ignoreDictionaryStyles";
 	public static final String PREF_RECENT_DICTIONARIES = "recentDictionaries";
 	public static final String PREF_LANGUAGE_CODE = "languageCode";
 	private static final String PREF_AUTO_INSTALL_DICTIONARY = "autoInstallDictionary";
 	public static final String PREF_STARRED_WORDS = "starredWords";
-	private static final String PREF_SEARCH_AS_YOU_TYPE = "searchAsYouType";
+	public static final String PREF_SEARCH_AS_YOU_TYPE = "searchAsYouType";
 
 	/**
 	 * Saves an instance of the application's shared preferences.
