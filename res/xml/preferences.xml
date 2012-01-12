@@ -2,6 +2,11 @@
 
     <PreferenceCategory android:title="@string/title_pref_search_options" >
 
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="searchAsYouType"
+            android:title="@string/title_pref_search_as_you_type" />
+
         <ListPreference
             android:entries="@array/search_mode"
             android:entryValues="@array/search_mode_values"
