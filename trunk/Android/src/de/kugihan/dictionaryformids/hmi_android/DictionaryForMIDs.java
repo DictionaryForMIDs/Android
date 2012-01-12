@@ -1206,7 +1206,7 @@ public final class DictionaryForMIDs extends Activity {
 					Toast.LENGTH_LONG).show();
 			return;
 		}
-		if (DictionaryDataFile.numberOfAvailableLanguages == 0) {
+		if (!isDictionaryAvailable()) {
 			Toast.makeText(getBaseContext(),
 					R.string.msg_load_dictionary_first, Toast.LENGTH_LONG)
 					.show();
