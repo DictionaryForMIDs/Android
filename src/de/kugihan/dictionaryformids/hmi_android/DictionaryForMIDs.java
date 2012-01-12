@@ -997,6 +997,7 @@ public final class DictionaryForMIDs extends Activity {
 		public void onClick(final View button) {
 			switch (button.getId()) {
 			case R.id.StartTranslation:
+				showDialog(DialogHelper.ID_SEARCHING);
 				startTranslation();
 				break;
 
