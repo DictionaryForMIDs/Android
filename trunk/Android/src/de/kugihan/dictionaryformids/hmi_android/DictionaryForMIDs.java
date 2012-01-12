@@ -1084,6 +1084,7 @@ public final class DictionaryForMIDs extends Activity {
 					return false;
 				}
 				hideSearchOptions(true);
+				hideSoftKeyboard();
 			} else if (view == findViewById(R.id.TranslationInput)) {
 				showSearchOptions();
 			}
@@ -1241,6 +1242,8 @@ public final class DictionaryForMIDs extends Activity {
 		InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		manager.hideSoftInputFromWindow(findViewById(R.id.TranslationInput)
 				.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS, null);
+		// move focus away from keyboard to list
+		findViewById(R.id.translationsListView).requestFocus();
 	}
 
 	/**
