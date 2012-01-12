@@ -11,8 +11,7 @@
             android:entries="@array/search_mode"
             android:entryValues="@array/search_mode_values"
             android:key="searchMode"
-            android:title="@string/title_pref_search_mode" >
-        </ListPreference>
+            android:title="@string/title_pref_search_mode" />
 
         <EditTextPreference
             android:defaultValue="100"
@@ -24,8 +23,7 @@
             android:defaultValue="30"
             android:key="searchTimeout"
             android:numeric="decimal"
-            android:title="@string/title_pref_timeout" >
-        </EditTextPreference>
+            android:title="@string/title_pref_timeout" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/title_pref_display_options" >
@@ -34,21 +32,18 @@
             android:entries="@array/language_codes"
             android:entryValues="@array/language_code_values"
             android:key="languageCode"
-            android:title="@string/title_pref_language_code" >
-        </ListPreference>
+            android:title="@string/title_pref_language_code" />
 
         <ListPreference
             android:entries="@array/font_sizes"
             android:entryValues="@array/font_size_values"
             android:key="resultFontSize"
-            android:title="@string/title_pref_result_font_size" >
-        </ListPreference>
+            android:title="@string/title_pref_result_font_size" />
 
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="ignoreDictionaryStyles"
-            android:title="@string/title_pref_ignore_font_styles" >
-        </CheckBoxPreference>
+            android:title="@string/title_pref_ignore_font_styles" />
 
         <CheckBoxPreference
             android:defaultValue="false"
