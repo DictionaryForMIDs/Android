@@ -40,6 +40,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
@@ -192,11 +193,6 @@ public final class DictionaryForMIDs extends Activity {
 		}
 	}
 
-	/**
-	 * Specifier of the dictionary property that holds the number of available
-	 * languages.
-	 */
-	private static final String DICTIONARY_PROPERTY_NUMBER_OF_AVAILABLE_LANGUAGES = "numberOfAvailableLanguages";
 
 	/**
 	 * The key of an integer specifying the heading's visibility in a bundle.
@@ -240,19 +236,9 @@ public final class DictionaryForMIDs extends Activity {
 	private static final int MILLISECONDS_IN_A_SECOND = 1000;
 
 	/**
-	 * The message id for new translation results.
-	 */
-	private static final int THREAD_NEW_TRANSLATION_RESULT = 1;
-
-	/**
-	 * The message id for deleting previous translation results.
-	 */
-	private static final int THREAD_DELETE_PREVIOUS_TRANSLATION_RESULT = 2;
-
-	/**
 	 * The message id for translation errors.
 	 */
-	public static final int THREAD_ERROR_MESSAGE = 3;
+	public static final int THREAD_ERROR_MESSAGE = 1;
 
 	/**
 	 * The request code identifying a {@link ChooseDictionary} activity.
@@ -1079,14 +1065,6 @@ public final class DictionaryForMIDs extends Activity {
 		@Override
 		public void handleMessage(final Message message) {
 			switch (message.what) {
-			case THREAD_NEW_TRANSLATION_RESULT:
-				break;
-
-			case THREAD_DELETE_PREVIOUS_TRANSLATION_RESULT:
-				// we'll clear the view after the translation
-				// so there is nothing to do here
-				break;
-
 			case THREAD_ERROR_MESSAGE:
 				handleTranslationThreadError(message);
 				break;
