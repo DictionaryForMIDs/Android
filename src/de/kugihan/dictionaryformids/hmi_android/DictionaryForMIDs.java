@@ -974,7 +974,8 @@ public final class DictionaryForMIDs extends Activity {
 					.setVisibility(View.GONE);
 			return;
 		}
-		if (!((EditText) findViewById(R.id.TranslationInput)).hasFocus()) {
+		final EditText inputEditText = (EditText) findViewById(R.id.TranslationInput);
+		if (inputEditText != null && !inputEditText.hasFocus()) {
 			((LinearLayout) findViewById(R.id.selectLanguagesLayout))
 					.setVisibility(View.GONE);
 		}
