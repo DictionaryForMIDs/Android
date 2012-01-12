@@ -8,8 +8,6 @@
 package de.kugihan.dictionaryformids.hmi_android;
 
 import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -873,8 +871,6 @@ public final class DictionaryForMIDs extends Activity {
 		startLoadDictionary(inputStreamAccess, dictionaryType, dictionaryPath,
 				0, false);
 	}
-	
-	private Timer searchAsYouTypeDelay = null;
 
 	/**
 	 * The watcher of the search input field to show the search options when the
