@@ -1015,8 +1015,6 @@ public final class DictionaryForMIDs extends Activity {
 
 			case R.id.TranslationInput:
 				showSearchOptions();
-				EditText text = (EditText) findViewById(R.id.TranslationInput);
-				text.selectAll();
 				break;
 
 			default:
@@ -1054,8 +1052,6 @@ public final class DictionaryForMIDs extends Activity {
 			if (view == findViewById(R.id.TranslationInput)) {
 				if (hasFocus) {
 					showSearchOptions();
-					EditText text = (EditText) findViewById(R.id.TranslationInput);
-					text.selectAll();
 				}
 			} else if (view == findViewById(R.id.selectLanguages)) {
 				if (!hasFocus) {
@@ -1084,8 +1080,6 @@ public final class DictionaryForMIDs extends Activity {
 				hideSearchOptions(true);
 			} else if (view == findViewById(R.id.TranslationInput)) {
 				showSearchOptions();
-				EditText text = (EditText) findViewById(R.id.TranslationInput);
-				text.selectAll();
 			}
 			return false;
 		}
@@ -1101,8 +1095,6 @@ public final class DictionaryForMIDs extends Activity {
 			final EditText text = (EditText) findViewById(R.id.TranslationInput);
 			if (text.isFocused()) {
 				text.selectAll();
-			} else {
-				text.requestFocus();
 			}
 			return true;
 		}
