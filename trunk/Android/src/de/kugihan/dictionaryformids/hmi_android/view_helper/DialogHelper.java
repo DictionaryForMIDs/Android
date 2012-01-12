@@ -19,7 +19,6 @@ import android.widget.Toast;
 import de.kugihan.dictionaryformids.hmi_android.DictionaryForMIDs;
 import de.kugihan.dictionaryformids.hmi_android.Preferences;
 import de.kugihan.dictionaryformids.hmi_android.R;
-import de.kugihan.dictionaryformids.translation.TranslationExecution;
 
 /**
  * A helper class encapsulating all functionality for handling dialogs for
@@ -466,7 +465,7 @@ public final class DialogHelper {
 	private final OnCancelListener cancelTranslationListener = new OnCancelListener() {
 		@Override
 		public void onCancel(final DialogInterface dialog) {
-			TranslationExecution.cancelLastTranslation();
+			activity.cancelActiveTranslation();
 			Toast.makeText(activity,
 					R.string.msg_translation_cancelled, Toast.LENGTH_SHORT)
 					.show();
