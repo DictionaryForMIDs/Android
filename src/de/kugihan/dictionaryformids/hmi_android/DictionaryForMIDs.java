@@ -8,6 +8,8 @@
 package de.kugihan.dictionaryformids.hmi_android;
 
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -18,6 +20,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -59,6 +62,7 @@ import de.kugihan.dictionaryformids.general.DictionaryException;
 import de.kugihan.dictionaryformids.general.Util;
 import de.kugihan.dictionaryformids.hmi_android.Preferences.DictionaryType;
 import de.kugihan.dictionaryformids.hmi_android.data.AndroidUtil;
+import de.kugihan.dictionaryformids.hmi_android.data.AutoSearchTranslations;
 import de.kugihan.dictionaryformids.hmi_android.data.LanguageSpinnerAdapter;
 import de.kugihan.dictionaryformids.hmi_android.data.TranslationsAdapter;
 import de.kugihan.dictionaryformids.hmi_android.service.DictionaryInstallationService;
@@ -126,6 +130,57 @@ public final class DictionaryForMIDs extends Activity {
 		 */
 		public TranslationsAdapter getTranslations() {
 			return translations;
+		}
+	}
+	
+	private class TranslationsObserver extends DataSetObserver {
+		@Override
+		public void onChanged() {
+			super.onChanged();
+			
+			TranslationResult translationResult = translations.getData();
+			
+			final TextView output = (TextView) findViewById(R.id.output);
+			if (translationResult.translationBreakOccurred) {
+				switch (translationResult.translationBreakReason) {
+				case TranslationResult.BreakReasonCancelMaxNrOfHitsReached:
+					output.setText(getString(R.string.results_found_maximum,
+							translationResult.numberOfFoundTranslations()));
+					break;
+
+				case TranslationResult.BreakReasonCancelReceived:
+					output.setText(getString(R.string.results_found_cancel,
+							translationResult.numberOfFoundTranslations()));
+					break;
+
+				case TranslationResult.BreakReasonMaxExecutionTimeReached:
+					output.setText(getString(R.string.results_found_timeout,
+							translationResult.numberOfFoundTranslations()));
+					if (Preferences.getLoadArchiveDictionary()
+							&& Preferences.getWarnOnTimeout()) {
+						showDialog(DialogHelper.ID_SUGGEST_DIRECTORY);
+					}
+					break;
+
+				default:
+					throw new IllegalStateException();
+				}
+			} else if (translationResult.numberOfFoundTranslations() == 0) {
+				output.setText(R.string.no_results_found);
+			} else {
+				if (translationResult.numberOfFoundTranslations() == 1) {
+					output.setText(R.string.results_found_one);
+				} else {
+					output.setText(getString(R.string.results_found,
+							translationResult.numberOfFoundTranslations()));
+				}
+			}
+			// hide heading
+			((LinearLayout) findViewById(R.id.HeadingLayout))
+					.setVisibility(View.GONE);
+			// scroll to top
+			((ListView) findViewById(R.id.translationsListView))
+					.setSelectionFromTop(0, 0);
 		}
 	}
 
@@ -293,8 +348,12 @@ public final class DictionaryForMIDs extends Activity {
 				.getInt(BUNDLE_SEARCH_OPTIONS_VISIBILITY);
 		((LinearLayout) findViewById(R.id.selectLanguagesLayout))
 				.setVisibility(searchOptionsVisibility);
-
+		
+		// temporarily remove listeners to make sure setText is ignored in input field
+		final EditText translationInput = (EditText) findViewById(R.id.TranslationInput);
+		translationInput.removeTextChangedListener(textWatcher);
 		super.onRestoreInstanceState(savedInstanceState);
+		translationInput.addTextChangedListener(textWatcher);
 	}
 
 	/**
@@ -338,14 +397,19 @@ public final class DictionaryForMIDs extends Activity {
 		translations = new TranslationsAdapter();
 
 		dialogHelper = DialogHelper.getInstance(this);
+		
+		translations.registerDataSetObserver(translationsObserver);
 
-		final TextView translationInput = (TextView) findViewById(R.id.TranslationInput);
+		final EditText translationInput = (EditText) findViewById(R.id.TranslationInput);
 		translationInput.setOnFocusChangeListener(focusChangeListener);
 		translationInput.setOnClickListener(clickListener);
 		translationInput.setOnTouchListener(touchListener);
 		translationInput.setOnEditorActionListener(editorActionListener);
 		translationInput.addTextChangedListener(textWatcher);
-
+		if (Preferences.getSearchAsYouType()) {
+			// TODO: select correct view
+		}
+		
 		final ListView translationListView = (ListView) findViewById(R.id.translationsListView);
 		translationListView.setAdapter(translations);
 		translationListView.setOnFocusChangeListener(focusChangeListener);
@@ -374,7 +438,7 @@ public final class DictionaryForMIDs extends Activity {
 			util = new AndroidUtil(updateHandler);
 			Util.setUtil(util);
 		}
-
+		
 		if (savedInstanceState == null) {
 			if (Preferences.hasAutoInstallDictionary()
 					&& !DictionaryInstallationService.isRunning()) {
@@ -386,7 +450,14 @@ public final class DictionaryForMIDs extends Activity {
 				final boolean silent = processIntent(getIntent());
 				loadLastUsedDictionary(silent);
 			}
-		}
+		}		
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		// unregister obserer for adapter as adapter is used in re-created activity
+		translations.unregisterDataSetObserver(translationsObserver);
 	}
 
 	/**
@@ -504,7 +575,9 @@ public final class DictionaryForMIDs extends Activity {
 			final String query = intent.getStringExtra(SearchManager.QUERY);
 			// copy string to input field
 			final TextView translationInput = (TextView) findViewById(R.id.TranslationInput);
+			translationInput.removeTextChangedListener(textWatcher);
 			translationInput.setText(query);
+			translationInput.addTextChangedListener(textWatcher);
 			// start search if dictionary finished loading
 			final Spinner spinner = (Spinner) findViewById(R.id.selectLanguages);
 			final boolean isDictionaryLoaded = loadDictionaryThread == null
@@ -575,6 +648,8 @@ public final class DictionaryForMIDs extends Activity {
 		final NonConfigurationInstance data = (NonConfigurationInstance) lastConfiguration;
 		if (data.getTranslations() != null) {
 			translations = data.getTranslations();
+			translations.registerDataSetObserver(translationsObserver);
+			translations.setActivity(this);
 			((ListView) findViewById(R.id.translationsListView))
 					.setAdapter(translations);
 		}
@@ -778,6 +853,8 @@ public final class DictionaryForMIDs extends Activity {
 		startLoadDictionary(inputStreamAccess, dictionaryType, dictionaryPath,
 				0, false);
 	}
+	
+	private Timer searchAsYouTypeDelay = null;
 
 	/**
 	 * The watcher of the search input field to show the search options when the
@@ -787,6 +864,30 @@ public final class DictionaryForMIDs extends Activity {
 
 		@Override
 		public void afterTextChanged(final Editable s) {
+			if (Preferences.getSearchAsYouType()) {
+				updateHandler.post(new Runnable() {
+					@Override
+					public void run() {
+						if (searchAsYouTypeDelay != null) {
+							searchAsYouTypeDelay.cancel();
+							searchAsYouTypeDelay.purge();
+						}
+						searchAsYouTypeDelay = new Timer();
+						searchAsYouTypeDelay.schedule(new TimerTask() {
+							@Override
+							public void run() {
+								updateHandler.post(new Runnable() {
+									@Override
+									public void run() {
+										translations.getFilter().filter(s);					
+									}
+								});
+							}
+						}, 500);
+					}
+				});
+			}
+
 			showSearchOptions();
 		}
 
@@ -965,7 +1066,8 @@ public final class DictionaryForMIDs extends Activity {
 				break;
 
 			case THREAD_DELETE_PREVIOUS_TRANSLATION_RESULT:
-				handleDeletePreviousTranslationResult();
+				// we'll clear the view after the translation
+				// so there is nothing to do here
 				break;
 
 			case THREAD_ERROR_MESSAGE:
@@ -985,64 +1087,17 @@ public final class DictionaryForMIDs extends Activity {
 			showDialog(DialogHelper.ID_TRANSLATE_ERROR);
 		}
 
-		private void handleDeletePreviousTranslationResult() {
-			deletePreviousTranslationResult();
-		}
-
 		private void handleNewTranslationResult(final Message message) {
-			boolean hideSearchOptions = true;
 			final TranslationResult translationResult = (TranslationResult) message.obj;
-			final TextView output = (TextView) findViewById(R.id.output);
-			if (translationResult.translationBreakOccurred) {
-				switch (translationResult.translationBreakReason) {
-				case TranslationResult.BreakReasonCancelMaxNrOfHitsReached:
-					output.setText(getString(R.string.results_found_maximum,
-							translationResult.numberOfFoundTranslations()));
-					break;
-
-				case TranslationResult.BreakReasonCancelReceived:
-					output.setText(getString(R.string.results_found_cancel,
-							translationResult.numberOfFoundTranslations()));
-					break;
-
-				case TranslationResult.BreakReasonMaxExecutionTimeReached:
-					output.setText(getString(R.string.results_found_timeout,
-							translationResult.numberOfFoundTranslations()));
-					if (Preferences.getLoadArchiveDictionary()
-							&& Preferences.getWarnOnTimeout()) {
-						showDialog(DialogHelper.ID_SUGGEST_DIRECTORY);
-					}
-					break;
-
-				default:
-					throw new IllegalStateException();
-				}
-			} else if (translationResult.numberOfFoundTranslations() == 0) {
-				output.setText(R.string.no_results_found);
-				hideSearchOptions = false;
-			} else {
-				if (translationResult.numberOfFoundTranslations() == 1) {
-					output.setText(R.string.results_found_one);
-				} else {
-					output.setText(getString(R.string.results_found,
-							translationResult.numberOfFoundTranslations()));
-				}
-			}
 			// show results
 			translations.newTranslationResult(translationResult);
 			onScrollListener.setDictionaryIdentifier(DictionaryDataFile.dictionaryAbbreviation);
 			// hide search options if results have been found
-			if (hideSearchOptions) {
+			if (translationResult.numberOfFoundTranslations() > 0) {
 				hideSearchOptions(true);
 			} else {
 				showSearchOptions();
 			}
-			// hide heading
-			((LinearLayout) findViewById(R.id.HeadingLayout))
-					.setVisibility(View.GONE);
-			// scroll to top
-			((ListView) findViewById(R.id.translationsListView))
-					.setSelectionFromTop(0, 0);
 
 			// close search dialog
 			try {
@@ -1052,16 +1107,6 @@ public final class DictionaryForMIDs extends Activity {
 			}
 		}
 	};
-
-	/**
-	 * Clears previous translation results form the view.
-	 */
-	private void deletePreviousTranslationResult() {
-		TextView output;
-		output = (TextView) findViewById(R.id.output);
-		output.setText("");
-		translations.deletePreviousTranslationResult();
-	}
 
 	/**
 	 * OnPostExecutionListener-object that transforms calls from the translation
@@ -1178,6 +1223,8 @@ public final class DictionaryForMIDs extends Activity {
 		}
 		TranslationParameters translationParametersObj = getTranslationParameters(
 				searchWord.toString(), numberOfAvailableLanguages);
+		TranslationExecution.cancelLastTranslation();
+		TranslationExecution.setTranslationExecutionCallback(translationCallback);
 
 		hideSoftKeyboard();
 
@@ -1209,20 +1256,13 @@ public final class DictionaryForMIDs extends Activity {
 	 * @param searchWord
 	 *            the search input to apply the modifiers on
 	 */
-	private void applySearchModeModifiers(final StringBuffer searchWord) {
-		if (searchWord.indexOf("" + Util.noSearchSubExpressionCharacter) >= 0
-				|| searchWord.indexOf("" + Util.wildcardAnySeriesOfCharacter) >= 0
-				|| searchWord.indexOf("" + Util.wildcardAnySingleCharacter) >= 0) {
+	public static void applySearchModeModifiers(final StringBuffer searchWord) {
+		if (hasSearchModifiers(searchWord)) {
 			return;
 		}
 
 		if (Preferences.getFindEntryBeginningWithSearchTerm()) {
-			if (searchWord.charAt(0) != Util.noSearchSubExpressionCharacter) {
-				searchWord.insert(0, "" + Util.noSearchSubExpressionCharacter);
-			}
-			if (searchWord.charAt(searchWord.length() - 1) != Util.wildcardAnySeriesOfCharacter) {
-				searchWord.append(Util.wildcardAnySeriesOfCharacter);
-			}
+			makeWordMatchBeginning(searchWord);
 		} else if (Preferences.getFindExactMatch()) {
 			if (searchWord.charAt(0) != Util.noSearchSubExpressionCharacter) {
 				searchWord.insert(0, "" + Util.noSearchSubExpressionCharacter);
@@ -1241,6 +1281,34 @@ public final class DictionaryForMIDs extends Activity {
 	}
 
 	/**
+	 * Modifies the given term to match words beginning with the term.
+	 * 
+	 * @param searchWord
+	 *            the search term to modify
+	 */
+	public static void makeWordMatchBeginning(final StringBuffer searchWord) {
+		if (searchWord.charAt(0) != Util.noSearchSubExpressionCharacter) {
+			searchWord.insert(0, "" + Util.noSearchSubExpressionCharacter);
+		}
+		if (searchWord.charAt(searchWord.length() - 1) != Util.wildcardAnySeriesOfCharacter) {
+			searchWord.append(Util.wildcardAnySeriesOfCharacter);
+		}
+	}
+
+	/**
+	 * Checks if the given word includes search modifiers.
+	 * 
+	 * @param searchWord
+	 *            the word to check
+	 * @return true if the word includes search modifiers, false otherwise
+	 */
+	public static boolean hasSearchModifiers(final StringBuffer searchWord) {
+		return searchWord.indexOf("" + Util.noSearchSubExpressionCharacter) >= 0
+				|| searchWord.indexOf("" + Util.wildcardAnySeriesOfCharacter) >= 0
+				|| searchWord.indexOf("" + Util.wildcardAnySingleCharacter) >= 0;
+	}
+
+	/**
 	 * Creates the TranslationParamters from the current state.
 	 *
 	 * @param searchTerm
@@ -1249,8 +1317,13 @@ public final class DictionaryForMIDs extends Activity {
 	 *            the number of available languages
 	 * @return an object representing the current translation parameters
 	 */
-	private TranslationParameters getTranslationParameters(
-			final String searchTerm, final int numberOfAvailableLanguages) {
+	public TranslationParameters getTranslationParameters(final String searchTerm,
+			final int numberOfAvailableLanguages) {
+		return getTranslationParameters(searchTerm, numberOfAvailableLanguages, true);
+	}
+	
+	public TranslationParameters getTranslationParameters(final String searchTerm,
+			final int numberOfAvailableLanguages, boolean executeInBackground) {
 		boolean[] inputLanguages = new boolean[numberOfAvailableLanguages];
 		boolean[] outputLanguages = new boolean[numberOfAvailableLanguages];
 		for (int i = 0; i < numberOfAvailableLanguages; i++) {
@@ -1264,7 +1337,7 @@ public final class DictionaryForMIDs extends Activity {
 		inputLanguages[indices[0]] = true;
 		outputLanguages[indices[1]] = true;
 		TranslationParameters translationParametersObj = new TranslationParameters(
-				searchTerm.trim(), inputLanguages, outputLanguages, true,
+				searchTerm.trim(), inputLanguages, outputLanguages, executeInBackground,
 				Preferences.getMaxResults(), Preferences.getSearchTimeout()
 						* MILLISECONDS_IN_A_SECOND);
 		return translationParametersObj;
@@ -1562,4 +1635,6 @@ public final class DictionaryForMIDs extends Activity {
 		}
 
 	};
+
+	private TranslationsObserver translationsObserver = new TranslationsObserver();
 }

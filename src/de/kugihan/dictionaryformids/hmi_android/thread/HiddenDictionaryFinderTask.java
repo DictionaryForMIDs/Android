@@ -105,7 +105,12 @@ public class HiddenDictionaryFinderTask extends AsyncTask<String, Integer, Array
 			Preferences.addRecentDictionaryUrl(DictionaryType.DIRECTORY, file.getPath(), languages,
 					true);
 		}
-		activity.dismissDialog(progressDialogId);
+		try {
+			activity.dismissDialog(progressDialogId);
+		} catch (IllegalArgumentException e) {
+			// if activity was recreated in between, we ignore the exception as
+			// the dialog is already closed
+		}
 	}
 
 	/**

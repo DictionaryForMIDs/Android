@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="SearchInput">
+		<item name="android:paddingRight">5dip</item>
+	</style>
+	<style name="SearchInput.SearchAsYouType">
+		<item name="android:paddingRight">40dip</item>
+	</style>
+</resources>
