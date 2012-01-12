@@ -40,7 +40,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
-import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
@@ -132,14 +131,14 @@ public final class DictionaryForMIDs extends Activity {
 			return translations;
 		}
 	}
-	
+
 	private class TranslationsObserver extends DataSetObserver {
 		@Override
 		public void onChanged() {
 			super.onChanged();
-			
+
 			TranslationResult translationResult = translations.getData();
-			
+
 			final TextView output = (TextView) findViewById(R.id.output);
 			if (translationResult.translationBreakOccurred) {
 				switch (translationResult.translationBreakReason) {
@@ -191,8 +190,14 @@ public final class DictionaryForMIDs extends Activity {
 				}
 			}
 		}
-	}
 
+		@Override
+		public void onInvalidated() {
+			super.onInvalidated();
+			final TextView output = (TextView) findViewById(R.id.output);
+			output.setText("");
+		}
+	}
 
 	/**
 	 * The key of an integer specifying the heading's visibility in a bundle.
@@ -350,7 +355,7 @@ public final class DictionaryForMIDs extends Activity {
 				.getInt(BUNDLE_SEARCH_OPTIONS_VISIBILITY);
 		((LinearLayout) findViewById(R.id.selectLanguagesLayout))
 				.setVisibility(searchOptionsVisibility);
-		
+
 		// temporarily remove listeners to make sure setText is ignored in input field
 		final EditText translationInput = (EditText) findViewById(R.id.TranslationInput);
 		translationInput.removeTextChangedListener(textWatcher);
@@ -433,7 +438,7 @@ public final class DictionaryForMIDs extends Activity {
 			util = new AndroidUtil(updateHandler);
 			Util.setUtil(util);
 		}
-		
+
 		if (savedInstanceState == null) {
 			if (Preferences.hasAutoInstallDictionary()
 					&& !DictionaryInstallationService.isRunning()) {
@@ -1234,7 +1239,7 @@ public final class DictionaryForMIDs extends Activity {
 
 	/**
 	 * Modifies the given term to match words beginning with the term.
-	 * 
+	 *
 	 * @param searchWord
 	 *            the search term to modify
 	 */
@@ -1249,7 +1254,7 @@ public final class DictionaryForMIDs extends Activity {
 
 	/**
 	 * Checks if the given word includes search modifiers.
-	 * 
+	 *
 	 * @param searchWord
 	 *            the word to check
 	 * @return true if the word includes search modifiers, false otherwise
@@ -1273,7 +1278,7 @@ public final class DictionaryForMIDs extends Activity {
 			final int numberOfAvailableLanguages) {
 		return getTranslationParameters(searchTerm, numberOfAvailableLanguages, true);
 	}
-	
+
 	public TranslationParameters getTranslationParameters(final String searchTerm,
 			final int numberOfAvailableLanguages, boolean executeInBackground) {
 		boolean[] inputLanguages = new boolean[numberOfAvailableLanguages];
