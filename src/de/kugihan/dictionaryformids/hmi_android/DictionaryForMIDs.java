@@ -722,6 +722,33 @@ public final class DictionaryForMIDs extends Activity {
 			} else if (key.equals(Preferences.PREF_STARRED_WORDS)) {
 				// push starred words option to list items
 				translations.notifyDataSetChanged();
+			} else if (key.equals(Preferences.PREF_SEARCH_AS_YOU_TYPE)) {
+				final EditText inputEditText = (EditText) findViewById(R.id.TranslationInput);
+				// cache current text
+				final CharSequence text = inputEditText.getText();
+				// get the id of the new layout
+				int id = R.layout.search_bar_auto;
+				if (!Preferences.getSearchAsYouType()) {
+					id = R.layout.search_bar;
+				}
+				// replace view
+				final View view = findViewById(R.id.InputLayout);
+				final ViewGroup parent = (ViewGroup) view.getParent();
+				final int index = parent.indexOfChild(view);
+				parent.removeViewAt(index);
+				parent.addView(getLayoutInflater().inflate(id, parent, false), index);
+				setupSearchBar();
+				// restore text (may trigger search)
+				((EditText) findViewById(R.id.TranslationInput)).setText(text);
+			} else if (key.equals(Preferences.PREF_MAX_RESULTS)
+					|| key.equals(Preferences.PREF_SEARCH_TIMEOUT)
+					|| key.equals(Preferences.PREF_SEARCH_MODE)) {
+				final boolean hasSearchTerm = ((EditText) findViewById(R.id.TranslationInput))
+						.getText().length() > 0;
+				if (Preferences.getSearchAsYouType() && hasSearchTerm) {
+					// trigger new search
+					startTranslation();
+				}
 			}
 		}
 
