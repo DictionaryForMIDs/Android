@@ -10,7 +10,6 @@ package de.kugihan.dictionaryformids.hmi_android.data;
 import java.util.Observable;
 
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -329,11 +328,9 @@ public class TranslationsAdapter extends BaseAdapter implements Filterable {
 			if (results.values == null) {
 				data = new TranslationResult();
 				notifyDataSetInvalidated();
-				Log.d(DictionaryForMIDs.LOG_TAG, "Invalidated");
 			} else {
 				data = (TranslationResult) results.values;
 				notifyDataSetChanged();
-				Log.d(DictionaryForMIDs.LOG_TAG, "Changed");
 			}
 		}
 
