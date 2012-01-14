@@ -2,7 +2,7 @@
  * DictionaryForMIDs - a free multi-language dictionary for mobile devices.
  * Copyright (C) 2005, 2006, 2009 Gert Nuber (dict@kugihan.de) and
  * Achim Weimert (achim.weimert@gmail.com)
- * 
+ *
  * GPL applies - see file COPYING for copyright statement.
  ******************************************************************************/
 package de.kugihan.dictionaryformids.hmi_android;
@@ -49,7 +49,7 @@ import de.kugihan.dictionaryformids.hmi_android.view_helper.LocalizationHelper;
 /**
  * InstallDictionary represents an Activity that allows a user to automatically
  * download, extract and install dictionaries from the server.
- * 
+ *
  */
 public final class InstallDictionary extends ListActivity implements
 		ResultProvider {
@@ -105,12 +105,12 @@ public final class InstallDictionary extends ListActivity implements
 	 * destroyed.
 	 */
 	private static final String BUNDLE_VISIBLE_DIALOG_ID = "visibleDialogId";
-	
+
 	/**
 	 * The key of a parcelable specifying the dictionary item which was selected for installation.
 	 */
 	private static final String BUNDLE_INSTALL_DICTIONARY_ITEM = "installDictionaryItem";
-	
+
 	/**
 	 * The key of an integer > 0 specifying the dictionary that should be installed.
 	 */
@@ -136,7 +136,7 @@ public final class InstallDictionary extends ListActivity implements
 	 * List of all available dictionaries.
 	 */
 	private ArrayList<DownloadDictionaryItem> dictionaries = new ArrayList<DownloadDictionaryItem>();
-	
+
 	/**
 	 * Filtered list of dictionaries.
 	 */
@@ -173,7 +173,7 @@ public final class InstallDictionary extends ListActivity implements
 	 * initialize a dialog for confirming installation in onPrepareDialog.
 	 */
 	private int selectedFilteredItem = -1;
-	
+
 	/**
 	 * Saves the dictionary that is currently being installed for
 	 * onPrepareDialog.
@@ -190,7 +190,7 @@ public final class InstallDictionary extends ListActivity implements
 	 * null.
 	 */
 	private volatile ListDownloadThread listDownloadThread = null;
-	
+
 	/**
 	 * Object used to synchronize access to listDownloadThread.
 	 */
@@ -245,7 +245,7 @@ public final class InstallDictionary extends ListActivity implements
 
 		final TextView textViewError = (TextView) findViewById(R.id.TextViewError);
 		textViewError.setOnClickListener(retryDownload);
-		
+
 		final EditText editTextFilter = (EditText) findViewById(R.id.EditTextFilter);
 		editTextFilter.addTextChangedListener(filterTextWatcher);
 		final ImageButton clearFilterButton = (ImageButton) findViewById(R.id.ClearFilterButton);
@@ -277,7 +277,7 @@ public final class InstallDictionary extends ListActivity implements
 
 		/**
 		 * Parse the server message.
-		 * 
+		 *
 		 * @param parser
 		 *            the object that includes the server message
 		 */
@@ -305,7 +305,7 @@ public final class InstallDictionary extends ListActivity implements
 				showDialogFromThread(R.id.dialog_server_message);
 			}
 			updateListFromThread(parser.getDictionaries());
-			
+
 			// handle auto install dictionary
 			final int dictionaryId = getIntent().getIntExtra(
 					INTENT_AUTO_INSTALL_ID, 0);
@@ -461,7 +461,7 @@ public final class InstallDictionary extends ListActivity implements
 	 * Returns the current main activity. If the parent activity is
 	 * ChooseDictionary, this activity is displayed in a tab and therefore the
 	 * parent activity is returned.
-	 * 
+	 *
 	 * @return the current main activity
 	 */
 	private Activity getMainActivity() {
@@ -516,7 +516,7 @@ public final class InstallDictionary extends ListActivity implements
 	/**
 	 * Gets the url used for downloading the list of dictionires. It includes
 	 * platform and version information.
-	 * 
+	 *
 	 * @return the url of the list of dictionaries
 	 */
 	private String getDictionaryListUrl() {
@@ -598,7 +598,7 @@ public final class InstallDictionary extends ListActivity implements
 	/**
 	 * Calculates the length of the progress bar depending on the current active
 	 * task and its percentage of completion.
-	 * 
+	 *
 	 * @param task
 	 *            the current task
 	 * @param percentage
@@ -639,7 +639,7 @@ public final class InstallDictionary extends ListActivity implements
 
 	/**
 	 * Updates the current progress bar. Can be called from a non-GUI thread.
-	 * 
+	 *
 	 * @param progress
 	 *            the current progress
 	 */
@@ -658,7 +658,7 @@ public final class InstallDictionary extends ListActivity implements
 	/**
 	 * Updates the list of available dictionaries. This method can be called
 	 * from non-GUI threads.
-	 * 
+	 *
 	 * @param dictionaries
 	 *            the list of dictionaries
 	 */
@@ -702,7 +702,7 @@ public final class InstallDictionary extends ListActivity implements
 	/**
 	 * Creates an adapter from the list of filtered dictionaries for use in a
 	 * list.
-	 * 
+	 *
 	 * @return the adapter representing the data of the list of filtered
 	 *         dictionaries
 	 */
@@ -736,7 +736,7 @@ public final class InstallDictionary extends ListActivity implements
 
 	/**
 	 * Shows a managed dialog. This method can be called from non-GUI threads.
-	 * 
+	 *
 	 * @param dialogId
 	 *            the id of the dialog to show
 	 */
@@ -751,7 +751,7 @@ public final class InstallDictionary extends ListActivity implements
 
 	/**
 	 * Mark the given dialog id to be no longer visible.
-	 * 
+	 *
 	 * @param dialogId
 	 *            id of the dialog that is no longer visible
 	 */
@@ -774,6 +774,7 @@ public final class InstallDictionary extends ListActivity implements
 			alertBuilder.setMessage("");
 			alertBuilder.setPositiveButton(R.string.button_ok,
 					new DialogInterface.OnClickListener() {
+						@Override
 						public void onClick(final DialogInterface dialog,
 								final int whichButton) {
 							dialog.cancel();
@@ -787,6 +788,7 @@ public final class InstallDictionary extends ListActivity implements
 					});
 			alertBuilder.setNegativeButton(R.string.button_cancel,
 					new DialogInterface.OnClickListener() {
+						@Override
 						public void onClick(final DialogInterface dialog,
 								final int whichButton) {
 							dialog.cancel();
@@ -801,6 +803,7 @@ public final class InstallDictionary extends ListActivity implements
 			exceptionAlert.setMessage("");
 			exceptionAlert.setPositiveButton(R.string.button_ok,
 					new DialogInterface.OnClickListener() {
+						@Override
 						public void onClick(final DialogInterface dialog,
 								final int whichButton) {
 							dialog.cancel();
@@ -808,13 +811,14 @@ public final class InstallDictionary extends ListActivity implements
 					});
 			dialog = exceptionAlert.create();
 			break;
-			
+
 		case R.id.dialog_dictionary_not_found:
 			Builder notFoundAlert = new AlertDialog.Builder(this);
 			notFoundAlert.setTitle(R.string.title_information);
 			notFoundAlert.setMessage("");
 			notFoundAlert.setPositiveButton(R.string.button_ok,
 					new DialogInterface.OnClickListener() {
+						@Override
 						public void onClick(final DialogInterface dialog,
 								final int whichButton) {
 							dialog.cancel();
@@ -822,13 +826,14 @@ public final class InstallDictionary extends ListActivity implements
 					});
 			dialog = notFoundAlert.create();
 			break;
-			
+
 		case R.id.dialog_auto_installing_dictionary:
 			Builder installingAlert = new AlertDialog.Builder(this);
 			installingAlert.setTitle(R.string.title_information);
 			installingAlert.setMessage("");
 			installingAlert.setPositiveButton(R.string.button_ok,
 					new DialogInterface.OnClickListener() {
+						@Override
 						public void onClick(final DialogInterface dialog,
 								final int whichButton) {
 							dialog.cancel();
@@ -850,6 +855,7 @@ public final class InstallDictionary extends ListActivity implements
 			confirmationAlert.setMessage("");
 			confirmationAlert.setPositiveButton(R.string.button_ok,
 					new DialogInterface.OnClickListener() {
+						@Override
 						public void onClick(final DialogInterface dialog,
 								final int whichButton) {
 							dialog.cancel();
@@ -858,6 +864,7 @@ public final class InstallDictionary extends ListActivity implements
 					});
 			confirmationAlert.setNegativeButton(R.string.button_cancel,
 					new DialogInterface.OnClickListener() {
+						@Override
 						public void onClick(final DialogInterface dialog,
 								final int whichButton) {
 							dialog.cancel();
@@ -872,6 +879,7 @@ public final class InstallDictionary extends ListActivity implements
 			messageAlert.setMessage("");
 			messageAlert.setPositiveButton(R.string.button_ok,
 					new DialogInterface.OnClickListener() {
+						@Override
 						public void onClick(final DialogInterface dialog,
 								final int whichButton) {
 							dialog.cancel();
@@ -886,6 +894,7 @@ public final class InstallDictionary extends ListActivity implements
 			cancelInstallation.setMessage(R.string.msg_cancel_installation);
 			cancelInstallation.setPositiveButton(R.string.button_ok,
 					new DialogInterface.OnClickListener() {
+						@Override
 						public void onClick(final DialogInterface dialog,
 								final int whichButton) {
 							dialog.cancel();
@@ -894,6 +903,7 @@ public final class InstallDictionary extends ListActivity implements
 					});
 			cancelInstallation.setNegativeButton(R.string.button_cancel,
 					new DialogInterface.OnClickListener() {
+						@Override
 						public void onClick(final DialogInterface dialog,
 								final int whichButton) {
 							dialog.cancel();
@@ -943,7 +953,7 @@ public final class InstallDictionary extends ListActivity implements
 			}
 			exceptionAlert.setMessage(exceptionMessage);
 			break;
-			
+
 		case R.id.dialog_dictionary_not_found:
 			AlertDialog notFoundAlert = (AlertDialog) dialog;
 			final int dictionaryId = getIntent().getIntExtra(
@@ -952,7 +962,7 @@ public final class InstallDictionary extends ListActivity implements
 					R.string.msg_error_dictionary_not_found, dictionaryId);
 			notFoundAlert.setMessage(notFoundMessage);
 			break;
-			
+
 		case R.id.dialog_auto_installing_dictionary:
 			AlertDialog installAlert = (AlertDialog) dialog;
 			final String dictionaryName = LocalizationHelper.getLocalizedDictionaryName(
@@ -1003,7 +1013,7 @@ public final class InstallDictionary extends ListActivity implements
 
 	/**
 	 * Converts an size in bytes into a human readable representation.
-	 * 
+	 *
 	 * @param size
 	 *            the size
 	 * @return the human readable representation
@@ -1039,7 +1049,7 @@ public final class InstallDictionary extends ListActivity implements
 					Toast.LENGTH_LONG).show();
 			return;
 		}
-		
+
 		selectedFilteredItem = position;
 		installDictionaryItem = filteredDictionaries.get(position);
 
@@ -1049,7 +1059,7 @@ public final class InstallDictionary extends ListActivity implements
 	/**
 	 * Closes the activity and returns the given dictionary path to the calling
 	 * activity.
-	 * 
+	 *
 	 * @param path
 	 *            the path of the dictionary
 	 */
@@ -1060,11 +1070,11 @@ public final class InstallDictionary extends ListActivity implements
 		setResult(resultCode, returnData);
 		finish();
 	}
-	
+
 	/**
 	 * Closes the activity and returns the given result code to the calling
 	 * activity.
-	 * 
+	 *
 	 * @param returnResultCode
 	 *            the result code returned to the calling activity
 	 */
@@ -1097,10 +1107,10 @@ public final class InstallDictionary extends ListActivity implements
 	private final Handler handler = new Handler();
 
 	/**
-	 * Reacts on changes in the filter input. 
+	 * Reacts on changes in the filter input.
 	 */
 	private final TextWatcher filterTextWatcher = new TextWatcher() {
-		
+
 		@Override
 		public void onTextChanged(final CharSequence sequence, final int start,
 				final int before, final int count) {
@@ -1110,7 +1120,7 @@ public final class InstallDictionary extends ListActivity implements
 		public void beforeTextChanged(final CharSequence sequence,
 				final int start, final int count, final int after) {
 		}
-		
+
 		@Override
 		public void afterTextChanged(final Editable s) {
 			if (dictionaries == null || dictionaries.isEmpty()) {
@@ -1141,7 +1151,7 @@ public final class InstallDictionary extends ListActivity implements
 		inflater.inflate(R.menu.install_dictionary_options, menu);
 		return true;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -1173,7 +1183,7 @@ public final class InstallDictionary extends ListActivity implements
 		case R.id.itemCancelInstallation:
 			showDialog(R.id.dialog_confirm_abort_installation);
 			return true;
-			
+
 		case R.id.itemReinstallDefaultDictionary:
 			// make sure no other installation is running
 			if (DictionaryInstallationService.isRunning()) {
