@@ -1048,6 +1048,9 @@ public final class DictionaryForMIDs extends Activity {
 				if (actionId == EditorInfo.IME_ACTION_DONE) {
 					return false;
 				}
+				if (Preferences.getSearchAsYouType()) {
+					return false;
+				}
 				startTranslation();
 				return true;
 			}
