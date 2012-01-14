@@ -208,13 +208,10 @@ public final class InstallDictionary extends ListActivity implements
 			dictionaries = savedInstanceState
 					.getParcelableArrayList(BUNDLE_DICTIONARIES);
 			updateList();
-			// restore the dialog that was visible before activity got
-			// re-created
+			// the dialog that was visible before activity got re-created will
+			// be restored in onResume
 			visibleDialogId = savedInstanceState
 					.getInt(BUNDLE_VISIBLE_DIALOG_ID);
-			if (visibleDialogId >= 0) {
-				showDialog(visibleDialogId);
-			}
 		}
 
 		final TextView textViewError = (TextView) findViewById(R.id.TextViewError);
@@ -357,6 +354,9 @@ public final class InstallDictionary extends ListActivity implements
 				listDownloadThread.setOnPostExecutionListener(null);
 			}
 		}
+		if (visibleDialogId >= 0) {
+			removeDialog(visibleDialogId);
+		}
 		super.onPause();
 	}
 
@@ -391,6 +391,9 @@ public final class InstallDictionary extends ListActivity implements
 			if (listDownloadThread != null) {
 				listDownloadThread.setOnPostExecutionListener(threadListener);
 			}
+		}
+		if (visibleDialogId >= 0) {
+			showDialog(visibleDialogId);
 		}
 		super.onResume();
 	}
@@ -877,6 +880,11 @@ public final class InstallDictionary extends ListActivity implements
 			@Override
 			public void onCancel(final DialogInterface dialog) {
 				markDialogAsInvisible(id);
+				// Remove all internal handles to the dialog to make sure
+				// onPrepareDialog is not called after re-creating the activity.
+				// If onPrepareDialog was called, the id of the active dialog
+				// would be set and the closed dialog recreated.
+				removeDialog(id);
 			}
 		});
 		onPrepareDialog(id, dialog);
