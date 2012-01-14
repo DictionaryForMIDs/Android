@@ -57,16 +57,37 @@ public final class InstallDictionary extends ListActivity implements
 	// TODO stop thread if activity will not be restored shortly
 
 	/**
+	 * Class to hold non-serializable objects to be passed from
+	 * onRetainNonConfigurationState for new activity.
+	 */
+	private static class NonConfigurationInstance {
+		/**
+		 * Handle of the thread that currently downloads the list of
+		 * dictionaries or null.
+		 */
+		ListDownloadThread listDownloadThread = null;
+
+		/**
+		 * Saves an exception that occurred during installation of a dictionary
+		 * for onPrepareDialog.
+		 */
+		Exception dictionaryInstallationException = null;
+
+		/**
+		 * Checks if at least one object is non-null.
+		 *
+		 * @return true if at least one object is non-null
+		 */
+		boolean hasValues() {
+			return listDownloadThread != null || dictionaryInstallationException != null;
+		}
+	}
+
+	/**
 	 * The key of a integer specifying the id of the selected dictionary in a
 	 * bundle.
 	 */
 	private static final String BUNDLE_SELECTED_ITEM = "selectedItem";
-
-	/**
-	 * The key of a serializable exception specifying an exception that occurred
-	 * during download of the list of installable dictionaries in a bundle.
-	 */
-	private static final String BUNDLE_EXCEPTION = "exception";
 
 	/**
 	 * The key of a string specifying the message sent from the server in a
@@ -191,11 +212,19 @@ public final class InstallDictionary extends ListActivity implements
 		DictionaryInstallationService.setUpdateListener(serviceListener);
 		DictionaryInstallationService.removePendingStatusNotifications(this);
 
+		// load non configuration instance
+		final Object object = getLastNonConfigurationInstance();
+		NonConfigurationInstance instance = null;
+		if (object instanceof NonConfigurationInstance) {
+			instance = (NonConfigurationInstance) object;
+			exception = instance.dictionaryInstallationException;
+		}
+
 		if (savedInstanceState == null) {
 			startListDownload();
 		} else {
+			// restore application state
 			serverMessage = savedInstanceState.getString(BUNDLE_SERVER_MESSAGE);
-			exception = (Exception) savedInstanceState.get(BUNDLE_EXCEPTION);
 			selectedFilteredItem = savedInstanceState.getInt(BUNDLE_SELECTED_ITEM);
 			installDictionaryItem = savedInstanceState
 					.getParcelable(BUNDLE_INSTALL_DICTIONARY_ITEM);
@@ -223,9 +252,8 @@ public final class InstallDictionary extends ListActivity implements
 		clearFilterButton.setOnClickListener(clearFilterClickListener);
 
 		// get handle to thread
-		final Object object = getLastNonConfigurationInstance();
-		if (object instanceof ListDownloadThread) {
-			listDownloadThread = (ListDownloadThread) object;
+		if (instance != null && instance.listDownloadThread != null) {
+			listDownloadThread = instance.listDownloadThread;
 			showActiveListDownload();
 		}
 	}
@@ -405,7 +433,6 @@ public final class InstallDictionary extends ListActivity implements
 	protected void onSaveInstanceState(final Bundle outState) {
 		outState.putParcelableArrayList(BUNDLE_DICTIONARIES, dictionaries);
 		outState.putString(BUNDLE_SERVER_MESSAGE, serverMessage);
-		outState.putSerializable(BUNDLE_EXCEPTION, exception);
 		outState.putInt(BUNDLE_SELECTED_ITEM, selectedFilteredItem);
 		outState.putInt(BUNDLE_VISIBLE_DIALOG_ID, visibleDialogId);
 		outState.putParcelable(BUNDLE_INSTALL_DICTIONARY_ITEM, installDictionaryItem);
@@ -414,15 +441,20 @@ public final class InstallDictionary extends ListActivity implements
 
 	@Override
 	public Object onRetainNonConfigurationInstance() {
-		Object result = super.onRetainNonConfigurationInstance();
+		final NonConfigurationInstance state = new NonConfigurationInstance();
+		state.dictionaryInstallationException = exception;
 		synchronized (listDownloadThreadSync) {
 			if (listDownloadThread != null) {
 				listDownloadThread.setOnPostExecutionListener(null);
-				result = listDownloadThread;
+				state.listDownloadThread = listDownloadThread;
 				listDownloadThread = null;
 			}
 		}
-		return result;
+		if (state.hasValues()) {
+			return state;
+		} else {
+			return super.onRetainNonConfigurationInstance();
+		}
 	}
 
 	/**
