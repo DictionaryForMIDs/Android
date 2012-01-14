@@ -336,7 +336,7 @@ public class Preferences extends PreferenceActivity implements
 		return preferencesInstance.getBoolean(PREF_STARRED_WORDS, false);
 	}
 
-	public static void setIsStarredWordsEnabled(final boolean isEnabled) {
+	public static void setStarredWordsEnabled(final boolean isEnabled) {
 		final Editor editor = preferencesInstance.edit();
 		editor.putBoolean(PREF_STARRED_WORDS, isEnabled);
 		editor.commit();
