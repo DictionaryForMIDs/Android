@@ -175,6 +175,12 @@ public class Preferences extends PreferenceActivity implements
 		return Integer.parseInt(string);
 	}
 
+	public static void setMaxResults(final int maxResults) {
+		final Editor editor = preferencesInstance.edit();
+		editor.putString(PREF_MAX_RESULTS, Integer.toString(maxResults));
+		editor.commit();
+	}
+
 	public static int getResultFontSize() {
 		final String string = preferencesInstance.getString(PREF_RESULT_FONT_SIZE,
 				"18");
