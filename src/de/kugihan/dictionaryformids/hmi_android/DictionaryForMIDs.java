@@ -1614,13 +1614,15 @@ public final class DictionaryForMIDs extends Activity {
 		public void onItemSelected(final AdapterView<?> parent, final View v,
 				final int position, final long id) {
 			assert (parent.getId() == R.id.selectLanguages);
-			final boolean isLoadDictionarySelected = position == parent
-					.getCount() - 1;
-			if (parent.getCount() > 1 && isLoadDictionarySelected) {
+			final boolean isLanguageSelectionEmpty = (parent.getCount() == 0);
+			final boolean isLoadDictionarySelected = (position == parent
+					.getCount() - 1);
+			if (isLanguageSelectionEmpty || isLoadDictionarySelected) {
 				startChooseDictionaryActivity();
 				if (position != 0) {
 					parent.setSelection(0);
 				}
+				return;
 			}
 			if (!Preferences.getSearchAsYouType() || lastLanguageSelectionPosition == position) {
 				return;
