@@ -853,6 +853,8 @@ public final class DictionaryForMIDs extends Activity {
 						if (hasSearchIntent && translationInput.equals(query)) {
 							getIntent().removeExtra(SearchManager.QUERY);
 							startTranslation();
+						} else if (Preferences.getSearchAsYouType()) {
+							startTranslation();
 						}
 					};
 				});
