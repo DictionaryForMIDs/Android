@@ -449,6 +449,12 @@ public final class DictionaryForMIDs extends Activity {
 		languageSpinner.setOnLongClickListener(new View.OnLongClickListener() {
 			@Override
 			public boolean onLongClick(View v) {
+				final Spinner languageSpinner = (Spinner) v;
+				if (languageSpinner.getCount() <= 1) {
+					// do nothing if there are zero or one elements
+					// as the touch listener will be run anyways
+					return false;
+				}
 				startChooseDictionaryActivity();
 				return true;
 			}
