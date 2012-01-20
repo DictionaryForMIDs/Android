@@ -826,18 +826,23 @@ public final class DictionaryForMIDs extends Activity {
 				updateHandler.post(new Runnable() {
 					@Override
 					public void run() {
-						((Spinner) findViewById(R.id.selectLanguages))
-								.setAdapter(languageSpinnerAdapter);
-						showSearchOptions();
-
 						String[] languages = new String[DictionaryDataFile.supportedLanguages.length];
 						for (int i = 0; i < DictionaryDataFile.supportedLanguages.length; i++) {
 							languages[i] = DictionaryDataFile.supportedLanguages[i].languageDisplayText;
 						}
 						Preferences.setLoadDictionary(type, path, languages);
 
-						((Spinner) findViewById(R.id.selectLanguages))
-								.setSelection(selectedIndex);
+						final Spinner languageSpinner = (Spinner) findViewById(R.id.selectLanguages);
+						// temporarily remove the selection change listener
+						// during modifications to the spinner
+						final OnItemSelectedListener listener = languageSpinner
+								.getOnItemSelectedListener();
+						languageSpinner.setOnItemSelectedListener(null);
+						languageSpinner.setAdapter(languageSpinnerAdapter);
+						languageSpinner.setSelection(selectedIndex);
+						// restore listener
+						languageSpinner.setOnItemSelectedListener(listener);
+						showSearchOptions();
 
 						// start search according to intent
 						final String translationInput = ((TextView) findViewById(R.id.TranslationInput))
