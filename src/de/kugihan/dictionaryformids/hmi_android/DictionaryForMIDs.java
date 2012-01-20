@@ -1614,10 +1614,16 @@ public final class DictionaryForMIDs extends Activity {
 		public void onItemSelected(final AdapterView<?> parent, final View v,
 				final int position, final long id) {
 			assert (parent.getId() == R.id.selectLanguages);
-			final boolean isLanguageSelectionEmpty = (parent.getCount() == 0);
+			final boolean isLanguageSelectionEmpty = (parent.getCount() <= 1);
+			if (isLanguageSelectionEmpty) {
+				// if there is no adapter or only the default load dictionary
+				// item ignore the request as the Spinner sends onItemSelected
+				// during create
+				return;
+			}
 			final boolean isLoadDictionarySelected = (position == parent
 					.getCount() - 1);
-			if (isLanguageSelectionEmpty || isLoadDictionarySelected) {
+			if (isLoadDictionarySelected) {
 				startChooseDictionaryActivity();
 				if (position != 0) {
 					parent.setSelection(0);
@@ -1627,6 +1633,7 @@ public final class DictionaryForMIDs extends Activity {
 			if (!Preferences.getSearchAsYouType() || lastLanguageSelectionPosition == position) {
 				return;
 			}
+			// save the selected language position
 			lastLanguageSelectionPosition = position;
 			// start search if there is a search term
 			final String translationInput = ((TextView) findViewById(R.id.TranslationInput))
