@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 	<integer name="preferences_default_auto_install_id">0</integer>
+	<integer name="preferences_default_max_results">100</integer>
+	<integer name="preferences_default_search_timeout">30</integer>
+	<integer name="preferences_default_font_size">18</integer>
+	<integer name="preferences_default_search_mode">0</integer>
+	<bool name="preferences_default_search_as_you_type">true</bool>
+	<bool name="preferences_default_enable_starred_words">false</bool>
+	<bool name="preferences_default_ignore_font_styles">false</bool>
+	<string name="preferences_default_language_code"></string>
 </resources>
