@@ -187,6 +187,12 @@ public class Preferences extends PreferenceActivity implements
 		return Integer.parseInt(string);
 	}
 
+	public static void setResultFontSize(final int fontSize) {
+		final Editor editor = preferencesInstance.edit();
+		editor.putString(PREF_RESULT_FONT_SIZE, Integer.toString(fontSize));
+		editor.commit();
+	}
+
 	public static int getSearchTimeout() {
 		final String string = preferencesInstance
 				.getString(PREF_SEARCH_TIMEOUT, "30");
