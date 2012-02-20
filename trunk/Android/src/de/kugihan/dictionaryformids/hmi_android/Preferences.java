@@ -181,9 +181,7 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	public static void setMaxResults(final int maxResults) {
-		final Editor editor = preferencesInstance.edit();
-		editor.putString(PREF_MAX_RESULTS, Integer.toString(maxResults));
-		editor.commit();
+		setStringPreferenceFromInteger(PREF_MAX_RESULTS, maxResults);
 	}
 
 	public static int getResultFontSize() {
@@ -199,9 +197,7 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	public static void setResultFontSize(final int fontSize) {
-		final Editor editor = preferencesInstance.edit();
-		editor.putString(PREF_RESULT_FONT_SIZE, Integer.toString(fontSize));
-		editor.commit();
+		setStringPreferenceFromInteger(PREF_RESULT_FONT_SIZE, fontSize);
 	}
 
 	public static int getSearchTimeout() {
@@ -234,9 +230,7 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	public static void setSearchTimeout(final int timeout) {
-		final Editor editor = preferencesInstance.edit();
-		editor.putString(PREF_SEARCH_TIMEOUT, Integer.toString(timeout));
-		editor.commit();
+		setStringPreferenceFromInteger(PREF_SEARCH_TIMEOUT, timeout);
 	}
 
 	public static boolean getIgnoreDictionaryTextStyles() {
