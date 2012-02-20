@@ -170,15 +170,8 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	public static int getMaxResults() {
-		int result;
-		try {
-			final String string = preferencesInstance.getString(PREF_MAX_RESULTS, null);
-			result = Integer.parseInt(string);
-		} catch (NumberFormatException e) {
-			result = resources.getInteger(R.integer.preferences_default_max_results);
-			setMaxResults(result);
-		}
-		return result;
+		return getStringPreferenceAsInteger(PREF_MAX_RESULTS,
+				R.integer.preferences_default_max_results);
 	}
 
 	public static void setMaxResults(final int maxResults) {
@@ -186,15 +179,8 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	public static int getResultFontSize() {
-		int result;
-		try {
-			final String string = preferencesInstance.getString(PREF_RESULT_FONT_SIZE, null);
-			result = Integer.parseInt(string);
-		} catch (NumberFormatException e) {
-			result = resources.getInteger(R.integer.preferences_default_font_size);
-			setResultFontSize(result);
-		}
-		return result;
+		return getStringPreferenceAsInteger(PREF_RESULT_FONT_SIZE,
+				R.integer.preferences_default_font_size);
 	}
 
 	public static void setResultFontSize(final int fontSize) {
@@ -202,15 +188,8 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	public static int getSearchTimeout() {
-		int result;
-		try {
-			final String string = preferencesInstance.getString(PREF_SEARCH_TIMEOUT, null);
-			result = Integer.parseInt(string);
-		} catch (NumberFormatException e) {
-			result = resources.getInteger(R.integer.preferences_default_search_timeout);
-			setSearchTimeout(result);
-		}
-		return result;
+		return getStringPreferenceAsInteger(PREF_SEARCH_TIMEOUT,
+				R.integer.preferences_default_search_timeout);
 	}
 
 	/**
