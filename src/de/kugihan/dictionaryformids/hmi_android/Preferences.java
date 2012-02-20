@@ -216,6 +216,23 @@ public class Preferences extends PreferenceActivity implements
 		return result;
 	}
 
+	/**
+	 * Sets the value of a string preference from an integer. This is used for
+	 * numeric preferences that are edited by the user using an
+	 * EditTextPreference.
+	 *
+	 * @param preferenceKey
+	 *            the key identifying the preference to set
+	 * @param value
+	 *            the value to set the preference to
+	 */
+	private static void setStringPreferenceFromInteger(final String preferenceKey,
+			final int value) {
+		final Editor editor = preferencesInstance.edit();
+		editor.putString(preferenceKey, Integer.toString(value));
+		editor.commit();
+	}
+
 	public static void setSearchTimeout(final int timeout) {
 		final Editor editor = preferencesInstance.edit();
 		editor.putString(PREF_SEARCH_TIMEOUT, Integer.toString(timeout));
