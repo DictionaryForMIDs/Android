@@ -3,24 +3,25 @@
     <PreferenceCategory android:title="@string/title_pref_search_options" >
 
         <CheckBoxPreference
-            android:defaultValue="true"
+            android:defaultValue="@bool/preferences_default_search_as_you_type"
             android:key="searchAsYouType"
             android:title="@string/title_pref_search_as_you_type" />
 
         <ListPreference
+            android:defaultValue="@integer/preferences_default_search_mode"
             android:entries="@array/search_mode"
             android:entryValues="@array/search_mode_values"
             android:key="searchMode"
             android:title="@string/title_pref_search_mode" />
 
         <EditTextPreference
-            android:defaultValue="100"
+            android:defaultValue="@integer/preferences_default_max_results"
             android:key="maxResults"
             android:numeric="decimal"
             android:title="@string/title_pref_max_results" />
 
         <EditTextPreference
-            android:defaultValue="30"
+            android:defaultValue="@integer/preferences_default_search_timeout"
             android:key="searchTimeout"
             android:numeric="decimal"
             android:title="@string/title_pref_timeout" />
@@ -29,24 +30,26 @@
     <PreferenceCategory android:title="@string/title_pref_display_options" >
 
         <ListPreference
+            android:defaultValue="@string/preferences_default_language_code"
             android:entries="@array/language_codes"
             android:entryValues="@array/language_code_values"
             android:key="languageCode"
             android:title="@string/title_pref_language_code" />
 
         <ListPreference
+            android:defaultValue="@integer/preferences_default_font_size"
             android:entries="@array/font_sizes"
             android:entryValues="@array/font_size_values"
             android:key="resultFontSize"
             android:title="@string/title_pref_result_font_size" />
 
         <CheckBoxPreference
-            android:defaultValue="false"
+            android:defaultValue="@bool/preferences_default_ignore_font_styles"
             android:key="ignoreDictionaryStyles"
             android:title="@string/title_pref_ignore_font_styles" />
 
         <CheckBoxPreference
-            android:defaultValue="false"
+            android:defaultValue="@bool/preferences_default_enable_starred_words"
             android:key="starredWords"
             android:title="@string/title_pref_enable_starred_words" />
     </PreferenceCategory>
