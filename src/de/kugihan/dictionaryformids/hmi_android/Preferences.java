@@ -16,6 +16,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.Resources;
+import android.content.res.Resources.NotFoundException;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
@@ -210,6 +211,33 @@ public class Preferences extends PreferenceActivity implements
 			setSearchTimeout(result);
 		}
 		return result;
+	}
+
+	/**
+	 * Returns the value of an string preference as integer or resets it to the
+	 * given default value if it cannot be parsed as integer. This is used for
+	 * numeric preferences that are edited by the user using an
+	 * EditTextPreference.
+	 *
+	 * @param preferenceKey
+	 *            the string key identifying the preference to return
+	 * @param defaultIntegerResourceId
+	 *            the id of the integer resource specifying the default value
+	 * @return the value of the preference
+	 * @throws NotFoundException
+	 *             in case the resource of the default value was not found
+	 */
+	private static int getStringPreferenceAsInteger(final String preferenceKey,
+			final int defaultIntegerResourceId) throws NotFoundException {
+		final int defaultValue = resources.getInteger(defaultIntegerResourceId);
+		final String defaultString = Integer.toString(defaultValue);
+		final String value = preferencesInstance.getString(preferenceKey, defaultString);
+		try {
+			return Integer.parseInt(value);
+		} catch (NumberFormatException e) {
+			setStringPreferenceFromInteger(preferenceKey, defaultValue);
+			return defaultValue;
+		}
 	}
 
 	/**
