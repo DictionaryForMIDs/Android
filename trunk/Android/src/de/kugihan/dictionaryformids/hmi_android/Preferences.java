@@ -199,6 +199,12 @@ public class Preferences extends PreferenceActivity implements
 		return Integer.parseInt(string);
 	}
 
+	public static void setSearchTimeout(final int timeout) {
+		final Editor editor = preferencesInstance.edit();
+		editor.putString(PREF_SEARCH_TIMEOUT, Integer.toString(timeout));
+		editor.commit();
+	}
+
 	public static boolean getIgnoreDictionaryTextStyles() {
 		return preferencesInstance.getBoolean(
 				PREF_IGNORE_DICTIONARY_TEXT_STYLES, false);
