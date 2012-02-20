@@ -18,12 +18,14 @@
             android:defaultValue="@integer/preferences_default_max_results"
             android:key="maxResults"
             android:numeric="decimal"
+            android:maxLength="10"
             android:title="@string/title_pref_max_results" />
 
         <EditTextPreference
             android:defaultValue="@integer/preferences_default_search_timeout"
             android:key="searchTimeout"
             android:numeric="decimal"
+            android:maxLength="10"
             android:title="@string/title_pref_timeout" />
     </PreferenceCategory>
 
