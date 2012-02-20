@@ -171,8 +171,15 @@ public class Preferences extends PreferenceActivity implements
 	// TODO: extract all default values to res/values/preferences.xml
 
 	public static int getMaxResults() {
-		final String string = preferencesInstance.getString(PREF_MAX_RESULTS, "100");
-		return Integer.parseInt(string);
+		int result;
+		try {
+			final String string = preferencesInstance.getString(PREF_MAX_RESULTS, null);
+			result = Integer.parseInt(string);
+		} catch (NumberFormatException e) {
+			result = 100;
+			setMaxResults(result);
+		}
+		return result;
 	}
 
 	public static void setMaxResults(final int maxResults) {
@@ -182,9 +189,15 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	public static int getResultFontSize() {
-		final String string = preferencesInstance.getString(PREF_RESULT_FONT_SIZE,
-				"18");
-		return Integer.parseInt(string);
+		int result;
+		try {
+			final String string = preferencesInstance.getString(PREF_RESULT_FONT_SIZE, null);
+			result = Integer.parseInt(string);
+		} catch (NumberFormatException e) {
+			result = 18;
+			setResultFontSize(result);
+		}
+		return result;
 	}
 
 	public static void setResultFontSize(final int fontSize) {
@@ -194,9 +207,15 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	public static int getSearchTimeout() {
-		final String string = preferencesInstance
-				.getString(PREF_SEARCH_TIMEOUT, "30");
-		return Integer.parseInt(string);
+		int result;
+		try {
+			final String string = preferencesInstance.getString(PREF_SEARCH_TIMEOUT, null);
+			result = Integer.parseInt(string);
+		} catch (NumberFormatException e) {
+			result = 30;
+			setSearchTimeout(result);
+		}
+		return result;
 	}
 
 	public static void setSearchTimeout(final int timeout) {
