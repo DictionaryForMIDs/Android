@@ -47,6 +47,7 @@
 	<string name="msg_installation_error">Installation error</string>
 	<string name="msg_external_storage_inaccessible">External storage is currently inaccessible.</string>
 	<string name="msg_exported_starred_words">Successfully exported words to external storage.</string>
+	<string name="msg_error_parsing_integer_preference">Sorry, could not recognize number. Reverted value to default.</string>
 	<string name="title_exception">Exception</string>
 	<string name="title_activity_starred_words">Starred Words</string>
 	<string name="exception_failed_create_directory">Failed to create directory: %1$s</string>

@@ -54,6 +54,11 @@ public class Preferences extends PreferenceActivity implements
 	public static final String PREF_SEARCH_AS_YOU_TYPE = "searchAsYouType";
 
 	/**
+	 * Saves an instance of the application's context.
+	 */
+	private static Context contextInstance = null;
+
+	/**
 	 * Saves an instance of the application's shared preferences.
 	 */
 	private static SharedPreferences preferencesInstance = null;
@@ -152,6 +157,7 @@ public class Preferences extends PreferenceActivity implements
 	 *            the context for which the settings are handled
 	 */
 	public static void attachToContext(final Context context) {
+		contextInstance = context;
 		resources = context.getResources();
 		preferencesInstance = PreferenceManager
 				.getDefaultSharedPreferences(context);
@@ -215,6 +221,8 @@ public class Preferences extends PreferenceActivity implements
 			return Integer.parseInt(value);
 		} catch (NumberFormatException e) {
 			setStringPreferenceFromInteger(preferenceKey, defaultValue);
+			Toast.makeText(contextInstance, R.string.msg_error_parsing_integer_preference,
+					Toast.LENGTH_LONG).show();
 			return defaultValue;
 		}
 	}
