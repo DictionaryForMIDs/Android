@@ -168,15 +168,13 @@ public class Preferences extends PreferenceActivity implements
 		}
 	}
 
-	// TODO: extract all default values to res/values/preferences.xml
-
 	public static int getMaxResults() {
 		int result;
 		try {
 			final String string = preferencesInstance.getString(PREF_MAX_RESULTS, null);
 			result = Integer.parseInt(string);
 		} catch (NumberFormatException e) {
-			result = 100;
+			result = resources.getInteger(R.integer.preferences_default_max_results);
 			setMaxResults(result);
 		}
 		return result;
@@ -194,7 +192,7 @@ public class Preferences extends PreferenceActivity implements
 			final String string = preferencesInstance.getString(PREF_RESULT_FONT_SIZE, null);
 			result = Integer.parseInt(string);
 		} catch (NumberFormatException e) {
-			result = 18;
+			result = resources.getInteger(R.integer.preferences_default_font_size);
 			setResultFontSize(result);
 		}
 		return result;
@@ -212,7 +210,7 @@ public class Preferences extends PreferenceActivity implements
 			final String string = preferencesInstance.getString(PREF_SEARCH_TIMEOUT, null);
 			result = Integer.parseInt(string);
 		} catch (NumberFormatException e) {
-			result = 30;
+			result = resources.getInteger(R.integer.preferences_default_search_timeout);
 			setSearchTimeout(result);
 		}
 		return result;
@@ -225,12 +223,15 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	public static boolean getIgnoreDictionaryTextStyles() {
-		return preferencesInstance.getBoolean(
-				PREF_IGNORE_DICTIONARY_TEXT_STYLES, false);
+		final boolean defaultValue = resources
+				.getBoolean(R.bool.preferences_default_ignore_font_styles);
+		return preferencesInstance.getBoolean(PREF_IGNORE_DICTIONARY_TEXT_STYLES, defaultValue);
 	}
 
 	public static boolean getSearchAsYouType() {
-		return preferencesInstance.getBoolean(PREF_SEARCH_AS_YOU_TYPE, true);
+		final boolean defaultValue = resources
+				.getBoolean(R.bool.preferences_default_search_as_you_type);
+		return preferencesInstance.getBoolean(PREF_SEARCH_AS_YOU_TYPE, defaultValue);
 	}
 
 	public static void setSelectedLanguageIndex(final int selectedLanguageIndex) {
@@ -350,12 +351,13 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	public static String getLanguageCode() {
-		return preferencesInstance.getString(PREF_LANGUAGE_CODE, "");
+		final String defaultValue = resources.getString(R.string.preferences_default_language_code);
+		return preferencesInstance.getString(PREF_LANGUAGE_CODE, defaultValue);
 	}
 
 	private static int getSearchMode() {
-		final String string = preferencesInstance.getString(PREF_SEARCH_MODE, ""
-				+ SearchMode.DEFAULT.ordinal());
+		final int defaultValue = resources.getInteger(R.integer.preferences_default_search_mode);
+		final String string = preferencesInstance.getString(PREF_SEARCH_MODE, Integer.toString(defaultValue));
 		return Integer.parseInt(string);
 	}
 
@@ -364,7 +366,8 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	public static boolean getIsStarredWordsEnabled() {
-		return preferencesInstance.getBoolean(PREF_STARRED_WORDS, false);
+		final boolean defaultValue = resources.getBoolean(R.bool.preferences_default_enable_starred_words);
+		return preferencesInstance.getBoolean(PREF_STARRED_WORDS, defaultValue);
 	}
 
 	public static void setStarredWordsEnabled(final boolean isEnabled) {
