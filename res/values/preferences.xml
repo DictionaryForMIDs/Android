@@ -9,4 +9,5 @@
 	<bool name="preferences_default_enable_starred_words">false</bool>
 	<bool name="preferences_default_ignore_font_styles">false</bool>
 	<string name="preferences_default_language_code"></string>
+	<integer name="preferences_default_theme">0</integer>
 </resources>

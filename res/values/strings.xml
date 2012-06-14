@@ -91,6 +91,11 @@
 		<item>25sp</item>
 		<item>26sp</item>
 	</string-array>
+	<string-array name="themes">
+	    <item>System Default</item>
+	    <item>Dark</item>
+	    <item>Light</item>
+	</string-array>
 	<string name="title_translation_error">Translation error occurred.</string>
 	<string name="msg_translation_error">Details:\n\n%1$s</string>
 	<string name="msg_translation_cancelled">Translation canceled.</string>
@@ -192,10 +197,14 @@
 	<string name="title_pref_search_as_you_type">Search as you type</string>
 	<string name="title_pref_display_options">Display options</string>
 	<string name="title_pref_result_font_size">Font size for results</string>
-	<string name="title_pref_ignore_font_styles">Ignore font styles</string>
+	<string name="title_pref_ignore_font_styles">Use system styles</string>
 	<string name="title_pref_language_code">Language</string>
+	<string name="title_pref_advanced_features">Advanced Features</string>
 	<string name="title_pref_enable_starred_words">Enable starred words</string>
+	<string name="title_pref_theme">Theme</string>
 	<string name="title_default_language_code">Default</string>
+	<string name="summary_pref_ignore_font_style_checked">Results are displayed using style defined by dictionary.</string>
+	<string name="summary_pref_ignore_font_style_unchecked">Results are displayed using system style.</string>
 	<string name="language_english">English</string>
 	<string name="language_esperanto">Esperanto</string>
 	<string name="language_vietnamese">Vietnamese</string>

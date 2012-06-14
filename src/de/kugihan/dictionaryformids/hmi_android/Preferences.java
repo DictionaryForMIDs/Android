@@ -18,6 +18,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
 import android.os.Bundle;
+import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
@@ -35,7 +36,7 @@ public class Preferences extends PreferenceActivity implements
 	/**
 	 * The version of the current preferencesInstance implementation.
 	 */
-	private static final int CURRENT_PREF_VERSION = 1;
+	private static final int CURRENT_PREF_VERSION = 2;
 
 	private static final String PREF_DICTIONARY_TYPE = "dictionaryType";
 	private static final String PREF_VERSION = "preferencesVersion";
@@ -52,6 +53,7 @@ public class Preferences extends PreferenceActivity implements
 	private static final String PREF_AUTO_INSTALL_DICTIONARY = "autoInstallDictionary";
 	public static final String PREF_STARRED_WORDS = "starredWords";
 	public static final String PREF_SEARCH_AS_YOU_TYPE = "searchAsYouType";
+	public static final String PREF_THEME = "theme";
 
 	/**
 	 * Saves an instance of the application's context.
@@ -145,9 +147,34 @@ public class Preferences extends PreferenceActivity implements
 
 		addPreferencesFromResource(R.xml.preferences);
 
+		final String values[] = getResources().getStringArray(R.array.theme_values);
+		final String entryValues[] = new String[values.length];
+		for (int i = 0; i < values.length; i++) {
+			entryValues[i] = values[i];
+			if (values[i].indexOf('/') < 0)
+				continue;
+			if (values[i].indexOf(':') < 0) {
+				values[i] = getPackageName() + ":" + values[i];
+			}
+			int resourceId = getResources().getIdentifier(values[i], null, null);
+			if (resourceId == 0)
+				continue;
+			entryValues[i] = Integer.toString(resourceId);
+		}
+		((ListPreference) findPreference(PREF_THEME)).setEntryValues(entryValues);
+
 		getPreferenceScreen().getSharedPreferences()
 				.registerOnSharedPreferenceChangeListener(this);
 		updateSummaries();
+	}
+
+	private static boolean isInteger(final String string) {
+		try {
+			Integer.parseInt(string);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
 	}
 
 	/**
@@ -169,9 +196,28 @@ public class Preferences extends PreferenceActivity implements
 			final int preferencesVersion = preferencesInstance.getInt(PREF_VERSION,
 					CURRENT_PREF_VERSION);
 			if (preferencesVersion < CURRENT_PREF_VERSION) {
-				// if needed later, migrate old settings into new format here
-				return;
+				// migrate old settings into new format here
+				migrateSettings(preferencesVersion);
 			}
+		}
+		// make sure the light theme is selected if dictionary styles are used
+		final boolean shouldUseDictionaryStyles = !getIgnoreDictionaryTextStyles();
+		final boolean lightThemeSelected = getApplicationTheme() == R.style.DarkThemeSelector;
+		if (shouldUseDictionaryStyles && !lightThemeSelected) {
+			setApplicationTheme(R.style.LightThemeSelector);
+		}
+	}
+
+	/**
+	 * Migrates old preferences to current version.
+	 * 
+	 * @param previousVersion
+	 *            the previously preferences version
+	 */
+	private static void migrateSettings(final int previousVersion) {
+		if (previousVersion < 2) {
+			// dictionary styles never worked before, reset setting
+			setIgnoreDictionaryTextStyles(false);
 		}
 	}
 
@@ -252,6 +298,12 @@ public class Preferences extends PreferenceActivity implements
 		final boolean defaultValue = resources
 				.getBoolean(R.bool.preferences_default_ignore_font_styles);
 		return preferencesInstance.getBoolean(PREF_IGNORE_DICTIONARY_TEXT_STYLES, defaultValue);
+	}
+
+	public static void setIgnoreDictionaryTextStyles(final boolean ignoreStyles) {
+		final Editor editor = preferencesInstance.edit();
+		editor.putBoolean(PREF_IGNORE_DICTIONARY_TEXT_STYLES, ignoreStyles);
+		editor.commit();
 	}
 
 	public static boolean getSearchAsYouType() {
@@ -414,6 +466,23 @@ public class Preferences extends PreferenceActivity implements
 	public static boolean getFindEntryIncludingSearchTerm() {
 		return getSearchMode() == SearchMode.FIND_ENTRIES_INCLUDING_SEARCH_TERM
 				.ordinal();
+	}
+
+	public static int getApplicationTheme() {
+		final int defaultValue = resources.getInteger(R.integer.preferences_default_theme);
+		final String string = preferencesInstance.getString(PREF_THEME,
+				Integer.toString(defaultValue));
+		if (isInteger(string)) {
+			return Integer.parseInt(string);
+		} else {
+			return Resources.getSystem().getIdentifier(string, null, null);
+		}
+	}
+
+	public static void setApplicationTheme(int resourceId) {
+		final Editor editor = preferencesInstance.edit();
+		editor.putString(PREF_THEME, Integer.toString(resourceId));
+		editor.commit();
 	}
 
 	public static String[] getRecentDictionaries() {
@@ -596,12 +665,17 @@ public class Preferences extends PreferenceActivity implements
 				"" + getMaxResults());
 		getPreferenceScreen().findPreference(PREF_SEARCH_TIMEOUT).setSummary(
 				getString(R.string.title_seconds, getSearchTimeout()));
-		setListSummary(PREF_SEARCH_MODE, R.array.search_mode,
-				R.array.search_mode_values, "" + getSearchMode());
-		setListSummary(PREF_RESULT_FONT_SIZE, R.array.font_sizes,
-				R.array.font_size_values, "" + getResultFontSize());
-		setListSummary(PREF_LANGUAGE_CODE, R.array.language_codes,
-				R.array.language_code_values, getLanguageCode());
+		if (getIgnoreDictionaryTextStyles()) {
+			findPreference(PREF_IGNORE_DICTIONARY_TEXT_STYLES).setSummary(
+					R.string.summary_pref_ignore_font_style_unchecked);
+		} else {
+			findPreference(PREF_IGNORE_DICTIONARY_TEXT_STYLES).setSummary(
+					R.string.summary_pref_ignore_font_style_checked);
+		}
+		setListSummary(PREF_SEARCH_MODE);
+		setListSummary(PREF_RESULT_FONT_SIZE);
+		setListSummary(PREF_LANGUAGE_CODE);
+		setListSummary(PREF_THEME);
 	}
 
 	/**
@@ -617,36 +691,55 @@ public class Preferences extends PreferenceActivity implements
 	 * @param currentValue
 	 *            the current value of the list
 	 */
-	private void setListSummary(final String preferencesId,
-			final int entriesResourceId, final int valuesResourceId,
-			final String currentValue) {
-		final String[] arrayTitles = getResources().getStringArray(entriesResourceId);
-		final String[] arrayValues = getResources().getStringArray(valuesResourceId);
+	private void setListSummary(final String preferencesId, final String currentValue) {
+		final ListPreference listPreference = (ListPreference) getPreferenceScreen()
+				.findPreference(preferencesId);
+		final CharSequence[] arrayTitles = listPreference.getEntries();
+		final CharSequence[] arrayValues = listPreference.getEntryValues();
 		for (int i = 0; i < arrayValues.length; i++) {
 			if (arrayValues[i].equals(currentValue)) {
-				getPreferenceScreen().findPreference(preferencesId).setSummary(
-						arrayTitles[i]);
+				listPreference.setSummary(arrayTitles[i]);
 				break;
 			}
 		}
 	}
 
 	/**
+	 * Extracts the current value for a PreferenceList and updates the summary
+	 * to show the value's title.
+	 *
+	 * @param preferencesId
+	 *            the ID of the PreferenceList to update
+	 */
+	private void setListSummary(final String preferencesId) {
+		final ListPreference listPreference = (ListPreference) findPreference(preferencesId);
+		listPreference.setSummary(listPreference.getEntry());
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final void onSharedPreferenceChanged(
-			final SharedPreferences sharedPreferences, final String key) {
+	public final void onSharedPreferenceChanged(final SharedPreferences sharedPreferences,
+			final String key) {
+
 		if (key.equals(PREF_LANGUAGE_CODE)) {
 			// set new locale
 			final String languageCode = getLanguageCode();
-			DictionaryForMIDs.setCustomLocale(languageCode, getBaseContext()
-					.getResources());
-			// tell user to restart application
-			Toast.makeText(getBaseContext(),
-					R.string.msg_restart_app_after_settings_changed,
+			DictionaryForMIDs.setCustomLocale(languageCode, getBaseContext().getResources());
+		}
+
+		if (key.equals(PREF_IGNORE_DICTIONARY_TEXT_STYLES) && !getIgnoreDictionaryTextStyles()) {
+			// force light theme if styles from dictionary are used
+			setApplicationTheme(R.style.LightThemeSelector);
+		}
+
+		// tell user to restart application
+		if (key.equals(PREF_LANGUAGE_CODE) || key.equals(PREF_THEME)) {
+			Toast.makeText(getBaseContext(), R.string.msg_restart_app_after_settings_changed,
 					Toast.LENGTH_LONG).show();
 		}
+
 		updateSummaries();
 	}
 }
