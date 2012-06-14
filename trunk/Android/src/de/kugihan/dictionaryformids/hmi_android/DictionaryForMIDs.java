@@ -945,7 +945,8 @@ public final class DictionaryForMIDs extends Activity {
 		public void afterTextChanged(final Editable s) {
 			if (Preferences.getSearchAsYouType()) {
 				final EditText text = (EditText) findViewById(R.id.TranslationInput);
-				if (text.getText().length() == 0) {
+				final boolean isInputEmpty = text.getText().length() == 0;
+				if (isInputEmpty) {
 					return;
 				}
 				startTranslation();
