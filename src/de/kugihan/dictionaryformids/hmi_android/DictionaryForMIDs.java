@@ -747,7 +747,7 @@ public final class DictionaryForMIDs extends Activity {
 					|| key.equals(Preferences.PREF_SEARCH_MODE)) {
 				final boolean hasSearchTerm = ((EditText) findViewById(R.id.TranslationInput))
 						.getText().length() > 0;
-				if (Preferences.getSearchAsYouType() && hasSearchTerm) {
+				if (Preferences.getSearchAsYouType() && hasSearchTerm && isDictionaryAvailable()) {
 					// trigger new search
 					startTranslation();
 				}
