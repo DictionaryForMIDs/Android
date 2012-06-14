@@ -1006,6 +1006,7 @@ public final class DictionaryForMIDs extends Activity {
 		@Override
 		public void afterTextChanged(final Editable s) {
 			updateInputTextAlignment();
+			showSearchOptions();
 			if (Preferences.getSearchAsYouType()) {
 				final EditText text = (EditText) findViewById(R.id.TranslationInput);
 				final boolean isInputEmpty = text.getText().length() == 0;
@@ -1014,7 +1015,6 @@ public final class DictionaryForMIDs extends Activity {
 				}
 				startTranslation();
 			}
-			showSearchOptions();
 		}
 
 		@Override
