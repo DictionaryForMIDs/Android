@@ -9,4 +9,8 @@
         <item name="android:paddingRight">40dip</item>
     </style>
 
+    <style name="DarkThemeSelector" parent="@android:style/Theme"></style>
+
+    <style name="LightThemeSelector" parent="@android:style/Theme.Light"></style>
+
 </resources>

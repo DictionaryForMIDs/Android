@@ -50,6 +50,14 @@
             android:key="ignoreDictionaryStyles"
             android:title="@string/title_pref_ignore_font_styles" />
 
+        <ListPreference
+            android:defaultValue="@integer/preferences_default_theme"
+            android:entries="@array/themes"
+            android:entryValues="@array/theme_values"
+            android:key="theme"
+            android:title="@string/title_pref_theme" android:dependency="ignoreDictionaryStyles"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/title_pref_advanced_features" >
         <CheckBoxPreference
             android:defaultValue="@bool/preferences_default_enable_starred_words"
             android:key="starredWords"
