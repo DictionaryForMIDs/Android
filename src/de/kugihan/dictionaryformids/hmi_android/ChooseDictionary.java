@@ -10,9 +10,13 @@ package de.kugihan.dictionaryformids.hmi_android;
 import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.Window;
 import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
 
@@ -87,6 +91,67 @@ public final class ChooseDictionary extends TabActivity {
 		} else {
 			tabHost.setCurrentTab(0);
 		}
+
+		if (Build.VERSION.SDK.equals("3")) {
+			// Build.Version.SDK_INT does not exist here
+			// so just return as menu should already be working anyways
+			return;
+		}
+		tabHost.setOnTabChangedListener(new OnTabChangeListener() {
+			@Override
+			public void onTabChanged(String tabId) {
+				// make sure menu button is recreated on newer APIs
+				if (Build.VERSION.SDK_INT >= 11) {
+					invalidateOptionsMenu();
+				}
+			}
+		});
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean onCreateOptionsMenu(final Menu menu) {
+		// create and prepare menus in onPrepareOptionsMenu
+		final Activity activity = getLocalActivityManager().getCurrentActivity();
+		if (activity instanceof RecentList) {
+			activity.onCreateOptionsMenu(menu);
+		} else if (activity instanceof InstallDictionary) {
+			activity.onCreateOptionsMenu(menu);
+		}
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean onPrepareOptionsMenu(final Menu menu) {
+		// display menus for known activities
+		final Activity activity = getLocalActivityManager().getCurrentActivity();
+		menu.clear();
+		if (activity instanceof RecentList) {
+			activity.onCreateOptionsMenu(menu);
+		} else if (activity instanceof InstallDictionary) {
+			activity.onCreateOptionsMenu(menu);
+			activity.onPrepareOptionsMenu(menu);
+		}
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		final Activity activity = getLocalActivityManager().getCurrentActivity();
+		if (activity instanceof RecentList) {
+			return activity.onMenuItemSelected(featureId, item);
+		} else if (activity instanceof InstallDictionary) {
+			return activity.onMenuItemSelected(featureId, item);
+		}
+		return super.onMenuItemSelected(featureId, item);
 	}
 
 	/**
