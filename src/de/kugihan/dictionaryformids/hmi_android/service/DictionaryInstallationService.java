@@ -174,6 +174,12 @@ public final class DictionaryInstallationService extends Service {
 	private NotificationManager notificationManager = null;
 
 	/**
+	 * Signature of Android 2.0- function setForeground. Necessary for
+	 * compatibility with previous versions of the Android API.
+	 */
+	private static final Class<?>[] setForegroundSignature = new Class[] { boolean.class };
+
+	/**
 	 * Signature of Android 2.0+ function startForeground. Necessary for
 	 * compatibility with previous versions of the Android API.
 	 */
@@ -188,6 +194,12 @@ public final class DictionaryInstallationService extends Service {
 	private static final Class[] stopForegroundSignature = new Class[] { boolean.class };
 
 	/**
+	 * Object to hold Android 2.0- function setForeground. Necessary for
+	 * compatibility with previous versions of the Android API.
+	 */
+	private Method setForeground;
+
+	/**
 	 * Object to hold Android 2.0+ function startForeground. Necessary for
 	 * compatibility with previous versions of the Android API.
 	 */
@@ -198,6 +210,12 @@ public final class DictionaryInstallationService extends Service {
 	 * compatibility with previous versions of the Android API.
 	 */
 	private Method stopForeground;
+
+	/**
+	 * Object to hold parameters for Android 2.0- function setForeground.
+	 * Necessary for compatibility with previous versions of the Android API.
+	 */
+	private final Object[] setForegroundArgs = new Object[1];
 
 	/**
 	 * Object to hold parameters for Android 2.0+ function startForeground.
@@ -231,9 +249,16 @@ public final class DictionaryInstallationService extends Service {
 			// try to get handles to functions of API version 5 or later
 			startForeground = getClass().getMethod("startForeground", startForegroundSignature);
 			stopForeground = getClass().getMethod("stopForeground", stopForegroundSignature);
+			return;
 		} catch (NoSuchMethodException e) {
 			startForeground = null;
 			stopForeground = null;
+		}
+		try {
+			setForeground = getClass().getMethod("setForeground", setForegroundSignature);
+		} catch (NoSuchMethodException e) {
+			throw new IllegalStateException(
+					"OS doesn't have Service.startForeground OR Service.setForeground!");
 		}
 	}
 
@@ -246,20 +271,13 @@ public final class DictionaryInstallationService extends Service {
 		if (startForeground != null) {
 			startForegroundArgs[0] = Integer.valueOf(id);
 			startForegroundArgs[1] = notification;
-			try {
-				startForeground.invoke(this, startForegroundArgs);
-			} catch (InvocationTargetException e) {
-				// Should not happen.
-				Log.w(DictionaryForMIDs.LOG_TAG, "Unable to invoke startForeground", e);
-			} catch (IllegalAccessException e) {
-				// Should not happen.
-				Log.w(DictionaryForMIDs.LOG_TAG, "Unable to invoke startForeground", e);
-			}
+			invokeMethod(startForeground, startForegroundArgs);
 			return;
 		}
 
 		// Fall back on the old API.
-		setForeground(true);
+		setForegroundArgs[0] = Boolean.TRUE;
+		invokeMethod(setForeground, setForegroundArgs);
 		notificationManager.notify(id, notification);
 	}
 
@@ -271,22 +289,27 @@ public final class DictionaryInstallationService extends Service {
 		// If we have the new stopForeground API, then use it.
 		if (stopForeground != null) {
 			stopForegroundArgs[0] = Boolean.TRUE;
-			try {
-				stopForeground.invoke(this, stopForegroundArgs);
-			} catch (InvocationTargetException e) {
-				// Should not happen.
-				Log.w(DictionaryForMIDs.LOG_TAG, "Unable to invoke stopForeground", e);
-			} catch (IllegalAccessException e) {
-				// Should not happen.
-				Log.w(DictionaryForMIDs.LOG_TAG, "Unable to invoke stopForeground", e);
-			}
+			invokeMethod(stopForeground, stopForegroundArgs);
 			return;
 		}
 
 		// Fall back on the old API. Note to cancel BEFORE changing the
 		// foreground state, since we could be killed at that point.
 		notificationManager.cancel(id);
-		setForeground(false);
+		setForegroundArgs[0] = Boolean.FALSE;
+		invokeMethod(setForeground, setForegroundArgs);
+	}
+
+	void invokeMethod(Method method, Object[] args) {
+		try {
+			method.invoke(this, args);
+		} catch (InvocationTargetException e) {
+			// Should not happen.
+			Log.w(DictionaryForMIDs.LOG_TAG, "Unable to invoke method", e);
+		} catch (IllegalAccessException e) {
+			// Should not happen.
+			Log.w(DictionaryForMIDs.LOG_TAG, "Unable to invoke method", e);
+		}
 	}
 
 	/**
