@@ -28,6 +28,7 @@ import android.preference.PreferenceManager;
 import android.text.ClipboardManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -52,6 +53,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
@@ -943,6 +945,7 @@ public final class DictionaryForMIDs extends Activity {
 
 		@Override
 		public void afterTextChanged(final Editable s) {
+			updateInputTextAlignment();
 			if (Preferences.getSearchAsYouType()) {
 				final EditText text = (EditText) findViewById(R.id.TranslationInput);
 				final boolean isInputEmpty = text.getText().length() == 0;
@@ -965,6 +968,46 @@ public final class DictionaryForMIDs extends Activity {
 		}
 
 	};
+
+	/**
+	 * Updates the alignment of the translation input text field.
+	 */
+	private void updateInputTextAlignment() {
+
+		final int anchor;
+		if (findViewById(R.id.ClearInput) != null) {
+			anchor = R.id.ClearInput;
+		} else if (findViewById(R.id.StartTranslation) != null) {
+			anchor = R.id.StartTranslation;
+		} else {
+			throw new IllegalStateException();
+		}
+
+		final EditText text = (EditText) findViewById(R.id.TranslationInput);
+
+		final RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+				text.getLayoutParams());
+		final boolean isSingleLine = text.getLineCount() < 2;
+		if (isSingleLine || !text.hasFocus()) {
+			params.addRule(RelativeLayout.ALIGN_BOTTOM, anchor);
+		} else {
+			params.addRule(RelativeLayout.ALIGN_TOP, anchor);
+		}
+		params.addRule(RelativeLayout.LEFT_OF, anchor);
+		text.setLayoutParams(params);
+
+		// calculate and set the max height of the input box
+		final double factor;
+		if (findViewById(R.id.HeadingLayout).getVisibility() == View.VISIBLE) {
+			// smaller max height if heading is visible
+			factor = 0.3;
+		} else {
+			factor = 0.5;
+		}
+		final DisplayMetrics display = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(display);
+		text.setMaxHeight((int) (display.heightPixels * factor));
+	}
 
 	/**
 	 * Hides the search options if appropriate.
@@ -1069,6 +1112,7 @@ public final class DictionaryForMIDs extends Activity {
 		@Override
 		public void onFocusChange(final View view, final boolean hasFocus) {
 			if (view == findViewById(R.id.TranslationInput)) {
+				updateInputTextAlignment();
 				if (hasFocus) {
 					showSearchOptions();
 				}
@@ -1100,6 +1144,7 @@ public final class DictionaryForMIDs extends Activity {
 				hideSoftKeyboard();
 			} else if (view == findViewById(R.id.TranslationInput)) {
 				showSearchOptions();
+				updateInputTextAlignment();
 			}
 			return false;
 		}
@@ -1392,9 +1437,11 @@ public final class DictionaryForMIDs extends Activity {
 		if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
 			((LinearLayout) findViewById(R.id.HeadingLayout))
 					.setOrientation(LinearLayout.HORIZONTAL);
+			updateInputTextAlignment();
 		} else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
 			((LinearLayout) findViewById(R.id.HeadingLayout))
 					.setOrientation(LinearLayout.VERTICAL);
+			updateInputTextAlignment();
 		} else {
 			super.onConfigurationChanged(newConfig);
 		}
