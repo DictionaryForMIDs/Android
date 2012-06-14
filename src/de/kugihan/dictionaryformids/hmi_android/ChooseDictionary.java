@@ -2,7 +2,7 @@
  * DictionaryForMIDs - a free multi-language dictionary for mobile devices.
  * Copyright (C) 2005, 2006, 2009 Gert Nuber (dict@kugihan.de) and
  * Achim Weimert (achim.weimert@gmail.com)
- * 
+ *
  * GPL applies - see file COPYING for copyright statement.
  ******************************************************************************/
 package de.kugihan.dictionaryformids.hmi_android;
@@ -19,7 +19,7 @@ import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
 /**
  * ChooseDictionary represents an Activity where the user can specify a
  * dictionary for the application. Different sources can be displayed.
- * 
+ *
  */
 public final class ChooseDictionary extends TabActivity {
 
@@ -40,6 +40,8 @@ public final class ChooseDictionary extends TabActivity {
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
 		setContentView(R.layout.choose_dictionary);
+		setProgressBarIndeterminateVisibility(false);
+		setProgressBarVisibility(false);
 		Preferences.attachToContext(getApplicationContext());
 
 		final TabHost tabHost = getTabHost();
