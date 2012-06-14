@@ -187,6 +187,8 @@ public final class DictionaryForMIDs extends Activity {
 			((ListView) findViewById(R.id.translationsListView))
 					.setSelectionFromTop(0, 0);
 			onScrollListener.setDictionaryIdentifier(DictionaryDataFile.dictionaryAbbreviation);
+			// show list
+			((ListView) findViewById(R.id.translationsListView)).setVisibility(View.VISIBLE);
 			// try closing search progress dialog
 			if (!Preferences.getSearchAsYouType()) {
 				try {
@@ -750,8 +752,9 @@ public final class DictionaryForMIDs extends Activity {
 		if (data.getTranslations() != null) {
 			translations = data.getTranslations();
 			translations.registerDataSetObserver(translationsObserver);
-			((ListView) findViewById(R.id.translationsListView))
-					.setAdapter(translations);
+			final ListView listView = (ListView) findViewById(R.id.translationsListView);
+			listView.setAdapter(translations);
+			listView.setVisibility(View.VISIBLE);
 			onFilterStateChangedObserver.update(translations.getFilterStateObservable(), translations.isFilterActive());
 			translations.getFilterStateObservable().addObserver(onFilterStateChangedObserver);
 		}
