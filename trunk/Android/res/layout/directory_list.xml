@@ -15,7 +15,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
             android:layout_weight="1"
-            android:background="@android:color/background_light"
             android:padding="3sp"
             android:text="@string/to_upper_level" >
         </Button>
@@ -26,7 +25,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
             android:layout_weight="1"
-            android:background="@android:color/background_light"
             android:padding="3sp"
             android:text="@string/to_sdcard" >
         </Button>
@@ -37,7 +35,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
             android:layout_weight="1"
-            android:background="@android:color/background_light"
             android:padding="3sp"
             android:text="@string/to_top" >
         </Button>
