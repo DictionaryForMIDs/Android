@@ -1241,8 +1241,11 @@ public final class DictionaryForMIDs extends Activity {
 	 *
 	 * @return true if a dictionary is available
 	 */
-	private static boolean isDictionaryAvailable() {
-		return DictionaryDataFile.numberOfAvailableLanguages > 0;
+	private boolean isDictionaryAvailable() {
+		final Spinner spinner = (Spinner) findViewById(R.id.selectLanguages);
+		final boolean isLanguageSpinnerPopulated = spinner.getSelectedItem() != null;
+		final boolean isLanguageAvailable = DictionaryDataFile.numberOfAvailableLanguages > 0;
+		return isLanguageAvailable && isLanguageSpinnerPopulated;
 	}
 
 	public void cancelActiveTranslation() {
