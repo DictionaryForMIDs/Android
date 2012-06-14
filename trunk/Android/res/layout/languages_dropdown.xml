@@ -8,21 +8,21 @@
 		android:layout_marginBottom="15sp" android:layout_marginTop="15sp">
 		<TextView android:layout_height="wrap_content" android:id="@+id/languageFrom"
 			android:layout_width="wrap_content" android:layout_weight="1"
-			android:textColor="@android:color/primary_text_light" android:text="Englisch"
+			android:textAppearance="@android:style/Widget.TextView.SpinnerItem" android:text="Englisch"
 			android:gravity="center" android:textSize="20sp" />
 		<TextView android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:text="-&gt;"
-			android:textColor="@android:color/primary_text_light"
+			android:textAppearance="@android:style/Widget.TextView.SpinnerItem"
 			android:textSize="20sp" android:id="@+id/directionIndicator"></TextView>
 		<TextView android:layout_height="wrap_content" android:id="@+id/languageTo"
 			android:layout_width="wrap_content" android:layout_weight="1"
-			android:textColor="@android:color/primary_text_light" android:text="Chinesisch"
+			android:textAppearance="@android:style/Widget.TextView.SpinnerItem" android:text="Chinesisch"
 			android:gravity="center" android:textSize="20sp" />
 	</LinearLayout>
 
 	<TextView android:text="TextView01" android:layout_height="wrap_content"
 		android:layout_width="fill_parent" android:id="@+id/LoadDictionary"
-		android:textSize="20sp" android:textColor="@android:color/primary_text_light"
+		android:textSize="20sp" android:textAppearance="@android:style/Widget.TextView.SpinnerItem"
 		android:gravity="center" android:layout_marginTop="15sp"
 		android:layout_marginBottom="15sp"></TextView>
 </LinearLayout>
