@@ -1113,7 +1113,10 @@ public final class DictionaryForMIDs extends Activity {
 			switch (button.getId()) {
 			case R.id.StartTranslation:
 				showDialog(DialogHelper.ID_SEARCHING);
-				startTranslation();
+				final boolean hasStarted = startTranslation();
+				if (!hasStarted) {
+					dismissDialog(DialogHelper.ID_SEARCHING);
+				}
 				break;
 
 			case R.id.swapLanguages:
@@ -1314,7 +1317,7 @@ public final class DictionaryForMIDs extends Activity {
 	/**
 	 * Starts a translation if possible and updates the view.
 	 */
-	private void startTranslation() {
+	private boolean startTranslation() {
 		EditText text = (EditText) findViewById(R.id.TranslationInput);
 		final String searchString = text.getText().toString().trim();
 		final StringBuffer searchWord = new StringBuffer(searchString);
@@ -1322,13 +1325,13 @@ public final class DictionaryForMIDs extends Activity {
 		if (searchWord.length() == 0) {
 			Toast.makeText(getBaseContext(), R.string.msg_enter_word_first,
 					Toast.LENGTH_LONG).show();
-			return;
+			return false;
 		}
 		if (!isDictionaryAvailable()) {
 			Toast.makeText(getBaseContext(),
 					R.string.msg_load_dictionary_first, Toast.LENGTH_LONG)
 					.show();
-			return;
+			return false;
 		}
 
 		applySearchModeModifiers(searchWord);
@@ -1338,6 +1341,8 @@ public final class DictionaryForMIDs extends Activity {
 		translations.setTranslationParameters(getTranslationParameters("",
 				DictionaryDataFile.numberOfAvailableLanguages));
 		translations.getFilter().filter(searchWord.toString());
+
+		return true;
 	}
 
 	/**
