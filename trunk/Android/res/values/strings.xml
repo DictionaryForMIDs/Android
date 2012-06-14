@@ -115,7 +115,7 @@
 	<string name="msg_load_dictionary_first">Please load a dictionary first.</string>
 	<string name="msg_reload_dictionary">Please reload the dictionary.</string>
 	<string name="msg_exception">Exception occurred:\n%1$s</string>
-	<string name="msg_restart_app_after_settings_changed">Restart the application for language settings to take effect.</string>
+	<string name="msg_restart_app_after_settings_changed">Restart the application for settings to take effect.</string>
 	<string name="button_ok">OK</string>
 	<string name="button_cancel">Cancel</string>
 	<string name="button_do_not_show_again">Do not show again</string>
