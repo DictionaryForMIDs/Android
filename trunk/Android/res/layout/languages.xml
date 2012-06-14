@@ -1,26 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="horizontal" android:layout_height="wrap_content"
-	android:layout_width="fill_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
 
-	<LinearLayout android:layout_height="wrap_content"
-		android:layout_width="fill_parent" android:id="@+id/LanguageDirectionLayout">
-		<TextView android:layout_height="wrap_content" android:id="@+id/languageFrom"
-			android:layout_width="wrap_content" android:layout_weight="1"
-			android:textAppearance="@android:style/Widget.TextView.SpinnerItem" android:text="Englisch"
-			android:gravity="center" android:textSize="20sp" />
-		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="-&gt;"
-			android:textAppearance="@android:style/Widget.TextView.SpinnerItem"
-			android:textSize="20sp" android:id="@+id/directionIndicator"></TextView>
-		<TextView android:layout_height="wrap_content" android:id="@+id/languageTo"
-			android:layout_width="wrap_content" android:layout_weight="1"
-			android:textAppearance="@android:style/Widget.TextView.SpinnerItem" android:text="Chinesisch"
-			android:gravity="center" android:textSize="20sp" />
-	</LinearLayout>
+    <LinearLayout
+        android:id="@+id/LanguageDirectionLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
 
-	<TextView android:text="TextView01" android:layout_height="wrap_content"
-		android:layout_width="fill_parent" android:id="@+id/LoadDictionary"
-		android:textSize="20sp" android:textAppearance="@android:style/Widget.TextView.SpinnerItem"
-		android:gravity="center"></TextView>
+        <TextView
+            android:id="@+id/languageFrom"
+            style="?android:attr/dropDownItemStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Englisch" />
+
+        <TextView
+            android:id="@+id/directionIndicator"
+            style="?android:attr/dropDownItemStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="->" />
+
+        <TextView
+            android:id="@+id/languageTo"
+            style="?android:attr/dropDownItemStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Chinesisch" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/LoadDictionary"
+        style="?android:attr/dropDownItemStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="TextView01" >
+    </TextView>
+
 </LinearLayout>
