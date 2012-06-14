@@ -3,6 +3,8 @@ package de.kugihan.dictionaryformids.hmi_android.view_helper;
 import android.graphics.Color;
 import android.text.Spannable;
 import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -151,13 +153,12 @@ public class SingleTranslationViewHelper {
 	 */
 	private static void setStyle(final TextView textView,
 			final StringColourItemTextPart itemTextPart) {
-		final int newStringLength = textView.getText().length();
-		final int oldStringLength = newStringLength - itemTextPart.getText().length();
 		final int textStyle = itemTextPart.getStyle().style;
 		final RGBColour textColor = itemTextPart.getColour();
-		final StyleSpan styleSpan = getStyleSpan(textStyle, textColor);
 		final Spannable str = (Spannable) textView.getText();
-		str.setSpan(styleSpan, oldStringLength, newStringLength, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		str.setSpan(getStyleSpan(textStyle), 0, str.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		str.setSpan(getStyleSpan(textColor), 0, str.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		textView.setText(str);
 	}
 
 	/**
@@ -170,7 +171,7 @@ public class SingleTranslationViewHelper {
 	 *            the DictionaryMID color information
 	 * @return the corresponding Android StyleSpan object
 	 */
-	private static StyleSpan getStyleSpan(final int textStyle, final RGBColour textColor) {
+	private static StyleSpan getStyleSpan(final int textStyle) {
 		int style = android.graphics.Typeface.NORMAL;
 		TextPaint textPaint = new TextPaint();
 		switch (textStyle) {
@@ -190,10 +191,13 @@ public class SingleTranslationViewHelper {
 			style = android.graphics.Typeface.NORMAL;
 			break;
 		}
-		textPaint.setColor(Color.rgb(textColor.red, textColor.green, textColor.blue));
 		final StyleSpan styleSpan = new StyleSpan(style);
 		styleSpan.updateDrawState(textPaint);
 		return styleSpan;
+	}
+
+	private static CharacterStyle getStyleSpan(final RGBColour textColor) {
+		return new ForegroundColorSpan(Color.rgb(textColor.red, textColor.green, textColor.blue));
 	}
 
 }
