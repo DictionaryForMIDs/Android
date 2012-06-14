@@ -1,7 +1,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <PreferenceCategory android:title="@string/title_pref_search_options" >
-
         <CheckBoxPreference
             android:defaultValue="@bool/preferences_default_search_as_you_type"
             android:key="searchAsYouType"
@@ -17,27 +16,23 @@
         <EditTextPreference
             android:defaultValue="@integer/preferences_default_max_results"
             android:key="maxResults"
-            android:numeric="decimal"
             android:maxLength="10"
+            android:numeric="decimal"
             android:title="@string/title_pref_max_results" />
-
         <EditTextPreference
             android:defaultValue="@integer/preferences_default_search_timeout"
             android:key="searchTimeout"
-            android:numeric="decimal"
             android:maxLength="10"
+            android:numeric="decimal"
             android:title="@string/title_pref_timeout" />
     </PreferenceCategory>
-
     <PreferenceCategory android:title="@string/title_pref_display_options" >
-
         <ListPreference
             android:defaultValue="@string/preferences_default_language_code"
             android:entries="@array/language_codes"
             android:entryValues="@array/language_code_values"
             android:key="languageCode"
             android:title="@string/title_pref_language_code" />
-
         <ListPreference
             android:defaultValue="@integer/preferences_default_font_size"
             android:entries="@array/font_sizes"
