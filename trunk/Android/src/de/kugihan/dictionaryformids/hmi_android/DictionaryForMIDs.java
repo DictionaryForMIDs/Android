@@ -434,6 +434,10 @@ public final class DictionaryForMIDs extends Activity {
 		}
 		stub.inflate();
 
+		// make sure progress bars are hidden until needed
+		setProgressBarIndeterminateVisibility(false);
+		setProgressBarVisibility(false);
+
 		translations = new TranslationsAdapter(null);
 
 		dialogHelper = DialogHelper.getInstance(this);
