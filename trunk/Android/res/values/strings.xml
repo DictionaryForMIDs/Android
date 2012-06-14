@@ -132,9 +132,9 @@
 	<!--
 		specifies a translation direction, e.g. English -> German; if this
 		language is right-to-left you may want to swap %1$s and %2$s as well
-		as replace -&gt; with &lt;-
+		as replace &#8594; (right-arrow) with &#8592; (left-arrow)
 	-->
-	<string name="title_format_translation_direction">%1$s\t-&gt;\t%2$s</string>
+	<string name="title_format_translation_direction">%1$s\t&#8594;\t%2$s</string>
 	<string name="title_load_dictionary_first">Please load dictionary first.</string>
 	<string name="title_about_heading">Java application DictonaryForMIDs</string>
 	<string name="title_about_copyright_owner">Copyright by Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) and other contributors.</string>
