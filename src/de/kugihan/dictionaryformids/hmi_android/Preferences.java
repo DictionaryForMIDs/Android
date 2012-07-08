@@ -210,7 +210,7 @@ public class Preferences extends PreferenceActivity implements
 
 	/**
 	 * Migrates old preferences to current version.
-	 * 
+	 *
 	 * @param previousVersion
 	 *            the previously preferences version
 	 */
