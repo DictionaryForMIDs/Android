@@ -34,6 +34,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -492,12 +493,22 @@ public final class DictionaryForMIDs extends Activity {
 
 	/**
 	 * Sets the theme of the application according to the current settings.
+	 * 
+	 * @param context
+	 *            the context the theme shall be applied to
 	 */
-	private void setApplicationTheme() {
+	static void setApplicationTheme(final ContextThemeWrapper context) {
 		final int theme = Preferences.getApplicationTheme();
 		if (theme > 0) {
-			setTheme(theme);
+			context.setTheme(theme);
 		}
+	}
+
+	/**
+	 * Sets the theme of the application according to the current settings.
+	 */
+	private void setApplicationTheme() {
+		setApplicationTheme(this);
 	}
 
 	/**
