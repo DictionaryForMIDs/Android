@@ -303,6 +303,10 @@ public class StarredWordsList extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+
+		// load theme before call to setContentView()
+		DictionaryForMIDs.setApplicationTheme(this);
+
 		setContentView(R.layout.starred_words_list);
 
 		final StarredWordsAdapter adapter = new StarredWordsAdapter(this, null);
