@@ -196,6 +196,8 @@ public class Preferences extends PreferenceActivity implements
 			final int preferencesVersion = preferencesInstance.getInt(PREF_VERSION,
 					CURRENT_PREF_VERSION);
 			if (preferencesVersion < CURRENT_PREF_VERSION) {
+				// save settings version
+				saveCurrentVersion();
 				// migrate old settings into new format here
 				migrateSettings(preferencesVersion);
 			}
