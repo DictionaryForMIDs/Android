@@ -156,8 +156,11 @@ public class SingleTranslationViewHelper {
 		final int textStyle = itemTextPart.getStyle().style;
 		final RGBColour textColor = itemTextPart.getColour();
 		final Spannable str = (Spannable) textView.getText();
-		str.setSpan(getStyleSpan(textStyle), 0, str.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-		str.setSpan(getStyleSpan(textColor), 0, str.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		final int length = itemTextPart.getText().length();
+		final int start = textView.getText().length() - length;
+		final int end = start + length;
+		str.setSpan(getStyleSpan(textStyle), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		str.setSpan(getStyleSpan(textColor), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 		textView.setText(str);
 	}
 
