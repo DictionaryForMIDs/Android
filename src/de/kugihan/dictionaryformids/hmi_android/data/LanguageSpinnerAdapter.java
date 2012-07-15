@@ -179,7 +179,9 @@ public class LanguageSpinnerAdapter extends BaseAdapter {
 	private String getLocalizedLanguage(final Resources resources,
 			final int position, final boolean firstLanguage) {
 		final int subPosition = firstLanguage ? 0 : 1;
-		final String languageDisplayText = data[indices[position][subPosition]].languageDisplayText;
+		final int[] languagePairIndices = indices[position];
+		final int languageDefinitionIndex = languagePairIndices[subPosition];
+		final String languageDisplayText = data[languageDefinitionIndex].languageDisplayText;
 		return LocalizationHelper.getLanguageName(resources, languageDisplayText);
 	}
 	
