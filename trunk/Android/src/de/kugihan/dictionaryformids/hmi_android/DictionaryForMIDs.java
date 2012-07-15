@@ -342,7 +342,9 @@ public final class DictionaryForMIDs extends Activity {
 
 		// set last selected language and spinner selection
 		lastLanguageSelectionPosition = savedInstanceState.getInt(BUNDLE_SELECTED_LANGUAGE);
-		spinner.setSelection(lastLanguageSelectionPosition);
+		if (lastLanguageSelectionPosition < spinner.getCount()) {
+			spinner.setSelection(lastLanguageSelectionPosition);
+		}
 
 		final int previousNumberOfTranslations = savedInstanceState
 				.getInt(BUNDLE_NUMBER_OF_TRANSLATIONS);
@@ -493,7 +495,7 @@ public final class DictionaryForMIDs extends Activity {
 
 	/**
 	 * Sets the theme of the application according to the current settings.
-	 * 
+	 *
 	 * @param context
 	 *            the context the theme shall be applied to
 	 */
