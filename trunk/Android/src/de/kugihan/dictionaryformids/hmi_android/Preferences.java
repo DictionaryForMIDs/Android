@@ -36,21 +36,21 @@ public class Preferences extends PreferenceActivity implements
 	/**
 	 * The version of the current preferencesInstance implementation.
 	 */
-	private static final int CURRENT_PREF_VERSION = 2;
+	public static final int CURRENT_PREF_VERSION = 2;
 
-	private static final String PREF_DICTIONARY_TYPE = "dictionaryType";
-	private static final String PREF_VERSION = "preferencesVersion";
-	private static final String PREF_DICTIONARY_PATH = "dictionaryPath";
-	private static final String PREF_SELECTED_LANGUAGE_INDEX = "selectedLanguageIndex";
+	public static final String PREF_DICTIONARY_TYPE = "dictionaryType";
+	public static final String PREF_VERSION = "preferencesVersion";
+	public static final String PREF_DICTIONARY_PATH = "dictionaryPath";
+	public static final String PREF_SELECTED_LANGUAGE_INDEX = "selectedLanguageIndex";
 	public static final String PREF_RESULT_FONT_SIZE = "resultFontSize";
 	public static final String PREF_MAX_RESULTS = "maxResults";
 	public static final String PREF_SEARCH_TIMEOUT = "searchTimeout";
-	private static final String PREF_WARN_ON_TIMEOUT = "warnOnTimeout";
+	public static final String PREF_WARN_ON_TIMEOUT = "warnOnTimeout";
 	public static final String PREF_SEARCH_MODE = "searchMode";
 	public static final String PREF_IGNORE_DICTIONARY_TEXT_STYLES = "ignoreDictionaryStyles";
 	public static final String PREF_RECENT_DICTIONARIES = "recentDictionaries";
 	public static final String PREF_LANGUAGE_CODE = "languageCode";
-	private static final String PREF_AUTO_INSTALL_DICTIONARY = "autoInstallDictionary";
+	public static final String PREF_AUTO_INSTALL_DICTIONARY = "autoInstallDictionary";
 	public static final String PREF_STARRED_WORDS = "starredWords";
 	public static final String PREF_SEARCH_AS_YOU_TYPE = "searchAsYouType";
 	public static final String PREF_THEME = "theme";
