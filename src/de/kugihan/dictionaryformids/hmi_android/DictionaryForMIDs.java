@@ -107,7 +107,7 @@ public final class DictionaryForMIDs extends Activity {
 		private final TranslationsAdapter translations;
 
 		/**
-		 * Constructs a new instance and initalizes all members.
+		 * Constructs a new instance and initializes all members.
 		 *
 		 * @param thread
 		 *            the current load dictionary thread
