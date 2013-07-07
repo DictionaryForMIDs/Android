@@ -157,6 +157,7 @@
 	</string>
 	<string name="title_about_dictionary">Dictionary:</string>
 	<string name="title_about_ui_translation">Localization:</string>
+	<string name="title_about_translation_request">Help us translating this app into your language or improve existing translations at http://crowdin.net/project/dictionaryformids</string>
 	<string name="title_information">Info</string>
 	<string name="title_welcome">Welcome!</string>
 	<string name="title_seconds">%1$d sec</string>

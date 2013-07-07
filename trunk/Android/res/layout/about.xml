@@ -40,6 +40,9 @@
 		<TextView android:text="@string/title_user_interface_translator"
 			android:id="@+id/Translator" android:layout_width="fill_parent"
 			android:layout_height="wrap_content"></TextView>
+		<TextView android:text="@string/title_about_translation_request"
+		    android:layout_width="fill_parent" android:layout_height="wrap_content"
+		    android:autoLink="web" />
 
 		<TextView android:id="@+id/TextView01" android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:text="@string/title_about_copyright"

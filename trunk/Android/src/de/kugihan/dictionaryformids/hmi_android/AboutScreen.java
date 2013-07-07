@@ -9,13 +9,13 @@ package de.kugihan.dictionaryformids.hmi_android;
 
 import java.util.Locale;
 
-import de.kugihan.dictionaryformids.dataaccess.DictionaryDataFile;
 import android.app.Activity;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import de.kugihan.dictionaryformids.dataaccess.DictionaryDataFile;
 
 /**
  * AboutScreen represents an Activity that displays the application's about
@@ -55,6 +55,7 @@ public class AboutScreen extends Activity {
 
 		final TextView dictionary = (TextView) findViewById(R.id.Dictonary);
 		dictionary.setOnClickListener(new View.OnClickListener() {
+			@Override
 			public void onClick(final View view) {
 				setResult(RESULT_OK);
 				finish();
@@ -64,10 +65,8 @@ public class AboutScreen extends Activity {
 		final String translator = getString(R.string.title_user_interface_translator);
 		final boolean isTranslatorGiven = translator.length() > 0;
 		if (!isTranslatorGiven) {
-			final TextView translatorTitle = (TextView) findViewById(R.id.TranslatorTitle);
 			final TextView translatorView = (TextView) findViewById(R.id.Translator);
 			translatorView.setVisibility(View.GONE);
-			translatorTitle.setVisibility(View.GONE);
 		}
 
 	}
