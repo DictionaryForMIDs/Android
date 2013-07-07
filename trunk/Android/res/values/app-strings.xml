@@ -44,6 +44,7 @@
 		<item>@string/title_default_language_code</item>
 		<item>Dansk</item>
 		<item>English</item>
+		<item>Español</item>
 		<item>Esperanto</item>
 		<item>Magyar</item>
 		<item>ஆங்கிலம்</item>
@@ -55,6 +56,7 @@
 		<item></item>
 		<item>da</item>
 		<item>en</item>
+		<item>es</item>
 		<item>eo</item>
 		<item>hu</item>
 		<item>ta</item>
