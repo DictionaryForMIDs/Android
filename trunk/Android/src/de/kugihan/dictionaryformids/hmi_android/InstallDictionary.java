@@ -8,6 +8,7 @@
 package de.kugihan.dictionaryformids.hmi_android;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -529,9 +530,9 @@ public final class InstallDictionary extends ListActivity implements
 		} catch (NameNotFoundException e) {
 			versionCode = -1;
 		}
-		String url = getString(R.string.attribute_dictionary_list_url,
-				ANDROID_PLATFORM, versionCode);
-		return url;
+		String urlFormat = getString(R.string.attribute_dictionary_list_url);
+		String urlResult = String.format(Locale.US, urlFormat, ANDROID_PLATFORM, versionCode);
+		return urlResult;
 	}
 
 	/**
