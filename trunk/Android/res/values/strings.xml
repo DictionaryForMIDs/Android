@@ -239,4 +239,6 @@
 	<string name="language_norwegian">Norwegian</string>
 	<string name="language_turkish">Turkish</string>
 	<string name="language_tagalog">Tagalog</string>
+	<string name="language_tamil">Tamil</string>
+	<string name="language_turkmen">Turkmen</string>
 </resources>
