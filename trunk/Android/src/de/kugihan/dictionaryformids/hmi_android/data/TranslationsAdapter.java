@@ -26,7 +26,6 @@ import de.kugihan.dictionaryformids.hmi_android.Preferences;
 import de.kugihan.dictionaryformids.hmi_android.R;
 import de.kugihan.dictionaryformids.hmi_android.view_helper.SingleTranslationViewHelper;
 import de.kugihan.dictionaryformids.translation.SingleTranslationExtension;
-import de.kugihan.dictionaryformids.translation.TranslationExecution;
 import de.kugihan.dictionaryformids.translation.TranslationExecutionCallback;
 import de.kugihan.dictionaryformids.translation.TranslationParameters;
 import de.kugihan.dictionaryformids.translation.TranslationResult;
@@ -41,6 +40,11 @@ public class TranslationsAdapter extends BaseAdapter implements Filterable {
 	 * The current TranslationResult represented by this adapter.
 	 */
 	private TranslationResult data = new TranslationResult();
+
+	/**
+	 * Instance of a TranslationExecutor to which filtering is redirected.
+	 */
+	private TranslationExecutor translationExecutor = null;
 
 	/**
 	 * Filter used to search the dictionary.
@@ -77,11 +81,21 @@ public class TranslationsAdapter extends BaseAdapter implements Filterable {
 	}
 
 	/**
+	 * Sets the TranslationExecutor to use for translations.
+	 *
+	 * @param translationExecutor
+	 *            the TranslationExecutor to use
+	 */
+	public void setTranslationExecutor(final TranslationExecutor translationExecutor) {
+		this.translationExecutor = translationExecutor;
+	}
+
+	/**
 	 * Cancels any active filtering operation by interrupting the active
 	 * translation thread.
 	 */
 	public void cancelActiveFilter() {
-		TranslationExecution.cancelLastTranslation();
+		translationExecutor.cancelLastTranslation();
 		synchronized (getFilter()) {
 			shouldFilterWait = false;
 			// manually notify the thread as a cancelled translation thread does
@@ -287,10 +301,10 @@ public class TranslationsAdapter extends BaseAdapter implements Filterable {
 
 			parameters.executeInBackground = true;
 			parameters.toBeTranslatedWordText = searchWord.toString();
-			TranslationExecution.setTranslationExecutionCallback(this);
+			translationExecutor.setTranslationExecutionCallback(this);
 
 			try {
-				TranslationExecution.executeTranslation(parameters);
+				translationExecutor.executeTranslation(parameters);
 			} catch (DictionaryException e) {
 				return result;
 			}

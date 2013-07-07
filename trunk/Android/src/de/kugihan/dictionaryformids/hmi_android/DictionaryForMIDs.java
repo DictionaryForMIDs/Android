@@ -71,6 +71,7 @@ import de.kugihan.dictionaryformids.general.DictionaryException;
 import de.kugihan.dictionaryformids.general.Util;
 import de.kugihan.dictionaryformids.hmi_android.Preferences.DictionaryType;
 import de.kugihan.dictionaryformids.hmi_android.data.AndroidUtil;
+import de.kugihan.dictionaryformids.hmi_android.data.DfMTranslationExecutor;
 import de.kugihan.dictionaryformids.hmi_android.data.LanguageSpinnerAdapter;
 import de.kugihan.dictionaryformids.hmi_android.data.TranslationsAdapter;
 import de.kugihan.dictionaryformids.hmi_android.service.DictionaryInstallationService;
@@ -443,12 +444,13 @@ public final class DictionaryForMIDs extends Activity {
 		setProgressBarIndeterminateVisibility(false);
 		setProgressBarVisibility(false);
 
-		translations = new TranslationsAdapter(null);
+		// create the adapter to display translations and connect it to the
+		// translation executor which does the dictionary look-up
+		final TranslationsAdapter translationsAdapter = new TranslationsAdapter(null);
+		translationsAdapter.setTranslationExecutor(new DfMTranslationExecutor());
+		setTranslationAdapter(translationsAdapter);
 
 		dialogHelper = DialogHelper.getInstance(this);
-
-		translations.registerDataSetObserver(translationsObserver);
-		translations.getFilterStateObservable().addObserver(onFilterStateChangedObserver);
 
 		setupSearchBar();
 
@@ -491,6 +493,19 @@ public final class DictionaryForMIDs extends Activity {
 				loadLastUsedDictionary(silent);
 			}
 		}
+	}
+
+	/**
+	 * Sets and registers a new TranslationAdapter to the activity to receive
+	 * updates.
+	 *
+	 * @param translationsAdapter
+	 *            the TranslationAdapter to use
+	 */
+	public void setTranslationAdapter(final TranslationsAdapter translationsAdapter) {
+		translations = translationsAdapter;
+		translations.registerDataSetObserver(translationsObserver);
+		translations.getFilterStateObservable().addObserver(onFilterStateChangedObserver);
 	}
 
 	/**
