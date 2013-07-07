@@ -419,7 +419,7 @@ public final class DictionaryForMIDs extends Activity {
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		Preferences.attachToContext(getApplicationContext());
 		final SharedPreferences preferences = PreferenceManager
-				.getDefaultSharedPreferences(getBaseContext());
+				.getDefaultSharedPreferences(getApplicationContext());
 		preferences
 				.registerOnSharedPreferenceChangeListener(preferenceChangeListener);
 
