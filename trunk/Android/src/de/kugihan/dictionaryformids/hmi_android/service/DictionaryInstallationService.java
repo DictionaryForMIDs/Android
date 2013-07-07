@@ -16,6 +16,8 @@ import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Enumeration;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -48,6 +50,11 @@ import de.kugihan.dictionaryformids.hmi_android.data.DownloadDictionaryItem;
  *
  */
 public final class DictionaryInstallationService extends Service {
+
+	/**
+	 * Number of milliseconds between pushing status updates to the listeners.
+	 */
+	private static final int LISTENER_NOTIFICATION_INTERVAL = 300;
 
 	/**
 	 * Size of the buffer used for copying stream data.
@@ -142,6 +149,16 @@ public final class DictionaryInstallationService extends Service {
 	 * Handle of the current worker thread.
 	 */
 	private static volatile Thread thread = null;
+
+	/**
+	 * Timer to execute scheduled tasks.
+	 */
+	private final Timer updateTimer = new Timer();
+
+	/**
+	 * Scheduled task that pushes status updates to registered listeners.
+	 */
+	private volatile StatusUpdateTask statusUpdateTask = null;
 
 	/**
 	 * Caches the status that have been sent by the last call to sendUpdate.
@@ -358,6 +375,10 @@ public final class DictionaryInstallationService extends Service {
 	 *            information about the dictionary to install
 	 */
 	private void startService(final DownloadDictionaryItem item) {
+		statusUpdateTask = new StatusUpdateTask();
+		updateTimer.schedule(statusUpdateTask, LISTENER_NOTIFICATION_INTERVAL,
+				LISTENER_NOTIFICATION_INTERVAL);
+
 		thread = new InstallDictionaryThread(item);
 		thread.start();
 	}
@@ -414,6 +435,15 @@ public final class DictionaryInstallationService extends Service {
 	private void handleUpdate(final int type, final int percentage) {
 		lastSendType = type;
 		lastSendPercentage = percentage;
+	}
+
+	/**
+	 * Creates a notification and informs any listeners about the new status.
+	 *
+	 * @param type
+	 * @param percentage
+	 */
+	public void pushUpdateNotification(final int type, final int percentage) {
 		final double progressBarPercentage = InstallDictionary.getProgressBarLength(type,
 				percentage) / 100.0;
 		final int icon = R.drawable.defaulticon;
@@ -480,6 +510,15 @@ public final class DictionaryInstallationService extends Service {
 			Preferences.removeAutoInstallDictionaryId();
 		}
 
+		if (statusUpdateTask != null) {
+			synchronized (updateTimer) {
+				if (statusUpdateTask != null) {
+					statusUpdateTask.cancel();
+					statusUpdateTask = null;
+				}
+			}
+		}
+
 		if (listener != null) {
 			listener.onFinished(path);
 			stopSelf();
@@ -527,6 +566,15 @@ public final class DictionaryInstallationService extends Service {
 	private void handleException(final Exception exception) {
 		// remove old notifications
 		notificationManager.cancel(NOTIFICATION_STATUS_UPDATE);
+
+		if (statusUpdateTask != null) {
+			synchronized (updateTimer) {
+				if (statusUpdateTask != null) {
+					statusUpdateTask.cancel();
+					statusUpdateTask = null;
+				}
+			}
+		}
 
 		if (listener != null) {
 			listener.onExitWithException(exception);
@@ -597,6 +645,21 @@ public final class DictionaryInstallationService extends Service {
 		if (!file.createNewFile()) {
 			throw new IOException(getString(R.string.exception_failed_create_file, file.toString()));
 		}
+	}
+
+	/**
+	 * Decouples status updates and pushing them to the view, allowing for
+	 * regularly GUI updates.
+	 */
+	private final class StatusUpdateTask extends TimerTask {
+
+		@Override
+		public void run() {
+			final int type = DictionaryInstallationService.lastSendType;
+			final int percentage = DictionaryInstallationService.lastSendPercentage;
+			DictionaryInstallationService.this.pushUpdateNotification(type, percentage);
+		}
+
 	}
 
 	/**
