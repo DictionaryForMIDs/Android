@@ -40,6 +40,7 @@
 	<string name="attribute_jar_directory">%1$s/DictionaryForMIDs/jar/</string>
 	<string name="attribute_zip_directory">%1$s/DictionaryForMIDs/zip/</string>
 	<string name="format_version">%1$s (%2$d %3$s)</string>
+	<string name="title_format_translation_direction_separator">\t</string>
 	<string-array name="language_codes">
 		<item>@string/title_default_language_code</item>
 		<item>Dansk</item>

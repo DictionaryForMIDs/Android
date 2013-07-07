@@ -147,13 +147,16 @@ public class LanguageSpinnerAdapter extends BaseAdapter {
 			final String languageFromString = getLocalizedLanguage(resources, position, true);
 			final String languageToString = getLocalizedLanguage(resources, position, false);
 			final String formatString = view.getContext().getString(R.string.title_format_translation_direction, languageFromString, languageToString);
-			
-			final String parts[] = formatString.split("\t");
+			final String separator = view.getContext().getString(
+					R.string.title_format_translation_direction_separator);
+
+			final String parts[] = formatString.split("\\Q" + separator + "\\E");
 			if (parts.length != 3) {
 				// parts should be LANGUAGE\tARROW\tLANGUAGE
-				throw new IllegalArgumentException("R.string.title_format_translation_direction is of wrong format");
+				throw new IllegalArgumentException(
+						"R.string.title_format_translation_direction is of wrong format");
 			}
-			
+
 			final TextView languageFrom = (TextView) view.findViewById(R.id.languageFrom);
 			languageFrom.setText(parts[0]);
 			final TextView directionIndicator = (TextView) view.findViewById(R.id.directionIndicator);
