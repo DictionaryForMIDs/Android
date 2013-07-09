@@ -241,4 +241,7 @@
 	<string name="language_tagalog">Tagalog</string>
 	<string name="language_tamil">Tamil</string>
 	<string name="language_turkmen">Turkmen</string>
+	<string name="language_danish">Danish</string>
+	<string name="language_korean">Korean</string>
+	<string name="language_swahili">Swahili</string>
 </resources>
