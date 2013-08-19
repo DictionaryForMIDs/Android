@@ -278,8 +278,11 @@ public class TranslationsAdapter extends BaseAdapter implements Filterable {
 
 			setState(true);
 
+			// Reset result in case filtering gets cancelled
+			translationResult = new TranslationResult();
+
 			final FilterResults result = new FilterResults();
-			result.values = new TranslationResult();
+			result.values = translationResult;
 			result.count = 0;
 
 			if (parameters == null) {
