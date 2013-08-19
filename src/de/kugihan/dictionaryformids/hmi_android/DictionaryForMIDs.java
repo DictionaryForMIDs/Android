@@ -875,15 +875,18 @@ public final class DictionaryForMIDs extends Activity {
 			}
 		}
 
-		// reset last selected language to make sure search-as-you-type triggers
-		lastLanguageSelectionPosition = -1;
-
 		// remove previously shown, loadDictionary-related dialogs
 		removeDialog(DialogHelper.ID_DICTIONARY_NOT_FOUND);
 		removeDialog(DialogHelper.ID_FIRST_RUN);
 
-		// remove results from view
-		translations.clearData();
+		// check if results are shown or a dictionary is available
+		if (translations.getCount() > 0 || isDictionaryAvailable()) {
+			// remove results from view
+			translations.clearData();
+		}
+
+		// reset last selected language to make sure search-as-you-type triggers
+		lastLanguageSelectionPosition = -1;
 
 		setProgressBarIndeterminateVisibility(true);
 		loadDictionaryThread = new LoadDictionaryThread(inputStreamAccess,
