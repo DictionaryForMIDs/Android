@@ -28,13 +28,13 @@ public class LanguageSpinnerAdapter extends BaseAdapter {
 	/**
 	 * The available languages of the current dictionary.
 	 */
-	private LanguageDefinition[] data;
+	private final LanguageDefinition[] data;
 
 	/**
 	 * A look-up table where indices[i][0] and indices[i][1] save the indices of
 	 * opposite language pairs of data.
 	 */
-	private int[][] indices;
+	private final int[][] indices;
 
 	/**
 	 * Creates an empty adapter.
