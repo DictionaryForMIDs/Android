@@ -118,7 +118,7 @@ public class TranslationsAdapter extends BaseAdapter implements Filterable {
 	 */
 	public void clearData() {
 		data = new TranslationResult();
-		notifyDataSetInvalidated();
+		notifyDataSetChanged();
 	}
 
 	/**
