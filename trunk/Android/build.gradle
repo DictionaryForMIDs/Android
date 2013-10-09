@@ -1,0 +1,124 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.5.+'
+    }
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name == 'validateReleaseSigning') {
+        task.dependsOn readPasswordFromInput
+    }
+    if (task.name == 'validateReleaseSigning') {
+        tasks.assembleRelease.doLast {
+            tasks.createReleaseZip.execute()
+        }
+    }
+}
+
+apply plugin: 'android'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+    compile project(':DictionaryForMIDs_Core')
+}
+
+sourceCompatibility = '1.6'
+targetCompatibility = '1.6'
+
+android {
+    compileSdkVersion 18
+    buildToolsVersion "18.0.1"
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+        }
+
+        // Move the tests to tests/java, tests/res, etc...
+        instrumentTest.setRoot('tests')
+
+        // Move the build types to build-types/<type>
+        // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
+        // This moves them out of them default location under src/<type>/... which would
+        // conflict with src/ being used by the main source set.
+        // Adding new build types or product flavors should be accompanied
+        // by a similar customization.
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+
+    signingConfigs {
+        release {
+            // Use properties from file gradle.properties
+            storeFile file(releaseStoreFile)
+            storePassword releaseStorePassword
+            keyAlias releaseStoreKeyAlias
+            keyPassword releaseStoreKeyPassword
+        }
+    }
+
+    buildTypes {
+        debug {
+            packageNameSuffix ".debug"
+            versionNameSuffix "-debug"
+        }
+
+        release {
+            debuggable false
+        }
+    }
+
+    // Enable signing of release if property is set in file gradle.properties
+    if (releaseSigning == "true") {
+        buildTypes.release.signingConfig signingConfigs.release
+    }
+
+}
+
+task readPasswordFromInput << {
+    def console = System.console()
+
+    if (android.signingConfigs.release.storePassword == "") {
+        ext.storePassword = console.readPassword('\n> Enter Store password: ')
+        android.signingConfigs.release.storePassword = new String(ext.storePassword)
+    }
+    if (android.signingConfigs.release.keyPassword == "") {
+        def msg = '\n> Enter password for key "' + android.signingConfigs.release.keyAlias + '": '
+        ext.keyPassword = console.readPassword(msg)
+        android.signingConfigs.release.keyPassword = new String(ext.keyPassword)
+    }
+
+    console.println()
+}
+
+task createReleaseZip(type: Zip, dependsOn: assembleRelease) {
+    def versionName = getVersionName()
+    from("${buildDir}/apk/") {
+        include 'DictionaryForMIDs_Android-release.apk'
+        rename 'DictionaryForMIDs_Android-release.apk', 'DictionaryForMIDs.apk'
+    }
+    from("../") {
+        include 'COPYING'
+        include 'README'
+        expand versionName: versionName
+    }
+    archiveName project.name + '_' + versionName + '.' + extension
+}
+
+import javax.xml.parsers.DocumentBuilderFactory
+def getVersionName() {
+    def builderFactory = DocumentBuilderFactory.newInstance()
+    builderFactory.setNamespaceAware(true)
+    def manifestXml = builderFactory.newDocumentBuilder().parse(project.file(android.sourceSets.main.manifest.srcFile)).documentElement
+    def versionName = manifestXml.getAttributeNS("http://schemas.android.com/apk/res/android", "versionName")
+    return versionName
+}
