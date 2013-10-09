@@ -160,7 +160,7 @@
   <string name="title_default_language_code">Predet.</string>
   <string name="summary_pref_ignore_font_style_checked">Los resultados se muestran utilizando el estilo definido por el diccionario.</string>
   <string name="summary_pref_ignore_font_style_unchecked">Los resultados se muestran utilizando el estilo del sistema.</string>
-  <string name="language_english">Español</string>
+  <string name="language_english">Inglés</string>
   <string name="language_esperanto">Esperanto</string>
   <string name="language_vietnamese">Vietnamita</string>
   <string name="language_chinese">Chino</string>
