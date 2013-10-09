@@ -32,8 +32,24 @@ public class AboutScreen extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.about);
 
+		final TextView dictionaryTitle = (TextView) findViewById(R.id.DictionaryTitle);
 		final TextView dictionaryView = (TextView) findViewById(R.id.Dictonary);
-		dictionaryView.setText(DictionaryDataFile.infoText);
+		final boolean hasDictionary = DictionaryDataFile.infoText != null && DictionaryDataFile.infoText.length() > 0;
+		if (hasDictionary) {
+			dictionaryView.setText(DictionaryDataFile.infoText);
+			dictionaryView.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(final View view) {
+					setResult(RESULT_OK);
+					finish();
+				}
+			});
+			dictionaryTitle.setVisibility(View.VISIBLE);
+			dictionaryView.setVisibility(View.VISIBLE);
+		} else {
+			dictionaryTitle.setVisibility(View.GONE);
+			dictionaryView.setVisibility(View.GONE);
+		}
 
 		String version;
 		int versionCode;
@@ -53,15 +69,6 @@ public class AboutScreen extends Activity {
 		final TextView versionView = (TextView) findViewById(R.id.Version);
 		versionView.setText(versionText);
 
-		final TextView dictionary = (TextView) findViewById(R.id.Dictonary);
-		dictionary.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(final View view) {
-				setResult(RESULT_OK);
-				finish();
-			}
-		});
-		
 		final String translator = getString(R.string.title_user_interface_translator);
 		final boolean isTranslatorGiven = translator.length() > 0;
 		if (!isTranslatorGiven) {
