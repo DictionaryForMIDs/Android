@@ -6,10 +6,10 @@
 	<supports-screens android:anyDensity="true" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<application android:label="@string/app_name"
+	<application android:label="@string/app_name_build"
 		android:icon="@drawable/defaulticon"
 		android:description="@string/app_description">
-		<activity android:name=".DictionaryForMIDs" android:label="@string/app_name"
+		<activity android:name=".DictionaryForMIDs" android:label="@string/app_name_build"
 			android:launchMode="singleTask" android:configChanges="locale">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -51,6 +51,6 @@
 			android:configChanges="locale">
 		</activity>
 		<service android:name=".service.DictionaryInstallationService"></service>
-		<provider android:name=".data.StarredWordsProvider" android:authorities="de.kugihan.dictionaryformids.hmi_android.data.starredwordsprovider"></provider>
+		<provider android:name=".data.StarredWordsProvider" android:authorities="@string/provider_authority" android:exported="false" />
 	</application>
 </manifest> 
