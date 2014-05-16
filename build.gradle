@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.5.+'
+        classpath 'com.android.tools.build:gradle:0.9.+'
     }
 }
 
@@ -20,7 +20,12 @@ tasks.whenTaskAdded { task ->
 
 apply plugin: 'android'
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
+    compile 'com.android.support:support-v4:19.1.+'
     compile fileTree(dir: 'libs', include: '*.jar')
     compile project(':DictionaryForMIDs_Core')
 }
@@ -29,8 +34,8 @@ sourceCompatibility = '1.6'
 targetCompatibility = '1.6'
 
 android {
-    compileSdkVersion 18
-    buildToolsVersion "18.0.1"
+    compileSdkVersion 19
+    buildToolsVersion "19.0.3"
 
     sourceSets {
         main {
