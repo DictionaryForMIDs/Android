@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string-array name="font_size_values">
+    <string name="app_name_debug">DictionaryForMIDs~</string>
+    <string-array name="font_size_values">
 		<item>10</item>
 		<item>11</item>
 		<item>12</item>
