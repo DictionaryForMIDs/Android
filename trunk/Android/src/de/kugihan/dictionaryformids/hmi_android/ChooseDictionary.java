@@ -92,11 +92,6 @@ public final class ChooseDictionary extends TabActivity {
 			tabHost.setCurrentTab(0);
 		}
 
-		if (Build.VERSION.SDK.equals("3")) {
-			// Build.Version.SDK_INT does not exist here
-			// so just return as menu should already be working anyways
-			return;
-		}
 		tabHost.setOnTabChangedListener(new OnTabChangeListener() {
 			@Override
 			public void onTabChanged(String tabId) {
