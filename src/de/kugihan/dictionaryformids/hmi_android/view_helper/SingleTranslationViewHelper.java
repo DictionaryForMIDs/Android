@@ -8,15 +8,16 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import de.kugihan.dictionaryformids.dataaccess.content.FontStyle;
 import de.kugihan.dictionaryformids.dataaccess.content.RGBColour;
 import de.kugihan.dictionaryformids.general.DictionaryException;
 import de.kugihan.dictionaryformids.hmi_android.DictionaryForMIDs;
 import de.kugihan.dictionaryformids.hmi_android.Preferences;
 import de.kugihan.dictionaryformids.hmi_android.R;
+import de.kugihan.dictionaryformids.hmi_android.data.TranslationsAdapter;
 import de.kugihan.dictionaryformids.hmi_common.content.StringColourItemText;
 import de.kugihan.dictionaryformids.hmi_common.content.StringColourItemTextPart;
 import de.kugihan.dictionaryformids.translation.SingleTranslationExtension;
@@ -31,28 +32,28 @@ public class SingleTranslationViewHelper {
 	}
 
 	/**
-	 * Adds the given translation to the given view.
+	 * Adds the given translation to the given viewHolder.
 	 *
-	 * @param view
-	 *            the view that receives the translation
+	 * @param viewHolder
+	 *            the viewHolder that receives the translation
 	 * @param result
-	 *            the translation to be added to the view
+	 *            the translation to be added to the viewHolder
 	 */
-	public static final void display(final View view, final SingleTranslationExtension result) {
-		addFromLanguageRow(view, result);
-		addToLanguageRows(view, result);
+	public static final void display(final TranslationsAdapter.ViewHolder viewHolder, final SingleTranslationExtension result) {
+		addFromLanguageRow(viewHolder, result);
+		addToLanguageRows(viewHolder, result);
 	}
 
 	/**
-	 * Adds the translated items to the view.
+	 * Adds the translated items to the viewHolder.
 	 *
-	 * @param view
-	 *            the view that receives the entries
+	 * @param viewHolder
+	 *            the viewHolder that receives the entries
 	 * @param result
-	 *            the entries to be added to the view
+	 *            the entries to be added to the viewHolder
 	 */
-	private static void addToLanguageRows(final View view, final SingleTranslationExtension result) {
-		final LinearLayout toLanguagesRows = (LinearLayout) view.findViewById(R.id.ToLanguageRows);
+	private static void addToLanguageRows(final TranslationsAdapter.ViewHolder viewHolder, final SingleTranslationExtension result) {
+		final LinearLayout toLanguagesRows = viewHolder.toLanguagesRows;
 		toLanguagesRows.removeAllViews();
 		try {
 			for (StringColourItemText text : result.getToTextsAsColourItemTexts()) {
@@ -74,15 +75,15 @@ public class SingleTranslationViewHelper {
 	}
 
 	/**
-	 * Adds the entries from the original language to the view.
+	 * Adds the entries from the original language to the viewHolder.
 	 *
-	 * @param view
-	 *            the view that receives the entries
+	 * @param viewHolder
+	 *            the viewHolder that receives the entries
 	 * @param result
-	 *            the entries to be added to the view
+	 *            the entries to be added to the viewHolder
 	 */
-	private static void addFromLanguageRow(final View view, final SingleTranslationExtension result) {
-		final TextView fromLanguageText = (TextView) view.findViewById(R.id.FromLanguageText);
+	private static void addFromLanguageRow(final TranslationsAdapter.ViewHolder viewHolder, final SingleTranslationExtension result) {
+		final TextView fromLanguageText = viewHolder.fromLanguageText;
 		try {
 			addTextToRow(result.getFromTextAsColourItemText(), fromLanguageText);
 		} catch (DictionaryException e) {

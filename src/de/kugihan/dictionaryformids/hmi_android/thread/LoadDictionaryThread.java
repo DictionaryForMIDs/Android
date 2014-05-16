@@ -1,17 +1,66 @@
 package de.kugihan.dictionaryformids.hmi_android.thread;
 
+import android.os.AsyncTask;
+
 import de.kugihan.dictionaryformids.dataaccess.DictionaryDataFile;
 import de.kugihan.dictionaryformids.dataaccess.fileaccess.DfMInputStreamAccess;
-import de.kugihan.dictionaryformids.dataaccess.fileaccess.FileAccessHandler;
 import de.kugihan.dictionaryformids.dataaccess.fileaccess.NativeZipInputStreamAccess;
 import de.kugihan.dictionaryformids.general.DictionaryException;
-import de.kugihan.dictionaryformids.hmi_android.Preferences.DictionaryType;
+import de.kugihan.dictionaryformids.translation.TranslationExecution;
 
 /**
  * Thread to load a dictionary without interrupting the UI.
  * 
  */
-public class LoadDictionaryThread extends Thread {
+public class LoadDictionaryThread extends AsyncTask<DfMInputStreamAccess, Void, DictionaryDataFile> {
+
+	@Override
+	protected DictionaryDataFile doInBackground(DfMInputStreamAccess... dfMInputStreamAccesses) {
+		if (dfMInputStreamAccesses.length != 1) {
+			throw new IllegalArgumentException();
+		}
+
+		// Configure DictionaryDataFile
+		DictionaryDataFile.useStandardPath = false;
+
+		final DfMInputStreamAccess inputStreamAccess = dfMInputStreamAccesses[0];
+		DictionaryDataFile dataFile = null;
+
+		try {
+			dataFile = TranslationExecution.loadDictionary(inputStreamAccess);
+		} catch (DictionaryException e) {
+			this.exception = e;
+			if (!isCancelled()) {
+				this.mayIncludeCompressedDictionary = hasJarFile(inputStreamAccess);
+			}
+		}
+
+		return dataFile;
+	}
+
+	@Override
+	protected void onPostExecute(DictionaryDataFile dataFile) {
+		synchronized (listenerSync) {
+			if (listener == null) {
+				return;
+			}
+			if (exception != null) {
+				listener.onException(exception, mayIncludeCompressedDictionary);
+			} else {
+				listener.onSuccess(dataFile);
+			}
+		}
+	}
+
+	@Override
+	protected void onCancelled(DictionaryDataFile dataFile) {
+		synchronized (listenerSync) {
+			if (listener == null) {
+				return;
+			}
+			listener.onInterrupted();
+		}
+	}
 
 	/**
 	 * Interface specifying communication between the thread and the UI.
@@ -23,15 +72,10 @@ public class LoadDictionaryThread extends Thread {
 		 * This function gets called when the dictionary could successfully be
 		 * loaded.
 		 * 
-		 * @param type
-		 *            the type of the loaded dictionary
-		 * @param path
-		 *            the path of the loaded dictionary
-		 * @param selectedIndex
-		 *            the id of the language that should be selected
+		 * @param dataFile
+		 *            the instance of the loaded dictionary
 		 */
-		void onSuccess(final DictionaryType type, final String path,
-				final int selectedIndex);
+		void onSuccess(final DictionaryDataFile dataFile);
 
 		/**
 		 * This function gets if an exception occurred while loading the
@@ -75,81 +119,9 @@ public class LoadDictionaryThread extends Thread {
 	private boolean mayIncludeCompressedDictionary = false;
 
 	/**
-	 * Current state of the thread.
-	 */
-	private ThreadState result = ThreadState.WORKING;
-
-	/**
 	 * Object to synchronize access to the result.
 	 */
 	private final Object resultSync = new Object();
-
-	/**
-	 * Path of the dictionary being loaded by the thread.
-	 */
-	private final String dictionaryPath;
-
-	/**
-	 * Type of the dictionary being loaded by the thread.
-	 */
-	private final DictionaryType dictionaryType;
-
-	/**
-	 * The language index to select after loading the dictionary.
-	 */
-	private final int selectedIndex;
-
-	/**
-	 * The current state of the thread.
-	 */
-	private enum ThreadState {
-		/**
-		 * Thread will inform listener of successfully finished loading.
-		 */
-		RETURNING_SUCCESS,
-		/**
-		 * Thread will inform listener of an interruption.
-		 */
-		RETURNING_INTERRUPTED,
-		/**
-		 * Thread will inform listener of an exception.
-		 */
-		RETURNING_EXCEPTION,
-		/**
-		 * Thread is currently loading a dictionary.
-		 */
-		WORKING,
-		/**
-		 * Thread finished and the result was delivered to a listener.
-		 */
-		DELIVERED
-	}
-
-	/**
-	 * The stream to load the dictionary from.
-	 */
-	private final DfMInputStreamAccess inputStreamAccess;
-
-	/**
-	 * Creates a new thread.
-	 * 
-	 * @param inputStreamAccess
-	 *            the stream to load the dictionary from
-	 * @param dictionaryType
-	 *            the type of the dictionary
-	 * @param dictionaryPath
-	 *            the path of the dictionary
-	 * @param selectedIndex
-	 *            the index of the language that is selected
-	 */
-	public LoadDictionaryThread(final DfMInputStreamAccess inputStreamAccess,
-			final DictionaryType dictionaryType, final String dictionaryPath,
-			final int selectedIndex) {
-		this.inputStreamAccess = inputStreamAccess;
-		this.dictionaryType = dictionaryType;
-		this.dictionaryPath = dictionaryPath;
-		this.selectedIndex = selectedIndex;
-	}
 
 	/**
 	 * Attaches the listener to the thread or removes the current one if
@@ -163,32 +135,6 @@ public class LoadDictionaryThread extends Thread {
 		synchronized (listenerSync) {
 			this.listener = listener;
 		}
-		// try to return already available results
-		pushResultToListener();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final void run() {
-		FileAccessHandler.setDictionaryDataFileISAccess(inputStreamAccess);
-		DictionaryDataFile.useStandardPath = false;
-		try {
-			DictionaryDataFile.initValues(false);
-			if (interrupted()) {
-				exitAfterInterruption();
-				return;
-			}
-		} catch (DictionaryException e) {
-			if (interrupted()) {
-				exitAfterInterruption();
-				return;
-			}
-			exitWithException(e, hasJarFile());
-			return;
-		}
-		exitSuccessfully();
 	}
 
 	/**
@@ -197,7 +143,7 @@ public class LoadDictionaryThread extends Thread {
 	 * 
 	 * @return true if current inputStreamAccess includes a jar-File
 	 */
-	private boolean hasJarFile() {
+	private static boolean hasJarFile(DfMInputStreamAccess inputStreamAccess) {
 		final boolean isZipStream = inputStreamAccess instanceof NativeZipInputStreamAccess;
 		if (!isZipStream) {
 			return false;
@@ -207,87 +153,6 @@ public class LoadDictionaryThread extends Thread {
 			return stream.hasJarDictionary();
 		} catch (DictionaryException e1) {
 			return false;
-		}
-	}
-
-	/**
-	 * Handles the successfully loaded dictionaries.
-	 */
-	private void exitSuccessfully() {
-		synchronized (resultSync) {
-			result = ThreadState.RETURNING_SUCCESS;
-		}
-		pushResultToListener();
-	}
-
-	/**
-	 * Handles exits caused by exceptions.
-	 * 
-	 * @param exception
-	 *            the exception that occurred
-	 * @param mayIncludeCompressedDictionary
-	 *            true if the dictionary file may include a compressed
-	 *            dictionary
-	 */
-	private void exitWithException(final DictionaryException exception,
-			final boolean mayIncludeCompressedDictionary) {
-		synchronized (resultSync) {
-			this.exception = exception;
-			this.mayIncludeCompressedDictionary = mayIncludeCompressedDictionary;
-			result = ThreadState.RETURNING_EXCEPTION;
-		}
-		pushResultToListener();
-	}
-
-	/**
-	 * Handles exits caused by user interruption.
-	 */
-	private void exitAfterInterruption() {
-		synchronized (resultSync) {
-			result = ThreadState.RETURNING_INTERRUPTED;
-		}
-		pushResultToListener();
-	}
-
-	/**
-	 * Tries to push the result to the attached listener.
-	 */
-	private void pushResultToListener() {
-		synchronized (listenerSync) {
-			if (listener == null) {
-				return;
-			}
-			synchronized (resultSync) {
-				switch (result) {
-				case RETURNING_SUCCESS:
-					listener.onSuccess(dictionaryType, dictionaryPath,
-							selectedIndex);
-					result = ThreadState.DELIVERED;
-					break;
-
-				case RETURNING_EXCEPTION:
-					listener.onException(exception,
-							mayIncludeCompressedDictionary);
-					result = ThreadState.DELIVERED;
-					break;
-
-				case RETURNING_INTERRUPTED:
-					listener.onInterrupted();
-					result = ThreadState.DELIVERED;
-					break;
-
-				case WORKING:
-					// nothing to return yet
-					break;
-
-				case DELIVERED:
-					// result already returned
-					break;
-
-				default:
-					throw new IllegalArgumentException();
-				}
-			}
 		}
 	}
 }

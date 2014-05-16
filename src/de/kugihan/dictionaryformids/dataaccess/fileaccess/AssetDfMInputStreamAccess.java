@@ -7,11 +7,12 @@
  ******************************************************************************/
 package de.kugihan.dictionaryformids.dataaccess.fileaccess;
 
+import android.content.res.AssetManager;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-import android.app.Activity;
 import de.kugihan.dictionaryformids.general.CouldNotOpenFileException;
 import de.kugihan.dictionaryformids.general.DictionaryException;
 import de.kugihan.dictionaryformids.general.Util;
@@ -24,9 +25,9 @@ import de.kugihan.dictionaryformids.general.Util;
 public class AssetDfMInputStreamAccess extends DfMInputStreamAccess {
 
 	/**
-	 * The activity that provides the assets.
+	 * The asset manager to use.
 	 */
-	private final Activity activity;
+	private final AssetManager assetManager;
 
 	/**
 	 * The base directory in the assets folder that includes the dictionary.
@@ -37,14 +38,14 @@ public class AssetDfMInputStreamAccess extends DfMInputStreamAccess {
 	 * Creates an InputStream for loading a dictionary from the application's
 	 * assets.
 	 * 
-	 * @param currentActivity
-	 *            the activity that provides the assets
+	 * @param currentAssetManager
+	 *            the asset manager that provides the assets to use
 	 * @param dictionaryDirectory
 	 *            the directory that includes the dictionary files
 	 */
-	public AssetDfMInputStreamAccess(final Activity currentActivity,
+	public AssetDfMInputStreamAccess(final AssetManager currentAssetManager,
 			final String dictionaryDirectory) {
-		activity = currentActivity;
+		assetManager = currentAssetManager;
 		directory = dictionaryDirectory;
 	}
 
@@ -58,7 +59,7 @@ public class AssetDfMInputStreamAccess extends DfMInputStreamAccess {
 		InputStream in = null;
 		String assetPath = getPath(asset);
 		try {
-			in = activity.getAssets().open(assetPath);
+			in = assetManager.open(assetPath);
 			successfullyOpenedFile = true;
 		} catch (IOException e) {
 			successfullyOpenedFile = false;
@@ -97,7 +98,7 @@ public class AssetDfMInputStreamAccess extends DfMInputStreamAccess {
 		InputStream in;
 		final String assetPath = getPath(asset);
 		try {
-			in = activity.getAssets().open(assetPath);
+			in = assetManager.open(assetPath);
 		} catch (IOException e) {
 			Util.getUtil().log("Asset file not found:" + assetPath,
 					Util.logLevel3);

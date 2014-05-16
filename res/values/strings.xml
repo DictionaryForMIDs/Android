@@ -244,4 +244,9 @@
 	<string name="language_danish">Danish</string>
 	<string name="language_korean">Korean</string>
 	<string name="language_swahili">Swahili</string>
+    <string name="load_dictionary_button">More…</string>
+    <plurals name="open_dictionary_drawer">
+        <item quantity="one"><![CDATA[One active language. <a href="#">Change…</a>]]></item>
+        <item quantity="other"><![CDATA[%1$d active languages. <a href="#">Change…</a>]]></item>
+    </plurals>
 </resources>

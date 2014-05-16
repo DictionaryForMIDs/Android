@@ -11,6 +11,9 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.CursorAdapter;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
 import de.kugihan.dictionaryformids.hmi_android.R;
 import de.kugihan.dictionaryformids.hmi_android.view_helper.SingleTranslationViewHelper;
 
@@ -32,8 +35,9 @@ public class StarredWordsAdapter extends CursorAdapter {
 	 */
 	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
-		SingleTranslationViewHelper.display(view, StarredWordsProvider.getTranslation(cursor));
-		handleCheckedState(context, cursor, view);
+		final TranslationsAdapter.ViewHolder holder = (TranslationsAdapter.ViewHolder) view.getTag();
+		SingleTranslationViewHelper.display(holder, StarredWordsProvider.getTranslation(cursor));
+		handleCheckedState(context, cursor, holder);
 	}
 
 	/**
@@ -43,8 +47,14 @@ public class StarredWordsAdapter extends CursorAdapter {
 	public View newView(final Context context, final Cursor cursor, final ViewGroup parent) {
 		final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 		final View view = inflater.inflate(R.layout.translation_row, null);
-		SingleTranslationViewHelper.display(view, StarredWordsProvider.getTranslation(cursor));
-		handleCheckedState(context, cursor, view);
+		final TranslationsAdapter.ViewHolder holder = new TranslationsAdapter.ViewHolder();
+		holder.fromLanguageText = (TextView) view.findViewById(R.id.FromLanguageText);
+		holder.toLanguagesRows = (LinearLayout) view.findViewById(R.id.ToLanguageRows);
+		holder.checkBoxStar = (CheckBox) view.findViewById(R.id.checkBoxStar);
+		view.setTag(holder);
+
+		SingleTranslationViewHelper.display(holder, StarredWordsProvider.getTranslation(cursor));
+		handleCheckedState(context, cursor, holder);
 		return view;
 	}
 
@@ -54,12 +64,12 @@ public class StarredWordsAdapter extends CursorAdapter {
 	 *
 	 * @param cursor
 	 *            the cursor pointing to the current item
-	 * @param view
-	 *            the view that includes the checkbox
+	 * @param holder
+	 *            the holder that includes the checkbox
 	 */
-	private void handleCheckedState(final Context context, final Cursor cursor, final View view) {
+	private void handleCheckedState(final Context context, final Cursor cursor, final TranslationsAdapter.ViewHolder holder) {
 		final long id = StarredWordsProvider.getItemId(cursor);
-		CheckBox star = (CheckBox) view.findViewById(R.id.checkBoxStar);
+		CheckBox star = holder.checkBoxStar;
 		star.setOnCheckedChangeListener(null);
 		star.setChecked(true);
 		star.setOnCheckedChangeListener(new OnCheckedChangeListener() {

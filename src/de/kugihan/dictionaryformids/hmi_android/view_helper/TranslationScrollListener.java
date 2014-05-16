@@ -15,23 +15,6 @@ import de.kugihan.dictionaryformids.translation.SingleTranslationExtension;
  */
 public class TranslationScrollListener implements OnScrollListener {
 
-	private String dictionaryIdentifier = null;
-
-	/**
-	 * Instantiates a new ScrollListener.
-	 * 
-	 * @param dictionaryIdentifier
-	 *            the identifier of the dictionary who's items are currently
-	 *            displayed.
-	 */
-	public TranslationScrollListener(final String dictionaryIdentifier) {
-		setDictionaryIdentifier(dictionaryIdentifier);
-	}
-
-	public void setDictionaryIdentifier(String dictionaryIdentifier) {
-		this.dictionaryIdentifier = dictionaryIdentifier;
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -54,29 +37,32 @@ public class TranslationScrollListener implements OnScrollListener {
 			// no need to update if starring is disabled
 			return;
 		}
-		if (dictionaryIdentifier == null) {
-			return;
-		}
 		final int first = listView.getFirstVisiblePosition();
 		final int count = listView.getChildCount();
 		for (int i = 0; i < count; i++) {
 			final View item = listView.getChildAt(i);
-			if (item.getTag() != null) {
-				// item has already been updated
-				continue;
+			// TODO: save check state to view holder?
+//			if (item.getTag() != null) {
+//				// item has already been updated
+//				continue;
+//			}
+			final Object object = listView.getAdapter().getItem(first + i);
+			if (!(object instanceof SingleTranslationExtension)) {
+				// Ignore header elements in list
+				return;
 			}
-			final SingleTranslationExtension translation = (SingleTranslationExtension) listView
-					.getAdapter().getItem(first + i);
-			final Long itemId = StarredWordsProvider.getItemId(listView.getContext().getContentResolver(),
-					translation, dictionaryIdentifier);
+			final SingleTranslationExtension translation = (SingleTranslationExtension) object;
+			if (!translation.isStarredLoaded()) {
+				final Long itemId = StarredWordsProvider.getItemId(listView.getContext().getContentResolver(),
+						translation);
+				if (itemId == null) {
+					translation.setStarred(false);
+				} else {
+					translation.setStarred(true);
+				}
+			}
 			final CheckBox checkBox = (CheckBox) item.findViewById(R.id.checkBoxStar);
-			if (itemId == null) {
-				checkBox.setChecked(false);
-			} else {
-				checkBox.setChecked(true);
-			}
-			// mark item as updated
-			item.setTag(new Object());
+			checkBox.setChecked(translation.isStarred());
 		}
 	}
 
