@@ -1,10 +1,5 @@
 package de.kugihan.dictionaryformids.hmi_android;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
 import android.app.ListActivity;
 import android.database.ContentObserver;
 import android.database.Cursor;
@@ -24,7 +19,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import de.kugihan.dictionaryformids.dataaccess.DictionaryDataFile;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import de.kugihan.dictionaryformids.general.DictionaryException;
 import de.kugihan.dictionaryformids.hmi_android.data.StarredWordsAdapter;
 import de.kugihan.dictionaryformids.hmi_android.data.StarredWordsProvider;
@@ -103,10 +103,11 @@ public class StarredWordsList extends ListActivity {
 			// get the count for the invisible list
 			String selection = null;
 			String[] selectionArgs = null;
-			if (showAllDictionaries) {
-				selection = StarredWords.DICTIONARY_NAME + " = ?";
-				selectionArgs = new String[] { DictionaryDataFile.dictionaryAbbreviation };
-			}
+			// TODO: handle current dictionary
+//			if (showAllDictionaries) {
+//				selection = StarredWords.DICTIONARY_NAME + " = ?";
+//				selectionArgs = new String[] { DictionaryDataFile.dictionaryAbbreviation };
+//			}
 			final Cursor cursor = getContentResolver().query(
 					Uri.withAppendedPath(StarredWordsProvider.CONTENT_URI, "count"), null, selection,
 					selectionArgs, null);
@@ -198,10 +199,11 @@ public class StarredWordsList extends ListActivity {
 		protected Cursor doInBackground(Void... params) {
 			String selection = null;
 			String[] selectionArgs = null;
-			if (!showAllDictionaries) {
-				selection = StarredWords.DICTIONARY_NAME + " = ?";
-				selectionArgs = new String[] { DictionaryDataFile.dictionaryAbbreviation };
-			}
+			// TODO: handle current dictionary
+//			if (!showAllDictionaries) {
+//				selection = StarredWords.DICTIONARY_NAME + " = ?";
+//				selectionArgs = new String[] { DictionaryDataFile.dictionaryAbbreviation };
+//			}
 			final String[] projection = new String[] { StarredWords._ID, StarredWords.TRANSLATION };
 			return getContentResolver().query(StarredWordsProvider.CONTENT_URI, projection, selection,
 					selectionArgs, null);
@@ -395,8 +397,10 @@ public class StarredWordsList extends ListActivity {
 	 * @return true if a loaded dictionary is currently available
 	 */
 	private boolean isDictionaryLoaded() {
-		final boolean isDictionaryLoaded = DictionaryDataFile.dictionaryAbbreviation != null;
-		return isDictionaryLoaded;
+		// TODO: handle multiple dictionaries
+//		final boolean isDictionaryLoaded = DictionaryDataFile.dictionaryAbbreviation != null;
+//		return isDictionaryLoaded;
+		return false;
 	}
 
 	/**

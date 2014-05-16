@@ -7,26 +7,32 @@
  ******************************************************************************/
 package de.kugihan.dictionaryformids.hmi_android.data;
 
-import java.util.Observable;
-
+import android.app.Activity;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.Filter;
-import android.widget.Filterable;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import java.util.Observable;
+import java.util.Observer;
+import java.util.Vector;
+
 import de.kugihan.dictionaryformids.dataaccess.DictionaryDataFile;
-import de.kugihan.dictionaryformids.general.DictionaryException;
-import de.kugihan.dictionaryformids.hmi_android.DictionaryForMIDs;
+import de.kugihan.dictionaryformids.dataaccess.LanguageDefinition;
+import de.kugihan.dictionaryformids.dataaccess.content.RGBColour;
 import de.kugihan.dictionaryformids.hmi_android.Preferences;
 import de.kugihan.dictionaryformids.hmi_android.R;
+import de.kugihan.dictionaryformids.hmi_android.view_helper.LocalizationHelper;
 import de.kugihan.dictionaryformids.hmi_android.view_helper.SingleTranslationViewHelper;
+import de.kugihan.dictionaryformids.translation.SingleTranslation;
 import de.kugihan.dictionaryformids.translation.SingleTranslationExtension;
-import de.kugihan.dictionaryformids.translation.TranslationExecutionCallback;
 import de.kugihan.dictionaryformids.translation.TranslationParameters;
 import de.kugihan.dictionaryformids.translation.TranslationResult;
 
@@ -34,342 +40,303 @@ import de.kugihan.dictionaryformids.translation.TranslationResult;
  * TranslationsAdapter handles the data for the translation list.
  *
  */
-public class TranslationsAdapter extends BaseAdapter implements Filterable {
+public class TranslationsAdapter extends BaseExpandableListAdapter implements Observer {
 
-	/**
-	 * The current TranslationResult represented by this adapter.
-	 */
-	private TranslationResult data = new TranslationResult();
+	static class GroupViewHolder {
+		TextView line1;
+		TextView line2;
+	}
 
-	/**
-	 * Instance of a TranslationExecutor to which filtering is redirected.
-	 */
-	private TranslationExecutor translationExecutor = null;
+	public static class ViewHolder {
+		public TextView fromLanguageText;
+		public LinearLayout toLanguagesRows;
+		public CheckBox checkBoxStar;
+	}
 
-	/**
-	 * Filter used to search the dictionary.
-	 */
-	private AutoCompleteFilter filter = null;
+	private final Vector<TranslationResult> translationResults = new Vector<TranslationResult>();
 
-	/**
-	 * True if the filter should keep waiting for the dictionary search result.
-	 */
-	private boolean shouldFilterWait = true;
+	private final Activity activity;
 
-	/**
-	 * Observable used to publish changes to the state of the filter.
-	 */
-	private final FilterObservable filterStateObservable = new FilterObservable();
+	public TranslationsAdapter(Activity activity) {
+		this.activity = activity;
+	}
 
-	/**
-	 * Parameters that are used by filter.
-	 */
-	private TranslationParameters parameters = null;
+	private String getString(int resId) {
+		return activity.getString(resId);
+	}
 
-	public TranslationsAdapter(final TranslationParameters parameters) {
-		setTranslationParameters(parameters);
+	private String getString(int resId, Object... formatArgs) {
+		return activity.getString(resId, formatArgs);
 	}
 
 	/**
-	 * Sets the parameter used for the next translation.
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void update(final Observable observable, final Object data) {
+		activity.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				if (data == null) {
+					translationResults.clear();
+				} else if (data instanceof TranslationResult) {
+					TranslationResult result = (TranslationResult) data;
+					addTranslationResult(result);
+				} else {
+					throw new IllegalArgumentException();
+				}
+				notifyDataSetChanged();
+			}
+		});
+	}
+
+	/**
+	 * Add a new translation result to the sorted collection of results.
 	 *
-	 * @param parameters
-	 *            the parameters used for the next translation
+	 * @param result the result to add
 	 */
-	public void setTranslationParameters(final TranslationParameters parameters) {
-		this.parameters = parameters;
-	}
-
-	/**
-	 * Sets the TranslationExecutor to use for translations.
-	 *
-	 * @param translationExecutor
-	 *            the TranslationExecutor to use
-	 */
-	public void setTranslationExecutor(final TranslationExecutor translationExecutor) {
-		this.translationExecutor = translationExecutor;
-	}
-
-	/**
-	 * Cancels any active filtering operation by interrupting the active
-	 * translation thread.
-	 */
-	public void cancelActiveFilter() {
-		translationExecutor.cancelLastTranslation();
-		synchronized (getFilter()) {
-			shouldFilterWait = false;
-			// manually notify the thread as a cancelled translation thread does
-			// not receive a callback
-			getFilter().notifyAll();
+	private void addTranslationResult(TranslationResult result) {
+		final int newTranslations = result.numberOfFoundTranslations();
+		int i = 0;
+		for (; i < translationResults.size(); i++) {
+			int dictionaryTranslations = translationResults.elementAt(i).numberOfFoundTranslations();
+			if (newTranslations > dictionaryTranslations) {
+				break;
+			}
 		}
+		translationResults.add(i, result);
 	}
 
-	/**
-	 * Gets the last translation result or an empty translation result.
-	 *
-	 * @return the last translation result or an empty translation result
-	 */
-	public TranslationResult getData() {
-		return data;
-	}
-
-	/**
-	 * Clears the translation results.
-	 */
-	public void clearData() {
-		data = new TranslationResult();
-		notifyDataSetChanged();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	public final int getCount() {
-		return data.numberOfFoundTranslations();
+	public int getGroupCount() {
+		return translationResults.size();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	public final Object getItem(final int position) {
-		return new SingleTranslationExtension(data.getTranslationAt(position));
+	public int getChildrenCount(int i) {
+		return translationResults.elementAt(i).numberOfFoundTranslations();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	public final long getItemId(final int position) {
-		return position;
+	public Object getGroup(int i) {
+		return translationResults.elementAt(i);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	public final View getView(final int position, final View convertView,
-			final ViewGroup parent) {
-		View view = null;
-		if (convertView == null) {
-			final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-			view = inflater.inflate(R.layout.translation_row, null);
+	public Object getChild(int i, int i2) {
+		SingleTranslation translation = translationResults.elementAt(i).getTranslationAt(i2);
+		DictionaryDataFile dataFile = translationResults.elementAt(i).dictionary;
+		return new SingleTranslationExtension(translation, dataFile);
+	}
+
+	@Override
+	public long getGroupId(int i) {
+		return i;
+	}
+
+	@Override
+	public long getChildId(int i, int i2) {
+		return i2;
+	}
+
+	@Override
+	public boolean hasStableIds() {
+		return false;
+	}
+
+	@Override
+	public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
+		GroupViewHolder holder;
+		View result = null;
+		if (view == null) {
+			final LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
+			result = inflater.inflate(android.R.layout.simple_expandable_list_item_2, null);
+			holder = new GroupViewHolder();
+			holder.line1 = (TextView)result.findViewById(android.R.id.text1);
+			holder.line2 = (TextView)result.findViewById(android.R.id.text2);
+			result.setTag(holder);
 		} else {
-			view = convertView;
+			result = view;
+			holder = (GroupViewHolder)result.getTag();
 		}
 
-		view.setTag(null);
+		TextView line1 = holder.line1;
+		TextView line2 = holder.line2;
+
+		TranslationResult translationResult = (TranslationResult)getGroup(i);
+		TranslationParameters translationParameters = translationResult.translationParametersObj;
+
+		LanguageDefinition[] languagesArray = translationResult.dictionary.supportedLanguages;
+		String languagesFrom = "";
+		String languagesTo = "";
+		for (int j = 0; j < languagesArray.length; j++) {
+			final LanguageDefinition definition = languagesArray[j];
+			final String language = definition.languageDisplayText;
+			final String localizedLanguage = LocalizationHelper
+					.getLanguageName(activity.getResources(), language);
+			if (translationParameters.getInputLanguages()[j]) {
+				languagesFrom += localizedLanguage;
+				languagesFrom += " ";
+			}
+			if (translationParameters.getOutputLanguages()[j]) {
+				languagesTo += localizedLanguage;
+				languagesTo += " ";
+			}
+		}
+		languagesFrom = languagesFrom.trim();
+		languagesTo = languagesTo.trim();
+
+		final String formatString = activity.getString(R.string.title_format_translation_direction, languagesFrom, languagesTo);
+		line1.setText(formatString);
+
+		if (translationResult.translationBreakOccurred) {
+			switch (translationResult.translationBreakReason) {
+				case TranslationResult.BreakReasonCancelMaxNrOfHitsReached:
+					line2.setText(getString(R.string.results_found_maximum,
+							translationResult.numberOfFoundTranslations()));
+					break;
+
+				case TranslationResult.BreakReasonCancelReceived:
+					line2.setText(getString(R.string.results_found_cancel,
+							translationResult.numberOfFoundTranslations()));
+					break;
+
+				case TranslationResult.BreakReasonMaxExecutionTimeReached:
+					line2.setText(getString(R.string.results_found_timeout,
+							translationResult.numberOfFoundTranslations()));
+					// TODO: warn about timeout
+//					if (Preferences.getLoadArchiveDictionary()
+//							&& Preferences.getWarnOnTimeout()) {
+//						showDialog(DialogHelper.ID_SUGGEST_DIRECTORY);
+//					}
+					break;
+
+				default:
+					throw new IllegalStateException();
+			}
+		} else if (translationResult.numberOfFoundTranslations() == 0) {
+			line2.setText(R.string.no_results_found);
+		} else {
+			if (translationResult.numberOfFoundTranslations() == 1) {
+				line2.setText(R.string.results_found_one);
+			} else {
+				line2.setText(getString(R.string.results_found,
+						translationResult.numberOfFoundTranslations()));
+			}
+		}
 
 		// set text
-		final SingleTranslationExtension translation = (SingleTranslationExtension) getItem(position);
-		SingleTranslationViewHelper.display(view, translation);
+//		final SingleTranslationExtension translation = (SingleTranslationExtension) getGroup(i);
+//		SingleTranslationViewHelper.display(result, translation);
 
-		final CheckBox star = (CheckBox) view.findViewById(R.id.checkBoxStar);
+		return result;
+	}
+
+	@Override
+	public View getChildView(int i, int i2, boolean b, View view, final ViewGroup viewGroup) {
+		View result = null;
+		ViewHolder holder;
+		if (view == null) {
+			final LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
+			result = inflater.inflate(R.layout.translation_row, null);
+			holder = new ViewHolder();
+			holder.fromLanguageText = (TextView) result.findViewById(R.id.FromLanguageText);
+			holder.toLanguagesRows = (LinearLayout) result.findViewById(R.id.ToLanguageRows);
+			holder.checkBoxStar = (CheckBox) result.findViewById(R.id.checkBoxStar);
+			result.setTag(holder);
+		} else {
+			result = view;
+			holder = (ViewHolder) view.getTag();
+		}
+
+		// set text
+		final SingleTranslationExtension translation = (SingleTranslationExtension) getChild(i, i2);
+		SingleTranslationViewHelper.display(holder, translation);
+
+		final CheckBox star = holder.checkBoxStar;
 		// remove starred words feature if disabled
 		if (!Preferences.getIsStarredWordsEnabled()) {
 			star.setVisibility(View.GONE);
-			return view;
-		}
+		} else {
+			// enable starred words feature
+			star.setVisibility(View.VISIBLE);
+			// handle database insertions
+			final CompoundButton.OnCheckedChangeListener listener = new CompoundButton.OnCheckedChangeListener() {
+				private Uri item = null;
 
-		// enable starred words feature
-		star.setVisibility(View.VISIBLE);
-		// handle database insertions
-		final OnCheckedChangeListener listener = new OnCheckedChangeListener() {
-			private Uri item = null;
-
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if (isChecked) {
-					item = parent
-							.getContext()
-							.getContentResolver()
-							.insert(StarredWordsProvider.CONTENT_URI,
-									StarredWordsProvider.getContentValues(
-											DictionaryDataFile.dictionaryAbbreviation, translation));
-				} else {
-					parent.getContext().getContentResolver().delete(item, null, null);
-					item = null;
-				}
-			}
-		};
-		// remove potentially existing listener as views get recycled
-		star.setOnCheckedChangeListener(null);
-		star.setChecked(false);
-		star.setOnCheckedChangeListener(listener);
-
-		return view;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Filter getFilter() {
-		if (filter == null) {
-			filter = new AutoCompleteFilter(filterStateObservable);
-		}
-		return filter;
-	}
-
-	/**
-	 * Returns if there currently is an active filtering thread.
-	 *
-	 * @return true if there is an active filtering thread
-	 */
-	public boolean isFilterActive() {
-		return filter != null && filter.isActive;
-	}
-
-	/**
-	 * Returns the handle to the filter state observable.
-	 *
-	 * @return the handle to the filter state observable
-	 */
-	public Observable getFilterStateObservable() {
-		return filterStateObservable;
-	}
-
-	private static class FilterObservable extends Observable {
-		@Override
-		protected void setChanged() {
-			super.setChanged();
-		}
-	}
-
-	private class AutoCompleteFilter extends Filter implements TranslationExecutionCallback {
-
-		/**
-		 * Saves if there currently is an active filter thread.
-		 */
-		private boolean isActive = false;
-
-		/**
-		 * Observable that receives state changes.
-		 */
-		private final FilterObservable stateChangeObservable;
-
-		/**
-		 * Class variable to share result of translation between the synchronous
-		 * callback to newTranslationResult() and performFiltering().
-		 */
-		private TranslationResult translationResult = new TranslationResult();
-
-		/**
-		 * Creates a new instance of the filter providing an observable.
-		 *
-		 * @param stateObservable
-		 *            the observable used for publishing state changes to
-		 *            isActive
-		 */
-		public AutoCompleteFilter(final FilterObservable stateObservable) {
-			if (stateObservable == null) {
-				throw new NullPointerException();
-			}
-			this.stateChangeObservable = stateObservable;
-		}
-
-		@Override
-		protected FilterResults performFiltering(CharSequence constraint) {
-
-			synchronized (this) {
-				shouldFilterWait = true;
-			}
-
-			setState(true);
-
-			// Reset result in case filtering gets cancelled
-			translationResult = new TranslationResult();
-
-			final FilterResults result = new FilterResults();
-			result.values = translationResult;
-			result.count = 0;
-
-			if (parameters == null) {
-				return result;
-			}
-			if (DictionaryDataFile.numberOfAvailableLanguages == 0) {
-				return result;
-			}
-
-			final String searchString = constraint.toString().trim();
-			final StringBuffer searchWord = new StringBuffer(searchString);
-			if (searchWord.length() == 0) {
-				return result;
-			}
-
-			if (!DictionaryForMIDs.hasSearchModifiers(searchWord)) {
-				DictionaryForMIDs.makeWordMatchBeginning(searchWord);
-			}
-
-			parameters.executeInBackground = true;
-			parameters.toBeTranslatedWordText = searchWord.toString();
-			translationExecutor.setTranslationExecutionCallback(this);
-
-			try {
-				translationExecutor.executeTranslation(parameters);
-			} catch (DictionaryException e) {
-				return result;
-			}
-
-			// wait for background thread to finish translation
-			synchronized (this) {
-				try {
-					while (shouldFilterWait) {
-						wait();
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					if (isChecked) {
+						item = viewGroup.getContext().getContentResolver()
+								.insert(StarredWordsProvider.CONTENT_URI,
+										StarredWordsProvider.getContentValues(translation));
+					} else {
+						viewGroup.getContext().getContentResolver().delete(item, null, null);
+						item = null;
 					}
-				} catch (InterruptedException e) {
-					// return null to indicate an interruption
-					return null;
 				}
+			};
+			// remove potentially existing listener as views get recycled
+			star.setOnCheckedChangeListener(null);
+			star.setChecked(translation.isStarred());
+			star.setOnCheckedChangeListener(listener);
+		}
+
+		final int color = getDictionaryBackgroundColor(i, viewGroup.getResources());
+		result.setBackgroundColor(color);
+
+		return result;
+	}
+
+	/**
+	 * Returns the background color of the associated dictionary or transparent if dictionary styles should be ignored
+	 *
+	 * @param i the id of the translation entry
+	 * @param resources the resources to load the fallback background color from
+	 * @return the associated background color or transparent
+	 */
+	private int getDictionaryBackgroundColor(int i, Resources resources) {
+		if (Preferences.getIgnoreDictionaryTextStyles()) {
+			return Color.TRANSPARENT;
+		}
+		TranslationResult translationResult = translationResults.elementAt(i);
+		TranslationParameters translationParameters = translationResult.translationParametersObj;
+		final RGBColour rgb = translationParameters.getDictionary().getBackgroundColour();
+		if (rgb == null) {
+			return resources.getColor(android.R.color.background_light);
+		} else {
+			return Color.rgb(rgb.red, rgb.green, rgb.blue);
+		}
+	}
+
+	@Override
+	public boolean isChildSelectable(int i, int i2) {
+		return false;
+	}
+
+	public int getAllChildrenCount() {
+		int count = 0;
+		for (TranslationResult translationResult : translationResults) {
+			count += translationResult.numberOfFoundTranslations();
+		}
+		return count;
+	}
+
+	public Vector<TranslationResult> getTranslationResults() {
+		return translationResults;
+	}
+
+	public boolean hasData() {
+		for (TranslationResult translationResult : translationResults) {
+			if (translationResult.numberOfFoundTranslations() > 0) {
+				return true;
 			}
-
-			// callback to newTranslationResults changed translationResult
-
-			result.values = translationResult;
-			result.count = translationResult.numberOfFoundTranslations();
-
-			return result;
 		}
+		return false;
+	}
 
-		@Override
-		protected void publishResults(CharSequence constraint, FilterResults results) {
-			setState(false);
-
-			// null indicates translation was interrupted
-			if (results == null) {
-				// if interrupted do nothing
-				return;
-			}
-
-			if (results.values == null) {
-				data = new TranslationResult();
-				notifyDataSetInvalidated();
-			} else {
-				data = (TranslationResult) results.values;
-				notifyDataSetChanged();
-			}
-		}
-
-		@Override
-		public void deletePreviousTranslationResult() {
-			// ignore this event
-			// as we only update the view when the new result is available
-		}
-
-		@Override
-		public void newTranslationResult(TranslationResult resultOfTranslation) {
-			translationResult = resultOfTranslation;
-			synchronized (this) {
-				shouldFilterWait = false;
-				notifyAll();
-			}
-		}
-
-		private void setState(boolean state) {
-			isActive = state;
-			stateChangeObservable.setChanged();
-			stateChangeObservable.notifyObservers(isActive);
-		}
+	public void clearData() {
+		translationResults.clear();
+		notifyDataSetChanged();
 	}
 }

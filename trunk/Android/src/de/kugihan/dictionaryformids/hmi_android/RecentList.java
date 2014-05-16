@@ -322,7 +322,7 @@ public class RecentList extends ListActivity implements ResultProvider {
 	 * Fill the view with recently loaded dictionaries.
 	 */
 	private void fillWithDictionaries() {
-		final String[] dictionaries = Preferences.getRecentDictionaries();
+		final String[] dictionaries = Preferences.getRecentDictionaryStrings();
 		itemsType = new ArrayList<DictionaryType>();
 		itemsPath = new ArrayList<String>();
 		itemsLanguages = new ArrayList<String>();

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@id/InputLayout"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content" >
@@ -8,9 +8,6 @@
         android:id="@+id/TranslationInput"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/ClearInput"
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@id/ClearInput"
         android:hint="@string/hint_enter_word"
         android:imeOptions="actionDone"
         android:paddingRight="40dip"
@@ -21,10 +18,8 @@
         style="@android:style/Widget.ProgressBar.Small.Inverse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/TranslationInput"
-        android:layout_alignRight="@id/TranslationInput"
-        android:layout_alignTop="@id/TranslationInput"
-        android:layout_margin="10dp"
+        android:layout_marginRight="35dp"
+        android:layout_gravity="right|center_vertical"
         android:focusable="false"
         android:indeterminate="true"
         android:maxHeight="16dip"
@@ -34,13 +29,19 @@
         android:pivotX="50%" android:pivotY="50%"
         android:visibility="gone" />
 
-    <ImageButton
-        android:id="@id/ClearInput"
+    <Button
+        android:id="@+id/ClearInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:maxWidth="60dip"
-        android:minWidth="60dip"
-        android:src="@android:drawable/ic_input_delete" />
+        android:layout_marginRight="5dp"
+        android:layout_gravity="right|center_vertical"
+        android:maxHeight="16dp"
+        android:maxWidth="16dp"
+        android:minHeight="16dp"
+        android:minWidth="16dp"
+        android:paddingRight="50dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:background="@android:drawable/ic_menu_close_clear_cancel" />
 
-</RelativeLayout>
+</FrameLayout>

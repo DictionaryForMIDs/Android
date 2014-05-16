@@ -12,18 +12,35 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import de.kugihan.dictionaryformids.dataaccess.LanguageDefinition;
 import de.kugihan.dictionaryformids.hmi_android.R;
 import de.kugihan.dictionaryformids.hmi_android.view_helper.LocalizationHelper;
 
 /**
- * LanguageSpinnerAdapter is the class that handles the data for the language
+ * DictionaryLanguagesAdapter is the class that handles the data for the language
  * spinner.
  * 
  */
-public class LanguageSpinnerAdapter extends BaseAdapter {
+public class DictionaryLanguagesAdapter extends BaseAdapter {
+
+	private static class ViewHolder {
+		TextView loadDictionaryTextView;
+		LinearLayout languageDirectionLayout;
+		CheckBox languagePairCheckBox;
+		TextView languageFromTextView;
+		TextView languageToTextView;
+		TextView directionIndicator;
+	}
+
+	/**
+	 * The dictionary represented by this adapter.
+	 */
+	private final Dictionary dictionary;
 
 	/**
 	 * The available languages of the current dictionary.
@@ -37,19 +54,13 @@ public class LanguageSpinnerAdapter extends BaseAdapter {
 	private final int[][] indices;
 
 	/**
-	 * Creates an empty adapter.
-	 */
-	public LanguageSpinnerAdapter() {
-		this(new LanguageDefinition[0]);
-	}
-	
-	/**
 	 * Creates a new instance representing the given data.
 	 * 
-	 * @param languages the languages to display
+	 * @param dictionary the dictionary to display
 	 */
-	public LanguageSpinnerAdapter(final LanguageDefinition[] languages) {
-		data = languages;
+	public DictionaryLanguagesAdapter(final Dictionary dictionary) {
+		this.dictionary = dictionary;
+		this.data = dictionary.getFile().supportedLanguages;
 		int searchableLanguages = 0;
 		for (LanguageDefinition language : data) {
 			if (language.isSearchable) {
@@ -72,23 +83,6 @@ public class LanguageSpinnerAdapter extends BaseAdapter {
 				counter++;
 			}
 		}
-	}
-	
-	/**
-	 * Returns the position of the language pair which represents the opposite
-	 * of the current language pair.
-	 * 
-	 * @param position the position of the current selection
-	 * @return the position of the opposite language pair
-	 */
-	public final int getSwappedPosition(final int position) {
-		for (int i = 0; i < indices.length; i++) {
-			if (indices[position][0] == indices[i][1]
-					&& indices[position][1] == indices[i][0]) {
-				return i;
-			}
-		}
-		return position;
 	}
 
 	/**
@@ -128,20 +122,28 @@ public class LanguageSpinnerAdapter extends BaseAdapter {
 	@Override
 	public final View getView(final int position, final View convertView,
 			final ViewGroup parent) {
-		View view;
+		final View view;
+		final ViewHolder viewHolder;
 		if (convertView == null) {
 			final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 			view = inflater.inflate(R.layout.languages, null);
+			viewHolder = new ViewHolder();
+			viewHolder.languageDirectionLayout = (LinearLayout) view.findViewById(R.id.LanguageDirectionLayout);
+			viewHolder.loadDictionaryTextView = (TextView) view.findViewById(R.id.LoadDictionary);
+			viewHolder.languagePairCheckBox = (CheckBox) view.findViewById(R.id.LanguagePairCheckBox);
+			viewHolder.languageFromTextView = (TextView) view.findViewById(R.id.languageFrom);
+			viewHolder.directionIndicator = (TextView) view.findViewById(R.id.directionIndicator);
+			viewHolder.languageToTextView = (TextView) view.findViewById(R.id.languageTo);
+			view.setTag(viewHolder);
+
 		} else {
 			view = convertView;
+			viewHolder = (ViewHolder) view.getTag();
 		}
 		if (position == indices.length) {
-			final TextView textView = (TextView) view
-					.findViewById(R.id.LoadDictionary);
-			textView.setText(R.string.title_load_dictionary);
-			textView.setVisibility(View.VISIBLE);
-			((LinearLayout) view.findViewById(R.id.LanguageDirectionLayout))
-					.setVisibility(View.GONE);
+			viewHolder.loadDictionaryTextView.setText(R.string.title_load_dictionary);
+			viewHolder.loadDictionaryTextView.setVisibility(View.VISIBLE);
+			viewHolder.languageDirectionLayout.setVisibility(View.GONE);
 		} else {
 			final Resources resources = view.getResources();
 			final String languageFromString = getLocalizedLanguage(resources, position, true);
@@ -157,16 +159,22 @@ public class LanguageSpinnerAdapter extends BaseAdapter {
 						"R.string.title_format_translation_direction is of wrong format");
 			}
 
-			final TextView languageFrom = (TextView) view.findViewById(R.id.languageFrom);
-			languageFrom.setText(parts[0]);
-			final TextView directionIndicator = (TextView) view.findViewById(R.id.directionIndicator);
-			directionIndicator.setText(parts[1]);
-			final TextView languageTo = (TextView) view.findViewById(R.id.languageTo);
-			languageTo.setText(parts[2]);
-			((TextView) view.findViewById(R.id.LoadDictionary))
-					.setVisibility(View.GONE);
-			((LinearLayout) view.findViewById(R.id.LanguageDirectionLayout))
-					.setVisibility(View.VISIBLE);
+			final CheckBox checkBox = viewHolder.languagePairCheckBox;
+			checkBox.setOnCheckedChangeListener(null);
+			checkBox.setChecked(dictionary.isPairSelected(indices[position][0], indices[position][1]));
+			checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+				@Override
+				public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
+					int fromLanguage = indices[position][0];
+					int toLanguage = indices[position][1];
+					dictionary.setPairSelection(fromLanguage, toLanguage, checked);
+				}
+			});
+			viewHolder.languageFromTextView.setText(parts[0]);
+			viewHolder.directionIndicator.setText(parts[1]);
+			viewHolder.languageToTextView.setText(parts[2]);
+			viewHolder.loadDictionaryTextView.setVisibility(View.GONE);
+			viewHolder.languageDirectionLayout.setVisibility(View.VISIBLE);
 		}
 		return view;
 	}
@@ -213,7 +221,7 @@ public class LanguageSpinnerAdapter extends BaseAdapter {
 			}
 			textView.setText(loadDictionaryCommand);
 			textView.setVisibility(View.VISIBLE);
-			((LinearLayout) view.findViewById(R.id.LanguageDirectionLayout))
+			view.findViewById(R.id.LanguageDirectionLayout)
 					.setVisibility(View.GONE);
 		} else {
 			final Resources resources = view.getResources();
@@ -233,9 +241,9 @@ public class LanguageSpinnerAdapter extends BaseAdapter {
 			directionIndicator.setText(parts[1]);
 			final TextView languageTo = (TextView) view.findViewById(R.id.languageTo);
 			languageTo.setText(parts[2]);
-			((TextView) view.findViewById(R.id.LoadDictionary))
+			view.findViewById(R.id.LoadDictionary)
 					.setVisibility(View.GONE);
-			((LinearLayout) view.findViewById(R.id.LanguageDirectionLayout))
+			view.findViewById(R.id.LanguageDirectionLayout)
 					.setVisibility(View.VISIBLE);
 		}
 		return view;

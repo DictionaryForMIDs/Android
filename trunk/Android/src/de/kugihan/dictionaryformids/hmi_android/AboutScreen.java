@@ -7,15 +7,14 @@
  ******************************************************************************/
 package de.kugihan.dictionaryformids.hmi_android;
 
-import java.util.Locale;
-
 import android.app.Activity;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import de.kugihan.dictionaryformids.dataaccess.DictionaryDataFile;
+
+import java.util.Locale;
 
 /**
  * AboutScreen represents an Activity that displays the application's about
@@ -35,9 +34,9 @@ public class AboutScreen extends Activity {
 
 		final TextView dictionaryTitle = (TextView) findViewById(R.id.DictionaryTitle);
 		final TextView dictionaryView = (TextView) findViewById(R.id.Dictonary);
-		final boolean hasDictionary = DictionaryDataFile.infoText != null && DictionaryDataFile.infoText.length() > 0;
-		if (hasDictionary) {
-			dictionaryView.setText(DictionaryDataFile.infoText);
+
+		if (getIntent() != null && getIntent().hasExtra(DictionaryForMIDs.BUNDLE_DICTIONARY_ABOUT_TEXT)) {
+			dictionaryView.setText(getIntent().getStringExtra(DictionaryForMIDs.BUNDLE_DICTIONARY_ABOUT_TEXT));
 			dictionaryView.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(final View view) {

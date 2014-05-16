@@ -1,9 +1,5 @@
 package de.kugihan.dictionaryformids.hmi_android.data;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-
 import android.content.ContentProvider;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -18,6 +14,11 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 import android.text.TextUtils;
 import android.util.Log;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
 import de.kugihan.dictionaryformids.general.DictionaryException;
 import de.kugihan.dictionaryformids.hmi_android.DictionaryForMIDs;
 import de.kugihan.dictionaryformids.translation.SingleTranslationExtension;
@@ -148,14 +149,11 @@ public class StarredWordsProvider extends ContentProvider {
 	 * Creates content values for a given translation for insertion into
 	 * database.
 	 *
-	 * @param dictionaryId
-	 *            the id of the dictionary the translation belongs to
 	 * @param translation
 	 *            the translation result to save
 	 * @return the content values corresponding to the given translation
 	 */
-	public static ContentValues getContentValues(final String dictionaryId,
-			final SingleTranslationExtension translation) {
+	public static ContentValues getContentValues(final SingleTranslationExtension translation) {
 		final byte[] object;
 		final String fromTextAsString;
 		final String toTextsAsString;
@@ -170,6 +168,8 @@ public class StarredWordsProvider extends ContentProvider {
 			Log.d(DictionaryForMIDs.LOG_TAG, "Parsing failed", e);
 			return null;
 		}
+
+		final String dictionaryId = translation.getDictionary().dictionaryAbbreviation;
 
 		final ContentValues initialValues = new ContentValues();
 		initialValues.put(StarredWords.DICTIONARY_NAME, dictionaryId);
@@ -218,12 +218,10 @@ public class StarredWordsProvider extends ContentProvider {
 	 *            resolver to be used for querying for the translation
 	 * @param translationExtension
 	 *            the translation to be searched for
-	 * @param dictionaryName
-	 *            the name of the dictionary
 	 * @return the id of the entry or null in case it could not be found
 	 */
 	public static Long getItemId(final ContentResolver resolver,
-			final SingleTranslationExtension translationExtension, final String dictionaryName) {
+			final SingleTranslationExtension translationExtension) {
 		final String fromTextAsString;
 		final String toTextsAsString;
 		try {
@@ -233,6 +231,8 @@ public class StarredWordsProvider extends ContentProvider {
 			Log.d(DictionaryForMIDs.LOG_TAG, "Parsing failed", e);
 			return null;
 		}
+
+		final String dictionaryName = translationExtension.getDictionary().dictionaryAbbreviation;
 
 		final String selection = StarredWords.DICTIONARY_NAME + " = ? AND "
 				+ StarredWords.FROM_LANGUAGE_ID + " = ? AND " + StarredWords.FROM_TEXT

@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Vector;
 
+import de.kugihan.dictionaryformids.dataaccess.DictionaryDataFile;
 import de.kugihan.dictionaryformids.dataaccess.content.FontStyle;
 import de.kugihan.dictionaryformids.dataaccess.content.RGBColour;
 import de.kugihan.dictionaryformids.dataaccess.content.SelectionMode;
@@ -27,17 +28,44 @@ public class SingleTranslationExtension extends SingleTranslation {
 	 */
 	private Vector<StringColourItemText> toTexts = null;
 
+	public boolean isStarred() {
+		return isStarred != null && isStarred;
+	}
+
+	public boolean isStarredLoaded() {
+		return isStarred != null;
+	}
+
+	public void setStarred(Boolean isStarred) {
+		this.isStarred = isStarred;
+	}
+
+	/**
+	 * True if this translation has been starred, null if not checked yet.
+	 */
+	private Boolean isStarred = null;
+
+	public DictionaryDataFile getDictionary() {
+		return dictionaryDataFile;
+	}
+
+	/**
+	 * The dictionary in which this result was found.
+	 */
+	private DictionaryDataFile dictionaryDataFile = null;
+
 	/**
 	 * Creates an instance from the given translation object.
 	 *
 	 * @param translation
 	 *            the object's data to use for initialization
 	 */
-	public SingleTranslationExtension(final SingleTranslation translation) {
+	public SingleTranslationExtension(final SingleTranslation translation, final DictionaryDataFile dataFile) {
 		super(translation.fromText, translation.toTexts, translation.foundAtBeginOfExpression,
 				translation.primarySortNumber, translation.directoryFileLocation);
 		fromText = null;
 		toTexts = null;
+		dictionaryDataFile = dataFile;
 	}
 
 	/**
@@ -57,11 +85,12 @@ public class SingleTranslationExtension extends SingleTranslation {
 	public SingleTranslationExtension(final StringColourItemText fromTextParam,
 			final Vector<StringColourItemText> toTextsParam,
 			final boolean foundAtBeginOfExpressionParam, final int primarySortNumberParam,
-			final DirectoryFileLocation directoryFileLocationParam) {
-		super(new TextOfLanguage("", 0), null, foundAtBeginOfExpressionParam,
+			final DirectoryFileLocation directoryFileLocationParam, final DictionaryDataFile dataFile) {
+		super(new TextOfLanguage("", 0, dataFile), null, foundAtBeginOfExpressionParam,
 				primarySortNumberParam, directoryFileLocationParam);
 		fromText = fromTextParam;
 		toTexts = toTextsParam;
+		dictionaryDataFile = dataFile;
 	}
 
 	/**
@@ -309,8 +338,9 @@ public class SingleTranslationExtension extends SingleTranslation {
 					ois.readInt(), ois.readUTF(), ois.readInt());
 			final StringColourItemText fromText = readStringColourItemText(ois);
 			final Vector<StringColourItemText> toTexts = readStringColourItemTexts(ois);
+			// TODO: last parameter
 			return new SingleTranslationExtension(fromText, toTexts, foundAtBeginOfExpression,
-					primarySortNumber, directoryFileLocation);
+					primarySortNumber, directoryFileLocation, null);
 		} finally {
 			if (ois != null) {
 				try {

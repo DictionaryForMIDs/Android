@@ -14,12 +14,16 @@
         <RadioButton
             android:id="@+id/showFromCurrentDictionary"
             android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
             android:text="@string/starred_words_current_dictionary"
             android:visibility="invisible" />
 
         <RadioButton
             android:id="@+id/showFromAllDictionaries"
             android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
             android:text="@string/starred_words_all_dictionaries"
             android:visibility="invisible" />
     </RadioGroup>
