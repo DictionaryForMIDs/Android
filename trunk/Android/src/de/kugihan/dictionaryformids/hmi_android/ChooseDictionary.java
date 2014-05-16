@@ -38,6 +38,9 @@ public final class ChooseDictionary extends TabActivity {
 	 */
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
+
+		DictionaryForMIDs.setApplicationTheme(this);
+
 		super.onCreate(savedInstanceState);
 
 		requestWindowFeature(Window.FEATURE_PROGRESS);

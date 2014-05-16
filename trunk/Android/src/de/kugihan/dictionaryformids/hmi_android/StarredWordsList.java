@@ -301,11 +301,12 @@ public class StarredWordsList extends ListActivity {
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
 		// load theme before call to setContentView()
 		DictionaryForMIDs.setApplicationTheme(this);
+
+		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.starred_words_list);
 

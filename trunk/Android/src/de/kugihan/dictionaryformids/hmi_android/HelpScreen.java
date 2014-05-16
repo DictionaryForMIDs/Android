@@ -24,6 +24,7 @@ public class HelpScreen extends Activity {
 	 */
 	@Override
 	protected final void onCreate(final Bundle savedInstanceState) {
+		DictionaryForMIDs.setApplicationTheme(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.help);
 

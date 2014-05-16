@@ -29,6 +29,7 @@ public class AboutScreen extends Activity {
 	 */
 	@Override
 	protected final void onCreate(final Bundle savedInstanceState) {
+		DictionaryForMIDs.setApplicationTheme(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.about);
 
