@@ -37,6 +37,15 @@ public class DictionaryVector extends Observable implements Iterable<Dictionary>
 		notifyObservers();
 	}
 
+	public void addAllFromIterable(Iterable<Dictionary> additionalDictionaries) {
+		for (Dictionary dictionary : additionalDictionaries) {
+			dictionary.addObserver(dictionaryObserver);
+			dictionaries.add(dictionary);
+		}
+		setChanged();
+		notifyObservers();
+	}
+
 	public Dictionary get(int location) {
 		return dictionaries.get(location);
 	}

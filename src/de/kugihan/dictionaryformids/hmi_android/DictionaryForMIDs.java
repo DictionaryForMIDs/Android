@@ -117,7 +117,12 @@ public final class DictionaryForMIDs extends Activity {
 		/**
 		 * The current list of translationsAdapter.
 		 */
-		private final TranslationsAdapter translations;
+		private final Vector<TranslationResult> translations;
+
+		/**
+		 * The current list of dictionaries
+		 */
+		private final DictionaryVector dictionaryVector;
 
 		/**
 		 * Constructs a new instance and initializes all members.
@@ -128,9 +133,10 @@ public final class DictionaryForMIDs extends Activity {
 		 *            the current translationsAdapter
 		 */
 		public NonConfigurationInstance(final LoadDictionaryThread thread,
-				final TranslationsAdapter translations) {
+				final Vector<TranslationResult> translations, final DictionaryVector dictionaryVector) {
 			this.thread = thread;
 			this.translations = translations;
+			this.dictionaryVector = dictionaryVector;
 		}
 
 		/**
@@ -143,11 +149,11 @@ public final class DictionaryForMIDs extends Activity {
 		}
 
 		/**
-		 * Returns the translationsAdapter.
+		 * Returns the current translations.
 		 *
-		 * @return the translationsAdapter
+		 * @return the translations
 		 */
-		public TranslationsAdapter getTranslations() {
+		public Vector<TranslationResult> getTranslations() {
 			return translations;
 		}
 	}
@@ -307,9 +313,9 @@ public final class DictionaryForMIDs extends Activity {
 	@Override
 	protected void onRestoreInstanceState(final Bundle savedInstanceState) {
 
-		// TODO: handle multiple dictionaries
-		if (dictionaries != null && dictionaries.size() > 0 && dictionaries.firstElement().getFile().supportedLanguages != null) {
-			// TODO: handle multiple dictionaries
+		loadLastNonConfigurationInstance();
+
+		if (!dictionaries.isEmpty()) {
 			DictionariesAdapter adapter = new DictionariesAdapter(dictionaries);
 			ListView listView = (ListView) findViewById(R.id.loaded_dictionary_list);
 			listView.setAdapter(adapter);
@@ -319,8 +325,6 @@ public final class DictionaryForMIDs extends Activity {
 			// we just reload the last dictionary
 			loadLastUsedDictionary(false);
 		}
-
-		loadLastNonConfigurationInstance();
 
 		final int previousNumberOfTranslations = savedInstanceState
 				.getInt(BUNDLE_NUMBER_OF_TRANSLATIONS);
@@ -378,7 +382,7 @@ public final class DictionaryForMIDs extends Activity {
 				loadDictionaryThread = null;
 			}
 		}
-		return new NonConfigurationInstance(tempThread, translationsAdapter);
+		return new NonConfigurationInstance(tempThread, translationsAdapter.getTranslationResults(), dictionaries);
 	}
 
 	/**
@@ -430,6 +434,12 @@ public final class DictionaryForMIDs extends Activity {
 
 		setupSearchBar();
 		updateActiveDictionariesCount();
+		dictionaries.addObserver(new Observer() {
+			@Override
+			public void update(Observable observable, Object o) {
+				updateActiveDictionariesCount();
+			}
+		});
 
 		final ExpandableListView translationListView = (ExpandableListView) findViewById(R.id.translationsListView);
 		translationListView.setAdapter(this.translationsAdapter);
@@ -857,8 +867,11 @@ public final class DictionaryForMIDs extends Activity {
 			return;
 		}
 		final NonConfigurationInstance data = (NonConfigurationInstance) lastConfiguration;
+		// Load dictionaries
+		dictionaries.addAllFromIterable(data.dictionaryVector);
+		// Load translations
 		if (data.getTranslations() != null) {
-			translationsAdapter = data.getTranslations();
+			translationsAdapter = new TranslationsAdapter(this, data.getTranslations());
 			translationsAdapter.registerDataSetObserver(translationsObserver);
 			final ExpandableListView listView = (ExpandableListView) findViewById(R.id.translationsListView);
 			listView.setAdapter(translationsAdapter);
@@ -1064,8 +1077,6 @@ public final class DictionaryForMIDs extends Activity {
 				DataSetObserver dataSetObserver = new DataSetObserver() {
 					@Override
 					public void onChanged() {
-						updateActiveDictionariesCount();
-
 						if (!isDictionaryAvailable()) {
 							translationsAdapter.clearData();
 							return;
