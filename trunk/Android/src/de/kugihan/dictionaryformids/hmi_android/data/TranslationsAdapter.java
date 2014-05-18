@@ -53,12 +53,17 @@ public class TranslationsAdapter extends BaseExpandableListAdapter implements Ob
 		public CheckBox checkBoxStar;
 	}
 
-	private final Vector<TranslationResult> translationResults = new Vector<TranslationResult>();
+	private final Vector<TranslationResult> translationResults;
 
 	private final Activity activity;
 
 	public TranslationsAdapter(Activity activity) {
+		this(activity, new Vector<TranslationResult>());
+	}
+
+	public TranslationsAdapter(Activity activity, Vector<TranslationResult> translationResults) {
 		this.activity = activity;
+		this.translationResults = translationResults;
 	}
 
 	private String getString(int resId) {
