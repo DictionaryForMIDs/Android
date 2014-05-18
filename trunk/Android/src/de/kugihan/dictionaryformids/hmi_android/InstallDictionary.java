@@ -7,9 +7,6 @@
  ******************************************************************************/
 package de.kugihan.dictionaryformids.hmi_android;
 
-import java.util.ArrayList;
-import java.util.Locale;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -38,6 +35,10 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Locale;
+
 import de.kugihan.dictionaryformids.hmi_android.data.DictionaryListParser;
 import de.kugihan.dictionaryformids.hmi_android.data.DownloadDictionaryItem;
 import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
@@ -1194,8 +1195,7 @@ public final class InstallDictionary extends ListActivity implements
 			}
 			// find the dictionary data
 			installDictionaryItem = null;
-			for (int i = 0; i < dictionaries.size(); i++) {
-				final DownloadDictionaryItem dictionary = dictionaries.get(i);
+			for (final DownloadDictionaryItem dictionary : dictionaries) {
 				if (dictionary.getId() == Preferences.getOriginalAutoInstallId()) {
 					installDictionaryItem = dictionary;
 					break;
