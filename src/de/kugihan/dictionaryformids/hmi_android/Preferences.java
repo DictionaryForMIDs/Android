@@ -604,11 +604,11 @@ public class Preferences extends PreferenceActivity implements
 
 	private static void setRecentDictionaries(final String[] dictionaries) {
 		final JSONArray data = new JSONArray();
-		for (int i = 0; i < dictionaries.length; i++) {
-			if (dictionaries[i] == null || dictionaries[i].length() == 0) {
+		for (String dictionary : dictionaries) {
+			if (dictionary == null || dictionary.length() == 0) {
 				continue;
 			}
-			data.put(dictionaries[i]);
+			data.put(dictionary);
 		}
 
 		final Editor editor = preferencesInstance.edit();
@@ -740,8 +740,8 @@ public class Preferences extends PreferenceActivity implements
 			final String path, final String[] languages) {
 		final JSONObject dictionary = new JSONObject();
 		final JSONArray abbreviationEntries = new JSONArray();
-		for (int i = 0; i < languages.length; i++) {
-			abbreviationEntries.put(languages[i]);
+		for (String language : languages) {
+			abbreviationEntries.put(language);
 		}
 		try {
 			dictionary.put("path", path);
