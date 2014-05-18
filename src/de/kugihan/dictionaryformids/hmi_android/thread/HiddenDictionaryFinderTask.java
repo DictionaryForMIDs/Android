@@ -1,12 +1,13 @@
 package de.kugihan.dictionaryformids.hmi_android.thread;
 
-import java.io.File;
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.widget.Toast;
+
+import java.io.File;
+import java.util.ArrayList;
+
 import de.kugihan.dictionaryformids.hmi_android.FileList;
 import de.kugihan.dictionaryformids.hmi_android.Preferences;
 import de.kugihan.dictionaryformids.hmi_android.Preferences.DictionaryType;
@@ -61,7 +62,7 @@ public class HiddenDictionaryFinderTask extends AsyncTask<String, Integer, Array
 		// check if sd card is available/accessible
 		final String storageState = Environment.getExternalStorageState();
 		if (!Environment.MEDIA_MOUNTED.equals(storageState)) {
-			Toast.makeText(activity, R.string.msg_error_accessing_storage, Toast.LENGTH_LONG);
+			Toast.makeText(activity, R.string.msg_error_accessing_storage, Toast.LENGTH_LONG).show();
 			return dictionaries;
 		}
 
