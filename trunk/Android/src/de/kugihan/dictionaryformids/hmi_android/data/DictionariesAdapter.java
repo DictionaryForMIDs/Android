@@ -116,7 +116,6 @@ public class DictionariesAdapter extends BaseAdapter {
 				}
 			}
 		} else {
-			// TODO: set title from Preferences with languages
 			title.setText(dictionary.getAbbreviation());
 			holder.selectionCheckbox.setChecked(false);
 			listView.removeAllViews();
