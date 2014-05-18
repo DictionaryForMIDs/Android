@@ -978,7 +978,7 @@ public final class DictionaryForMIDs extends Activity {
 
 		// cancel running thread
 		if (isLoadDictionaryThreadActive()) {
-			synchronized (loadDictionaryThread) {
+			synchronized (loadDictionaryThreadSync) {
 				// TODO: handle multiple threads
 //				loadDictionaryThread.cancel(true);
 			}
