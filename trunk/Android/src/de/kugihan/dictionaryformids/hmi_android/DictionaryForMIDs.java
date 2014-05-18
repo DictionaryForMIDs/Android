@@ -446,13 +446,19 @@ public final class DictionaryForMIDs extends Activity {
 		translationListView.setOnFocusChangeListener(focusChangeListener);
 		translationListView.setOnScrollListener(onScrollListener);
 		translationListView.setOnTouchListener(touchListener);
-		// Get the currently expanded group after restart
-		final int expandedGroup = getExpandedGroup(translationsAdapter, translationListView);
 		translationListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-			private int currentlyExpandedGroup = expandedGroup;
+			private int currentlyExpandedGroup = -1;
 			@Override
 			public void onGroupExpand(int groupPosition) {
-				if (currentlyExpandedGroup >= 0 && currentlyExpandedGroup != groupPosition) {
+				if (currentlyExpandedGroup < 0) {
+					// Collapse all other groups
+					for (int i = 0; i < translationsAdapter.getGroupCount(); i++) {
+						if (i != groupPosition) {
+							translationListView.collapseGroup(i);
+						}
+					}
+				} else if (currentlyExpandedGroup >= 0 && currentlyExpandedGroup != groupPosition) {
+					// Collapse last expanded group
 					translationListView.collapseGroup(currentlyExpandedGroup);
 				}
 				currentlyExpandedGroup = groupPosition;
