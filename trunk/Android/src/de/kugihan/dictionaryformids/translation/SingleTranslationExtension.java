@@ -117,7 +117,7 @@ public class SingleTranslationExtension extends SingleTranslation {
 	public String getToTextsAsString(final String separator) throws DictionaryException {
 		final Vector<StringColourItemText> texts = getToTextsAsColourItemTexts();
 
-		final StringBuffer toTextsBuffer = new StringBuffer();
+		final StringBuilder toTextsBuffer = new StringBuilder();
 		for (int i = 0; i < texts.size(); i++) {
 			if (i > 0) {
 				toTextsBuffer.append(separator);
@@ -141,7 +141,7 @@ public class SingleTranslationExtension extends SingleTranslation {
 	public String getFromTextAsString() throws DictionaryException {
 		final StringColourItemText text = getFromTextAsColourItemText();
 
-		final StringBuffer fromTextBuffer = new StringBuffer();
+		final StringBuilder fromTextBuffer = new StringBuilder();
 		for (int i = 0; i < text.size(); i++) {
 			fromTextBuffer.append(text.getItemTextPart(i).getText());
 		}
