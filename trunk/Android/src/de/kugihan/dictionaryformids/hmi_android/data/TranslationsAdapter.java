@@ -234,6 +234,9 @@ public class TranslationsAdapter extends BaseExpandableListAdapter implements Ob
 //		final SingleTranslationExtension translation = (SingleTranslationExtension) getGroup(i);
 //		SingleTranslationViewHelper.display(result, translation);
 
+		final int color = getDictionaryBackgroundColor(i, viewGroup.getResources());
+		result.setBackgroundColor(color);
+
 		return result;
 	}
 

@@ -16,9 +16,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.content.res.Resources.NotFoundException;
 import android.database.DataSetObserver;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -68,7 +66,6 @@ import java.util.Observer;
 import java.util.Vector;
 
 import de.kugihan.dictionaryformids.dataaccess.DictionaryDataFile;
-import de.kugihan.dictionaryformids.dataaccess.content.RGBColour;
 import de.kugihan.dictionaryformids.dataaccess.fileaccess.AssetDfMInputStreamAccess;
 import de.kugihan.dictionaryformids.dataaccess.fileaccess.DfMInputStreamAccess;
 import de.kugihan.dictionaryformids.dataaccess.fileaccess.FileDfMInputStreamAccess;
@@ -466,8 +463,6 @@ public final class DictionaryForMIDs extends Activity {
 		});
 		registerForContextMenu(translationListView);
 
-		setBackgroundFromDictionary();
-
 		final View openDictionaryMenu = findViewById(R.id.openDictionaryMenu);
 		openDictionaryMenu.setOnClickListener(new OnClickListener() {
 			@Override
@@ -616,40 +611,6 @@ public final class DictionaryForMIDs extends Activity {
 	private void setApplicationTheme() {
 		setApplicationTheme(this);
 	}
-
-	/**
-	 * Sets the background of the dictionary to the color specified in the
-	 * current dictionary. If no color is specified a default value is used. If
-	 * styling is disabled this function has no effect.
-	 */
-	private void setBackgroundFromDictionary() {
-		final View content = findViewById(android.R.id.content);
-		final ListView list = (ListView) findViewById(R.id.translationsListView);
-		final int color = getBackgroundColor();
-		content.setBackgroundColor(color);
-		list.setCacheColorHint(color);
-	}
-
-	/**
-	 * @return
-	 * @throws NotFoundException
-	 */
-	private int getBackgroundColor() throws NotFoundException {
-		final int color;
-		if (Preferences.getIgnoreDictionaryTextStyles()) {
-			color = Color.TRANSPARENT;
-		} else {
-			// TODO: handle multiple background colors
-			final RGBColour rgb = (dictionaries.size() > 0) ? dictionaries.firstElement().getFile().getBackgroundColour() : null;
-			if (rgb == null) {
-				color = getResources().getColor(android.R.color.background_light);
-			} else {
-				color = Color.rgb(rgb.red, rgb.green, rgb.blue);
-			}
-		}
-		return color;
-	}
-
 
 	/**
 	 *
@@ -908,10 +869,7 @@ public final class DictionaryForMIDs extends Activity {
 			if (key.equals(Preferences.PREF_RESULT_FONT_SIZE)) {
 				// push font size change into list items
 				translationsAdapter.notifyDataSetChanged();
-			} else if (key
-					.equals(Preferences.PREF_IGNORE_DICTIONARY_TEXT_STYLES)) {
-				// update backgrounds
-				setBackgroundFromDictionary();
+			} else if (key.equals(Preferences.PREF_IGNORE_DICTIONARY_TEXT_STYLES)) {
 				// push style information change into list items
 				translationsAdapter.notifyDataSetChanged();
 			} else if (key.equals(Preferences.PREF_STARRED_WORDS)) {
