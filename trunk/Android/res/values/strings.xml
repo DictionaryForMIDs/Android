@@ -5,7 +5,7 @@
 		put the name of the current language into language_name, e.g. Deutsch
 		if this is the German language file
 	-->
-	<string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">English</string>
+	<string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">LOCALIZED_NAME_OF_THIS_LANGUAGE</string>
 
 	<!--
 		put the name/e-mail/website of the translator (that's probably you)
