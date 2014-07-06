@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="center"
-            android:src="@drawable/logo" />
+            android:src="@drawable/ic_logo" />
 
         <TextView
             android:id="@+id/TextView01"

@@ -6,7 +6,7 @@
 		android:layout_width="fill_parent" android:layout_height="fill_parent">
 		<LinearLayout android:id="@+id/LinearLayout01"
 			android:layout_height="wrap_content" android:layout_width="fill_parent">
-			<ImageButton android:id="@+id/ImageView01" android:src="@drawable/logo"
+			<ImageButton android:id="@+id/ImageView01" android:src="@drawable/ic_logo"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"></ImageButton>
 			<TextView android:id="@+id/TextView01" android:text="@string/title_help"
 				android:layout_weight="1" android:layout_height="fill_parent"
