@@ -1422,7 +1422,11 @@ public final class DictionaryForMIDs extends Activity {
 		case R.id.itemAbout:
 			Intent aboutScreenIntent = new Intent(DictionaryForMIDs.this,
 					AboutScreen.class);
-			aboutScreenIntent.putExtra(BUNDLE_DICTIONARY_ABOUT_TEXT, getActiveDictionariesInfoText());
+			// Pass information of active dictionaries to about activity if available
+			String infoText = getActiveDictionariesInfoText();
+			if (infoText != null && infoText.length() > 0) {
+				aboutScreenIntent.putExtra(BUNDLE_DICTIONARY_ABOUT_TEXT, infoText);
+			}
 			startActivity(aboutScreenIntent);
 			return true;
 
