@@ -3,8 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
+    android:paddingLeft="4dp"
     >
 
     <LinearLayout
@@ -32,6 +31,7 @@
             style="?android:attr/dropDownItemStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="0dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="->" />
 
