@@ -819,6 +819,9 @@ public class Preferences extends PreferenceActivity implements
 			// set new locale
 			final String languageCode = getLanguageCode();
 			DictionaryForMIDs.setCustomLocale(languageCode, getBaseContext().getResources());
+			// reset the title of preference activity as this does not happen automatically
+			// after language change
+			setTitle(R.string.title_activity_preferences);
 		}
 
 		if (key.equals(PREF_IGNORE_DICTIONARY_TEXT_STYLES) && !getIgnoreDictionaryTextStyles()) {
