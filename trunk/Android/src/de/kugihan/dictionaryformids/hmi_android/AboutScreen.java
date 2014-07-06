@@ -37,13 +37,6 @@ public class AboutScreen extends Activity {
 
 		if (getIntent() != null && getIntent().hasExtra(DictionaryForMIDs.BUNDLE_DICTIONARY_ABOUT_TEXT)) {
 			dictionaryView.setText(getIntent().getStringExtra(DictionaryForMIDs.BUNDLE_DICTIONARY_ABOUT_TEXT));
-			dictionaryView.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(final View view) {
-					setResult(RESULT_OK);
-					finish();
-				}
-			});
 			dictionaryTitle.setVisibility(View.VISIBLE);
 			dictionaryView.setVisibility(View.VISIBLE);
 		} else {
