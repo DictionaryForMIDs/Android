@@ -7,6 +7,22 @@
  ******************************************************************************/
 package de.kugihan.dictionaryformids.hmi_android.service;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.Service;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Environment;
+import android.os.IBinder;
+import android.util.Log;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -21,21 +37,6 @@ import java.util.TimerTask;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.Service;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Environment;
-import android.os.IBinder;
-import android.util.Log;
 import de.kugihan.dictionaryformids.hmi_android.DictionaryForMIDs;
 import de.kugihan.dictionaryformids.hmi_android.FileList;
 import de.kugihan.dictionaryformids.hmi_android.InstallDictionary;
@@ -446,7 +447,7 @@ public final class DictionaryInstallationService extends Service {
 	public void pushUpdateNotification(final int type, final int percentage) {
 		final double progressBarPercentage = InstallDictionary.getProgressBarLength(type,
 				percentage) / 100.0;
-		final int icon = R.drawable.defaulticon;
+		final int icon = R.drawable.ic_notification_logo;
 		final CharSequence tickerText = getText(R.string.msg_installing_dictionary);
 		final long when = System.currentTimeMillis();
 		final Context context = getApplicationContext();
@@ -529,7 +530,7 @@ public final class DictionaryInstallationService extends Service {
 		lastSendPercentage = 0;
 
 		// start notification for finished loading
-		final int icon = R.drawable.defaulticon;
+		final int icon = R.drawable.ic_notification_logo;
 		final CharSequence tickerText = getText(R.string.msg_installation_complete);
 		final long when = System.currentTimeMillis();
 		final Context context = getApplicationContext();
@@ -582,7 +583,7 @@ public final class DictionaryInstallationService extends Service {
 			return;
 		}
 
-		final int icon = R.drawable.defaulticon;
+		final int icon = R.drawable.ic_notification_logo;
 		final CharSequence tickerText = getText(R.string.msg_installation_error);
 		final long when = System.currentTimeMillis();
 		final Context context = getApplicationContext();
