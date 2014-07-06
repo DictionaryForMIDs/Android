@@ -70,7 +70,7 @@ public class AboutScreen extends Activity {
 		versionView.setText(versionText);
 
 		final String translator = getString(R.string.title_user_interface_translator);
-		final boolean isTranslatorGiven = translator.length() > 0;
+		final boolean isTranslatorGiven = translator.length() > 0 && !"USER_INTERFACE_TRANSLATOR_NAME".equals(translator);
 		if (!isTranslatorGiven) {
 			final TextView translatorView = (TextView) findViewById(R.id.Translator);
 			translatorView.setVisibility(View.GONE);
