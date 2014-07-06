@@ -7,16 +7,6 @@
  ******************************************************************************/
 package de.kugihan.dictionaryformids.hmi_android;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
@@ -44,11 +34,18 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.Vector;
+
 import de.kugihan.dictionaryformids.hmi_android.Preferences.DictionaryType;
+import de.kugihan.dictionaryformids.hmi_android.data.Dictionary;
 import de.kugihan.dictionaryformids.hmi_android.data.ExternalStorageState;
 import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
 import de.kugihan.dictionaryformids.hmi_android.thread.HiddenDictionaryFinderTask;
-import de.kugihan.dictionaryformids.hmi_android.view_helper.LocalizationHelper;
 
 /**
  * DictionaryList represents an Activity that shows internal dictionaries and
@@ -58,19 +55,9 @@ import de.kugihan.dictionaryformids.hmi_android.view_helper.LocalizationHelper;
 public class RecentList extends ListActivity implements ResultProvider {
 
 	/**
-	 * Caches the type of the entries.
+	 * Caches the list of recent dictionaries.
 	 */
-	private List<DictionaryType> itemsType = null;
-
-	/**
-	 * Caches the path of the entries.
-	 */
-	private List<String> itemsPath = null;
-
-	/**
-	 * Caches the languages of the entries.
-	 */
-	private List<String> itemsLanguages = null;
+	private Vector<Dictionary> recentDictionaries = null;
 
 	/**
 	 * The result returned to TabHost.
@@ -310,9 +297,10 @@ public class RecentList extends ListActivity implements ResultProvider {
 	private void exitWithDictionary(final int position) {
 		resultCode = RESULT_OK;
 		returnData = new Intent();
-		final DictionaryType type = itemsType.get(position);
+		final Dictionary dictionary = recentDictionaries.get(position);
+		final DictionaryType type = dictionary.getType();
 		final String typeProtocol = Preferences.typeToProtocolString(type);
-		final String path = itemsPath.get(position);
+		final String path = dictionary.getPath();
 		returnData.putExtra(typeProtocol, path);
 		setResult(resultCode, returnData);
 		finish();
@@ -322,35 +310,7 @@ public class RecentList extends ListActivity implements ResultProvider {
 	 * Fill the view with recently loaded dictionaries.
 	 */
 	private void fillWithDictionaries() {
-		final String[] dictionaries = Preferences.getRecentDictionaryStrings();
-		itemsType = new ArrayList<DictionaryType>();
-		itemsPath = new ArrayList<String>();
-		itemsLanguages = new ArrayList<String>();
-		for (String dictionary : dictionaries) {
-			JSONObject parts;
-			int type;
-			String path;
-			String languages = "";
-			try {
-				parts = new JSONObject(dictionary);
-				type = parts.getInt("type");
-				path = parts.getString("path");
-				JSONArray languagesArray = new JSONArray(parts
-						.getString("languages"));
-				for (int i = 0; i < languagesArray.length(); i++) {
-					final String language = languagesArray.getString(i);
-					final String localizedLanguage = LocalizationHelper
-							.getLanguageName(getResources(), language);
-					languages += localizedLanguage + " ";
-				}
-				languages = languages.trim();
-			} catch (JSONException e) {
-				continue;
-			}
-			itemsType.add(DictionaryType.values()[type]);
-			itemsPath.add(path);
-			itemsLanguages.add(languages);
-		}
+		recentDictionaries = Preferences.getRecentDictionaries();
 		ListAdapter dictionaryList = new ListAdapter();
 		setListAdapter(dictionaryList);
 	}
@@ -381,8 +341,8 @@ public class RecentList extends ListActivity implements ResultProvider {
 			final AdapterContextMenuInfo menuInfo = (AdapterContextMenuInfo) item
 					.getMenuInfo();
 			final int position = menuInfo.position;
-			DictionaryType type = itemsType.get(position);
-			Preferences.removeRecentDictionary(itemsPath.get(position), type);
+			final Dictionary dictionary = recentDictionaries.get(position);
+			Preferences.removeRecentDictionary(dictionary.getPath(), dictionary.getType());
 			break;
 
 		default:
@@ -417,7 +377,7 @@ public class RecentList extends ListActivity implements ResultProvider {
 		 */
 		@Override
 		public int getCount() {
-			return itemsPath.size();
+			return recentDictionaries.size();
 		}
 
 		/**
@@ -425,7 +385,7 @@ public class RecentList extends ListActivity implements ResultProvider {
 		 */
 		@Override
 		public Object getItem(final int position) {
-			return itemsPath.get(position);
+			return recentDictionaries.get(position).getPath();
 		}
 
 		/**
@@ -450,9 +410,10 @@ public class RecentList extends ListActivity implements ResultProvider {
 			} else {
 				view = convertView;
 			}
-			final String languagesString = itemsLanguages.get(position);
-			final String typeString = itemsType.get(position).toString();
-			final String pathString = itemsPath.get(position);
+			final Dictionary dictionary = recentDictionaries.get(position);
+			final String languagesString = dictionary.getAbbreviation();
+			final String typeString = dictionary.getType().toString();
+			final String pathString = dictionary.getPath();
 			final String completePathString = getString(
 					R.string.title_recent_dictionary, typeString, pathString);
 			final TextView languages = (TextView) view.findViewById(R.id.languages);
