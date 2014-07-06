@@ -12,7 +12,7 @@
 		here, it will appear on the about screen; leave empty if you don't
 		want to be mentioned
 	-->
-	<string name="title_user_interface_translator"></string>
+	<string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">USER_INTERFACE_TRANSLATOR_NAME</string>
 
 	<string name="app_name">DictionaryForMIDs</string>
 	<string name="no_files">No files found.</string>
