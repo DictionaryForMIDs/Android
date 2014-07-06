@@ -1,4 +1,5 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:title="@string/title_activity_preferences">
 
     <PreferenceCategory android:title="@string/title_pref_search_options" >
         <CheckBoxPreference
