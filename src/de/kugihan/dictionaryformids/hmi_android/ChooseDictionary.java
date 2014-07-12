@@ -99,7 +99,7 @@ public final class ChooseDictionary extends TabActivity {
 			@Override
 			public void onTabChanged(String tabId) {
 				// make sure menu button is recreated on newer APIs
-				if (Build.VERSION.SDK_INT >= 11) {
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 					invalidateOptionsMenu();
 				}
 			}
