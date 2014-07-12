@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">עברית</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">לא נמצאו קבצים.</string>
+  <string name="to_top">/ (למעלה)</string>
+  <string name="to_upper_level">.. (למעלה)</string>
+  <string name="msg_searching">מחפש&#8230;</string>
+  <string name="copy_all">העתק הכל</string>
+  <string name="copy_word">העתק: %1$s</string>
+  <string name="not_found">לא נמצא</string>
+  <string name="starred_words_current_dictionary">נוכחי: %1$d</string>
+  <string name="starred_words_all_dictionaries">הכל: %1$d</string>
+  <string name="title_installation_finished">הסתיימה</string>
+  <string name="msg_successfully_installed_dictionary">המילון הותקן בהצלחה.</string>
+  <string name="msg_installation_complete">ההתקנה הושלחה</string>
+  <string name="title_installation_status">מצב ההתקנה</string>
+  <string name="msg_installing_dictionary">מתקין מילון&#8230;</string>
+  <string name="msg_installation_aborted">ההתקנה בוטלה על ידי המשתמש.</string>
+  <string name="msg_installation_status">מצב: %1$.2f%%</string>
+  <string name="language_english">עברית</string>
+</resources>

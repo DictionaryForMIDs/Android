@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">српски</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">Dzony95</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">Нема пронађених фајлова.</string>
+  <string name="to_top">/ (врх)</string>
+  <string name="to_upper_level">.. (горе)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">Сачекајте</string>
+  <string name="msg_searching">Тражење&#8230;</string>
+  <string name="copy_all">Копирај све</string>
+  <string name="copy_word">Копирај: %1$s</string>
+  <string name="not_found">није пронађено</string>
+  <string name="no_included_dictionaries">Речници нису пронађени.\n\nДодирните овде за преузимање.</string>
+  <string name="no_starred_words">Нема означених речи.\n\nЗа означавање додирните звездицу у речнику.</string>
+  <string name="starred_words_current_dictionary">Тренутни: %1$d</string>
+  <string name="starred_words_all_dictionaries">Сви: %1$d</string>
+  <string name="no_recent_dictionaries">Скорије учитани речници нису нађени.\n\nДодирни овде за преузимање.</string>
+  <string name="loading_download_dictionaries">Сачекајте.\n\nДоступни речници се учитавају&#8230;</string>
+  <string name="no_download_dictionaries">Извињавамо се, тренутно нема речника за преузимање.</string>
+  <string name="msg_error_downloading_available_dictionaries">Дошло је до грешке приликом преузимања листе доступних речника.\n\n\nДодирните овде и покушајте поново.\n\n\nДетаљи:\n%1$s</string>
+  <string name="msg_error_dictionary_not_found">Речник (ид: %1$d) тренутно није доступан.</string>
+  <string name="msg_error_accessing_storage">Екстерна меморије није приступљива. Проверите да уређај није повезан на рачунар.\n\nТренутно стање меморије: %1$s</string>
+  <string name="msg_suggest_update">Ваша верзија DictionaryForMIDs је застарела. Ажурирајте је пре преузимања речника.\nАжурирати сада?</string>
+  <string name="msg_suggest_update_with_message">Ваша верзија DictionaryForMIDs је застарела. Ажурирајте је пре преузимања речника.\nАжурирати сада?\n\nДетаљи: %1$s</string>
+  <string name="msg_confirm_installation">Преузми и инсталирај \"%1$s\" речник?\nВеличина: непознато</string>
+  <string name="msg_confirm_installation_size">Преузми и инсталирај \"%1$s\" речник?\nВеличина: %2$s</string>
+  <string name="msg_installation_exception">Изузеци приликом инсталације:\n%1$s</string>
+  <string name="msg_installation_exception_cause">Изузеци приликом инсталације:\n%1$s\n\nЗбог:\n%1$s</string>
+  <string name="msg_installation_already_started">Инсталација је већ у току.</string>
+  <string name="msg_installation_started">Инсталација може потрајати, наставите са коришћењем апликације.</string>
+  <string name="msg_auto_installation_started">Преузима се \"%1$s\" речник, ово може потрајати.\n\nМожете изаћи из апликације, процес ће се наставити.</string>
+  <string name="msg_installation_finished">Речник инсталиран!</string>
+  <string name="msg_list_already_downloaded">Листа је већ преузета.</string>
+  <string name="msg_installation_error">Грешка у инсталацији</string>
+  <string name="msg_external_storage_inaccessible">Екстерна меморија је неприступачна.</string>
+  <string name="msg_exported_starred_words">Успешно извезене речи на спољну меморију.</string>
+  <string name="msg_error_parsing_integer_preference">Не препознајемо број. Вратите на подразумевано.</string>
+  <string name="title_exception">Изузетак</string>
+  <string name="title_activity_starred_words">Означене речи</string>
+  <string name="exception_failed_create_directory">Неуспешно креирање директоријума: %1$s</string>
+  <string name="exception_failed_create_file">Неуспешно креирање фајла: %1$s</string>
+  <string name="exception_failed_delete_file">Неуспешно уклањање фајла: %1$s</string>
+  <string name="title_installation_finished">Готово</string>
+  <string name="msg_successfully_installed_dictionary">Успешно инсталиран речник.</string>
+  <string name="msg_installation_complete">Инсталација готова</string>
+  <string name="title_installation_status">Стање инсталације</string>
+  <string name="msg_installing_dictionary">Инсталација речника&#8230;</string>
+  <string name="msg_installation_aborted">Инсталацију прекинуо корисник.</string>
+  <string name="msg_installation_status">Стање: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">У архиви \"%1$s\" није било поклапања са \"%2$s\"</string>
+  <string name="unit_byte">B</string>
+  <string name="unit_kilo_byte">KB</string>
+  <string name="unit_mega_byte">MB</string>
+  <string name="unit_giga_byte">GB</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_maximum">ВИше од %1$d (максимално) резултата је пронађено.</string>
+  <string name="results_found_cancel">%1$d резултата је пронађено пре отказивања.</string>
+  <string name="results_found_timeout">%1$d резултата је пронађено пре паузе.</string>
+  <string name="results_found">%1$d резултата пронађено.</string>
+  <string name="results_found_one">1 резултат нађен.</string>
+  <string name="no_results_found">Нема резултата.</string>
+  <string-array name="font_sizes">
+    <item>10sp</item>
+    <item>11sp</item>
+    <item>12sp</item>
+    <item>13sp</item>
+    <item>14sp</item>
+    <item>15sp</item>
+    <item>16sp</item>
+    <item>17sp</item>
+    <item>18sp</item>
+    <item>19sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
+  </string-array>
+  <string-array name="themes">
+    <item>Подразумевано</item>
+    <item>Тамно</item>
+    <item>Светло</item>
+  </string-array>
+  <string name="title_translation_error">Нађена грешка у преводу.</string>
+  <string name="msg_translation_error">Детаљи:\n\n%1$s</string>
+  <string name="msg_translation_cancelled">Превод отказан.</string>
+  <string name="menu_dictionary">Речник</string>
+  <string name="menu_preferences">Поставке</string>
+  <string name="menu_about">О</string>
+  <string name="menu_help">Помоћ</string>
+  <string name="menu_starred">Означено</string>
+  <string name="menu_export_all_starred">Извези све</string>
+  <string name="menu_download_dictionaries">Ручно преузимање&#8230;</string>
+  <string name="menu_find_hidden_dictionaries">Поново додај скривено</string>
+  <string name="menu_clear_recent_dictionary_list">Очисти скорије&#8230;</string>
+  <string name="msg_enter_word_first">Прво унесите реч.</string>
+  <string name="menu_reload_dictionary_list">Поново учитај листу</string>
+  <string name="menu_cancel_installation">Откажи инсталацију</string>
+  <string name="menu_reinstall_default_dictionary">Поново инсталирај подразумевани речник</string>
+  <string name="msg_load_dictionary_first">Прво учитај речник.</string>
+  <string name="msg_reload_dictionary">Поново учитај речник.</string>
+  <string name="msg_exception">Дошло је до изузетка:\n%1$s</string>
+  <string name="msg_restart_app_after_settings_changed">Рестартујте апликацију да поставке прораде.</string>
+  <string name="button_ok">У реду</string>
+  <string name="button_cancel">Откажи</string>
+  <string name="button_do_not_show_again">Не приказуј поново</string>
+  <string name="button_exit">Узађи</string>
+  <string name="msg_download_dictionaries">Преузимање речника садржи 4 корака (подразумева се да имате енки уређивач фајлова, нпр Astro):\n\n1.Одаберите и преузмите речник са сајта кој ће се појавити, напомена: подржани су речници верзије 2.4.4 и више.\n\n2.Отпакујте садржај из zip фајла у директоријуму на меморијској картици (уз Astro).\n\n3.Опционо: Отпакујте садржај јар архиве у меморијску картицу за брже проналажење.\n\n4.Одаберите речник из прошлог дијалога.\n\nАлтернативно, речници се могу додати преко рачунара, отпакивањем у меморијску картицу.</string>
+  <string name="msg_clear_recent_dictionaries_list">Очисти листу скоријих речника?</string>
+  <string name="msg_cancel_installation">Откажи тренутну инсталацију?</string>
+  <string name="msg_load_dictionary">Учитај нови речник сада?\n\nУвек можете учитати касније са листе скоријих речника.</string>
+  <string name="button_load_dictionary_from_current_directory">Учитај речник из овог тиректоријума</string>
+  <string name="msg_dictionary_error">Грешка речника</string>
+  <string name="msg_dictionary_not_found">Речник не може да се учита.\n\nМожете одабрати речник на дијалогу.</string>
+  <string name="msg_dictionary_load_error">Грешка у учитавању речника.</string>
+  <string name="msg_internal_dictionary_load_error">Грешка у учитавању интерних речника.\n\n%1$s</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="msg_no_dictionary">Одабрана ставка не изгледа као речник.</string>
+  <string name="title_load_dictionary">Учитавање речника&#8230;</string>
+  <string name="msg_auto_install">Изгледа да још нисте инсталирали подразумевани речник.\n\nЖелите преузети и нсталирати сада?</string>
+  <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="title_load_dictionary_first">Прво учитајте речнике.</string>
+  <string name="title_about_heading">Јава апликација DictonaryForMIDs</string>
+  <string name="title_about_copyright_owner">Ауторска права Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) и остали.</string>
+  <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+  <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">Верзија: %1$s</string>
+  <string name="title_about_copyright">DictionaryForMIDs јава апликација је бесплатан софтвер: можете га редистрибуирати и/или уређивати
+под условима GNU General Public лиценце, као што је објавила
+the Free Software фондација; чак и за верзију 2 лиценце, или
+(ако желите) било коју новију верзију. Погледај фајл COPYING or http://www.gnu.org/licenses/\n\nОвај програм је дистрибуисан у нади да ће бити користан,
+али БЕЗ ГАРАНЦИЈЕ; чак и без имплицитне гаранције
+ПРОДАЈЕ или ПОГОДНОСТИ ЗА ОДРЕЂЕНЕ НАМЕНЕ. Погледајте
+GNU General Public лиценцу за више детаља.
+	</string>
+  <string name="title_about_dictionary">Речник:</string>
+  <string name="title_about_ui_translation">Локализација:</string>
+  <string name="title_about_translation_request">Помозите у превођењу или побољшању апликација на ваш језик, на http://crowdin.net/project/dictionaryformids</string>
+  <string name="title_information">Инфо</string>
+  <string name="title_welcome">Добродошли!</string>
+  <string name="title_seconds">%1$d сек</string>
+  <string name="msg_first_run">Изгледа да сте покренули програм први пут! Одаберите речник.</string>
+  <string name="msg_slow_archive_loading">Превод је отказан после паузе.\nМогли бисте убрзати превод отпакивањем архивираних речника у фолдер на меморијској, уз коришћење ове фасцикле као речник. Алтернативно можете да повећате тајмаут у дијалогу подешавања.</string>
+  <string name="msg_parsing_error">Грешка приликом анализе.\n\n%1$s</string>
+  <string name="msg_extract_dictionary">Одабрана архива се не може учитати, али изгледа да има компресовани речник. Отпакујте јар фајл прво.</string>
+  <string-array name="search_mode">
+    <item>Стандардно</item>
+    <item>Речи које се поклапају</item>
+    <item>Речи које почињу</item>
+    <item>Речи које садрже</item>
+  </string-array>
+  <string name="title_help">DictionaryForMIDs Помоћ</string>
+  <string name="desc_help">Користите специјалне знакове за бољу претрагу:\n%1$c означава серију карактера\n%2$c означава карактер\n\nЗа контролу претраге:\n%3$c када карактер даје резултате који тако почињу\n%4$c када се резултати завршавају са њим.\n\nОбратите пажњу: додавање специјалних знакова мења подешавања режима претраге.</string>
+  <string name="desc_see_website">За више информација погледајте:\n%1$s</string>
+  <string name="tab_load_recent">Скорашње</string>
+  <string name="tab_load_from_file">Из фајла</string>
+  <string name="tab_load_included">Садржано</string>
+  <string name="tab_load_download">Преузми</string>
+  <string name="title_activity_about">О екран</string>
+  <string name="title_activity_help">Екран за помоч</string>
+  <string name="title_activity_choose_dictionary">Одабери речник</string>
+  <string name="title_activity_file_list">Одабери речник</string>
+  <string name="title_activity_dictionary_list">Одабери речник</string>
+  <string name="title_activity_recent_list">Одабери речник</string>
+  <string name="title_activity_preferences">Поставке</string>
+  <string name="title_activity_install_dictionary">Инсталирај речник</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_remove_from_list">Уклони са листе</string>
+  <string name="app_description">DictionaryForMIDs је вишејезични речник за телефоне и длановнике</string>
+  <string name="hint_enter_word">Унесите реч за превод</string>
+  <string name="hint_filter">Филтер</string>
+  <string name="title_pref_search_options">Опције претраге</string>
+  <string name="title_pref_search_mode">Режим претраге</string>
+  <string name="title_pref_max_results">Макс. резултата</string>
+  <string name="title_pref_timeout">Пауза за претрагу</string>
+  <string name="title_pref_search_as_you_type">Тражи према типу</string>
+  <string name="title_pref_display_options">Прикажи опције</string>
+  <string name="title_pref_result_font_size">Величина фонта по резултатима</string>
+  <string name="title_pref_ignore_font_styles">Користи системске стилове</string>
+  <string name="title_pref_language_code">Језик</string>
+  <string name="title_pref_advanced_features">Напредне функције</string>
+  <string name="title_pref_enable_starred_words">Омогући означене речи</string>
+  <string name="title_pref_theme">Тема</string>
+  <string name="title_default_language_code">Подразумевано</string>
+  <string name="summary_pref_ignore_font_style_checked">Резултати се приказују по стилу коришћеном у речнику.</string>
+  <string name="summary_pref_ignore_font_style_unchecked">Резултати се приказују по системском стилу.</string>
+  <string name="language_english">Енглески</string>
+  <string name="language_esperanto">Есперанто</string>
+  <string name="language_vietnamese">Вијетнамски</string>
+  <string name="language_chinese">Кинески</string>
+  <string name="language_japanese">Јапански</string>
+  <string name="language_thai">Тајландски</string>
+  <string name="language_hindi">Хинди</string>
+  <string name="language_indonesian">Индонежански</string>
+  <string name="language_french">Француски</string>
+  <string name="language_spanish">Шпански</string>
+  <string name="language_german">Немачки</string>
+  <string name="language_italian">Италијански</string>
+  <string name="language_latin">Латински</string>
+  <string name="language_russian">Руски</string>
+  <string name="language_arabic">Арапски</string>
+  <string name="language_czech">Чешки</string>
+  <string name="language_slovak">Словачки</string>
+  <string name="language_bulgarian">Бугарски</string>
+  <string name="language_catalan">Каталонски</string>
+  <string name="language_persian">Персијски</string>
+  <string name="language_finnish">Фински</string>
+  <string name="language_greek">Грчки</string>
+  <string name="language_hebrew">Хебрејски</string>
+  <string name="language_croatian">Хрватски</string>
+  <string name="language_hungarian">Мађарски</string>
+  <string name="language_lithuanian">Литвански</string>
+  <string name="language_dutch">Холандски</string>
+  <string name="language_polish">Пољски</string>
+  <string name="language_portuguese">Португалски</string>
+  <string name="language_swedish">Шведски</string>
+  <string name="language_norwegian">Норвешки</string>
+  <string name="language_turkish">Турски</string>
+  <string name="language_tagalog">Тагалог</string>
+  <string name="language_tamil">Тамил</string>
+  <string name="language_turkmen">Туркеминстански</string>
+  <string name="language_danish">Дански</string>
+  <string name="language_korean">Корејски</string>
+  <string name="language_swahili">Свахили</string>
+  <string name="load_dictionary_button">Још&#8230;</string>
+</resources>

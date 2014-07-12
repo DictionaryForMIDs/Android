@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">Galego</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">Xesús M. Mosquera - @estaengalego</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">Ningún ficheiro atopado.</string>
+  <string name="to_top">/ (superior)</string>
+  <string name="to_upper_level">.. (arriba)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">Agarda por favor</string>
+  <string name="msg_searching">A procurar&#8230;</string>
+  <string name="copy_all">Copiar todo</string>
+  <string name="copy_word">Copiar: %1$s</string>
+  <string name="not_found">non atopado</string>
+  <string name="no_included_dictionaries">Non se atoparon dicionaros.\n\nToca aquí para descargar un.</string>
+  <string name="starred_words_current_dictionary">Actual: %1$d</string>
+  <string name="msg_installation_finished">Dicionario instalado!</string>
+  <string name="msg_list_already_downloaded">A listaxe xa se está a descargar.</string>
+  <string name="msg_installation_error">Erro de instalación</string>
+  <string name="msg_external_storage_inaccessible">O almacenamento externo non está accesible neste momento.</string>
+  <string name="title_exception">Excepción</string>
+  <string name="title_activity_starred_words">Palabras favoritas</string>
+  <string name="exception_failed_create_directory">Erro ao crear o directorio: %1$s</string>
+  <string name="exception_failed_create_file">Erro ao crear o ficheiro: %1$s</string>
+  <string name="exception_failed_delete_file">Erro ao eliminar o ficheiro: %1$s</string>
+  <string name="msg_installation_complete">Instalación completa</string>
+  <string name="title_installation_status">Estado da instalación</string>
+  <string name="msg_installing_dictionary">A instalar dicionario&#8230;</string>
+  <string name="msg_installation_aborted">Instalación cancelada polo usuario.</string>
+  <string name="msg_installation_status">Estado: %1$.2f%%</string>
+  <string name="unit_byte">B</string>
+  <string name="unit_kilo_byte">KB</string>
+  <string name="unit_mega_byte">MB</string>
+  <string name="unit_giga_byte">GB</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_maximum">Atopáronse máis de %1$d resultados (o máximo).</string>
+  <string name="results_found_cancel">%1$d resultado(s) atopados antes de cancelar.</string>
+  <string name="results_found_timeout">%1$d resultado(s) atopado(s) antes de esgotar o tempo límite.</string>
+  <string name="results_found">%1$d resultados atopados.</string>
+  <string name="results_found_one">1 resultado atopado.</string>
+  <string name="no_results_found">Sentímolo, ningún resultado atopado.</string>
+  <string-array name="themes">
+    <item>Sistema predefinido</item>
+    <item>Escuro</item>
+    <item>Claro</item>
+  </string-array>
+  <string name="title_translation_error">Houbo un erro na tradución.</string>
+  <string name="msg_translation_error">Detalles:\n\n%1$s</string>
+  <string name="msg_translation_cancelled">Tradución cancelada.</string>
+  <string name="menu_dictionary">Dicionario</string>
+  <string name="menu_preferences">Preferencias</string>
+  <string name="menu_about">Acerca de</string>
+  <string name="menu_help">Axuda</string>
+  <string name="menu_export_all_starred">Exportar todo</string>
+  <string name="menu_download_dictionaries">Descargar manualmente&#8230;</string>
+  <string name="button_do_not_show_again">Non volver mostrar</string>
+  <string name="button_exit">Saír</string>
+  <string name="msg_dictionary_load_error">Erro ao cargar o dicionario.</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="msg_no_dictionary">O elemento seleccionado non semella ser un dicionario.</string>
+  <string name="title_load_dictionary">Cargar dicionario&#8230;</string>
+  <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="title_load_dictionary_first">Carga un dicionario primeiro, por favor.</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">Versión: %1$s</string>
+  <string name="title_about_dictionary">Dicionario:</string>
+  <string name="title_about_translation_request">Axúdanos a traducir a aplicación ao teu idioma ou mellora a xa existente en http://crowdin.net/project/dictionaryformids</string>
+  <string name="title_information">Información</string>
+  <string name="title_welcome">Benvido/a!</string>
+  <string name="title_seconds">%1$d seg</string>
+  <string-array name="search_mode">
+    <item>Estándar</item>
+    <item>Words matching search term</item>
+    <item>Words starting with search term</item>
+    <item>Words including search term</item>
+  </string-array>
+  <string name="tab_load_download">Descargar</string>
+  <string name="title_activity_help">Pantalla de axuda</string>
+  <string name="title_activity_choose_dictionary">Elixir dicionario</string>
+  <string name="title_activity_file_list">Elixir dicionario</string>
+  <string name="title_activity_dictionary_list">Elixir dicionario</string>
+  <string name="title_activity_recent_list">Elixir dicionario</string>
+  <string name="title_activity_preferences">Preferencias</string>
+  <string name="title_activity_install_dictionary">Instalar dicionario</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_remove_from_list">Eliminar da listaxe</string>
+  <string name="app_description">DictionaryForMIDs é un dicionario multilingüe gratuíto para móbiles e PDA</string>
+  <string name="hint_enter_word">Inserir unha palabra para traducir</string>
+  <string name="title_pref_search_options">Opcións das buscas</string>
+  <string name="title_pref_search_mode">Modo de busca</string>
+  <string name="title_pref_max_results">Máximo de resultados</string>
+  <string name="title_pref_timeout">Tempo límite das buscas</string>
+  <string name="title_pref_search_as_you_type">Buscar mentres se escribe</string>
+  <string name="title_pref_display_options">Opcións de visualización</string>
+  <string name="title_pref_result_font_size">Tamaño da fonte dos resultados</string>
+  <string name="title_pref_ignore_font_styles">Utilizar estilos do sistema</string>
+  <string name="title_pref_language_code">Idioma</string>
+  <string name="title_pref_advanced_features">Características avanzadas</string>
+  <string name="title_pref_enable_starred_words">Activar as palabras favoritas</string>
+  <string name="title_pref_theme">Tema</string>
+  <string name="title_default_language_code">Predefinido</string>
+  <string name="summary_pref_ignore_font_style_checked">Os resultados móstranse seguindo o estilo definido polo usuario.</string>
+  <string name="summary_pref_ignore_font_style_unchecked">Os resultados móstranse seguindo o estilo do sistema.</string>
+  <string name="language_english">Inglés</string>
+  <string name="language_esperanto">Esperanto</string>
+  <string name="language_vietnamese">Vietnamita</string>
+  <string name="language_chinese">Chinés</string>
+  <string name="language_japanese">Xaponés</string>
+  <string name="language_thai">Tailandés</string>
+  <string name="language_hindi">Hindú</string>
+  <string name="language_indonesian">Indonesio</string>
+  <string name="language_french">Francés</string>
+  <string name="language_spanish">Español</string>
+  <string name="language_german">Alemán</string>
+  <string name="language_italian">Italiano</string>
+  <string name="language_latin">Latín</string>
+  <string name="language_russian">Ruso</string>
+  <string name="language_arabic">Árabe</string>
+  <string name="language_czech">Checo</string>
+  <string name="language_slovak">Eslovaco</string>
+  <string name="language_bulgarian">Búlgaro</string>
+  <string name="language_catalan">Catalán</string>
+  <string name="language_persian">Persa</string>
+  <string name="language_finnish">Finés</string>
+  <string name="language_greek">Grego</string>
+  <string name="language_hebrew">Hebreo</string>
+  <string name="language_croatian">Croata</string>
+  <string name="language_hungarian">Húngaro</string>
+  <string name="language_lithuanian">Lituano</string>
+  <string name="language_dutch">Holandés</string>
+  <string name="language_polish">Polaco</string>
+  <string name="language_portuguese">Portugués</string>
+  <string name="language_swedish">Sueco</string>
+  <string name="language_norwegian">Noruegués</string>
+  <string name="language_turkish">Turco</string>
+  <string name="language_tagalog">Tagalog</string>
+  <string name="language_tamil">Tamil</string>
+  <string name="language_turkmen">Turcomán</string>
+  <string name="language_danish">Dinamarqués</string>
+  <string name="language_korean">Coreano</string>
+  <string name="language_swahili">Suahili</string>
+  <string name="load_dictionary_button">Máis&#8230;</string>
+  <plurals name="open_dictionary_drawer">
+    <item quantity="one"><![CDATA[Un idioma activo. <a href="#">Cambiar&#8230;</a>]]></item>
+    <item quantity="other"><![CDATA[%1$d idiomas activos. <a href="#">Cambiar&#8230;</a>]]></item>
+  </plurals>
+</resources>

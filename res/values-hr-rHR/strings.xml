@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">Hrvatski</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">David Boca</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">Nema pronađenih datoteka.</string>
+  <string name="to_top">/ (vrh)</string>
+  <string name="to_upper_level">.. (gore)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">Molimo pričekajte</string>
+  <string name="msg_searching">Pretraživanje&#8230;</string>
+  <string name="copy_all">Kopiraj sve</string>
+  <string name="copy_word">Kopiraj: %1$s</string>
+  <string name="not_found">nije pronađeno</string>
+  <string name="no_included_dictionaries">Rječnici nisu pronađeni.\n\nDodirnite ovdje kako biste preuzeli jedan.</string>
+</resources>

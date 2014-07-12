@@ -45,25 +45,51 @@
 	<string name="title_format_translation_direction_separator">\t</string>
 	<string-array name="language_codes">
 		<item>@string/title_default_language_code</item>
+        <item>العربية</item>
+        <item>Български</item>
 		<item>Dansk</item>
+        <item>Deutsch</item>
+        <item>Ελληνικά</item>
 		<item>English</item>
 		<item>Español</item>
 		<item>Esperanto</item>
+        <item>Français</item>
 		<item>Magyar</item>
+        <item>Bahasa Melayu</item>
+        <item>Nederlands</item>
+        <item>Português-Brasil</item>
+        <item>Português Europeu</item>
+        <item>Русский</item>
+        <item>српски</item>
+        <item>Slovensky</item>
 		<item>தமிழ்</item>
 		<item>اردو</item>
+        <item>Tiếng Việt</item>
 		<item>简体中文</item>
 		<item>繁體中文</item>
 	</string-array>
 	<string-array name="language_code_values">
 		<item></item>
-		<item>da</item>
+        <item>ar-SA</item>
+        <item>bg-BG</item>
+		<item>da-DK</item>
+        <item>de-DE</item>
+        <item>el-GR</item>
 		<item>en</item>
-		<item>es</item>
+		<item>es-ES</item>
 		<item>eo</item>
-		<item>hu</item>
-		<item>ta</item>
+        <item>fr-FR</item>
+		<item>hu-HU</item>
+        <item>ms-MY</item>
+        <item>nl-NL</item>
+        <item>pt-BR</item>
+        <item>pt-PT</item>
+        <item>ru-RU</item>
+        <item>sr-SP</item>
+        <item>sk-SK</item>
+		<item>ta-IN</item>
 		<item>ur-PK</item>
+        <item>vi-VN</item>
 		<item>zh-CN</item>
 		<item>zh-TW</item>
 	</string-array>

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">العربية</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">محمد ماهر</string>
+  <string name="app_name">قاموس MIDs</string>
+  <string name="no_files">لم يتم العثور على الملفات.</string>
+  <string name="to_top">/(أعلى)</string>
+  <string name="to_upper_level">.. (أعلى)</string>
+  <string name="to_sdcard">/بطاقة الذاكرة</string>
+  <string name="title_please_wait">يرجى الانتظار</string>
+  <string name="msg_searching">جاري البحث...</string>
+  <string name="copy_all">نسخ الكل</string>
+  <string name="copy_word">نسخ: %1$s</string>
+  <string name="not_found">لم يتم العثور</string>
+  <string name="no_included_dictionaries">لم يتم ايجاد قاموس منظم.\n\nاضغط هنا لتحميل واحد.</string>
+  <string name="no_starred_words">لا توجد كلمات مفضلة.\n\n انقر على النجمة لجعل الكلمة في المفضلة.</string>
+  <string name="starred_words_current_dictionary">الحالي:%1$d</string>
+  <string name="starred_words_all_dictionaries">الجميع:%1$d</string>
+  <string name="no_recent_dictionaries">لا توجد قواميس محمله.\n\n انقر هنا لتحميل واحد.</string>
+  <string name="loading_download_dictionaries">يرجى الانتظار.\n\n تحميل القواميس المتوفرة&#8230;</string>
+  <string name="no_download_dictionaries">عذراً، لا يوجد حاليا إلا القواميس المتوفرة للتحميل.</string>
+  <string name="msg_error_downloading_available_dictionaries">حدث خطأ أثناء تحميل قائمة القواميس المتوفرة . \n\n\n انقر للمحاولة مجددا.\n\n\n التفاصيل:\n%1$s</string>
+  <string name="msg_error_dictionary_not_found">القاموس %1$d غير متوفر .</string>
+  <string name="msg_error_accessing_storage">الذاكرة الخارجية غير متوفرة. يرجى التحقق من أن جهازك غير متصل كوحدة تخزين.\n\n حالة التخزين الحالي :%1$s</string>
+  <string name="msg_suggest_update">الإصدار الخاص بك من قاموس MIDs قديم. يرجى تحديثه قبل تنزيل القواميس .\n هل تريد تحديثه الأن ؟</string>
+  <string name="msg_suggest_update_with_message">الإصدار الخاص بك من قاموس MIDs قديم. يرجى تحديثه قبل تنزيل القواميس\n .هل تريد تحديثه الأن ؟\n\n التفاصيل:%1$s</string>
+  <string name="msg_confirm_installation">تحميل وتثبيت قاموس \"%1$s\" ؟ \n الحجم: غير معروف</string>
+  <string name="msg_confirm_installation_size">تحميل وتثبيت قاموس \"%1$s\" ؟ \n الحجم: %2$s</string>
+  <string name="msg_installation_exception">حدث استثناء أثناء تحميل : \n%1$s</string>
+  <string name="msg_installation_exception_cause">حدث استثناء أثناء تحميل : \n%1$s\n\n السبب:\n%1$s</string>
+  <string name="msg_installation_already_started">عذراً، التثبيت بالفعل نشط.</string>
+  <string name="msg_installation_started">التثبيت قد يستغرق بعض الوقت، ويمكنك الاستمرار في استخدام التطبيق.</string>
+  <string name="msg_auto_installation_started">جاري تحميل \"%1$s\" القاموس قد يستغرق هذا بعض الوقت .\n\n يمكنك إنهاء التطبيق، و يظهر التقدم في شريط الحالة .</string>
+  <string name="msg_installation_finished">تم تثبيت القاموس !</string>
+  <string name="msg_list_already_downloaded">جاري تحميل القائمة بالفعل.</string>
+  <string name="msg_installation_error">خطأ في التثبيت</string>
+  <string name="msg_external_storage_inaccessible">لا يمكن الوصول إلى الذاكرة الخارجية حاليا .</string>
+  <string name="msg_exported_starred_words">تم تصدير الكلمات إلى الذاكرة الخارجية بنجاح.</string>
+  <string name="msg_error_parsing_integer_preference">آسف، لا يمكن التعرف على العدد. عادت القيمة بشكل افتراضي.</string>
+  <string name="title_exception">الاستثناء</string>
+  <string name="title_activity_starred_words">كلمات مفضلة</string>
+  <string name="exception_failed_create_directory">فشل إنشاء الدليل: %1$s</string>
+  <string name="exception_failed_create_file">فشل في إنشاء ملف: %1$s</string>
+  <string name="exception_failed_delete_file">فشل في إزالة الملف: %1$s</string>
+  <string name="title_installation_finished">انتهى</string>
+  <string name="msg_successfully_installed_dictionary">تم تثبيت القاموس.</string>
+  <string name="msg_installation_complete">إنتهى التثبيت</string>
+  <string name="title_installation_status">حالة التثبيت</string>
+  <string name="msg_installing_dictionary">تثبيت القاموس...</string>
+  <string name="msg_installation_aborted">إحباط التثبيت من قبل المستخدم.</string>
+  <string name="msg_installation_status">الحالة: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">في أرشيف \"%1$s\" لا يوجد أي إدخال مطابق لنمط التالي \"%2$s\"</string>
+  <string name="unit_byte">B</string>
+  <string name="unit_kilo_byte">KB</string>
+  <string name="unit_mega_byte">MB</string>
+  <string name="unit_giga_byte">GB</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_maximum">أكثر من %1$d (الحد الأقصى) النتائج المتوفرة .</string>
+  <string name="results_found_cancel">%1$d عدد النتائج (s) وجدت قبل الإلغاء .</string>
+  <string name="results_found_timeout">%1$d عدد النتائج (s) وجدت قبل المهلة .</string>
+  <string name="results_found">%1$d العثور على النتائج.</string>
+  <string name="results_found_one">تم العثور على 1 نتيجة.</string>
+  <string name="no_results_found">عذراً، لم يتم العثور على أي نتائج.</string>
+  <string-array name="font_sizes">
+    <item>10sp</item>
+    <item>11sp</item>
+    <item>12sp</item>
+    <item>13sp</item>
+    <item>14sp</item>
+    <item>15sp</item>
+    <item>16sp</item>
+    <item>17sp</item>
+    <item>18sp</item>
+    <item>19sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
+  </string-array>
+  <string-array name="themes">
+    <item>النمط الافتراضي للنظام</item>
+    <item>غامق</item>
+    <item>فاتح</item>
+  </string-array>
+  <string name="title_translation_error">حدث خطأ في الترجمة.</string>
+  <string name="msg_translation_error">التفاصيل:\n\n%1$s</string>
+  <string name="msg_translation_cancelled">ألغيت الترجمة.</string>
+  <string name="menu_dictionary">قاموس</string>
+  <string name="menu_preferences">خيارات</string>
+  <string name="menu_about">حول</string>
+  <string name="menu_help">تعليمات</string>
+  <string name="menu_starred">المفضلة</string>
+  <string name="menu_export_all_starred">تصدير الكل .</string>
+  <string name="menu_download_dictionaries">تحميل يدوي...</string>
+  <string name="menu_find_hidden_dictionaries">إعادة إضافة المخفية</string>
+  <string name="menu_clear_recent_dictionary_list">مسح الأخيرة...</string>
+  <string name="msg_enter_word_first">يرجى إدخال الكلمة أولاً.</string>
+  <string name="menu_reload_dictionary_list">تحديث القائمة</string>
+  <string name="menu_cancel_installation">إلغاء التثبيت</string>
+  <string name="menu_reinstall_default_dictionary">إعادة تثبيت القاموس الافتراضي</string>
+  <string name="msg_load_dictionary_first">يرجى تحميل القاموس أولاً.</string>
+  <string name="msg_reload_dictionary">يرجى إعادة تحميل القاموس.</string>
+  <string name="msg_exception"> حدث استثناء :\n%1$s</string>
+  <string name="msg_restart_app_after_settings_changed">أعد تشغيل التطبيق لتصبح الإعدادات فعالة .</string>
+  <string name="button_ok">موافق</string>
+  <string name="button_cancel">إلغاء</string>
+  <string name="button_do_not_show_again">لا تظهر مرة أخرى</string>
+  <string name="button_exit">خروج</string>
+  <string name="msg_download_dictionaries">لتحميل القاموس اتبع الخطوات الأربعة التالية (لنفترض أن لديك تطبيقAstro لإدارة الملفات)\n\n اختر التحميل من الموقع سوف يفتح ذلك بعد تأكيد مربع الحوار.ملاحظة :فقط للقواميس 2.4.4 أو أعلى من ذلك.\n\n . بعد ذلك استخرج الملفات إلى الذاكرة .\n\n  استخرج ملف jar إلى الذاكرة. من خلال القاموس حدد الملف. يمكنك\n\n استخراج الملفات من خلال الكمبيوتر و تطبيق الخطوات السابقة .</string>
+  <string name="msg_clear_recent_dictionaries_list">مسح قائمة القواميس الأخيرة؟</string>
+  <string name="msg_cancel_installation">إلغاء التثبيت الحالي؟</string>
+  <string name="msg_load_dictionary">تحميل القاموس الجديد الآن؟ \n\n يمكن دائماً تحميله لاحقاً من قائمة القواميس الأخيرة.</string>
+  <string name="button_load_dictionary_from_current_directory">تحميل القاموس من الدليل الحالي</string>
+  <string name="msg_dictionary_error">خطأ في القاموس</string>
+  <string name="msg_dictionary_not_found">لا يمكن تحميل القاموس .\n\n يمكن تحديد القاموس في مربع الحوار التالي.</string>
+  <string name="msg_dictionary_load_error">حدث خطأ أثناء تحميل القاموس.</string>
+  <string name="msg_internal_dictionary_load_error"> حدث خطأ أثناء تحميل القواميس الداخلية.\n\n%1$s</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="msg_no_dictionary">العنصر المحدد لا يبدو وكأنها قاموس.</string>
+  <string name="title_load_dictionary">تحميل القاموس...</string>
+  <string name="msg_auto_install">أنه يبدو وكأنه لم تقم بعد بتثبيت القاموس الأفتراضي.\n\n هل ترغب في تحميله وتثبيته الآن؟</string>
+  <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="title_load_dictionary_first">يرجى تحميل القاموس أولاً.</string>
+  <string name="title_about_heading">تطبيق القاموس من MIDs</string>
+  <string name="title_about_copyright_owner">حقوق الطبع والنشر لجيرت نوبر (dict@kugihan.de) واخيم ويميرت (axw.dev@gmail.com) وغيرهم من المساهمين.</string>
+  <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+  <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">الإصدار: %1$s</string>
+  <string name="title_about_copyright">تطبيق جافا 
+قاموس MIDs هو برنامج مجاني: يمكنك إعادة توزيعه و / أو تعديله
+     تحت شروط رخصة جنو العمومية والتي نشرتها
+    مؤسسة البرمجيات الحرة؛ إما الإصدار 2 من الرخصة، أو
+    (باختيارك) أي إصدار لاحق. انظر ملف حقوق الطبع و النشر أو http://www.gnu.org/licenses يتم توزيع البرنامج .هذا على أمل أن يكون مفيدا،
+    ولكن من دون اي ضمانات؛ حتى دون ضمان ضمني من
+    التسويق أو الملاءمة لغرض معين. يجب رؤية
+    رخصة جنو العمومية العامة لمزيد من التفاصيل.</string>
+  <string name="title_about_dictionary">قاموس:</string>
+  <string name="title_about_ui_translation">التعريب:</string>
+  <string name="title_about_translation_request">ساعدنا على ترجمة هذا التطبيق إلى اللغة الخاصة بك أو تحسين الترجمات الموجودة في http://crowdin.net/project/dictionaryformids</string>
+  <string name="title_information">معلومات</string>
+  <string name="title_welcome">مرحبا!</string>
+  <string name="title_seconds">%1$d ثانية</string>
+  <string name="msg_first_run">يبدو أنك تقوم بتشغيل هذا البرنامج لأول مرة! يرجى تحديد القاموس باستخدام الشاشة التالية.</string>
+  <string name="msg_slow_archive_loading">تم إلغاء الترجمة بعد المهلة.\n يمكنك تسريع الترجمة عن طريق استخراج القاموس المؤرش إلى مجلد على بطاقة الذاكرة المؤمنة الخاص بك واختيار المجلد مثل القاموس. بدلا من ذلك يمكنك زيادة المهلة في مربع الحوار في الخيارات.</string>
+  <string name="msg_parsing_error">خطأ أثناء تحليل الموارد.\n\n%1$s</string>
+  <string name="msg_extract_dictionary">الأرشيف المحدد لا يمكن تحميلها، ولكن يبدو أنه يشمل قاموس مضغوط. يرجى استخراج ملف jar أولاً.</string>
+  <string-array name="search_mode">
+    <item>معيار</item>
+    <item>عبارة مطابقة لكلمات البحث</item>
+    <item>الكلمات التي تبدأ بمصطلح البحث</item>
+    <item>الكلمات بما في ذلك مصطلح البحث</item>
+  </string-array>
+  <string name="title_help">مساعدة قاموس MIDs</string>
+  <string name="desc_help">استخدام أحرف البدل لصقل بحثك \n%1$cليطابق أي سلسلة من الأحرف \n%2$cيطابق أي حرف فردي\n\n للتحكم في خاصية البحث :\n%3$c عند إدخال أول حرف تظهر لك النتائج %4$c \nبعد الإدخال تنتهي النتائج معها \n\nالرجاء ملاحظة: عند إضافة أحرف البدل يسهل عليك البحث.</string>
+  <string name="desc_see_website">راجع الموقع لمزيد من المعلومات:\n%1$s</string>
+  <string name="tab_load_recent">الأخيرة</string>
+  <string name="tab_load_from_file">من ملف</string>
+  <string name="tab_load_included">شمل</string>
+  <string name="tab_load_download">تحميل</string>
+  <string name="title_activity_about">حول الشاشة</string>
+  <string name="title_activity_help">شاشة التعليمات</string>
+  <string name="title_activity_choose_dictionary">اختر القاموس</string>
+  <string name="title_activity_file_list">اختر القاموس</string>
+  <string name="title_activity_dictionary_list">اختر القاموس</string>
+  <string name="title_activity_recent_list">اختر القاموس</string>
+  <string name="title_activity_preferences">خيارات</string>
+  <string name="title_activity_install_dictionary">تثبيت القاموس</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_remove_from_list">حذف من القائمة</string>
+  <string name="app_description"> قاموس MIDs متعدد اللغات مجاني للهواتف المحمولة وأجهزة المساعد الرقمي الشخصي</string>
+  <string name="hint_enter_word">أدخل كلمة لترجمة</string>
+  <string name="hint_filter">تصفية</string>
+  <string name="title_pref_search_options">خيارات البحث</string>
+  <string name="title_pref_search_mode">نمط البحث</string>
+  <string name="title_pref_max_results">اكثر. النتائج</string>
+  <string name="title_pref_timeout">مهلة البحث</string>
+  <string name="title_pref_search_as_you_type">البحث أثناء الكتابة</string>
+  <string name="title_pref_display_options">خيارات العرض</string>
+  <string name="title_pref_result_font_size">حجم الخط النتائج</string>
+  <string name="title_pref_ignore_font_styles">استخدم نمط النظام</string>
+  <string name="title_pref_language_code">اللغة</string>
+  <string name="title_pref_advanced_features">مزايا متقدمة</string>
+  <string name="title_pref_enable_starred_words">تمكين تفضيل الكلمات</string>
+  <string name="title_pref_theme">الخلفية</string>
+  <string name="title_default_language_code">الافتراضي</string>
+  <string name="summary_pref_ignore_font_style_checked">يتم عرض النتائج باستخدام النمط المحدد من القاموس.</string>
+  <string name="summary_pref_ignore_font_style_unchecked">يتم عرض النتائج باستخدام نمط النظام.</string>
+  <string name="language_english">الإنكليزية</string>
+  <string name="language_esperanto">الإسبرانتو</string>
+  <string name="language_vietnamese">الفيتنامية</string>
+  <string name="language_chinese">الصينية</string>
+  <string name="language_japanese">اليابانية</string>
+  <string name="language_thai">التايلاندية</string>
+  <string name="language_hindi">الهندية</string>
+  <string name="language_indonesian">الأندونيسية</string>
+  <string name="language_french">الفرنسية</string>
+  <string name="language_spanish">الإسبانية</string>
+  <string name="language_german">الألمانية</string>
+  <string name="language_italian">الإيطالية</string>
+  <string name="language_latin">اللاتينية</string>
+  <string name="language_russian">الروسية</string>
+  <string name="language_arabic">العربية</string>
+  <string name="language_czech">التشيكية</string>
+  <string name="language_slovak">السلوفاكية</string>
+  <string name="language_bulgarian">البلغارية</string>
+  <string name="language_catalan">الكاتالونية</string>
+  <string name="language_persian">الفارسية</string>
+  <string name="language_finnish">الفنلندية</string>
+  <string name="language_greek">اليونانية</string>
+  <string name="language_hebrew">العبرية</string>
+  <string name="language_croatian">الكرواتية</string>
+  <string name="language_hungarian">المجرية</string>
+  <string name="language_lithuanian">الليتوانية</string>
+  <string name="language_dutch">الهولندية</string>
+  <string name="language_polish">البولندية</string>
+  <string name="language_portuguese">البرتغالية</string>
+  <string name="language_swedish">السويدية</string>
+  <string name="language_norwegian">النرويجية ‏</string>
+  <string name="language_turkish">التركية</string>
+  <string name="language_tagalog">لغة التاجالوج</string>
+  <string name="language_tamil">التاميلية</string>
+  <string name="language_turkmen">التركمانية</string>
+  <string name="language_danish">الدانماركية</string>
+  <string name="language_korean">الكورية</string>
+  <string name="language_swahili">السواحلية</string>
+  <string name="load_dictionary_button">أكثر...</string>
+  <plurals name="open_dictionary_drawer">
+    <item quantity="zero"><![CDATA[لغات%1$d نشطه. <a href="#">تغيير…</a>]]></item>
+    <item quantity="one"><![CDATA[لغة نشطة. <a href="#">تغيير&#8230;</a>]]></item>
+    <item quantity="two"><![CDATA[لغة نشطة%1$d. <a href="#">تغيير…</a>]]></item>
+    <item quantity="few"><![CDATA[لغة نشطة%1$d. <a href="#">تغيير…</a>]]></item>
+    <item quantity="many"><![CDATA[لغة نشطة%1$d. <a href="#">تغيير…</a>]]></item>
+    <item quantity="other"><![CDATA[لغة نشطة%1$d. <a href="#">تغيير&#8230;</a>]]></item>
+  </plurals>
+</resources>

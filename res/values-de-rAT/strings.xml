@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">Englisch</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">Keine Daten gefunden.</string>
+  <string name="to_top">/(nach oben)</string>
+  <string name="to_upper_level">.. (up)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">Bitte warten</string>
+  <string name="msg_searching">Suche&#8230;</string>
+  <string name="copy_all">Alle kopieren</string>
+  <string name="copy_word">Kopiere: %1$s</string>
+  <string name="not_found">Nicht gefunden</string>
+  <string name="no_included_dictionaries">Keine Wörterbücher gefunden.\n\nHier drücken um welche herunterzuladen.</string>
+  <string name="no_starred_words">Keine favorisierten Wörter gefunden.\n\nBerühren Sie das Sternsymbol in einem Wörterbucheintrag um ihn zu favorisieren.</string>
+  <string name="starred_words_current_dictionary">Aktuell: %1$d</string>
+  <string name="starred_words_all_dictionaries">Alle:%1$d</string>
+  <string name="no_recent_dictionaries">Keine kürzlich geladenen Wörterbücher gefunden.\n\nHier berühren um Wörterbücher herunterzuladen.</string>
+  <string name="loading_download_dictionaries">Bitte warten.\n\nVerfügbare Wörterbücher werden geladen&#8230;</string>
+  <string name="no_download_dictionaries">Verzeihung, momentan stehen keine Wörterbücher zum Download bereit.</string>
+  <string name="msg_error_downloading_available_dictionaries">Beim Download der Liste der verfügbaren Wörterbücher ist ein Fehler aufgetreten.\n\n\nHier berühren um es erneut zu versuchen.\n\n\nDetails:\n%1$s</string>
+  <string name="msg_error_dictionary_not_found">Das Wörterbuch mit der ID %1$d ist im Moment nicht verfügbar.</string>
+  <string name="msg_error_accessing_storage">Zugriff auf externen Speicher ist nicht möglich. Bitte stellen Sie sicher, dass das Gerät nicht über USB verbundenist.\n\nAktueller Speicherstand: %1$s</string>
+  <string name="msg_suggest_update">Ihre Version des DictionaryForMIDs ist veraltet. Bitte führen Sie vor dem Download von Wörterbüchern ein Update durch.\nJetzt Updaten?</string>
+  <string name="msg_suggest_update_with_message">Deine DictionaryForMIDs-Version ist nicht aktuell. Bitte aktualisiere sie, bevor du neue Wörterbücher herunterlädst.\nJett aktualisieren?\n\nDetails:%1$s</string>
+  <string name="msg_confirm_installation">\"%1$s\" Wörterbuch herunterladen und installieren?\nGröße: unbekannt</string>
+  <string name="msg_confirm_installation_size">\"%1$s\" Wörterbuch herunterladen und installieren?\nGröße: %2$s</string>
+  <string name="msg_installation_exception">Ausnahmefehler während der Installation:\n%1$s</string>
+  <string name="msg_installation_exception_cause">Ausnahmefehler während der Installation:\n%1$s\n\nGrund:\n%1$s</string>
+  <string name="msg_installation_already_started">Es ist bereits eine Installation aktiv.</string>
+  <string name="msg_installation_started">Die Installation kann etwas dauern, du kannst deine Anwendung weiter verwenden.</string>
+  <string name="msg_auto_installation_started">Das Wörterbuch \"%1$s\" wird heruntergeladen, Das kann etwas dauern.\n\nDu kannst die Anwendung jetzt beenden, der Fortschritt wird in der Statusleiste angezeigt.</string>
+  <string name="msg_installation_finished">Wörterbuch installiert!</string>
+  <string name="msg_list_already_downloaded">Die Liste wird bereits heruntergeladen.</string>
+  <string name="msg_installation_error">Installationsfehler</string>
+  <string name="msg_external_storage_inaccessible">Im Moment kann nicht auf den externen Speicher zugegriffen werden.</string>
+  <string name="msg_exported_starred_words">Die Wörter wurden erfolgreich auf den externen Datenträger gespeichert.</string>
+  <string name="msg_error_parsing_integer_preference">Anzahl wurde nicht erkannt. Die Voreinstellungen wurden übernommen.</string>
+  <string name="title_exception">Ausnahmefehler</string>
+  <string name="title_activity_starred_words">Wörter mit Stern</string>
+  <string name="exception_failed_create_directory">Fehler beim Erstellen von Verzeichnis: %1$s</string>
+  <string name="exception_failed_create_file">Fehler beim Erstellen der Datei:%1$s</string>
+  <string name="exception_failed_delete_file">Fehler beim Entfernen der Datei: %1$s</string>
+  <string name="title_installation_finished">Fertiggestellt</string>
+  <string name="msg_successfully_installed_dictionary">Wörterbuch wurde erfolgreich installiert.</string>
+  <string name="msg_installation_complete">Installation abgeschlossen</string>
+  <string name="title_installation_status">Installationsstatus</string>
+  <string name="msg_installing_dictionary">Wörterbuch wird installiert&#8230;</string>
+  <string name="msg_installation_aborted">Die Installation wurde vom Benutzer abgebrochen.</string>
+  <string name="msg_installation_status">Status: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">Im Archiv \"%1$s\" war kein Eintrag mit folgendem Muster \"%2$s\"</string>
+  <string name="unit_byte">B</string>
+  <string name="title_about_copyright_owner">Copyright von Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) und anderen Mitwirkenden.</string>
+  <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+  <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">Version: %1$s</string>
+  <string name="language_english">Englisch</string>
+</resources>

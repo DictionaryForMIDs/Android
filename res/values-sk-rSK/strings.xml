@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">Slovensky</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">Marián Hikaník, www.mojepreklady.net</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">Nenašli sa žiadne súbory.</string>
+  <string name="to_top">/ (hore)</string>
+  <string name="to_upper_level">.. (nahor)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">Prosím čakajte</string>
+  <string name="msg_searching">Vyhľadáva sa&#8230;</string>
+  <string name="copy_all">Kopírovať všetko</string>
+  <string name="copy_word">Kópia: %1$s</string>
+  <string name="not_found">nenájdené</string>
+  <string name="no_included_dictionaries">Nenašli sa žiadne obsiahnuté slovníky.\n\nStiahnite si nejaký slovník ťuknutím sem.</string>
+  <string name="no_starred_words">Nenašli sa žiadne preferované slová.\n\nZáznam v slovníku označíte hviezdičkou tak, že sa dotknete ikony hviezdičky.</string>
+  <string name="starred_words_current_dictionary">Aktuálne: %1$d</string>
+  <string name="starred_words_all_dictionaries">Všetky: %1$d</string>
+  <string name="no_recent_dictionaries">Nenašli sa žiadne naposledy načítané slovníky: \n\nStiahnite si slovník ťuknutím sem.</string>
+  <string name="loading_download_dictionaries">Prosím čakajte.\n\nNačítavajú sa dostupné slovníky&#8230;</string>
+  <string name="no_download_dictionaries">Prepáčte, momentálne nie sú dostupné na stiahnutie žiadne slovníky.</string>
+  <string name="msg_error_downloading_available_dictionaries">Počas sťahovania zoznamu dostupných slovníkov nastala chyba.\n\n\nPokus zopakujte ťuknutím sem.\n\n\nPodrobnosti:\n%1$s</string>
+  <string name="msg_error_dictionary_not_found">Slovník s identifikátorom %1$d práve nie je dostupný.</string>
+  <string name="msg_error_accessing_storage">Externé úložisko nie je prístupné. Prosím uistite sa, že vaše zariadenie nie je pripojené cez USB.\n\nAktuálny stav úložiska: %1$s</string>
+  <string name="msg_suggest_update">Vaša verzia aplikácie DictionaryForMIDs nie je aktuálna. Prosím aktualizujte ju pred stiahnutím slovníkom.\nChcete vykonať aktualizáciu teraz?</string>
+  <string name="msg_suggest_update_with_message">Vaša verzia aplikácie DictionaryForMIDs nie je aktuálna. Prosím aktualizujte ju pred stiahnutím slovníkov.\nChcete vykonať aktualizáciu teraz?\n\nPodrobnosti: %1$s</string>
+  <string name="msg_confirm_installation">Stiahnuť a nainštalovať slovník \"%1$s\"?\nVeľkosť: neznáma</string>
+  <string name="msg_confirm_installation_size">Stiahnuť a nainštalovať slovník \"%1$s\"?\nVeľkosť: %2$s</string>
+  <string name="msg_installation_exception">Výnimka počas inštalácie:\n%1$s</string>
+  <string name="msg_installation_exception_cause">Výnimka počas inštalácie:\n%1$s\n\nPríčina:\n%1$s</string>
+  <string name="msg_installation_already_started">Prepáčte, inštalácia je už aktívna.</string>
+  <string name="msg_installation_started">Inštalácia môže chvíľu trvať, môžete pokračovať v používaní aplikácie.</string>
+  <string name="msg_auto_installation_started">Sťahuje sa slovník \"%1$s\", čo môže chvíľu trvať.\n\nAplikáciu môžete teraz ukončiť, proces je zobrazovaný v stavovom riadku.</string>
+  <string name="msg_installation_finished">Slovník bol nainštalovaný!</string>
+  <string name="msg_list_already_downloaded">Zoznam už bol stiahnutý.</string>
+  <string name="msg_installation_error">Chyba pri inštalácii</string>
+  <string name="msg_external_storage_inaccessible">Externé úložisko nie je momentálne prístupné.</string>
+  <string name="msg_exported_starred_words">Slová boli úspešne exportované do externého úložiska.</string>
+  <string name="msg_error_parsing_integer_preference">Prepáčte, číslo nie je možné rozpoznať. Hodnota bola vrátená na pôvodnú.</string>
+  <string name="title_exception">Výnimka</string>
+  <string name="title_activity_starred_words">Slová označené hviezdičkou</string>
+  <string name="exception_failed_create_directory">Nepodarilo sa vytvoriť priečinok: %1$s</string>
+  <string name="exception_failed_create_file">Nepodarilo sa vytvoriť súbor: %1$s</string>
+  <string name="exception_failed_delete_file">Nepodarilo sa odstrániť súbor: %1$s</string>
+  <string name="title_installation_finished">Dokončené</string>
+  <string name="msg_successfully_installed_dictionary">Slovník bol úspešne nainštalovaný.</string>
+  <string name="msg_installation_complete">Inštalácia dokončená</string>
+  <string name="title_installation_status">Stav inštalácie</string>
+  <string name="msg_installing_dictionary">Inštaluje sa slovník&#8230;</string>
+  <string name="msg_installation_aborted">Inštaláciu prerušiť používateľ.</string>
+  <string name="msg_installation_status">Stav: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">V archíve \"%1$s\" sa nenachádzal žiadny záznam zodpovedajúci vzoru \"%2$s\"</string>
+  <string name="unit_byte">B</string>
+  <string name="unit_kilo_byte">KB</string>
+  <string name="unit_mega_byte">MB</string>
+  <string name="unit_giga_byte">GB</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_maximum">Našlo sa viac ako %1$d (maximum) výsledkov.</string>
+  <string name="results_found_cancel">Počet výsledkov pred zrušením: %1$d.</string>
+  <string name="results_found_timeout">Počet výsledkov pred uplynutím časového limitu: %1$d.</string>
+  <string name="results_found">Počet výsledkov: %1$d.</string>
+  <string name="results_found_one">Našiel sa jeden výsledok.</string>
+  <string name="no_results_found">Prepáčte, nenašli sa žiadne výsledky.</string>
+  <string-array name="font_sizes">
+    <item>10</item>
+    <item>11</item>
+    <item>12</item>
+    <item>13</item>
+    <item>14</item>
+    <item>15</item>
+    <item>16</item>
+    <item>17</item>
+    <item>18</item>
+    <item>19</item>
+    <item>20</item>
+    <item>21</item>
+    <item>22</item>
+    <item>23</item>
+    <item>24</item>
+    <item>25</item>
+    <item>26</item>
+  </string-array>
+  <string-array name="themes">
+    <item>Predvolená systémová</item>
+    <item>Tmavá</item>
+    <item>Svetlá</item>
+  </string-array>
+  <string name="title_translation_error">Nastala chyba počas prekladania.</string>
+  <string name="msg_translation_error">Podrobnosti:\n\n%1$s</string>
+  <string name="msg_translation_cancelled">Preklad bol zrušený.</string>
+  <string name="menu_dictionary">Slovník</string>
+  <string name="menu_preferences">Nastavenia</string>
+  <string name="menu_about">O aplikácii</string>
+  <string name="menu_help">Pomocník</string>
+  <string name="menu_starred">Označenie hviezdičkou</string>
+  <string name="menu_export_all_starred">Exportovať všetko</string>
+  <string name="menu_download_dictionaries">Manuálne stiahnuť&#8230;</string>
+  <string name="menu_find_hidden_dictionaries">Znovu pridať skryté</string>
+  <string name="menu_clear_recent_dictionary_list">Vyčistiť posledné&#8230;</string>
+  <string name="msg_enter_word_first">Najskôr zadajte slovo, prosím.</string>
+  <string name="menu_reload_dictionary_list">Znovu načítať zoznam</string>
+  <string name="menu_cancel_installation">Zrušiť inštaláciu</string>
+  <string name="menu_reinstall_default_dictionary">Preinštalovať predvolený slovník</string>
+  <string name="msg_load_dictionary_first">Najskôr načítajte slovník, prosím.</string>
+  <string name="msg_reload_dictionary">Načítajte slovník ešte raz, prosím.</string>
+  <string name="msg_exception">Nastala výnimka:\n%1$s</string>
+  <string name="msg_restart_app_after_settings_changed">Pre aktivovanie nastavení reštartujte aplikáciu.</string>
+  <string name="button_ok">OK</string>
+  <string name="button_cancel">Zrušiť</string>
+  <string name="button_do_not_show_again">Už nezobrazovať</string>
+  <string name="button_exit">Ukončiť</string>
+  <string name="msg_download_dictionaries">Stiahnutie slovníka si vyžaduje 4 kroky (pričom sa predpokladá, že máte nainštalovaný nejaký manažér súborov, napr. Astro):\n\n1. Vyberte a stiahnite si slovník na internetovej stránke otvorenej po potvrdení tohto dialógu. Poznámka: Sú podporované iba slovníky verzie 2.4.4 alebo novšej.\n\n2. Rozbaľte (extrahujte) obsah súboru ZIP do priečinka na vašej karte SD (použite napr. správcu súborov Astro).\n\n3. Voliteľne: rozbaľte (extrahujte) obsah archívu JAR na vašu kartu SD, aby bolo vyhľadávanie rýchlejšie.\n\n4. Vyberte slovník v dialógu, ktorý sa zobrazoval predtým.\n\nAlternatívne môžete stiahnuť a rozbaliť slovník v PC a potom súbory preniesť na vašu kartu SD.</string>
+  <string name="msg_clear_recent_dictionaries_list">Chcete vyčistiť zoznam posledných slovníkov?</string>
+  <string name="msg_cancel_installation">Chcete stornovať aktuálnu inštaláciu?</string>
+  <string name="msg_load_dictionary">Načítať nový slovník teraz?\n\nVždy ho môžete načítať aj neskôr, zo zoznamu posledných slovníkov.</string>
+  <string name="button_load_dictionary_from_current_directory">Načítať slovník z aktuálneho priečinka</string>
+  <string name="msg_dictionary_error">Chyba slovníka</string>
+  <string name="msg_dictionary_not_found">Slovník sa nedal načítať.\n\nSlovník si môžete vybrať z nasledujúceho dialógu.</string>
+  <string name="msg_dictionary_load_error">Chyba počas načítavania slovníka.</string>
+  <string name="msg_internal_dictionary_load_error">Chyba počas načítavania interných slovníkov.\n\n%1$s</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="msg_no_dictionary">Vybraná položka zrejme nie je slovníkom.</string>
+  <string name="title_load_dictionary">Načítať slovník&#8230;</string>
+  <string name="msg_auto_install">Zdá sa, že ešte nemáte nainštalovaný predvolený slovník.\n\nChcete ho stiahnuť a nainštalovať teraz?</string>
+  <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="title_load_dictionary_first">Prosím najskôr načítajte slovník.</string>
+  <string name="title_about_heading">Java aplikácia DictionaryForMIDs</string>
+  <string name="title_about_copyright_owner">Autorské práva: Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) a iní prispievatelia.</string>
+  <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+  <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">Verzia: %1$s</string>
+  <string name="title_about_copyright">DictionaryForMIDs Java application je voľne dostupný softvér: môžete ho redistribuovať a/alebo upravovať
+    za podmienok licencie GNU General Public License, ako ju publikovala
+    organizácia Free Software Foundation; buď vo verzii 2 tejto licencie alebo
+    (podľa vášho výberu) v novšej verzii. Pozrite si súbor COPYING alebo stránku http://www.gnu.org/licenses/\n\nTento program je distribuovaný v nádeji, že bude užitočný,
+    ale BEZ AKEJKOĽVEK ZÁRUKY; aj bez predpokladanej záruky
+    ÚŽITKOVOSTI alebo VHODNOSTI NA URČITÝ ÚČEL. Pre viac informácií si pozrite
+    licenciu GNU General Public License.
+	</string>
+  <string name="title_about_dictionary">Slovník:</string>
+  <string name="title_about_ui_translation">Lokalizácia:</string>
+  <string name="title_about_translation_request">Pomôžte nám preložením tejto aplikácie do vášho jazyka alebo vylepšením existujúcich prekladov, na stránke: http://crowdin.net/project/dictionaryformids</string>
+  <string name="title_information">Info</string>
+  <string name="title_welcome">Vitajte!</string>
+  <string name="title_seconds">%1$d sek</string>
+  <string name="msg_first_run">Zdá sa, že ste aplikáciu spustili prvýkrát! Na nasledujúcej obrazovke si, prosím, vyberte slovník.</string>
+  <string name="msg_slow_archive_loading">Preklad bol zrušený po uplynutí časového limitu.\nPreklad môžete urýchliť extrahovaním archivovaného slovníka do priečinka na SD-karte a výberom tohto priečinka ako slovníka. Alebo môžete zvýšiť časový limit v dialógu s nastaveniami.</string>
+  <string name="msg_parsing_error">Chyba počas analyzovania zdroja.\n\n%1$s</string>
+  <string name="msg_extract_dictionary">Vybraný archív sa nedal načítať, zdá sa, že obsahuje komprimovaný slovník. Extrahujte najprv obsiahnutý súbor JAR, prosím.</string>
+  <string-array name="search_mode">
+    <item>Štandardný</item>
+    <item>Slová zodpovedajúce hľadanému výrazu</item>
+    <item>Slová začínajúce hľadaným výrazom</item>
+    <item>Slová obsahujúce hľadaný výraz</item>
+  </string-array>
+  <string name="title_help">Pomocník aplikácie DictionaryForMIDs</string>
+  <string name="desc_help">Na spresnenie vyhľadávania použite zástupný znak:\n%1$czodpovedá akejkoľvek skupine znakov\n%2$czodpovedá akémukoľvek jednému znaku\n\nPre kontrolu vyhľadávania podradeného výrazu:\n%3$cako prvý znak vráti výsledky začínajúce hľadaným záznamom\n%4$c po vašom zázname vráti výsledky končiace naň.\n\nProsím pamätajte na to, že: pridanie zástupných znakov spôsobí ignorovanie nastavení režimu vyhľadávania.</string>
+  <string name="desc_see_website">Viac informácií získate na internetovej stránke:\n%1$s</string>
+  <string name="tab_load_recent">Posledné</string>
+  <string name="tab_load_from_file">Zo súboru</string>
+  <string name="tab_load_included">Obsiahnuté</string>
+  <string name="tab_load_download">Stiahnutie</string>
+  <string name="title_activity_about">O aplikácii</string>
+  <string name="title_activity_help">Obrazovka pomocníka</string>
+  <string name="title_activity_choose_dictionary">Vybrať slovník</string>
+  <string name="title_activity_file_list">Vybrať slovník</string>
+  <string name="title_activity_dictionary_list">Vybrať slovník</string>
+  <string name="title_activity_recent_list">Vybrať slovník</string>
+  <string name="title_activity_preferences">Nastavenia</string>
+  <string name="title_activity_install_dictionary">Nainštalovať slovník</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_remove_from_list">Odstrániť zo zoznamu</string>
+  <string name="app_description">DictionaryForMIDs je voľne dostupný, viacjazyčný slovník pre mobilné telefóny a zariadenia PDA</string>
+  <string name="hint_enter_word">Zadajte slovo na preklad</string>
+  <string name="hint_filter">Filter</string>
+  <string name="title_pref_search_options">Nastavenia vyhľadávania</string>
+  <string name="title_pref_search_mode">Režim vyhľadávania</string>
+  <string name="title_pref_max_results">Max. počet výsledkov</string>
+  <string name="title_pref_timeout">Časový limit pre vyhľadávanie</string>
+  <string name="title_pref_search_as_you_type">Hľadať už pri písaní</string>
+  <string name="title_pref_display_options">Nastavenia zobrazenia</string>
+  <string name="title_pref_result_font_size">Veľkosť písma pre výsledky</string>
+  <string name="title_pref_ignore_font_styles">Použiť štýly systému</string>
+  <string name="title_pref_language_code">Jazyk</string>
+  <string name="title_pref_advanced_features">Pokročilé funkcie</string>
+  <string name="title_pref_enable_starred_words">Zapnúť slová označené hviezdičkou</string>
+  <string name="title_pref_theme">Téma</string>
+  <string name="title_default_language_code">Predvolený</string>
+  <string name="summary_pref_ignore_font_style_checked">Výsledky sú zobrazované s použitím štýlu definovaného pre slovník.</string>
+  <string name="summary_pref_ignore_font_style_unchecked">Výsledky sú zobrazené s použitím systémového štýlu.</string>
+  <string name="language_english">Anglicky</string>
+  <string name="language_esperanto">Esperanto</string>
+  <string name="language_vietnamese">Vietnamsky</string>
+  <string name="language_chinese">Čínsky</string>
+  <string name="language_japanese">Japonsky</string>
+  <string name="language_thai">Thajsky</string>
+  <string name="language_hindi">Hindi</string>
+  <string name="language_indonesian">Indonézsky</string>
+  <string name="language_french">Francúzsky</string>
+  <string name="language_spanish">Španielsky</string>
+  <string name="language_german">Nemecky</string>
+  <string name="language_italian">Taliansky</string>
+  <string name="language_latin">Latinsky</string>
+  <string name="language_russian">Rusky</string>
+  <string name="language_arabic">Arabsky</string>
+  <string name="language_czech">Česky</string>
+  <string name="language_slovak">Slovensky</string>
+  <string name="language_bulgarian">Bulharsky</string>
+  <string name="language_catalan">Katalánsky</string>
+  <string name="language_persian">Perzsky</string>
+  <string name="language_finnish">Fínsky</string>
+  <string name="language_greek">Grécky</string>
+  <string name="language_hebrew">Hebrejsky</string>
+  <string name="language_croatian">Chorvátsky</string>
+  <string name="language_hungarian">Maďarsky</string>
+  <string name="language_lithuanian">Litovsky</string>
+  <string name="language_dutch">Holandsky</string>
+  <string name="language_polish">Poľsky</string>
+  <string name="language_portuguese">Portugalsky</string>
+  <string name="language_swedish">Švédsky</string>
+  <string name="language_norwegian">Nórsky</string>
+  <string name="language_turkish">Turecky</string>
+  <string name="language_tagalog">Tagalog</string>
+  <string name="language_tamil">Tamilsky</string>
+  <string name="language_turkmen">Turkménsky</string>
+  <string name="language_danish">Dánsky</string>
+  <string name="language_korean">Kórejsky</string>
+  <string name="language_swahili">Swahilsky</string>
+  <string name="load_dictionary_button">Viac&#8230;</string>
+  <plurals name="open_dictionary_drawer">
+    <item quantity="one"><![CDATA[Jeden aktívny jazyk. <a href="#">Zmeniť&#8230;</a>]]></item>
+    <item quantity="few"><![CDATA[Aktívne jazyky: %1$d <a href="#">Zmeniť…</a>]]></item>
+    <item quantity="other"><![CDATA[Aktívne jazyky: %1$d <a href="#">Zmeniť&#8230;</a>]]></item>
+  </plurals>
+</resources>

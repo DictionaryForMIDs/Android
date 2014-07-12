@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">ગુજરાતી</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">Jaimin Patel</string>
+  <string name="no_files">ફાઇલો મળીનથી.</string>
+  <string name="to_top">/ (ટોચ)</string>
+  <string name="to_upper_level">..(ઉપર)</string>
+  <string name="to_sdcard">/SD કાર્ડ</string>
+  <string name="title_please_wait">કૃપા કરીને રાહ જુઓ</string>
+  <string name="msg_searching">શોધી રહયા છે&#8230;</string>
+  <string name="copy_all">બધુ નકલ કરવું</string>
+  <string name="not_found">મળ્યું નથી</string>
+  <string name="starred_words_current_dictionary">વર્તમાન: %1$d</string>
+  <string name="starred_words_all_dictionaries">સમગ્ર: %1$d</string>
+  <string name="loading_download_dictionaries">કૃપા કરીને રાહ જુઓ. \n\nઉપલબ્ધ શબ્દકોશો લોડ કરી રહ્યું છે&#8230;</string>
+  <string name="no_download_dictionaries">માફ કરશો, હાલમાં કોઈ શબ્દકોશ ડાઉનલોડ માટે ઉપલબ્ધ નથી.</string>
+  <string name="msg_error_downloading_available_dictionaries">ઉપલબ્ધ શબ્દકોશો યાદી ડાઉનલોડ કરતી વખતે એક ભૂલ આવી.\n\n\nફરીથી પ્રયત્ન કરવા માટે અહીં ટેપ કરો.\n\n\nવિગતો:\n%1$s</string>
+  <string name="msg_error_dictionary_not_found">શબ્દકોશ ID %1$d હાલમાં ઉપલબ્ધ નથી.</string>
+  <string name="title_installation_finished">સમાપ્ત</string>
+  <string name="msg_successfully_installed_dictionary">શબ્દકોશ સફળતાપૂર્વક સ્થાપિત કરી.</string>
+  <string name="msg_installation_complete">સ્થાપન પૂર્ણ</string>
+  <string name="title_installation_status">સ્થાપન સ્થિતિ</string>
+  <string name="msg_installing_dictionary">ડિરેક્ટરી સ્થાપન કરી&#8230;</string>
+  <string name="msg_installation_aborted">વપરાશકર્તાઍ સ્થાપન રદ કર્યું.</string>
+  <string name="msg_installation_status">સ્થિતિ: %1$.2f%%</string>
+</resources>

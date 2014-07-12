@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">ئینگلیزی
+</string>
+  <string name="app_name">فەرهەنگ بۆ ناوەند</string>
+  <string name="no_files">هيچ فايل نەدۆزييانەوە.</string>
+  <string name="to_top">/ (top)</string>
+  <string name="to_upper_level">بۆ سەرەوە</string>
+  <string name="to_sdcard">سدكارد</string>
+  <string name="title_please_wait">تکایە چاوەڕوانبە</string>
+  <string name="msg_searching">گەڕان&#8230;</string>
+  <string name="copy_all">لەبەرگرتنەوەی هەمووی</string>
+  <string name="copy_word">لەبەرگرتنەوەی : %1$s</string>
+  <string name="not_found">نە دۆزرایەوە</string>
+  <string name="no_included_dictionaries">هیچ فەرهەنگێک نەدۆزرایەوە.\n\nپەنجە بنێ بێرەدا بۆ داگرتن.</string>
+  <string name="no_starred_words">هيچ وشەى نەدۆزيەوە قۆپچە ئايكۆنى ئەستێرەى چوونە ناوێكى قامووس تا ئەستێرە بێت ئەو.</string>
+  <string name="starred_words_current_dictionary">%1$dئێستا:</string>
+  <string name="starred_words_all_dictionaries">%1$d:هەمووی</string>
+  <string name="no_recent_dictionaries">هيچ بەم دواييە قامووسى نەدۆزيەوە قۆپچە لێرە تا يەك دابەزاندن ب.</string>
+  <string name="loading_download_dictionaries">\n&#8230;تكايە چاوەڕێ بكات. باركردنى قامووسى بەردەست</string>
+  <string name="no_download_dictionaries">بەداخەوە، ئێستا هيچ قامووسى بەردەست بۆ دابەزاندن نان.</string>
+  <string name="language_english">ئینگلیزی
+</string>
+</resources>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">Português Europeu</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">Leandro Sousa/leandrorlsousa@gmail.com</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">Não foi encontrado nenhum ficheiro.</string>
+  <string name="to_top">/ (topo)</string>
+  <string name="to_upper_level">.. (cima)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">Aguarde, por favor</string>
+  <string name="msg_searching">A procurar&#8230;</string>
+  <string name="copy_all">Copiar tudo</string>
+  <string name="copy_word">Copiar: %1$s</string>
+  <string name="not_found">não foi encontrado</string>
+  <string name="no_included_dictionaries">Não foi encontrado nenhum dicionário.\n\nToque aqui para fazer o download de um.</string>
+  <string name="no_starred_words">Não foram encontradas palavras favoritas.\n\nToque no ícone de estrela numa entrada de um dicionário para a tornar favorita.</string>
+  <string name="starred_words_current_dictionary">Actuais: %1$d</string>
+  <string name="starred_words_all_dictionaries">Todas: %1$d</string>
+  <string name="no_recent_dictionaries">Não foram encontrados dicionários que tenham sido recentemente carregados.\n\nToque aqui para fazer o download de um.</string>
+  <string name="loading_download_dictionaries">Aguarde por favor.\n\nA carregar os dicionários disponíveis...</string>
+  <string name="no_download_dictionaries">Desculpe, actualmente não existem dicionários disponíveis para download.</string>
+  <string name="msg_error_downloading_available_dictionaries">Ocorreu um erro durante o download da lista de dicionários disponíveis.\n\n\nToque aqui para tentar novamente.\n\n\nDetalhes:\n%1$s</string>
+  <string name="msg_error_dictionary_not_found">O dicionário com o id %1$d não está actualmente disponível.</string>
+  <string name="msg_error_accessing_storage">O armazenamento externo não está acessível. Por favor certifique-se de que o dispositivo não está ligado através de USB.\n\nEstado actual do armazenamento: %1$s</string>
+  <string name="msg_suggest_update">A sua versão do DictionaryForMIDs está desactualizada. Por favor actualize-a antes de fazer o download de dicionários. \nDeseja actualizar agora?</string>
+  <string name="msg_suggest_update_with_message">A sua versão do DictionaryForMIDs está desactualizada. Por favor actualize-a antes de fazer o download de dicionários. \nDeseja actualizar agora? \n\nDetalhes: %1$s</string>
+  <string name="msg_confirm_installation">Fazer o download e instalar o dicionário \"%1$s\"? \nTamanho: desconhecido</string>
+  <string name="msg_confirm_installation_size">Fazer o download e instalar o dicionário \"%1$s\"? \nTamanho: %2$s</string>
+  <string name="msg_installation_exception">Excepção ao instalar:\n%1$s</string>
+  <string name="msg_installation_exception_cause">Excepção ao instalar:\n%1$s\n\nCausa:\n%1$s</string>
+  <string name="msg_installation_already_started">Desculpe, mas já existe uma instalação em curso.</string>
+  <string name="msg_installation_started">A instalação poderá demorar algum tempo, você pode continuar a utilizar a aplicação.</string>
+  <string name="msg_auto_installation_started">A fazer o download do dicionário \"%1$s\", isto poderá demorar algum tempo.\n\nVocê poderá sair da aplicação agora, o progresso ser-lhe-á mostrado na barra de estadp.</string>
+  <string name="msg_installation_finished">Dicionário instalado!</string>
+  <string name="msg_list_already_downloaded">Já está a ser feito o download da lista.</string>
+  <string name="msg_installation_error">Erro de instalação</string>
+  <string name="msg_external_storage_inaccessible">O armazenamento externo está actualmente inacessível.</string>
+  <string name="msg_exported_starred_words">Palavras exportadas com sucesso para o armazenamento externo.</string>
+  <string name="msg_error_parsing_integer_preference">Desculpe, não foi possível reconhecer o número. Revertido para o valor padrão.</string>
+  <string name="title_exception">Excepção</string>
+  <string name="title_activity_starred_words">Palavras Favoritas</string>
+  <string name="exception_failed_create_directory">Falha ao tentar criar a directoria: %1$s</string>
+  <string name="exception_failed_create_file">Falha ao criar o ficheiro: %1$s</string>
+  <string name="exception_failed_delete_file">Falha ao remover o ficheiro: %1$s</string>
+  <string name="title_installation_finished">Concluído</string>
+  <string name="msg_successfully_installed_dictionary">Dicionário instalado com êxito.</string>
+  <string name="msg_installation_complete">Instalação completa</string>
+  <string name="title_installation_status">Estado da instalação</string>
+  <string name="msg_installing_dictionary">A instalar dicionário...</string>
+  <string name="msg_installation_aborted">Instalação abortada pelo utilizador.</string>
+  <string name="msg_installation_status">Estado: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">Não existe nenhuma entrada correspondente ao padrão \"%2$s\", no ficheiro \"%1$s\"</string>
+  <string name="unit_byte">B</string>
+  <string name="unit_kilo_byte">KB</string>
+  <string name="unit_mega_byte">MB</string>
+  <string name="unit_giga_byte">GB</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_maximum">Mais do que %1$d (máximo) resultados encontrados.</string>
+  <string name="results_found_cancel">%1$d resultado(s) encontrado(s) antes de cancelar.</string>
+  <string name="results_found_timeout">%1$d resultado(s) encontrado(s) antes de terminar o tempo.</string>
+  <string name="results_found">%1$d resultados encontrados.</string>
+  <string name="results_found_one">1 resultado encontrado.</string>
+  <string name="no_results_found">Desculpe, não foi encontrado nenhum resultado.</string>
+  <string-array name="font_sizes">
+    <item>10sp</item>
+    <item>11sp</item>
+    <item>12sp</item>
+    <item>13sp</item>
+    <item>14sp</item>
+    <item>15sp</item>
+    <item>16sp</item>
+    <item>17sp</item>
+    <item>18sp</item>
+    <item>19sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
+  </string-array>
+  <string-array name="themes">
+    <item>Predefinição do Sistema</item>
+    <item>Escuro</item>
+    <item>Claro</item>
+  </string-array>
+  <string name="title_translation_error">Ocorreu um erro durante a tradução.</string>
+  <string name="msg_translation_error">Detalhes:\n\n%1$s</string>
+  <string name="msg_translation_cancelled">Tradução cancelada.</string>
+  <string name="menu_dictionary">Dicionário</string>
+  <string name="menu_preferences">Preferências</string>
+  <string name="menu_about">Acerca</string>
+  <string name="menu_help">Ajuda</string>
+  <string name="menu_starred">Favoritos</string>
+  <string name="menu_export_all_starred">Exportar tudo</string>
+  <string name="menu_download_dictionaries">Download manual...</string>
+  <string name="menu_find_hidden_dictionaries">Re-adicionar ocultos</string>
+  <string name="menu_clear_recent_dictionary_list">Limpar recentes...</string>
+  <string name="msg_enter_word_first">Por favor, introduza primeiro uma palavra.</string>
+  <string name="menu_reload_dictionary_list">Recarregar lista</string>
+  <string name="menu_cancel_installation">Cancelar instalação</string>
+  <string name="menu_reinstall_default_dictionary">Re-instalar o dicionário padrão</string>
+  <string name="msg_load_dictionary_first">Por favor, primeiro carregue o dicionário.</string>
+  <string name="msg_reload_dictionary">Por favor recarregue o dicionário.</string>
+  <string name="msg_exception">Excepção ocorrida:\n%1$s</string>
+  <string name="msg_restart_app_after_settings_changed">Reinicie a aplicação para que as configurações tenham efeito.</string>
+  <string name="button_ok">OK</string>
+  <string name="button_cancel">Cancelar</string>
+  <string name="button_do_not_show_again">Não mostrar novamente</string>
+  <string name="button_exit">Sair</string>
+  <string name="msg_download_dictionaries">Fazer o download de um dicionário envolve 4 etapas (pressupondo que você tem instalado um gestor de ficheiros como o Astro): \n\n1.Escolha e faça o download de um dicionário no site que será aberto depois de confirmar esta caixa de diálogo. Nota: Apenas são suportados os dicionários da versão 2.4.4 ou superior.\n\n2.Extraia o conteúdo do ficheiro zip para uma directoria no seu cartão SD (por exemplo, utilizando o Astro).\n\n3.Opcional: Para pesquisas mais rápidas, extraia o conteúdo incluído no ficheiro jar para o seu cartão SD.\n\n4.Seleccione o dicionário no diálogo exibido.\n\nComo alternativa, você poderá fazer o download e extrair o dicionário utilizando o seu PC e depois, transferir os ficheiros para o cartão sd.</string>
+  <string name="msg_clear_recent_dictionaries_list">Limpar a lista dos dicionários recentes?</string>
+  <string name="msg_cancel_installation">Cancelar a instalação actual?</string>
+  <string name="msg_load_dictionary">Deseja carregar o dicionário novo agora? \n\nVocê poderá sempre carregá-lo mais tarde a partir da lista dos dicionários recentes.</string>
+  <string name="button_load_dictionary_from_current_directory">Carregar o dicionário a partir da directoria actual</string>
+  <string name="msg_dictionary_error">Erro no dicionário</string>
+  <string name="msg_dictionary_not_found">O dicionário não pode ser carregado.\n\nVocê poderá seleccionar um dicionário a partir da caixa de diálogo seguinte.</string>
+  <string name="msg_dictionary_load_error">Erro ao carregar o dicionário.</string>
+  <string name="msg_internal_dictionary_load_error">Erro ao carregar os dicionários internos.\n\n%1$s</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="msg_no_dictionary">O item seleccionado não se parece com um dicionário.</string>
+  <string name="title_load_dictionary">Carregar Dicionário...</string>
+  <string name="msg_auto_install">Parece que você ainda não instalou o seu dicionário padrão.\n\nGostaria de fazer o seu download e instalá-lo agora?</string>
+  <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="title_load_dictionary_first">Por favor, primeiro carregue o dicionário.</string>
+  <string name="title_about_heading">Aplicação Java DictonaryForMIDs</string>
+  <string name="title_about_copyright_owner">Copyright por Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) e outros colaboradores.</string>
+  <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+  <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">Versão: %1$s</string>
+  <string name="title_about_copyright">A aplicação DictionaryForMIDs Java é um software gratuito: você poderá redistribuí-lo e/ou modificá-lo sob os termos da licença pública geral GNU como publicada pela Free Software Foundation; tanto na versão 2 da licença, ou (como opção) em qualquer versão posterior. Veja o ficheiro COPYING ou http://www.gnu.org/licenses/ \n\nEste programa é distribuído na esperança que será útil, mas sem qualquer garantia; sem mesmo a garantia implícita de comerciabilidade ou adequação para uma finalidade específica. Consulte a GNU General Public License para mais detalhes.</string>
+  <string name="title_about_dictionary">Dicionário:</string>
+  <string name="title_about_ui_translation">Localização:</string>
+  <string name="title_about_translation_request">Ajude-nos a traduzir esta aplicação para a sua lingua materna ou a melhorar as traduções já existentes em: http://crowdin.net/project/dictionaryformids</string>
+  <string name="title_information">Informação</string>
+  <string name="title_welcome">Bem-vindo(a)!</string>
+  <string name="title_seconds">%1$d seg</string>
+  <string name="msg_first_run">Parece que você está a correr este programa pela primeira vez! Por favor seleccione um dicionário utilizando o ecrã seguinte.</string>
+  <string name="msg_slow_archive_loading">A tradução foi cancelada depois de ter passado o limite de tempo.\nVocê poderá acelerar a tradução extraindo o dicionário arquivado para uma pasta no seu cartão SD e escolhendo essa pasta como dicionário. Como alternativa, você poderá aumentar o tempo limite na caixa de diálogo das preferências.</string>
+  <string name="msg_parsing_error">Erro durante a análise dos recursos.\n\n%1$s</string>
+  <string name="msg_extract_dictionary">O ficheiro seleccionado não pode ser carregado, mas parece incluir um dicionário comprimido. Por favor, primeiro extraia o ficheiro jar incluído.</string>
+  <string-array name="search_mode">
+    <item>Standard</item>
+    <item>Palavras correspondendo ao termo de pesquisa</item>
+    <item>Palavras que começam com o termo de pesquisa</item>
+    <item>Palavras que incluem o termo de pesquisa</item>
+  </string-array>
+  <string name="title_help">DictionaryForMIDs - Ajuda</string>
+  <string name="desc_help">Utilize caracteres genéricos para refinar as suas pesquisas:\n%1$c encontra qualquer série de caracteres\n%2$c encontra a qualquer caractere único\n\nPara controlar a  sub-expressão a pesquisar:\n%3$c se for o primeiro caractere, produz resultados começados pelo seu termo de pesquisa\n%4$c se colocado após a sua entrada, produz resultados terminados com ele.\n\nNota: Ao adicionar caracteres genéricos as preferências de pesquisa são descartadas.</string>
+  <string name="desc_see_website">Consulte o website para mais informações:\n%1$s</string>
+  <string name="tab_load_recent">Recente</string>
+  <string name="tab_load_from_file">Do ficheiro</string>
+  <string name="tab_load_included">Incluído(a)</string>
+  <string name="tab_load_download">Download</string>
+  <string name="title_activity_about">Ecrã Acerca</string>
+  <string name="title_activity_help">Ecrã de Ajuda</string>
+  <string name="title_activity_choose_dictionary">Escolher dicionário</string>
+  <string name="title_activity_file_list">Escolher dicionário</string>
+  <string name="title_activity_dictionary_list">Escolher dicionário</string>
+  <string name="title_activity_recent_list">Escolher dicionário</string>
+  <string name="title_activity_preferences">Preferências</string>
+  <string name="title_activity_install_dictionary">Instalar Dicionário</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_remove_from_list">Remover da lista</string>
+  <string name="app_description">DictionaryForMIDs é um dicionário multilíngue GRATUITO para telemoveis e PDAs</string>
+  <string name="hint_enter_word">Introduza a palavra a traduzir</string>
+  <string name="hint_filter">Filtro</string>
+  <string name="title_pref_search_options">Opções de pesquisa</string>
+  <string name="title_pref_search_mode">Modo de pesquisa</string>
+  <string name="title_pref_max_results">Resultados máx.</string>
+  <string name="title_pref_timeout">Tempo limite para a pesquisa</string>
+  <string name="title_pref_search_as_you_type">Pesquisar enquanto escreve</string>
+  <string name="title_pref_display_options">Opções de visualização</string>
+  <string name="title_pref_result_font_size">Tamanho da fonte para os resultados</string>
+  <string name="title_pref_ignore_font_styles">Utilizar os estilos do sistema</string>
+  <string name="title_pref_language_code">Idioma</string>
+  <string name="title_pref_advanced_features">Funcionalidades Avançadas</string>
+  <string name="title_pref_enable_starred_words">Activar palavras favoritas</string>
+  <string name="title_pref_theme">Tema</string>
+  <string name="title_default_language_code">Padrão</string>
+  <string name="summary_pref_ignore_font_style_checked">Os resultados são exibidos utilizando o estilo definido pelo dicionário.</string>
+  <string name="summary_pref_ignore_font_style_unchecked">Os resultados são exibidos utilizando o estilo do sistema.</string>
+  <string name="language_english">hello</string>
+  <string name="language_esperanto">Esperanto</string>
+  <string name="language_vietnamese">Vietnamita</string>
+  <string name="language_chinese">Chinês</string>
+  <string name="language_japanese">Japonês</string>
+  <string name="language_thai">Tailandês</string>
+  <string name="language_hindi">Hindi</string>
+  <string name="language_indonesian">Indonésio</string>
+  <string name="language_french">Francês</string>
+  <string name="language_spanish">Espanhol</string>
+  <string name="language_german">Alemão</string>
+  <string name="language_italian">Italiano</string>
+  <string name="language_latin">Latim</string>
+  <string name="language_russian">Russo</string>
+  <string name="language_arabic">Árabe</string>
+  <string name="language_czech">Tcheco</string>
+  <string name="language_slovak">Eslovaco</string>
+  <string name="language_bulgarian">Búlgaro</string>
+  <string name="language_catalan">Catalão</string>
+  <string name="language_persian">Persa</string>
+  <string name="language_finnish">Finlandês</string>
+  <string name="language_greek">Grego</string>
+  <string name="language_hebrew">Hebraico</string>
+  <string name="language_croatian">Croata</string>
+  <string name="language_hungarian">Húngaro</string>
+  <string name="language_lithuanian">Lituano</string>
+  <string name="language_dutch">Holandês</string>
+  <string name="language_polish">Polaco</string>
+  <string name="language_portuguese">Português</string>
+  <string name="language_swedish">Sueco</string>
+  <string name="language_norwegian">Norueguês</string>
+  <string name="language_turkish">Turco</string>
+  <string name="language_tagalog">Tagalo</string>
+  <string name="language_tamil">Tâmil</string>
+  <string name="language_turkmen">Turcomano</string>
+  <string name="language_danish">Dinamarquês</string>
+  <string name="language_korean">Coreano</string>
+  <string name="language_swahili">Suaili</string>
+  <string name="load_dictionary_button">Mais...</string>
+  <plurals name="open_dictionary_drawer">
+    <item quantity="one"><![CDATA[Um idioma activo. <a href="#">Alterar&#8230;</a>]]></item>
+    <item quantity="other"><![CDATA[Um idioma activo. <a href="#">Alterar&#8230;</a>]]>
+
+<![CDATA[%1$d idiomas activos. <a href="#">Alterar&#8230;</a>]]></item>
+  </plurals>
+</resources>

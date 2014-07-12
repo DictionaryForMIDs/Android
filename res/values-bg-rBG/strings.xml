@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">Български</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">Михаил Маринов</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">Няма намерени файлове.</string>
+  <string name="to_top">/ (начало)</string>
+  <string name="to_upper_level">.. (нагоре)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">Моля изчакайте</string>
+  <string name="msg_searching">Търсене&#8230;</string>
+  <string name="copy_all">Копирайте всички</string>
+  <string name="copy_word">Копирайте: %1$s</string>
+  <string name="not_found">не е намерено</string>
+  <string name="no_included_dictionaries">Няма намерени включени речници.\n\nЧукнете тук, за да изтеглите такъв.</string>
+  <string name="no_starred_words">Няма намерени отбелязани думи.\n\nЧукнете върху звездичката до дума, за да я отбележите.</string>
+  <string name="starred_words_current_dictionary">Актуални: %1$d</string>
+  <string name="starred_words_all_dictionaries">Всички: %1$d</string>
+  <string name="no_recent_dictionaries">Няма скоро зареждани речници.\n\nЧукнете тук за да изтеглите такъв.</string>
+  <string name="loading_download_dictionaries">Моля изчакайте.\n\nЗареждаме наличните речници&#8230;</string>
+  <string name="no_download_dictionaries">За съжаление в момента няма речници, достъпни за изтегляне.</string>
+  <string name="msg_error_downloading_available_dictionaries">Възникна грешка при изтегляне на списъка с достъпните речници\n\n\nЧукнете тук, за да пробвате отново.\n\n\nПовече информация:\n%1$s</string>
+  <string name="msg_error_dictionary_not_found">Речникът с идентификационен номер %1$d в момента не е достъпен.</string>
+  <string name="msg_error_accessing_storage">Външната памет не е достъпна. Уверете се, че устройството ви не е свързано чрез USB.\n\nСегашно състояние на паметта: %1$s</string>
+  <string name="msg_suggest_update">Вашата версия на DictionaryForMIDs е остаряла. Моля, актуализирайте я преди да изтеглите речници. \nАктуализация сега?</string>
+  <string name="msg_suggest_update_with_message">Вашата версия на DictionaryForMIDs е остаряла. Моля, актуализирайте я преди да изтеглите речници. \nАктуализация сега?\n\nПовече информация: %1$s</string>
+  <string name="msg_confirm_installation">Изтегляне и инсталиране на \"%1$s\" речник? \nРазмер: неизвестен</string>
+  <string name="msg_confirm_installation_size">Изтегляне и инсталиране на \"%1$s\" речник? \nРазмер: %2$s</string>
+  <string name="msg_installation_exception">Грешка при инсталиране:\n%1$s</string>
+  <string name="msg_installation_exception_cause">Грешка при инсталиране:\n%1$s\n\nПричина:\n%1$s</string>
+  <string name="msg_installation_already_started">За съжаление в момента вече се извършва инсталация.</string>
+  <string name="msg_installation_started">Инсталацията може да отнеме известно време, можете да продължите да използвате приложението.</string>
+  <string name="msg_auto_installation_started">Изтегляне на речник \"%1$s\", това може да отнеме време.\n\nМожете да затворите приложението, прогресът се показва в лентата на състоянието.</string>
+  <string name="msg_installation_finished">Инсталиран речник!</string>
+  <string name="msg_list_already_downloaded">Списъкът вече се изтегля.</string>
+  <string name="msg_installation_error">Грешка при инсталиране</string>
+  <string name="msg_external_storage_inaccessible">Външната памет в момента е недостъпна.</string>
+  <string name="msg_exported_starred_words">Успешно експортирани думи към външната памет.</string>
+  <string name="msg_error_parsing_integer_preference">За съжаление номерът не можа да бъде разпознат. Възстановена стойност по подразбиране.</string>
+  <string name="title_exception">Грешка</string>
+  <string name="title_activity_starred_words">Отбелязани Думи</string>
+  <string name="exception_failed_create_directory">Неуспешно създаване на директория: %1$s</string>
+  <string name="exception_failed_create_file">Неуспешно създаване на файл: %1$s</string>
+  <string name="exception_failed_delete_file">Неуспешно премахване на файл: %1$s</string>
+  <string name="title_installation_finished">Завършен</string>
+  <string name="msg_successfully_installed_dictionary">Успешно инсталиран речник.</string>
+  <string name="msg_installation_complete">Инсталирането завърши</string>
+  <string name="title_installation_status">Състояние на инсталирането</string>
+  <string name="msg_installing_dictionary">Инсталиране на речник&#8230;</string>
+  <string name="msg_installation_aborted">Инсталирането е прекратено от потребителя.</string>
+  <string name="msg_installation_status">Статус: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">В архив \"%1$s\" нямаше запис, съвпадащ с определения модел \"%2$s\"</string>
+  <string name="unit_byte">Б</string>
+  <string name="unit_kilo_byte">КБ</string>
+  <string name="unit_mega_byte">МБ</string>
+  <string name="unit_giga_byte">ГБ</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_maximum">Повече от %1$d (максимални) резултати са намерени.</string>
+  <string name="results_found_cancel">%1$d резултата/и намерени преди отказ.</string>
+  <string name="results_found_timeout">%1$d намерени резултати, преди изтичане на времето.</string>
+  <string name="results_found">%1$d намерени резултати.</string>
+  <string name="results_found_one">Намерен 1 резултат.</string>
+  <string name="no_results_found">За съжаление не бяха открити резултати.</string>
+  <string-array name="font_sizes">
+    <item>10п</item>
+    <item>11п</item>
+    <item>12п</item>
+    <item>13п</item>
+    <item>14п</item>
+    <item>15п</item>
+    <item>16п</item>
+    <item>17п</item>
+    <item>18п</item>
+    <item>19п</item>
+    <item>20п</item>
+    <item>21п</item>
+    <item>22п</item>
+    <item>23п</item>
+    <item>24п</item>
+    <item>25п</item>
+    <item>26п</item>
+  </string-array>
+  <string-array name="themes">
+    <item>По подразбиране</item>
+    <item>Тъмна</item>
+    <item>Светла</item>
+  </string-array>
+  <string name="title_translation_error">Възникна грешка при превода.</string>
+  <string name="msg_translation_error">Детайли:\n\n%1$s</string>
+  <string name="msg_translation_cancelled">Преводът отменен.</string>
+  <string name="menu_dictionary">Речник</string>
+  <string name="menu_preferences">Настройки</string>
+  <string name="menu_about">За</string>
+  <string name="menu_help">Помощ</string>
+  <string name="menu_starred">Отбелязани</string>
+  <string name="menu_export_all_starred">Експортиране на всички</string>
+  <string name="menu_download_dictionaries">Ръчно изтегляне&#8230;</string>
+  <string name="menu_find_hidden_dictionaries">Добавете скритите отново</string>
+  <string name="menu_clear_recent_dictionary_list">Изчистване на скорошни&#8230;</string>
+  <string name="msg_enter_word_first">Моля първо въведете дума.</string>
+  <string name="menu_reload_dictionary_list">Презареждане на списъка</string>
+  <string name="menu_cancel_installation">Отмяна на инсталацията</string>
+  <string name="menu_reinstall_default_dictionary">Преинсталирате речника по подразбиране</string>
+  <string name="msg_load_dictionary_first">Моля първо заредете речник.</string>
+  <string name="msg_reload_dictionary">Моля презаредете речника.</string>
+  <string name="msg_exception">Възникна грешка:\n%1$s</string>
+  <string name="msg_restart_app_after_settings_changed">Рестартирайте приложението за да подействат променените настройки.</string>
+  <string name="button_ok">OK</string>
+  <string name="button_cancel">Отказ</string>
+  <string name="button_do_not_show_again">Не показвай отново</string>
+  <string name="button_exit">Изход</string>
+  <string name="msg_download_dictionaries">Изтеглянето на речник включва 4 стъпки (предполага се, че имате файлов мениджър като Astro инсталиран):\n\n1.Изберете и изтеглете речник от сайта, който ще се отвори, когато потвърдите този диалогов прозорец. Забележка: Поддържат се само речници с версия 2.4.4 или по висока.\n\n2.Разархивирайте съдържанието на zip-файла в директория на SD-картата (например с помощта на Astro).\n\n3.По желание разархивирайте съдържанието на включения jar-архив на SD картата си за по-бързо търсене.\n\n4.Изберете речника в предния показан диалогов прозорец.\n\nКато алтернатива, можете да изтеглите и разархивирате речника, използвайки вашия компютър, и след това да прехвърлите файловете на SD-картата.</string>
+  <string name="msg_clear_recent_dictionaries_list">Изчисти списъка на скорошните речници?</string>
+  <string name="msg_cancel_installation">Отмяна на текущата инсталация?</string>
+  <string name="msg_load_dictionary">Зареди нов речник сега? \n\nВие винаги може да го заредите по-късно от списъка на скорошните речници.</string>
+  <string name="button_load_dictionary_from_current_directory">Зареди речник от текущата директория</string>
+  <string name="msg_dictionary_error">Грешка в речника</string>
+  <string name="msg_dictionary_not_found">Речникътт не може да бъде зареден.\n\nМожете  да изберете речник в следващия диалогов прозорец.</string>
+  <string name="msg_dictionary_load_error">Грешка при зареждане на речник.</string>
+  <string name="msg_internal_dictionary_load_error">Грешка при зареждане на вътрешни речници.\n\n%1$s</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="msg_no_dictionary">Избраният елемент не изглежда като речник.</string>
+  <string name="title_load_dictionary">Зареди речник&#8230;</string>
+  <string name="msg_auto_install">Изглежда, като че ли не сте изтеглили своя речник по подразбиране.\n\nИскате ли да го направите сега?</string>
+  <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="title_load_dictionary_first">Моля първо заредете речник.</string>
+  <string name="title_about_heading">Java приложение DictonaryForMIDs</string>
+  <string name="title_about_copyright_owner">Авторки права на Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) и други сътрудници.</string>
+  <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+  <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">Версия: %1$s</string>
+  <string name="title_about_copyright">Java приложението DictionaryForMIDs е свободен софтуер: можете да я разпространявате и/или променяте под условията на  GNU General Public License, публикуван от
+    Фондацията за свободен софтуер; версия 2 на лиценза или (по ваш избор) всяка по-късна версия. Вижте файла COPYING или http://www.gnu.org/licenses/\n\nТази програма се разпространява с надеждата, че ще бъде полезна, но БЕЗ НИКАКВА ГАРАНЦИЯ
+; без дори и косвена гаранция за продаваемост или пригодност за определена цел. Вижте
+    GNU General Public License за повече подробности.
+	</string>
+  <string name="title_about_dictionary">Речник:</string>
+  <string name="title_about_ui_translation">Локализация:</string>
+  <string name="title_about_translation_request">Помогнете ни с превода на това приложенение на вашия език на http://crowdin.net/project/dictionaryformids</string>
+  <string name="title_information">Информация</string>
+  <string name="title_welcome">Добре дошли!</string>
+  <string name="title_seconds">%1$d секунди</string>
+  <string name="msg_first_run">Изглежда използвате тази програма за първи път! Изберете речник с помощта на следващия екран.</string>
+  <string name="msg_slow_archive_loading">Преводът е отменен след изтичане на времето.\nМожете да забързате процеса, като разархивирате архивирания речник в папка на SD-картата и посочите тази папка като речник. Като алтернатива може да увеличите максималното време за изчакване в прозореца с настройки.</string>
+  <string name="msg_parsing_error">Грешка при граматичния разбор.\n\n%1$s</string>
+  <string name="msg_extract_dictionary">Избраният архив не може да бъде зареден, но изглежда, че съдържа компресиран речник. Моля първо разархивирайте включения jar-файл.</string>
+  <string-array name="search_mode">
+    <item>Стандартно</item>
+    <item>Думи, съвпадащи с търсения термин</item>
+    <item>Думи, започващия с търсения термин</item>
+    <item>Думи, включващи търсения термин</item>
+  </string-array>
+  <string name="title_help">DictionaryForMIDs помощ</string>
+  <string name="desc_help">Използвайте заместващи символи, за да усъвършенствате вашите търсения:\n%1$c замества всяка поредица от символи\n%2$c замества само един символ\n\nЗа да контролирате под-изразното търсене:\n%3$c като първи символ показва резултати, започващи с търсеното от вас\n%4$c след търсеното от вас показва резултати, завършващи с него.\n\n Забележка: Използването на заместващи символи има предимство пред зададените от вас настройки.</string>
+  <string name="desc_see_website">Вижте сайта за повече информация:\n%1$s</string>
+  <string name="tab_load_recent">Скорошни</string>
+  <string name="tab_load_from_file">От файл</string>
+  <string name="tab_load_included">Включени</string>
+  <string name="tab_load_download">Изтегляне</string>
+  <string name="title_activity_about">За</string>
+  <string name="title_activity_help">Помощ</string>
+  <string name="title_activity_choose_dictionary">Изберете речник</string>
+  <string name="title_activity_file_list">Изберете речник</string>
+  <string name="title_activity_dictionary_list">Изберете речник</string>
+  <string name="title_activity_recent_list">Изберете речник</string>
+  <string name="title_activity_preferences">Настройки</string>
+  <string name="title_activity_install_dictionary">Инсталиране на речник</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_remove_from_list">Премахни от списъка</string>
+  <string name="app_description">DictionaryForMIDs е безплатен многоезичен речник за мобилни телефони и PDA устройства</string>
+  <string name="hint_enter_word">Въведете дума за превод</string>
+  <string name="hint_filter">Филтриране</string>
+  <string name="title_pref_search_options">Опции за търсене</string>
+  <string name="title_pref_search_mode">Режим на търсене</string>
+  <string name="title_pref_max_results">Макс. резултати</string>
+  <string name="title_pref_timeout">Макс. време за търсене</string>
+  <string name="title_pref_search_as_you_type">Търсене по време на въвеждане</string>
+  <string name="title_pref_display_options">Опции за показване</string>
+  <string name="title_pref_result_font_size">Размер на шрифта на резултатите</string>
+  <string name="title_pref_ignore_font_styles">Използвай стиловете на системата</string>
+  <string name="title_pref_language_code">Език</string>
+  <string name="title_pref_advanced_features">Разширени функции</string>
+  <string name="title_pref_enable_starred_words">Разреши отбелязване на думи</string>
+  <string name="title_pref_theme">Тема</string>
+  <string name="title_default_language_code">По подразбиране</string>
+  <string name="summary_pref_ignore_font_style_checked">Резултатите се показват с помощта на стил, определен от речника.</string>
+  <string name="summary_pref_ignore_font_style_unchecked">Резултатите се показват, като се използва стила на системата.</string>
+  <string name="language_english">Английски</string>
+  <string name="language_esperanto">Есперанто</string>
+  <string name="language_vietnamese">Виетнамски</string>
+  <string name="language_chinese">Китайски</string>
+  <string name="language_japanese">Японски</string>
+  <string name="language_thai">Тайландски</string>
+  <string name="language_hindi">Хинди</string>
+  <string name="language_indonesian">Индонезийски</string>
+  <string name="language_french">Френски</string>
+  <string name="language_spanish">Испански</string>
+  <string name="language_german">Немски</string>
+  <string name="language_italian">Италиански</string>
+  <string name="language_latin">Латински</string>
+  <string name="language_russian">Руски</string>
+  <string name="language_arabic">Арабски</string>
+  <string name="language_czech">Чешки</string>
+  <string name="language_slovak">Словашки</string>
+  <string name="language_bulgarian">Български</string>
+  <string name="language_catalan">Каталонски</string>
+  <string name="language_persian">Персийски</string>
+  <string name="language_finnish">Финландски</string>
+  <string name="language_greek">Гръцки</string>
+  <string name="language_hebrew">Иврит</string>
+  <string name="language_croatian">Хърватски</string>
+  <string name="language_hungarian">Унгарски</string>
+  <string name="language_lithuanian">Литовски</string>
+  <string name="language_dutch">Холандски</string>
+  <string name="language_polish">Полски</string>
+  <string name="language_portuguese">Португалски</string>
+  <string name="language_swedish">Шведски</string>
+  <string name="language_norwegian">Норвежки</string>
+  <string name="language_turkish">Турски</string>
+  <string name="language_tagalog">Тагалог</string>
+  <string name="language_tamil">Тамилски</string>
+  <string name="language_turkmen">Туркменски</string>
+  <string name="language_danish">Датски</string>
+  <string name="language_korean">Корейски</string>
+  <string name="language_swahili">Суахили</string>
+  <string name="load_dictionary_button">Повече&#8230;</string>
+</resources>
