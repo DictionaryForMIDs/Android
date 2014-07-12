@@ -1,177 +1,149 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<!--
-		put the name of the current language into language_name, e.g. Deutsch
-		if this is the German language file
-	-->
-	<string name="language_name">اردو</string>
-
-	<!--
-		put the name/e-mail/website of the translator (that's probably you)
-		here, it will appear on the about screen; leave empty if you don't
-		want to be mentioned
-	-->
-	<string name="title_user_interface_translator">Huda Sarfraz</string>
-	
-	<string name="app_name">DictionaryForMIDs</string>
-	<string name="no_files">کوئی مسلیں نہیں ملیں۔</string>
-	<string name="to_top">/ (بالا)</string>
-	<string name="to_upper_level">.. (اوپر)</string>
-	<string name="to_sdcard">/sdcard</string>
-	<string name="title_please_wait">انتظار کریں</string>
-	<string name="msg_searching">تلاش کر رہا ہے ...</string>
-	<string name="copy_all">تمام نقل کریں</string>
-	<string name="copy_word">نقل کریں: %1$s</string>
-	<string name="not_found">نہیں ملا</string>
-	<string name="no_included_dictionaries">کوئی بھی شامل کردہ لغت نہیں ملی۔ \n\n کوئی ڈاؤن لوڈ کرنے کے لیے ادھر کلک کریں۔</string>
-	<string name="no_recent_dictionaries">کوئی بھی حالیہ لوڈ کی گئی لغت نہیں ملی۔ \n\n کوئی ڈاؤن لوڈ کرنے کے لیے ادھر کلک کریں۔</string>
-	<string name="loading_download_dictionaries">انتظار کریں۔\n\n دستیاب لغان لوڈ کر رہا ہے ...</string>
-	<string name="no_download_dictionaries"> فی الحال ڈاؤن لوڈ کے لے کوئی لغات دستیاب نہیں ہیں۔</string>
-	<string name="msg_error_downloading_available_dictionaries">دستیاب لغات کی فہرست ڈاؤن لوڈ کرنے میں نقص۔\n\n\n پھر کوشش کرنے کے لیے یہاں کلک کریں۔\n\n\n تفاصیل: \n%1$s</string>
-	<string name="msg_suggest_update">آپ کی DictionaryForMIDs کی ورژن پرانی ہے۔ لغات ڈاؤن لوڈ کرنے سے پہلے تازہ کاری کریں۔\n ابھی تازہ کاری کریں کریں؟</string>
-	<string name="msg_suggest_update_with_message">آپ کی DictionaryForMIDs کی ورژن پرانی ہے۔ لغات ڈاؤن لوڈ کرنے سے پہلے تازہ کاری کریں۔\n ابھی تازہ کاری کریں کریں؟\n\n تفاصیل: %1$s</string>
-	<string name="msg_confirm_installation">\&quot;%1$s\&quot; لغت ڈاؤن لوڈ اور تنصیب کریں؟\n سائز: نامعالوم</string>	
-	<string name="msg_confirm_installation_size">\&quot;%1$s\&quot; لغت ڈاؤن لوڈ اور تنصیب کریں؟\n سائز: %2$s</string>
-	<string name="msg_installation_exception">تنصیب کے دوران استثنا: \n%1$s</string>	
-	<string name="msg_installation_exception_cause">تنصیب کے دوران استثنا: \n%1$s \n\n وجہ: \n%1$s</string>
-	<string name="msg_installation_already_started">ایک تنصیب پہلے سے زیر عمل ہے۔</string>
-	<string name="msg_installation_started">تنصیب کچھ دیر لے سکتی ہے، آپ اس دوران ایپلی کیشن استعمال کرنا جاری رکھ سکتے ہیں۔</string>
-	<string name="msg_installation_finished">لغت تنصیب ہو گئی!</string>	
-	<string name="msg_list_already_downloaded">فہرست پہلے سے ڈاؤن لوڈ ہو رہی ہے۔</string>
-	<string name="msg_installation_error">تنصیب نقص</string>
-	<string name="title_exception">استثنا</string>
-	<string name="exception_failed_create_directory">ڈائریکٹری بنانے میں ناکام: %1$s</string>
-	<string name="exception_failed_create_file">مسل بنانے میں ناکام: %1$s</string>
-	<string name="exception_failed_delete_file">مسل ہٹانے میں ناکام: %1$s</string>
-	<string name="title_installation_finished">تکمیل یافتہ</string>
-	<string name="msg_successfully_installed_dictionary">لغت کامیابی سے تنصیب ہو گئی۔</string>
-	<string name="msg_installation_complete">تنصیب مکمل</string>
-	<string name="title_installation_status">تنصیب حالت</string>
-	<string name="msg_installing_dictionary">لغت تنصیب کر ریا ہے ...</string>
-	<string name="msg_installation_aborted">بمطابق صارف تنصیب ساقط کر دی گئی۔</string>
-	<string name="msg_installation_status">حالت: %1$.2f%%</string>
-	<string name="msg_compressed_entry_not_found">نمونہ \&quot;%2$s\&quot; سے مشابہ محفوظہ \&quot;%1$s\&quot; میں کوئی اندراج نہیں </string>
-	<string name="unit_byte">B</string>
-	<string name="unit_kilo_byte">KB</string>
-	<string name="unit_mega_byte">MB</string>
-	<string name="unit_giga_byte">GB</string>
-	<string name="file_size">%1$.2f %2$s</string>
-	<string name="results_found_maximum">%1$d (بڑے سے بڑا) سے زیادہ نتائج ملے۔</string>
-	<string name="results_found_cancel">منسوخ کرنے سے پہلے %1$d نتائج ملے۔</string>
-	<string name="results_found_timeout">تعطل وقت سے پہلے %1$d نتائج ملے۔</string>
-	<string name="results_found">%1$d نتائج ملے۔</string>
-	<string name="results_found_one">1 نتیجہ ملا۔</string>
-	<string name="no_results_found">کوئی نتائج نہیں ملے۔</string>
-	<string-array name="font_sizes">
-		<item>10sp</item>
-		<item>11sp</item>
-		<item>12sp</item>
-		<item>13sp</item>
-		<item>14sp</item>
-		<item>15sp</item>
-		<item>16sp</item>
-		<item>17sp</item>
-		<item>18sp</item>
-		<item>19sp</item>
-		<item>20sp</item>
-		<item>21sp</item>
-		<item>22sp</item>
-		<item>23sp</item>
-		<item>24sp</item>
-		<item>25sp</item>
-		<item>26sp</item>
-	</string-array>
-	<string name="title_translation_error">ترجمہ نقص واقع ہوا۔</string>
-	<string name="msg_translation_error">تفاصیل: \n\n%1$s</string>
-	<string name="msg_translation_cancelled">ترجمہ منسوخ کر دیا گیا۔</string>
-	<string name="menu_dictionary">لغت</string>
-	<string name="menu_preferences">ترجیحات</string>
-	<string name="menu_about">متعلق</string>
-	<string name="menu_help">مدد</string>
-	<string name="menu_download_dictionaries">دستی طور پر ڈاؤن لوڈ کریں ...</string>
-	<string name="menu_clear_recent_dictionary_list">حالیہ صاف کریں ...</string><string name="msg_enter_word_first">پہلے کوئی لفظ داخل کریں۔</string>
-	<string name="menu_reload_dictionary_list">فہرست پھر لوڈ کریں</string>
-	<string name="menu_cancel_installation">تنصیب منسوخ کریں</string>
-	<string name="msg_load_dictionary_first">پہلے کوئی لغت لوڈ کریں۔</string>
-	<string name="msg_reload_dictionary">لغت پھر لوڈ کریں۔</string>
-	<string name="msg_exception">استثنا: \n%1$s</string>
-	<string name="button_ok">ٹھیک ہے</string>
-	<string name="button_cancel">منسوخ کریں</string>
-	<string name="button_do_not_show_again">یہ پھر نہ دکھائیں</string>
-	<string name="msg_download_dictionaries">لغت ڈاؤن لوڈ کرنے کے 4 مراحل ہیں (مندرجہ ذیل اس حساب سے لکھا گیا ہے کہ آپ کے پاس Astro جیسا کوئی مسل مینیجر تنصیب ہوا ہے): \n\n1. اس مکالمے کی تصدیق کرنے کے بعد کھلنے والی ویب سائٹ پر سے لغت منتخب اور ڈاؤن لوڈ کریں۔ نوٹ: ورژن 2.4.4 یا اس سے اعلیٰ ورژن کی لغات معاونت شدہ ہیں۔ \n\n2. زپ مسل کا مواد اپنے SD کارڈ کی کسی ڈائریکٹری میں باہر نکالیں (مثال کے طور پر Astro استعمال کر کے)۔ \n\n3. اختیاری: تیز تر تلاش کے لیے شامل کردہ جار آرکائیو کا مواد بھی اپنے SD کارڈ میں باہر نکالیں۔ \n\n4. پہلے دکھائے گئے مکالمے میں لغت منتخب کریں۔\n\n اس کی بجائے آپ اپنا کمپیوٹر استعمال کر کے لغت ڈاؤن لوڈ کر سکتے ہیں، اور پھر مسلوں کو اپنے  SD کارڈ تک منتقل کر سکتے ہیں۔</string>
-	<string name="msg_clear_recent_dictionaries_list">حالیہ لغات کی فہرست صاف کریں؟</string>
-	<string name="msg_cancel_installation">حالیہ تنصیب میسوخ کریں؟</string>
-	<string name="msg_load_dictionary">نئی لغت ابھی لوڈ کرے؟ \n\n آپ اس کو بعد میں کسی بھی وقت حالیہ لغات کی فہرست میں سے لوڈ کر سکتے ہیں۔</string>
-	<string name="button_load_dictionary_from_current_directory">موجودہ ڈائریکٹری سے لغت لوڈ کریں</string>
-	<string name="msg_dictionary_error">لغت نقص</string>
-	<string name="msg_dictionary_not_found">لغت ڈاؤن لوڈ نہیں ہو سکی۔ \n\n آپ مندرجہ ذیل مکالمے میں سے کوئی لغت منتخب کر سکتے ہیں۔</string>
-	<string name="msg_dictionary_load_error">لغت لوڈ کرتے ہوئے نقص۔</string>
-	<string name="msg_internal_dictionary_load_error">اندرونی لغات لوڈ کرتے وقت نقص۔ \n\n%1$s</string>
-	<string name="title_current_path">&gt; %1$s</string>
-	<string name="msg_no_dictionary">منتخب شدہ شے لغت نہیں لگتی۔</string>
-	
-	<!--
-		specifies a translation direction, e.g. English -> German; if this
-		language is right-to-left you may want to swap %1$s and %2$s as well
-		as replace -&gt; with &lt;-
-	-->
-	<string name="title_format_translation_direction">%2$s\t&lt;-\t%1$s</string>
-	<string name="title_load_dictionary">لغت لوڈ کریں ...</string>
-	<string name="title_load_dictionary_first">پہلے لغت لوڈ کریں۔</string>
-	<string name="title_about_heading">جاوا ایپلی کیشن DictonaryForMIDs</string>
-	<string name="title_about_copyright_owner">حق تصنیف Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) اور دیگر معاونین۔</string>
-	<string name="title_version">ورژن: %1$s\t(%2$d)</string>
-	<string name="title_about_copyright">DictionaryForMIDs جاوا ایپلی کیشن مفت سافٹ وئیر ہے: آپ اس کو Free Software Foundation کی شائع کردہ شرائط کے ذیر تحت بانٹ اور/یا تبدیل کر سکتے ہیں؛ یا لائسنس کا ورژن 2 یا پھر آپ کی مرضی کے مطابق، اس کے بعد کا کوئی ورژن۔ مثل COPYING یا http://www.gnu.org/licenses/ دیکھیں\n\n یہ پروگرام اس امید کے ساتھ بانٹا گیا ہے کہ یہ فائدہ مند ہو گا، لیکن یہ کسی بھی وارنٹی کے بغیر ہے؛ MERCHANTABILITY اور FITNESS FOR A PARTICULAR PURPOSE کی بھی وارنٹی کے بغیر۔ مزید تفاصیل کے لیے GNU General Public License دیکھیں۔</string>
-	<string name="title_about_dictionary">لغت:</string>
-	<string name="title_information">معلومات</string>
-	<string name="title_welcome">خوش آمدید!</string>
-	<string name="title_seconds">%1$d sec</string>
-	<string name="msg_first_run">لگتا ہے کہ آپ یہ پروگرام پہلی دفعہ چلا رہے ہیں! مندرجہ ذیل سکرین استعمال کر کے کوئی لغت منتخب کریں۔</string>
-	<string name="msg_slow_archive_loading">تعطل وقت کے بعد ترجمہ منسوخ کر دیا گیا۔ \n آپ آرکائیو شدہ لغت کو اپنے SD کارڈ کی کسی ڈاریکٹری میں کھول کے ترجمے کو تیز کر سکتے ہیں۔ یا پھر آپ ترجیحات مکالمے میں تعطل وقت بڑھا سکتے ہیں۔</string>
-	<string name="msg_parsing_error">ریسورس کی نحوی جانچ کاری کرتے وقت نقص۔ \n\n%1$s</string>
-	<string name="msg_extract_dictionary">منتخب شدہ آرکائیو لوڈ نہیں ہو سکی، لیکن لگتا ہے کہ اس میں سکیڑی ہوئی لغت ہے۔ پہلے شامل کردہ جار مسل کھولیں۔</string>
-	<string-array name="search_mode"><item>معیاری</item>
-		<item>تلاش اصطلاح سے مشابہ الفاظ</item>
-		<item>تلاش اصطلاح سے شروع ہونے والے الفاظ</item>
-		<item>تلاش اصطلاح کو شامل کرنے والے الفاظ</item>
-	</string-array>
-	<string name="title_help">DictionaryForMIDs Help</string>
-	<string name="desc_help">اپنی تلاش بہتر کرنے کے لیے وائلڈ کارڈ کریکٹر استعمال کریں: \n%1$cکسی بھی کریکٹر کے سلسے کو ڈھونڈتا ہے \n%2$c کسی بھی ایک کریکٹر کو ڈھونڈتا ہے \n\n سب ایکسپریشن تلاش کو کنٹرول کرنے کے لیے: \n%3$c پہلے کریکٹر کے طور پر آپ کی تلاش اندراج سے شروع ہونے والے نتائج نکالتا ہے \n%4$c آپ کے اندراج کے بعد اس سے ختم ہونے والے نتائج نکالتا ہے۔ نوٹ کریں: وائلڈ کارڈ کریکٹر ڈالنے سے تلاش موڈ ترجیحات زیر ہو جاتی ہیں۔</string>
-	<string name="desc_see_website">مذید معلومات کے لیے ویب سائٹ دیکھیں: \n%1$s</string>
-	<string name="tab_load_recent">حالیہ</string>
-	<string name="tab_load_from_file">مسل سے</string>
-	<string name="tab_load_included">شامل کردہ</string>
-	<string name="tab_load_download">ڈاؤن لوڈ کریں</string>
-	<string name="title_recent_dictionary">%1$s: %2$s</string>
-	<string name="title_remove_from_list">فہرست سے ہٹائیں</string>
-	<string name="app_description">DictionaryForMIDs سیل فون اور PDA کے لیے ایک مفت، کثیر زبان لغت ہے </string>
-	<string name="hint_enter_word">ترجمے کے لیے لفظ داخل کریں</string>
-	<string name="hint_filter">فلٹر</string>
-	<string name="title_pref_search_options">تلاش اختیارات</string>
-	<string name="title_pref_search_mode">تلاش موڈ</string>
-	<string name="title_pref_max_results">زیادہ سے زیادہ نتائج</string>
-	<string name="title_pref_timeout">تلاش کے لیے تعطل وقت</string>
-	<string name="title_pref_display_options">نمائش کے اختیارات</string>
-	<string name="title_pref_result_font_size">نتائج کے لیے فانٹ سائز</string>
-	<string name="title_pref_ignore_font_styles">فانٹ طرز نظر انداز کریں</string>
-	<string name="language_english">انگریزی</string>
-	<string name="language_vietnamese">ویتنامی</string>
-	<string name="language_chinese">چینی</string>
-	<string name="language_japanese">جاپانی</string>
-	<string name="language_thai">تھائی</string>
-	<string name="language_hindi">ہندی</string>
-	<string name="language_indonesian">انڈونیشیائی</string>
-	<string name="language_french">فرانسیسی</string>
-	<string name="language_spanish">ہسپانوی</string>
-	<string name="language_german">جرمن</string>
-	<string name="language_italian">اطالوی</string>
-	<string name="language_latin">لاتینی</string>
-	<string name="language_russian">روسی</string>
-	<string name="language_arabic">عربی</string>
-	<string name="language_czech">چیک</string>
-	<string name="language_slovak">سلوواکی</string>
-	<string name="title_pref_language_code">زبان</string>
-	<string name="title_default_language_code">طے شدہ</string>
-	<string name="msg_restart_app_after_settings_changed">زبان سیٹینگوں کو اثر انداز کرنے کے لیے ایپلی کیشن پھر سٹارٹ کریں۔</string>
-	<string name="title_about_ui_translation">مقامیت سازی</string>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">اردو</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">کوئی مسلیں نہیں ملیں۔</string>
+  <string name="to_top">/ (بالا)</string>
+  <string name="to_upper_level">.. (اوپر)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">انتظار کریں</string>
+  <string name="copy_all">تمام نقل کریں</string>
+  <string name="copy_word">نقل کریں: %1$s</string>
+  <string name="not_found">نہیں ملا</string>
+  <string name="no_download_dictionaries">فی الحال ڈاؤن لوڈ کے لے کوئی لغات دستیاب نہیں ہیں۔</string>
+  <string name="msg_suggest_update">آپ کی DictionaryForMIDs کی ورژن پرانی ہے۔ لغات ڈاؤن لوڈ کرنے سے پہلے تازہ کاری کریں۔\n ابھی تازہ کاری کریں کریں؟</string>
+  <string name="msg_suggest_update_with_message">آپ کی DictionaryForMIDs کی ورژن پرانی ہے۔ لغات ڈاؤن لوڈ کرنے سے پہلے تازہ کاری کریں۔\n ابھی تازہ کاری کریں کریں؟\n\n تفاصیل: %1$s</string>
+  <string name="msg_confirm_installation">\"%1$s\" لغت ڈاؤن لوڈ اور تنصیب کریں؟\n سائز: نامعالوم</string>
+  <string name="msg_confirm_installation_size">\"%1$s\" لغت ڈاؤن لوڈ اور تنصیب کریں؟\n سائز: %2$s</string>
+  <string name="msg_installation_exception">تنصیب کے دوران استثنا: \n%1$s</string>
+  <string name="msg_installation_exception_cause">تنصیب کے دوران استثنا: \n%1$s \n\n وجہ: \n%1$s</string>
+  <string name="msg_installation_already_started">ایک تنصیب پہلے سے زیر عمل ہے۔</string>
+  <string name="msg_installation_started">تنصیب کچھ دیر لے سکتی ہے، آپ اس دوران ایپلی کیشن استعمال کرنا جاری رکھ سکتے ہیں۔</string>
+  <string name="msg_installation_finished">لغت تنصیب ہو گئی!</string>
+  <string name="msg_list_already_downloaded">فہرست پہلے سے ڈاؤن لوڈ ہو رہی ہے۔</string>
+  <string name="msg_installation_error">تنصیب نقص</string>
+  <string name="title_exception">استثنا</string>
+  <string name="exception_failed_create_directory">ڈائریکٹری بنانے میں ناکام: %1$s</string>
+  <string name="exception_failed_create_file">مسل بنانے میں ناکام: %1$s</string>
+  <string name="exception_failed_delete_file">مسل ہٹانے میں ناکام: %1$s</string>
+  <string name="title_installation_finished">تکمیل یافتہ</string>
+  <string name="msg_successfully_installed_dictionary">لغت کامیابی سے تنصیب ہو گئی۔</string>
+  <string name="msg_installation_complete">تنصیب مکمل</string>
+  <string name="title_installation_status">تنصیب حالت</string>
+  <string name="msg_installation_aborted">بمطابق صارف تنصیب ساقط کر دی گئی۔</string>
+  <string name="msg_installation_status">حالت: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">نمونہ \"%2$s\" سے مشابہ محفوظہ \"%1$s\" میں کوئی اندراج نہیں</string>
+  <string name="unit_byte">B</string>
+  <string name="unit_kilo_byte">KB</string>
+  <string name="unit_mega_byte">MB</string>
+  <string name="unit_giga_byte">GB</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_maximum">%1$d (بڑے سے بڑا) سے زیادہ نتائج ملے۔</string>
+  <string name="results_found_cancel">منسوخ کرنے سے پہلے %1$d نتائج ملے۔</string>
+  <string name="results_found_timeout">تعطل وقت سے پہلے %1$d نتائج ملے۔</string>
+  <string name="results_found">%1$d نتائج ملے۔</string>
+  <string name="results_found_one">1 نتیجہ ملا۔</string>
+  <string name="no_results_found">کوئی نتائج نہیں ملے۔</string>
+  <string-array name="font_sizes">
+    <item>10sp</item>
+    <item>11sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
+    <item>12sp</item>
+    <item>13sp</item>
+    <item>14sp</item>
+    <item>15sp</item>
+    <item>16sp</item>
+    <item>17sp</item>
+    <item>18sp</item>
+    <item>19sp</item>
+  </string-array>
+  <string name="title_translation_error">ترجمہ نقص واقع ہوا۔</string>
+  <string name="msg_translation_error">تفاصیل: \n\n%1$s</string>
+  <string name="msg_translation_cancelled">ترجمہ منسوخ کر دیا گیا۔</string>
+  <string name="menu_dictionary">لغت</string>
+  <string name="menu_preferences">ترجیحات</string>
+  <string name="menu_about">متعلق</string>
+  <string name="menu_help">مدد</string>
+  <string name="msg_enter_word_first">پہلے کوئی لفظ داخل کریں۔</string>
+  <string name="menu_reload_dictionary_list">فہرست پھر لوڈ کریں</string>
+  <string name="menu_cancel_installation">تنصیب منسوخ کریں</string>
+  <string name="msg_load_dictionary_first">پہلے کوئی لغت لوڈ کریں۔</string>
+  <string name="msg_reload_dictionary">لغت پھر لوڈ کریں۔</string>
+  <string name="msg_exception">استثنا: \n%1$s</string>
+  <string name="button_ok">ٹھیک ہے</string>
+  <string name="button_cancel">منسوخ کریں</string>
+  <string name="button_do_not_show_again">یہ پھر نہ دکھائیں</string>
+  <string name="msg_clear_recent_dictionaries_list">حالیہ لغات کی فہرست صاف کریں؟</string>
+  <string name="msg_cancel_installation">حالیہ تنصیب میسوخ کریں؟</string>
+  <string name="msg_load_dictionary">نئی لغت ابھی لوڈ کرے؟ \n\n آپ اس کو بعد میں کسی بھی وقت حالیہ لغات کی فہرست میں سے لوڈ کر سکتے ہیں۔</string>
+  <string name="button_load_dictionary_from_current_directory">موجودہ ڈائریکٹری سے لغت لوڈ کریں</string>
+  <string name="msg_dictionary_error">لغت نقص</string>
+  <string name="msg_dictionary_not_found">لغت ڈاؤن لوڈ نہیں ہو سکی۔ \n\n آپ مندرجہ ذیل مکالمے میں سے کوئی لغت منتخب کر سکتے ہیں۔</string>
+  <string name="msg_dictionary_load_error">لغت لوڈ کرتے ہوئے نقص۔</string>
+  <string name="msg_internal_dictionary_load_error">اندرونی لغات لوڈ کرتے وقت نقص۔ \n\n%1$s</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="msg_no_dictionary">منتخب شدہ شے لغت نہیں لگتی۔</string>
+  <string name="title_load_dictionary_first">پہلے لغت لوڈ کریں۔</string>
+  <string name="title_about_heading">جاوا ایپلی کیشن DictonaryForMIDs</string>
+  <string name="title_about_copyright_owner">حق تصنیف Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) اور دیگر معاونین۔</string>
+  <string name="title_version">ورژن: %1$s\t(%2$d)</string>
+  <string name="title_about_copyright">DictionaryForMIDs جاوا ایپلی کیشن مفت سافٹ وئیر ہے: آپ اس کو Free Software Foundation کی شائع کردہ شرائط کے ذیر تحت بانٹ اور/یا تبدیل کر سکتے ہیں؛ یا لائسنس کا ورژن 2 یا پھر آپ کی مرضی کے مطابق، اس کے بعد کا کوئی ورژن۔ مثل COPYING یا http://www.gnu.org/licenses/ دیکھیں\n\n یہ پروگرام اس امید کے ساتھ بانٹا گیا ہے کہ یہ فائدہ مند ہو گا، لیکن یہ کسی بھی وارنٹی کے بغیر ہے؛ MERCHANTABILITY اور FITNESS FOR A PARTICULAR PURPOSE کی بھی وارنٹی کے بغیر۔ مزید تفاصیل کے لیے GNU General Public License دیکھیں۔</string>
+  <string name="title_about_dictionary">لغت:</string>
+  <string name="title_about_ui_translation">مقامیت سازی</string>
+  <string name="title_information">معلومات</string>
+  <string name="title_welcome">خوش آمدید!</string>
+  <string name="title_seconds">%1$d sec</string>
+  <string name="msg_first_run">لگتا ہے کہ آپ یہ پروگرام پہلی دفعہ چلا رہے ہیں! مندرجہ ذیل سکرین استعمال کر کے کوئی لغت منتخب کریں۔</string>
+  <string name="msg_slow_archive_loading">تعطل وقت کے بعد ترجمہ منسوخ کر دیا گیا۔ \n آپ آرکائیو شدہ لغت کو اپنے SD کارڈ کی کسی ڈاریکٹری میں کھول کے ترجمے کو تیز کر سکتے ہیں۔ یا پھر آپ ترجیحات مکالمے میں تعطل وقت بڑھا سکتے ہیں۔</string>
+  <string name="msg_parsing_error">ریسورس کی نحوی جانچ کاری کرتے وقت نقص۔ \n\n%1$s</string>
+  <string name="msg_extract_dictionary">منتخب شدہ آرکائیو لوڈ نہیں ہو سکی، لیکن لگتا ہے کہ اس میں سکیڑی ہوئی لغت ہے۔ پہلے شامل کردہ جار مسل کھولیں۔</string>
+  <string-array name="search_mode">
+    <item>معیاری</item>
+    <item>تلاش اصطلاح سے مشابہ الفاظ</item>
+    <item>تلاش اصطلاح سے شروع ہونے والے الفاظ</item>
+    <item>تلاش اصطلاح کو شامل کرنے والے الفاظ</item>
+  </string-array>
+  <string name="title_help">DictionaryForMIDs Help</string>
+  <string name="desc_help">اپنی تلاش بہتر کرنے کے لیے وائلڈ کارڈ کریکٹر استعمال کریں: \n%1$cکسی بھی کریکٹر کے سلسے کو ڈھونڈتا ہے \n%2$c کسی بھی ایک کریکٹر کو ڈھونڈتا ہے \n\n سب ایکسپریشن تلاش کو کنٹرول کرنے کے لیے: \n%3$c پہلے کریکٹر کے طور پر آپ کی تلاش اندراج سے شروع ہونے والے نتائج نکالتا ہے \n%4$c آپ کے اندراج کے بعد اس سے ختم ہونے والے نتائج نکالتا ہے۔ نوٹ کریں: وائلڈ کارڈ کریکٹر ڈالنے سے تلاش موڈ ترجیحات زیر ہو جاتی ہیں۔</string>
+  <string name="desc_see_website">مذید معلومات کے لیے ویب سائٹ دیکھیں: \n%1$s</string>
+  <string name="tab_load_recent">حالیہ</string>
+  <string name="tab_load_from_file">مسل سے</string>
+  <string name="tab_load_included">شامل کردہ</string>
+  <string name="tab_load_download">ڈاؤن لوڈ کریں</string>
+  <string name="title_activity_preferences">ترجیحات</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_remove_from_list">فہرست سے ہٹائیں</string>
+  <string name="app_description">DictionaryForMIDs سیل فون اور PDA کے لیے ایک مفت، کثیر زبان لغت ہے</string>
+  <string name="hint_enter_word">ترجمے کے لیے لفظ داخل کریں</string>
+  <string name="hint_filter">فلٹر</string>
+  <string name="title_pref_search_options">تلاش اختیارات</string>
+  <string name="title_pref_search_mode">تلاش موڈ</string>
+  <string name="title_pref_max_results">زیادہ سے زیادہ نتائج</string>
+  <string name="title_pref_timeout">تلاش کے لیے تعطل وقت</string>
+  <string name="title_pref_display_options">نمائش کے اختیارات</string>
+  <string name="title_pref_result_font_size">نتائج کے لیے فانٹ سائز</string>
+  <string name="title_pref_language_code">زبان</string>
+  <string name="title_default_language_code">طے شدہ</string>
+  <string name="language_english">انگریزی</string>
+  <string name="language_vietnamese">ویتنامی</string>
+  <string name="language_chinese">چینی</string>
+  <string name="language_japanese">جاپانی</string>
+  <string name="language_thai">تھائی</string>
+  <string name="language_hindi">ہندی</string>
+  <string name="language_indonesian">انڈونیشیائی</string>
+  <string name="language_french">فرانسیسی</string>
+  <string name="language_spanish">ہسپانوی</string>
+  <string name="language_german">جرمن</string>
+  <string name="language_italian">اطالوی</string>
+  <string name="language_latin">لاتینی</string>
+  <string name="language_russian">روسی</string>
+  <string name="language_arabic">عربی</string>
+  <string name="language_czech">چیک</string>
+  <string name="language_slovak">سلوواکی</string>
 </resources>

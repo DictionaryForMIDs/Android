@@ -1,176 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<!-- put the name of the current language into language_name -->
-	<!-- e.g. Deutsch if this is the German language file -->
-	<string name="language_name">中文(简)</string>
-	
-	<!--
-		put the name/e-mail/website of the translator (that's probably you)
-		here, it will appear on the about screen; leave empty if you don't
-		want to be mentioned
-	-->
-	<string name="title_user_interface_translator">安卓网汉化（HiAPK.com）</string>
-
-	<string name="app_name">DictionaryForMIDs</string>
-	<string name="no_files">没有找到文件</string>
-	<string name="to_top">/ (根)</string>
-	<string name="to_upper_level">.. (上层)</string>
-	<string name="to_sdcard">/sdcard</string>
-	<string name="title_please_wait">请稍候</string>
-	<string name="msg_searching">搜索中...</string>
-	<string name="copy_all">复制全部</string>
-	<string name="copy_word">复制: %1$s</string>
-	<string name="not_found">未找到</string>
-	<string name="no_included_dictionaries">没有找到内部辞典。\n\n点击这里下载一个。</string>
-	<string name="no_recent_dictionaries">没有找到最近加载的辞典。\n\n点击这里下载一个。</string>
-	<string name="loading_download_dictionaries">请稍候。\n\n正在载入可用辞典...</string>
-	<string name="no_download_dictionaries">抱歉, 当前没有可下载的辞典。</string>
-	<string name="msg_error_downloading_available_dictionaries">下载可用辞典列表时发生错误。\n\n\n点击这里重试。\n\n\n详情:\n%1$s</string>
-	<string name="msg_suggest_update">您的 DictionaryForMIDs 版本已过时。请在下载辞典前更新。\n现在更新么?</string>
-	<string name="msg_suggest_update_with_message">您的 DictionaryForMIDs 版本已过时。请在下载辞典前更新。\n现在更新么?\n\n详情: %1$s</string>
-	<string name="msg_confirm_installation">下载和安装 \"%1$s\" 辞典?\n大小: 未知</string>	
-	<string name="msg_confirm_installation_size">下载和安装 \"%1$s\" 辞典?\n大小: %2$s</string>
-	<string name="msg_installation_exception">安装时发生异常:\n%1$s</string>	
-	<string name="msg_installation_exception_cause">安装时发生异常:\n%1$s\n\n原因:\n%1$s</string>
-	<string name="msg_installation_already_started">抱歉, 一个安装已启用。</string>
-	<string name="msg_installation_started">安装可能需要一段时间, 您可以继续使用程序。</string>
-	<string name="msg_installation_finished">辞典已安装!</string>	
-	<string name="msg_list_already_downloaded">列表已被下载。</string>
-	<string name="msg_installation_error">安装错误</string>
-	<string name="title_exception">异常</string>
-	<string name="exception_failed_create_directory">无法创建目录: %1$s</string>
-	<string name="exception_failed_create_file">无法创建文件: %1$s</string>
-	<string name="exception_failed_delete_file">无法删除文件: %1$s</string>
-	<string name="title_installation_finished">结束</string>
-	<string name="msg_successfully_installed_dictionary">成功的安装了辞典。</string>
-	<string name="msg_installation_complete">安装完成</string>
-	<string name="title_installation_status">安装状态</string>
-	<string name="msg_installing_dictionary">正在安装辞典...</string>
-	<string name="msg_installation_aborted">安装被用户取消。</string>
-	<string name="msg_installation_status">状态: %1$.2f%%</string>
-	<string name="msg_compressed_entry_not_found">在文件 \"%1$s\" 中没有条目匹配以下样式 \"%2$s\"</string>
-	<string name="unit_byte">B</string>
-	<string name="unit_kilo_byte">KB</string>
-	<string name="unit_mega_byte">MB</string>
-	<string name="unit_giga_byte">GB</string>
-	<string name="file_size">%1$.2f %2$s</string>
-	<string name="results_found_maximum">找到多余 %1$d (最多) 个结果。</string>
-	<string name="results_found_cancel">取消之前找个 %1$d 结果。</string>
-	<string name="results_found_timeout">超时之前找个 %1$d 结果。</string>
-	<string name="results_found">找个 %1$d 结果。</string>
-	<string name="results_found_one">找个 1 结果。</string>
-	<string name="no_results_found">抱歉, 没有找到结果。</string>
-	<string-array name="font_sizes">
-		<item>10sp</item>
-		<item>11sp</item>
-		<item>12sp</item>
-		<item>13sp</item>
-		<item>14sp</item>
-		<item>15sp</item>
-		<item>16sp</item>
-		<item>17sp</item>
-		<item>18sp</item>
-		<item>19sp</item>
-		<item>20sp</item>
-		<item>21sp</item>
-		<item>22sp</item>
-		<item>23sp</item>
-		<item>24sp</item>
-		<item>25sp</item>
-		<item>26sp</item>
-	</string-array>
-	<string name="title_translation_error">发生翻译错误。</string>
-	<string name="msg_translation_error">详情:\n\n%1$s</string>
-	<string name="msg_translation_cancelled">翻译已取消。</string>
-	<string name="menu_dictionary">辞典</string>
-	<string name="menu_preferences">首选项</string>
-	<string name="menu_about">关于</string>
-	<string name="menu_help">帮助</string>
-	<string name="menu_download_dictionaries">手动下载...</string>
-	<string name="menu_clear_recent_dictionary_list">清除最近...</string><string name="msg_enter_word_first">请先输入一个词。</string>
-	<string name="menu_reload_dictionary_list">刷新列表</string>
-	<string name="menu_cancel_installation">取消安装</string>
-	<string name="msg_load_dictionary_first">请先载入一个辞典。</string>
-	<string name="msg_reload_dictionary">请刷新辞典。</string>
-	<string name="msg_exception">发生异常:\n%1$s</string>
-	<string name="button_ok">确认</string>
-	<string name="button_cancel">取消</string>
-	<string name="button_do_not_show_again">不再显示</string>
-	<string name="msg_download_dictionaries">要下载一个辞典需要 4 步 (以下假设您已经安装了一个文件管理器如 Astro):\n\n1.在确认此对话框后选择并从网站上下载一个辞典。注意: 只支持版本为 2.4.4 或更高的辞典。\n\n2.解压 ZIP 文件的内容到您 SD 卡的一个目录 (例如使用 Astro)。\n\n3.可选: 解压包含的 jar 文件的内容到您的 SD 卡来进行快速查找。\n\n4.在先前显示的对话框中选择目录。\n\n或者您也可以使用您的计算机下载并解压辞典, 然后传输到您的 SD 卡。</string>
-	<string name="msg_clear_recent_dictionaries_list">清除最近使用的辞典列表?</string>
-	<string name="msg_cancel_installation">取消当前的安装?</string>
-	<string name="msg_load_dictionary">现在载入新辞典?\n\n您也可以稍后使用最近辞典列表载入它。</string>
-	<string name="button_load_dictionary_from_current_directory">从当前目录载入辞典</string>
-	<string name="msg_dictionary_error">辞典错误</string>
-	<string name="msg_dictionary_not_found">辞典无法被加载。\n\n您可以在随后的对话框中选择一个辞典。</string>
-	<string name="msg_dictionary_load_error">加载辞典时发生错误。</string>
-	<string name="msg_internal_dictionary_load_error">加载内部辞典时发生错误。\n\n%1$s</string>
-	<string name="title_current_path">&gt; %1$s</string>
-	<string name="msg_no_dictionary">所选的项目不是辞典。</string>
-	<string name="title_load_dictionary">加载辞典...</string>
-	<string name="title_load_dictionary_first">请先加载辞典。</string>
-	<string name="title_about_heading">Java 程序 DictonaryForMIDs</string>
-	<string name="title_about_copyright_owner">版权归 Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) 和其他贡献者所有。</string>
-	<string name="title_version">版本: %1$s</string>
-	<string name="title_about_copyright">DictionaryForMIDs Java application is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version. See file COPYING or http://www.gnu.org/licenses/\n\nThis program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-    GNU General Public License for more details.
-	</string>
-	<string name="title_about_dictionary">辞典:</string>
-	<string name="title_information">信息</string>
-	<string name="title_welcome">欢迎!</string>
-	<string name="title_seconds">%1$d 秒</string>
-	<string name="msg_first_run">看起来您是首次运行此程序! 请使用随后的屏幕选择一个辞典。</string>
-	<string name="msg_slow_archive_loading">翻译因为超时而被取消。\n您可以解压辞典到 SD 卡中的一个目录并选择此目录作为辞典来加速翻译。或者您也可以在首选项对话框中增加超时时间。</string>
-	<string name="msg_parsing_error">解析资源时发生错误。\n\n%1$s</string>
-	<string name="msg_extract_dictionary">无法加载所选文件, 但是看起来包含一个压缩的辞典。请先解压内置的 jar 文件。</string>
-	<string-array name="search_mode"><item>标准</item>
-		<item>匹配搜索词的词</item>
-		<item>以搜索词起始的词</item>
-		<item>包括搜索词的词</item>
-	</string-array>
-	<string name="title_help">DictionaryForMIDs 帮助</string>
-	<string name="desc_help">使用通配符来改善您的搜索:\n%1$c 匹配任何连续的字符串\n%2$c 匹配任何单个字符\n\n要控制子表达式搜索:\n%3$c 作为第一个字符会生成以您搜索条目为起始的结果\n%4$c 在您搜索条目后则会生成以其为结尾的结果。\n\n请注意: 添加通配符会无视选项中的模式设置。</string>
-	<string name="desc_see_website">到网站查看更多信息:\n%1$s</string>
-	<string name="tab_load_recent">最近</string>
-	<string name="tab_load_from_file">从文件</string>
-	<string name="tab_load_included">内置</string>
-	<string name="tab_load_download">下载</string>
-	<string name="title_recent_dictionary">%1$s: %2$s</string>
-	<string name="title_remove_from_list">从列表移除</string>
-	<string name="app_description">DictionaryForMIDs 是手机和 PDA 上的免费的多语言辞典</string>
-	<string name="hint_enter_word">输入要翻译的词</string>
-	<string name="hint_filter">筛选</string>
-	<string name="title_pref_search_options">搜索选项</string>
-	<string name="title_pref_search_mode">搜索模式</string>
-	<string name="title_pref_max_results">最多结果</string>
-	<string name="title_pref_timeout">搜索超时</string>
-	<string name="title_pref_display_options">显示选项</string>
-	<string name="title_pref_result_font_size">结果的字体大小</string>
-	<string name="title_pref_ignore_font_styles">忽略字体样式</string>
-	<string name="title_pref_language_code">语言</string>
-	<string name="title_default_language_code">默认</string>
-	<string name="msg_restart_app_after_settings_changed">重启此程序来应用语言设置。</string>
-	<string name="title_about_ui_translation">本土化：</string>
-	<string name="language_english">英文</string>
-	<string name="language_esperanto">世界语</string>
-	<string name="language_vietnamese">越南语</string>
-	<string name="language_chinese">中文</string>
-	<string name="language_japanese">日文</string>
-	<string name="language_thai">泰语</string>
-	<string name="language_hindi">印地语</string>
-	<string name="language_indonesian">印度尼西亚语</string>
-	<string name="language_french">法文</string>
-	<string name="language_spanish">西班牙语</string>
-	<string name="language_german">德文</string>
-	<string name="language_italian">意大利语</string>
-	<string name="language_latin">拉丁文</string>
-	<string name="language_russian">俄文</string>
-	<string name="language_arabic">阿拉伯语</string>
-	<string name="language_czech">捷克语</string>
-	<string name="language_slovak">斯洛伐克语</string>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">中文(简)</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">没有找到文件</string>
+  <string name="to_top">/ (根)</string>
+  <string name="to_upper_level">.. (上层)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">请稍候</string>
+  <string name="copy_all">复制全部</string>
+  <string name="copy_word">复制: %1$s</string>
+  <string name="not_found">未找到</string>
+  <string name="no_download_dictionaries">抱歉, 当前没有可下载的辞典。</string>
+  <string name="msg_suggest_update">您的 DictionaryForMIDs 版本已过时。请在下载辞典前更新。\n现在更新么?</string>
+  <string name="msg_suggest_update_with_message">您的 DictionaryForMIDs 版本已过时。请在下载辞典前更新。\n现在更新么?\n\n详情: %1$s</string>
+  <string name="msg_confirm_installation">下载和安装 \"%1$s\" 辞典?\n大小: 未知</string>
+  <string name="msg_confirm_installation_size">下载和安装 \"%1$s\" 辞典?\n大小: %2$s</string>
+  <string name="msg_installation_exception">安装时发生异常:\n%1$s</string>
+  <string name="msg_installation_exception_cause">安装时发生异常:\n%1$s\n\n原因:\n%1$s</string>
+  <string name="msg_installation_already_started">抱歉, 一个安装已启用。</string>
+  <string name="msg_installation_started">安装可能需要一段时间, 您可以继续使用程序。</string>
+  <string name="msg_installation_finished">辞典已安装!</string>
+  <string name="msg_list_already_downloaded">列表已被下载。</string>
+  <string name="msg_installation_error">安装错误</string>
+  <string name="title_exception">异常</string>
+  <string name="exception_failed_create_directory">无法创建目录: %1$s</string>
+  <string name="exception_failed_create_file">无法创建文件: %1$s</string>
+  <string name="exception_failed_delete_file">无法删除文件: %1$s</string>
+  <string name="title_installation_finished">结束</string>
+  <string name="msg_successfully_installed_dictionary">成功的安装了辞典。</string>
+  <string name="msg_installation_complete">安装完成</string>
+  <string name="title_installation_status">安装状态</string>
+  <string name="msg_installation_aborted">安装被用户取消。</string>
+  <string name="msg_installation_status">状态: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">在文件 \"%1$s\" 中没有条目匹配以下样式 \"%2$s\"</string>
+  <string name="unit_byte">B</string>
+  <string name="unit_kilo_byte">KB</string>
+  <string name="unit_mega_byte">MB</string>
+  <string name="unit_giga_byte">GB</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_maximum">找到多余 %1$d (最多) 个结果。</string>
+  <string name="results_found_cancel">取消之前找个 %1$d 结果。</string>
+  <string name="results_found_timeout">超时之前找个 %1$d 结果。</string>
+  <string name="results_found">找个 %1$d 结果。</string>
+  <string name="results_found_one">找个 1 结果。</string>
+  <string name="no_results_found">抱歉, 没有找到结果。</string>
+  <string-array name="font_sizes">
+    <item>10sp</item>
+    <item>11sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
+    <item>12sp</item>
+    <item>13sp</item>
+    <item>14sp</item>
+    <item>15sp</item>
+    <item>16sp</item>
+    <item>17sp</item>
+    <item>18sp</item>
+    <item>19sp</item>
+  </string-array>
+  <string name="title_translation_error">发生翻译错误。</string>
+  <string name="msg_translation_error">详情:\n\n%1$s</string>
+  <string name="msg_translation_cancelled">翻译已取消。</string>
+  <string name="menu_dictionary">辞典</string>
+  <string name="menu_preferences">首选项</string>
+  <string name="menu_about">关于</string>
+  <string name="menu_help">帮助</string>
+  <string name="msg_enter_word_first">请先输入一个词。</string>
+  <string name="menu_reload_dictionary_list">刷新列表</string>
+  <string name="menu_cancel_installation">取消安装</string>
+  <string name="msg_load_dictionary_first">请先载入一个辞典。</string>
+  <string name="msg_reload_dictionary">请刷新辞典。</string>
+  <string name="msg_exception">发生异常:\n%1$s</string>
+  <string name="button_ok">确认</string>
+  <string name="button_cancel">取消</string>
+  <string name="button_do_not_show_again">不再显示</string>
+  <string name="msg_clear_recent_dictionaries_list">清除最近使用的辞典列表?</string>
+  <string name="msg_cancel_installation">取消当前的安装?</string>
+  <string name="msg_load_dictionary">现在载入新辞典?\n\n您也可以稍后使用最近辞典列表载入它。</string>
+  <string name="button_load_dictionary_from_current_directory">从当前目录载入辞典</string>
+  <string name="msg_dictionary_error">辞典错误</string>
+  <string name="msg_dictionary_not_found">辞典无法被加载。\n\n您可以在随后的对话框中选择一个辞典。</string>
+  <string name="msg_dictionary_load_error">加载辞典时发生错误。</string>
+  <string name="msg_internal_dictionary_load_error">加载内部辞典时发生错误。\n\n%1$s</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="msg_no_dictionary">所选的项目不是辞典。</string>
+  <string name="title_load_dictionary_first">请先加载辞典。</string>
+  <string name="title_about_heading">Java 程序 DictonaryForMIDs</string>
+  <string name="title_about_copyright_owner">版权归 Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) 和其他贡献者所有。</string>
+  <string name="title_version">版本: %1$s</string>
+  <string name="title_about_copyright">DictionaryForMIDs Java application is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. See file COPYING or http://www.gnu.org/licenses/\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</string>
+  <string name="title_about_dictionary">辞典:</string>
+  <string name="title_about_ui_translation">本土化：</string>
+  <string name="title_information">信息</string>
+  <string name="title_welcome">欢迎!</string>
+  <string name="title_seconds">%1$d 秒</string>
+  <string name="msg_first_run">看起来您是首次运行此程序! 请使用随后的屏幕选择一个辞典。</string>
+  <string name="msg_slow_archive_loading">翻译因为超时而被取消。\n您可以解压辞典到 SD 卡中的一个目录并选择此目录作为辞典来加速翻译。或者您也可以在首选项对话框中增加超时时间。</string>
+  <string name="msg_parsing_error">解析资源时发生错误。\n\n%1$s</string>
+  <string name="msg_extract_dictionary">无法加载所选文件, 但是看起来包含一个压缩的辞典。请先解压内置的 jar 文件。</string>
+  <string-array name="search_mode">
+    <item>标准</item>
+    <item>匹配搜索词的词</item>
+    <item>以搜索词起始的词</item>
+    <item>包括搜索词的词</item>
+  </string-array>
+  <string name="title_help">DictionaryForMIDs 帮助</string>
+  <string name="desc_help">使用通配符来改善您的搜索:\n%1$c 匹配任何连续的字符串\n%2$c 匹配任何单个字符\n\n要控制子表达式搜索:\n%3$c 作为第一个字符会生成以您搜索条目为起始的结果\n%4$c 在您搜索条目后则会生成以其为结尾的结果。\n\n请注意: 添加通配符会无视选项中的模式设置。</string>
+  <string name="desc_see_website">到网站查看更多信息:\n%1$s</string>
+  <string name="tab_load_recent">最近</string>
+  <string name="tab_load_from_file">从文件</string>
+  <string name="tab_load_included">内置</string>
+  <string name="tab_load_download">下载</string>
+  <string name="title_activity_preferences">首选项</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_remove_from_list">从列表移除</string>
+  <string name="app_description">DictionaryForMIDs 是手机和 PDA 上的免费的多语言辞典</string>
+  <string name="hint_enter_word">输入要翻译的词</string>
+  <string name="hint_filter">筛选</string>
+  <string name="title_pref_search_options">搜索选项</string>
+  <string name="title_pref_search_mode">搜索模式</string>
+  <string name="title_pref_max_results">最多结果</string>
+  <string name="title_pref_timeout">搜索超时</string>
+  <string name="title_pref_display_options">显示选项</string>
+  <string name="title_pref_result_font_size">结果的字体大小</string>
+  <string name="title_pref_language_code">语言</string>
+  <string name="title_default_language_code">默认</string>
+  <string name="language_english">英文</string>
+  <string name="language_esperanto">世界语</string>
+  <string name="language_vietnamese">越南语</string>
+  <string name="language_chinese">中文</string>
+  <string name="language_japanese">日文</string>
+  <string name="language_thai">泰语</string>
+  <string name="language_hindi">印地语</string>
+  <string name="language_indonesian">印度尼西亚语</string>
+  <string name="language_french">法文</string>
+  <string name="language_spanish">西班牙语</string>
+  <string name="language_german">德文</string>
+  <string name="language_italian">意大利语</string>
+  <string name="language_latin">拉丁文</string>
+  <string name="language_russian">俄文</string>
+  <string name="language_arabic">阿拉伯语</string>
+  <string name="language_czech">捷克语</string>
+  <string name="language_slovak">斯洛伐克语</string>
 </resources>

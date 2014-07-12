@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">Українська</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <plurals name="open_dictionary_drawer">
+    <item quantity="one"><![CDATA[Одна активна мова. <a href="#">Змінити&#8230;</a>]]></item>
+    <item quantity="few"><![CDATA[%1$d активні мови. <a href="#">Змінити…</a>]]></item>
+    <item quantity="other"><![CDATA[%1$d активних мов. <a href="#">Змінити&#8230;</a>]]></item>
+  </plurals>
+</resources>

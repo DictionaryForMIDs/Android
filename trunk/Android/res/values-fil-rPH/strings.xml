@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">Ingles</string>
+  <string name="app_name">DiksyonaryoParaSaMgaMID</string>
+  <string name="no_files">Walang nakitang file.</string>
+  <string name="to_top">/(ibabaw)</string>
+  <string name="to_upper_level">..(taas)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">Maghintay lamang</string>
+  <string name="msg_searching">Hinahanap&#8230;</string>
+  <string name="copy_all">Kopyahin lahat</string>
+  <string name="copy_word">Kopyahin: %1$s</string>
+  <string name="not_found">hindi makita</string>
+  <string name="no_included_dictionaries">Walang nakitang diksyonaryo.\n\nTapikin ito upang mag-download ng isa.</string>
+  <string name="language_english">Ingles</string>
+</resources>

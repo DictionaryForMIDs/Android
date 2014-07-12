@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">Tiếng Việt</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">thanhtai2009@tekcafevn</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">Không tìm thấy tập tin.</string>
+  <string name="to_top">/ (trên cùng)</string>
+  <string name="to_upper_level">.. (lên)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">Vui lòng chờ</string>
+  <string name="msg_searching">Đang tìm&#8230;</string>
+  <string name="copy_all">Chép tất cả</string>
+  <string name="copy_word">Chép: %1$s</string>
+  <string name="not_found">không tìm thấy</string>
+  <string name="no_included_dictionaries">Không tìm thấy từ điển kèm theo.\n\nChạm vào đây để tải.</string>
+  <string name="no_starred_words">Không tìm thấy từ được gắn sao.\n\nChạm vào biểu tượng ngôi sao của từ điển để gắn sao.</string>
+  <string name="starred_words_current_dictionary">Hiện tại: %1$d</string>
+  <string name="starred_words_all_dictionaries">Tất cả: %1$d</string>
+  <string name="no_recent_dictionaries">Không tìm thấy từ điển được nạp gần đây.\n\nChạm vào đây để tải xuống.</string>
+  <string name="loading_download_dictionaries">Vui lòng chờ.\n\nĐang tải từ điển khả dụng&#8230;</string>
+  <string name="no_download_dictionaries">Xin lỗi, hiện tại không có từ điển khả dụng để tải xuống.</string>
+  <string name="msg_error_downloading_available_dictionaries">Một lỗi đã xảy ra khi đang tải xuống danh sách từ điển khả dụng.\n\n\nChạm vào đây để thử lại.\n\n\nChi tiết:\n%1$s</string>
+  <string name="msg_error_dictionary_not_found">Từ điển với id %1$d hiện tại không khả dụng.</string>
+  <string name="msg_error_accessing_storage">Không thể truy nhập bộ nhớ ngoài. Vui lòng chắc rằng thiết bị không được kết nối qua USB.\n\nTình trạng bộ nhớ hiện tại: %1$s</string>
+  <string name="msg_suggest_update">Phiên bản DictionaryForMIDs của bạn đã cũ. Vui lòng cập nhật trước khi tải từ điển.\nCập nhật ngay?</string>
+  <string name="msg_suggest_update_with_message">Phiên bản DictionaryForMIDs của bạn đã cũ. Vui lòng cập nhật trước khi tải từ điển.\nCập nhật ngay?\n\nChi tiết: %1$s</string>
+  <string name="msg_confirm_installation">Tải và cài đặt từ điển \"%1$s\"?\nKích thước: không rõ</string>
+  <string name="msg_confirm_installation_size">Tải và cài đặt từ điển \"%1$s\"?\nKích thước: %2$s</string>
+  <string name="msg_installation_exception">Lỗi trong khi cài đặt:\n%1$s</string>
+  <string name="msg_installation_exception_cause">Lỗi trong khi cài đặt:\n%1$s\n\nNguyên nhân:\n%1$s</string>
+  <string name="msg_installation_already_started">Xin lỗi, một quá trình cài đặt đang được tiến hành.</string>
+  <string name="msg_installation_started">Quá trình cài đặt có thể mất một thời gian, bạn có thể tiếp tục dùng ứng dụng.</string>
+  <string name="msg_auto_installation_started">Đang tải từ điển \"%1$s\", việc này có thể mất một thời gian.\n\nBạn có thể thoát ứng dụng lúc này, tiến trình sẽ hiển thị trong thanh trạng thái.</string>
+  <string name="msg_installation_finished">Từ điển đã được cài đặt!</string>
+  <string name="msg_list_already_downloaded">Danh sách đang bắt đầu được tải xuống.</string>
+  <string name="msg_installation_error">Lỗi cài đặt</string>
+  <string name="msg_external_storage_inaccessible">Hiện tại không thể truy nhập bộ nhớ ngoài.</string>
+  <string name="msg_exported_starred_words">Xuất thành công từ ngữ ra bộ nhớ ngoài.</string>
+  <string name="msg_error_parsing_integer_preference">Xin lỗi, không thể xác định số. Đã trở về giá trị mặc định.</string>
+  <string name="title_exception">Lỗi</string>
+  <string name="title_activity_starred_words">Từ được gắn sao</string>
+  <string name="exception_failed_create_directory">Không thể tạo thư mục: %1$s</string>
+  <string name="exception_failed_create_file">Không thể tạo tập tin: %1$s</string>
+  <string name="exception_failed_delete_file">Không thể xoá tập tin: %1$s</string>
+  <string name="title_installation_finished">Đã kết thúc</string>
+  <string name="msg_successfully_installed_dictionary">Cài đặt từ điển thành công.</string>
+  <string name="msg_installation_complete">Cài đặt hoàn tất</string>
+  <string name="title_installation_status">Trạng thái cài đặt</string>
+  <string name="msg_installing_dictionary">Cài đặt từ điển&#8230;</string>
+  <string name="msg_installation_aborted">Quá trình cài đặt bị huỷ bởi người dùng.</string>
+  <string name="msg_installation_status">Trạng thái: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">Trong lưu trữ \"%1$s\" không có mục phù hợp với mẫu \"%2$s\"</string>
+  <string name="unit_byte">B</string>
+  <string name="unit_kilo_byte">KB</string>
+  <string name="unit_mega_byte">MB</string>
+  <string name="unit_giga_byte">GB</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_maximum">Tìm thấy hơn %1$d (tối đa) kết quả.</string>
+  <string name="results_found_cancel">TÌm thấy %1$d kết quả trước khi huỷ.</string>
+  <string name="results_found_timeout">Tìm thấy %1$d kết quả trước khi hết thời gian.</string>
+  <string name="results_found">Tìm thấy %1$d kết quả.</string>
+  <string name="results_found_one">Tìm thấy 1 kết quả.</string>
+  <string name="no_results_found">Xin lỗi, không tìm thấy kết quả nào.</string>
+  <string-array name="font_sizes">
+    <item>10sp</item>
+    <item>11sp</item>
+    <item>12sp</item>
+    <item>13sp</item>
+    <item>14sp</item>
+    <item>15sp</item>
+    <item>16sp</item>
+    <item>17sp</item>
+    <item>18sp</item>
+    <item>19sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
+  </string-array>
+  <string-array name="themes">
+    <item>Mặc định hệ thống</item>
+    <item>Tối</item>
+    <item>Sáng</item>
+  </string-array>
+  <string name="title_translation_error">Đã xảy ra lỗi dịch thuật.</string>
+  <string name="msg_translation_error">Chi tiết:\n\n%1$s</string>
+  <string name="msg_translation_cancelled">Đã huỷ dịch thuật.</string>
+  <string name="menu_dictionary">Từ điển</string>
+  <string name="menu_preferences">Tuỳ chọn</string>
+  <string name="menu_about">Thông tin</string>
+  <string name="menu_help">Giúp đỡ</string>
+  <string name="menu_starred">Được gắn sao</string>
+  <string name="menu_export_all_starred">Xuất tất cả</string>
+  <string name="menu_download_dictionaries">Tải xuống thủ công&#8230;</string>
+  <string name="menu_find_hidden_dictionaries">Thêm lại mục ẩn</string>
+  <string name="menu_clear_recent_dictionary_list">Xoá danh sách gần đây&#8230;</string>
+  <string name="msg_enter_word_first">VUi lòng nhập từ ngữ trước.</string>
+  <string name="menu_reload_dictionary_list">Tải lại danh sách</string>
+  <string name="menu_cancel_installation">Huỷ cài đặt</string>
+  <string name="menu_reinstall_default_dictionary">Cài lại thư mục mặc định</string>
+  <string name="msg_load_dictionary_first">Vui lòng nạp từ điển trước.</string>
+  <string name="msg_reload_dictionary">Vui lòng tải lại từ điển.</string>
+  <string name="msg_exception">Đã xảy ra lỗi:\n%1$s</string>
+  <string name="msg_restart_app_after_settings_changed">Khởi động lại ứng dụng để cài đặt có hiệu lực.</string>
+  <string name="button_ok">OK</string>
+  <string name="button_cancel">Huỷ</string>
+  <string name="button_do_not_show_again">Không hiện lại</string>
+  <string name="button_exit">Thoát</string>
+  <string name="msg_download_dictionaries">Tải về từ điển gồm 4 bước (các bước sao giả định rằng bạn có cài đặt một trình quản lý tập tin như Astro chẳng hạn):\n\n1.Chọn và tải một từ điển trên website được mở sau khi xác nhận hộp thoại này. Chú ý: Chỉ những từ điển phiên bản 2.4.4 hoặc mới hơn được hỗ trợ.\n\n2.Giải nén nội dung trong tập tin zip vào một thư mục trên thẻ nhớ (dùng Astro).\n\n3.Tuỳ chọn: Giải nén cả tập tin jar vào thẻ nhớ để tìm kiếm nhanh hơn.\n\n4.Chọn thư mục trong hộp thoại hiển thị trước đó.\n\nTheo cách khác, bạn có thể tải và giải nén từ điển bằng máy tính, sau đó chuyển chúng sang thẻ nhớ.</string>
+  <string name="msg_clear_recent_dictionaries_list">Xoá danh sách từ điển gần đây?</string>
+  <string name="msg_cancel_installation">Huỷ tiến trình cài đặt hiện tại?</string>
+  <string name="msg_load_dictionary">Tải từ điển mới ngay?\n\nBạn luôn có thể tải nó lúc khác từ danh sách từ điển dùng gần đây.</string>
+  <string name="button_load_dictionary_from_current_directory">Tải từ điển từ thư mục hiện tại</string>
+  <string name="msg_dictionary_error">Lỗi từ điển</string>
+  <string name="msg_dictionary_not_found">Không thể tải từ điển.\n\nBạn có thể chọn từ điển từ hộp thoại sau.</string>
+  <string name="msg_dictionary_load_error">Lỗi trong khi tải từ điển.</string>
+  <string name="msg_internal_dictionary_load_error">Lỗi trong khi tải từ điển nội bộ.\n\n%1$s</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="msg_no_dictionary">Mục đã chọn không phải từ điển.</string>
+  <string name="title_load_dictionary">Tải từ điển&#8230;</string>
+  <string name="msg_auto_install">Có vẻ như bạn chưa cài đặt từ điển mặc định.\n\nBạn muốn tải và cài đặt nó ngay không?</string>
+  <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="title_load_dictionary_first">Vui lòng nạp từ điển trước.</string>
+  <string name="title_about_heading">Ứng dụng Java DictonaryForMIDs</string>
+  <string name="title_about_copyright_owner">Bản quyền thuộc Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) và những người đóng góp khác.</string>
+  <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+  <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">Phiên bản: %1$s</string>
+  <string name="title_about_copyright">Ứng dụng Java DictionaryForMIDs là một phần mềm miễn phí: bạn có thể phát hành lại và/hoặc thay đổi nó
+    theo những điều khoản của Giấy phép Công cộng GNU được xuất bản bởi
+    Tổ chức Phần mềm Tự do; cả phiên bản 2 của Giấy phép, hoặc
+    (theo chọn lựa của bạn) mọi phiên bản sau này. Xem tập tin COPYING hoặc http://www.gnu.org/licenses/\n\nChương trình này được phân phối với hy vọng nó sẽ hữu dụng,
+    nhưng KHÔNG CÓ BẤT KỲ ĐẢM BẢO; không có ngụ ý đảm bảo nào về
+    KHẢ NĂNG KINH DOANH hoặc PHÙ HỢP VỚI MỘT MỤC ĐÍCH CỤ THỂ NÀO. Xem
+    Giấy phép Công cộng GNU để có thêm chi tiết.
+	</string>
+  <string name="title_about_dictionary">Từ điển:</string>
+  <string name="title_about_ui_translation">Bản địa hoá:</string>
+  <string name="title_about_translation_request">Giúp đỡ chúng tôi dịch ứng dụng nào sang ngôn ngữ của bạn hoặc cải thiện bản dịch hiện tại, hãy truy cập http://crowdin.net/project/dictionaryformids hoặc đóng góp ý kiến về địa chỉ email thanhtai2009@outlook.com đối với bản dịch tiếng Việt</string>
+  <string name="title_information">Thông tin</string>
+  <string name="title_welcome">Chào mừng!</string>
+  <string name="title_seconds">%1$d giây</string>
+  <string name="msg_first_run">Có vẻ như bạn mới dùng chương trình này lần đầu! Hãy chọn một từ điển ở màn hình dưới đây.</string>
+  <string name="msg_slow_archive_loading">Dịch thuật đã bị huỷ sau khi hết thời gian.\nBạn có thể tăng tốc độ dịch thuật bằng cách giải nén từ điển được nén vào một thư mục trên thẻ nhớ và chọn thư mục này làm từ điển. Bạn cũng có thể tăng thời gian chờ trong hộp thoại tuỳ chọn.</string>
+  <string name="msg_parsing_error">Lỗi trong khi phân tích tài nguyên.\n\n%1$s</string>
+  <string name="msg_extract_dictionary">Không thể nạp lưu trữ đã chọn, nhưng dường như nó gồm một từ điển được nén. Hãy giải nén tập tin jar được kèm theo trước.</string>
+  <string-array name="search_mode">
+    <item>Chuẩn</item>
+    <item>Từ phù hợp với cụm từ tìm kiếm</item>
+    <item>Từ bắt đầu với cụm từ tìm kiếm</item>
+    <item>Từ bao gồm cụm từ tìm kiếm</item>
+  </string-array>
+  <string name="title_help">Giúp đỡ về DictionaryForMIDs</string>
+  <string name="desc_help">Sử dụng ký tự đại diện để tinh chỉnh tìm kiếm:\n%1$c phù hợp với tất cả cụm ký tự\n%2$c phù hợp với tất cả ký tự đơn lẻ\n\nĐể quản lý tìm kiếm giải thích phụ:\n%3$c là ký tự đầu tiên sẽ đưa ra kết quả với mục tìm kiếm của bạn\n%4$c sau mục tìm kiếm sẽ đưa ra kết quả kết thúc với nó.\n\nHãy chú ý: Thêm ký tự đại diện sẽ thay thế tuỳ chọn chế độ tìm kiếm.</string>
+  <string name="desc_see_website">Xem trên website để có thêm thông tin:\n%1$s</string>
+  <string name="tab_load_recent">Gần đây</string>
+  <string name="tab_load_from_file">Từ tập tin</string>
+  <string name="tab_load_included">Bao gồm</string>
+  <string name="tab_load_download">Tải về</string>
+  <string name="title_activity_about">Màn hình thông tin</string>
+  <string name="title_activity_help">Màn hình giúp đỡ</string>
+  <string name="title_activity_choose_dictionary">Chọn từ điển</string>
+  <string name="title_activity_file_list">Chọn từ điển</string>
+  <string name="title_activity_dictionary_list">Chọn từ điển</string>
+  <string name="title_activity_recent_list">Chọn từ điển</string>
+  <string name="title_activity_preferences">Tuỳ chọn</string>
+  <string name="title_activity_install_dictionary">Cài đặt từ điển</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_remove_from_list">Xóa khỏi danh sách</string>
+  <string name="app_description">DictionaryForMIDs là một từ điển đa ngôn ngữ miễn phí dành cho điện thoại và PDA</string>
+  <string name="hint_enter_word">Nhập từ để dịch</string>
+  <string name="hint_filter">Bộ lọc</string>
+  <string name="title_pref_search_options">Tuỳ chọn tìm kiếm</string>
+  <string name="title_pref_search_mode">Chế độ tìm kiếm</string>
+  <string name="title_pref_max_results">Số k.quả tối đa</string>
+  <string name="title_pref_timeout">Thời gian chờ để tìm kiếm</string>
+  <string name="title_pref_search_as_you_type">Tìm trong khi nhập</string>
+  <string name="title_pref_display_options">Tùy chọn hiển thị</string>
+  <string name="title_pref_result_font_size">Cỡ chữ của kết quả</string>
+  <string name="title_pref_ignore_font_styles">Dùng kiểu của hệ thống</string>
+  <string name="title_pref_language_code">Ngôn ngữ</string>
+  <string name="title_pref_advanced_features">Tính năng nâng cao</string>
+  <string name="title_pref_enable_starred_words">Sử dụng từ được gắn sao</string>
+  <string name="title_pref_theme">Chủ đề</string>
+  <string name="title_default_language_code">Mặc định</string>
+  <string name="summary_pref_ignore_font_style_checked">Kết quả được hiển thị theo kiểu được xác định trong từ điển.</string>
+  <string name="summary_pref_ignore_font_style_unchecked">Kết quả được hiển thị theo kiểu của hệ thống.</string>
+  <string name="language_english">Tiếng Anh</string>
+  <string name="language_esperanto">Quốc tế ngữ</string>
+  <string name="language_vietnamese">Tiếng Việt</string>
+  <string name="language_chinese">Tiếng Trung</string>
+  <string name="language_japanese">Tiếng Nhật</string>
+  <string name="language_thai">Tiếng Thái</string>
+  <string name="language_hindi">Tiếng Hin-đi</string>
+  <string name="language_indonesian">Tiếng In-đô-nê-xia</string>
+  <string name="language_french">Tiếng Pháp</string>
+  <string name="language_spanish">Tiếng Tây Ban Nha</string>
+  <string name="language_german">Tiếng Đức</string>
+  <string name="language_italian">Tiếng Ý</string>
+  <string name="language_latin">Tiếng La-tinh</string>
+  <string name="language_russian">Tiếng Nga</string>
+  <string name="language_arabic">Tiếng Ả Rập</string>
+  <string name="language_czech">Tiếng Séc</string>
+  <string name="language_slovak">Tiếng Xlô-vác</string>
+  <string name="language_bulgarian">Tiếng Bun-ga-ri</string>
+  <string name="language_catalan">Tiếng Ca-ta-lăng</string>
+  <string name="language_persian">Tiếng Ba Tư</string>
+  <string name="language_finnish">Tiếng Phần Lan</string>
+  <string name="language_greek">Tiếng Hy Lạp</string>
+  <string name="language_hebrew">Tiếng Do Thái</string>
+  <string name="language_croatian">Tiếng Crô-a-ti-a</string>
+  <string name="language_hungarian">Tiếng Hung-ga-ri</string>
+  <string name="language_lithuanian">Tiếng Lít-va</string>
+  <string name="language_dutch">Tiếng Hà Lan</string>
+  <string name="language_polish">Tiếng Ba Lan</string>
+  <string name="language_portuguese">Tiếng Bồ Đào Nha</string>
+  <string name="language_swedish">Tiếng Thụy Điển</string>
+  <string name="language_norwegian">Tiếng Na Uy</string>
+  <string name="language_turkish">Tiếng Thổ Nhĩ Kỳ</string>
+  <string name="language_tagalog">Tiếng Tagalog</string>
+  <string name="language_tamil">Tiếng Tamil</string>
+  <string name="language_turkmen">Tiếng Tuôc-men</string>
+  <string name="language_danish">Tiếng Đan Mạch</string>
+  <string name="language_korean">Tiếng Hàn</string>
+  <string name="language_swahili">Tiếng Swahili</string>
+  <string name="load_dictionary_button">Thêm&#8230;</string>
+  <plurals name="open_dictionary_drawer">
+    <item quantity="other"><![CDATA[%1$d ngôn ngữ được kích hoạt. <a href="#">Thay đổi&#8230;</a>]]></item>
+  </plurals>
+</resources>

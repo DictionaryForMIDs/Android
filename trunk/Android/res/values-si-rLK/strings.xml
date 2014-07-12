@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">ඉංග්‍රීසි</string>
+  <string name="title_please_wait">කරුණාකර රැඳෙන්න</string>
+  <string name="msg_searching">සොයමින්&#8230;</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="menu_about">මේ ගැන</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="language_english">ඉංග්‍රීසි</string>
+</resources>

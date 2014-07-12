@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">Ελληνικά</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">jimspentzos2000</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">Δεν βρέθηκαν αρχεία.</string>
+  <string name="to_top">/ (κορυφή)</string>
+  <string name="to_upper_level">.. (πάνω)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">Παρακαλώ περιμένετε</string>
+  <string name="msg_searching">Αναζήτηση&#8230;</string>
+  <string name="copy_all">Αντιγραφή όλων</string>
+  <string name="copy_word">Αντιγραφή: %1$s</string>
+  <string name="not_found">δεν βρέθηκε</string>
+  <string name="no_included_dictionaries">Δε βρέθηκαν συμπεριλαμβανόμενα λεξικά .\n\nΠατήστε εδώ για να κατεβάσετε ένα.</string>
+  <string name="no_starred_words">Δε βρέθηκαν λέξεις με αστέρι.\n\nΠατήστε το εικονίδιο του αστεριού μιας καταχώρισης λεξικού για να το προσθέσετε στις λέξεις με αστέρι.</string>
+  <string name="starred_words_current_dictionary">Τρέχοντα: %1$d</string>
+  <string name="starred_words_all_dictionaries">Όλα: %1$d</string>
+  <string name="no_recent_dictionaries">Δε βρέθηκαν πρόσφατα φορτωμένα λεξικά.\n\nΠατήστε εδώ για να κατεβάσετε ένα.</string>
+  <string name="loading_download_dictionaries">Παρακαλώ περιμένετε.\n\nΦόρτωση διαθέσιμων λεξικών&#8230;</string>
+  <string name="no_download_dictionaries">Συγγνώμη, δεν υπάρχουν λεξικά διαθέσιμα για λήψη προς το παρόν.</string>
+  <string name="msg_error_downloading_available_dictionaries">Παρουσιάστηκε σφάλμα κατά τη λήψη της λίστας των διαθέσιμων λεξικών.\n\n\nΠατήστε εδώ για να δοκιμάσετε ξανά.\n\n\nΛεπτομέρειες:\n%1$s</string>
+  <string name="msg_error_dictionary_not_found">Το λεξικό με το id %1$d δεν είναι διαθέσιμο αυτή τη στιγμή.</string>
+  <string name="msg_error_accessing_storage">Ο εξωτερικός χώρος αποθήκευσης δεν είναι προσβάσιμος. Παρακαλώ βεβαιωθείτε ότι η συσκευή σας δεν συνδέεται μέσω USB.\n\nΤρέχουσα κατάσταση αποθηκευτικού χώρου: %1$s</string>
+  <string name="msg_suggest_update">Η έκδοση του DictionaryForMIDs σας είναι παλιά. Παρακαλώ ενημερώστε πριν τη λήψη λεξικών.\nΕνημέρωση τώρα;</string>
+  <string name="msg_suggest_update_with_message">Η έκδοση του DictionaryForMIDs σας είναι παλιά. Παρακαλώ ενημερώστε πριν τη λήψη λεξικών.\nΕνημέρωση τώρα;\n\nΛεπτομέρειες: %1$s</string>
+  <string name="msg_confirm_installation">Λήψη και εγκατάσταση του λεξικού \"%1$s\";\nΜέγεθος: άγνωστο</string>
+  <string name="msg_confirm_installation_size">Λήψη και εγκατάσταση του λεξικού \"%1$s\";\nΜέγεθος: %2$s</string>
+  <string name="msg_installation_exception">Εξαίρεση κατά την εγκατάσταση:\n%1$s</string>
+  <string name="msg_installation_exception_cause">Εξαίρεση κατά την εγκατάσταση:\n%1$s\n\nΑιτία:\n%1$s</string>
+  <string name="msg_installation_already_started">Συγγνώμη, μια εγκατάσταση είναι ήδη ενεργή.</string>
+  <string name="msg_installation_started">Η εγκατάσταση μπορεί να διαρκέσει λίγο, μπορείτε να συνεχίσετε να χρησιμοποιείτε την εφαρμογή.</string>
+  <string name="msg_auto_installation_started">Λήψη του λεξικού \"%1$s\", αυτό ίσως διαρκέσει λίγο.\n\nΜπορείτε να βγείτε από την εφαρμογή, η εξέλιξη θα εμφανιστεί στη γραμμή κατάστασης.</string>
+  <string name="msg_installation_finished">Το λεξικό εγκαταστάθηκε!</string>
+  <string name="msg_list_already_downloaded">Γίνεται ήδη λήψη της λίστας.</string>
+  <string name="msg_installation_error">Σφάλμα εγκατάστασης</string>
+  <string name="msg_external_storage_inaccessible">Ο εξωτερικός χώρος δεν είναι προσβάσιμος αυτή τη στιγμή.</string>
+  <string name="msg_exported_starred_words">Επιτυχής εξαγωγή λέξεων στον εξωτερικό χώρο.</string>
+  <string name="msg_error_parsing_integer_preference">Συγγνώμη, αδυναμία αναγνώρισης αριθμού. Η αξία αντιστράφηκε στην προεπιλογή.</string>
+  <string name="title_exception">Εξαίρεση</string>
+  <string name="title_activity_starred_words">Λέξεις με αστέρι</string>
+  <string name="exception_failed_create_directory">Αδυναμία δημιουργίας καταλόγου: %1$s</string>
+  <string name="exception_failed_create_file">Αποτυχία δημιουργίας αρχείου: %1$s</string>
+  <string name="exception_failed_delete_file">Αποτυχία κατάργησης αρχείου: %1$s</string>
+  <string name="title_installation_finished">Ολοκληρώθηκε</string>
+  <string name="msg_successfully_installed_dictionary">Επιτυχής εγκατάσταση λεξικού.</string>
+  <string name="msg_installation_complete">Η εγκατάσταση ολοκληρώθηκε</string>
+  <string name="title_installation_status">Κατάσταση εγκατάστασης</string>
+  <string name="msg_installing_dictionary">Εγκατάσταση λεξικού&#8230;</string>
+  <string name="msg_installation_aborted">Η εγκατάσταση ματαιώθηκε από το χρήστη.</string>
+  <string name="msg_installation_status">Κατάσταση: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">Στο αρχείο \"%1$s\" δεν υπήρχε καμία εγγραφή που να ταιριάζει με το ακόλουθο πρότυπο \"%2$s\"</string>
+  <string name="unit_byte">B</string>
+  <string name="unit_kilo_byte">KB</string>
+  <string name="unit_mega_byte">MB</string>
+  <string name="unit_giga_byte">GB</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_maximum">Βρέθηκαν περισσότερα από %1$d (μέγιστο) αποτελέσματα.</string>
+  <string name="results_found_cancel">%1$d αποτέλεσμα(τα) βρέθηκαν πριν την ακύρωση.</string>
+  <string name="results_found_timeout">%1$d αποτέλεσμα(τα) βρέθηκαν πριν το χρονικό όριο.</string>
+  <string name="results_found">Βρέθηκαν %1$d αποτελέσματα.</string>
+  <string name="results_found_one">Βρέθηκε 1 αποτέλεσμα.</string>
+  <string name="no_results_found">Συγγνώμη, δε βρέθηκε κανένα αποτέλεσμα.</string>
+  <string-array name="font_sizes">
+    <item>10sp</item>
+    <item>11sp</item>
+    <item>12sp</item>
+    <item>13sp</item>
+    <item>14sp</item>
+    <item>15sp</item>
+    <item>16sp</item>
+    <item>17sp</item>
+    <item>18sp</item>
+    <item>19sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
+  </string-array>
+  <string-array name="themes">
+    <item>Προεπιλογή Συστήματος</item>
+    <item>Σκούρο</item>
+    <item>Ανοιχτό</item>
+  </string-array>
+  <string name="title_translation_error">Παρουσιάστηκε σφάλμα μετάφρασης.</string>
+  <string name="msg_translation_error">Λεπτομέρειες:\n\n%1$s</string>
+  <string name="msg_translation_cancelled">Η μετάφραση ακυρώθηκε.</string>
+  <string name="menu_dictionary">Λεξικό</string>
+  <string name="menu_preferences">Προτιμήσεις</string>
+  <string name="menu_about">Σχετικά με</string>
+  <string name="menu_help">Βοήθεια</string>
+  <string name="menu_starred">Με αστέρι</string>
+  <string name="menu_export_all_starred">Εξαγωγή όλων</string>
+  <string name="menu_download_dictionaries">Χειροκίνητη λήψη&#8230;</string>
+  <string name="menu_find_hidden_dictionaries">Πρόσθεση κρυμμένων ξανά</string>
+  <string name="menu_clear_recent_dictionary_list">Καθαρισμός πρόσφατων&#8230;</string>
+  <string name="msg_enter_word_first">Παρακαλώ εισάγετε μια λέξη πρώτα.</string>
+  <string name="menu_reload_dictionary_list">Ανανέωση λίστας</string>
+  <string name="menu_cancel_installation">Ακύρωση εγκατάστασης</string>
+  <string name="menu_reinstall_default_dictionary">Επανεγκατάσταση προεπιλεγμένου λεξικού</string>
+  <string name="msg_load_dictionary_first">Παρακαλώ φορτώστε ένα λεξικό πρώτα.</string>
+  <string name="msg_reload_dictionary">Παρακαλώ φορτώστε εκ νέου το λεξικό.</string>
+  <string name="msg_exception">Προέκυψε εξαίρεση:\n%1$s</string>
+  <string name="msg_restart_app_after_settings_changed">Επανεκκινήστε την εφαρμογή για να εφαρμοστούν οι ρυθμίσεις.</string>
+  <string name="button_ok">Εντάξει</string>
+  <string name="button_cancel">Ακύρωση</string>
+  <string name="button_do_not_show_again">Να μην εμφανιστεί ξανά</string>
+  <string name="button_exit">Έξοδος</string>
+  <string name="msg_download_dictionaries">Η λήψη ενός λεξικού περιλαμβάνει 4 βήματα (το ακόλουθο προϋποθέτει ότι έχετε εγκαταστήσει ένα διαχειριστή αρχείων όπως το Αstro):\n\n1.Διαλέξτε και κατεβάστε ένα λεξικό στην ιστοσελίδα που ανοίγεται μετά την επιβεβαίωση αυτού του διαλόγου. Σημείωση: Υποστηρίζονται μόνο λεξικά της έκδοσης 2.4.4 ή νεότερης.\n\n2.Εξάγετε το περιεχόμενο του αρχείου zip σε μια τοποθεσία στην κάρτα SD (π.χ. χρησιμοποιώντας το Astro).\n\n3.Προαιρετικό: Εξάγετε το περιεχόμενο του συμπεριλαμβανομένου αρχείου jar στην κάρτα SD για γρηγορότερες αναζητήσεις όρων.\n\n4.Επιλέξτε την τοποθεσία στον διάλογο που εμφανίστηκε προηγουμένως.\n\nΔιαφορετικά, μπορείτε να κατεβάσετε και να εξάγετε το λεξικό χρησιμοποιώντας τον Η/Υ σας, και τότε μεταφέρετε τα αρχεία στην κάρτα SD σας.</string>
+  <string name="msg_clear_recent_dictionaries_list">Καθαρισμός λίστας πρόσφατων λεξικών;</string>
+  <string name="msg_cancel_installation">Ακύρωση τρέχουσας εγκατάστασης;</string>
+  <string name="msg_load_dictionary">Φόρτωση νέου λεξικού τώρα;\n\nΜπορείτε πάντα να το φορτώσετε αργότερα από τη λίστα πρόσφατων λεξικών.</string>
+  <string name="button_load_dictionary_from_current_directory">Φόρτωση λεξικού από την τρέχουσα τοποθεσία</string>
+  <string name="msg_dictionary_error">Σφάλμα λεξικού</string>
+  <string name="msg_dictionary_not_found">Αδυναμία φόρτωσης λεξικού.\n\nΜπορείτε να επιλέξετε ένα λεξικό από τον ακόλουθο διάλογο.</string>
+  <string name="msg_dictionary_load_error">Σφάλμα κατά τη φόρτωση του λεξικού.</string>
+  <string name="msg_internal_dictionary_load_error">Σφάλμα κατά τη φόρτωση των εσωτερικών λεξικών.\n\n%1$s</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="msg_no_dictionary">Το επιλεγμένο στοιχείο δεν μοιάζει με λεξικό.</string>
+  <string name="title_load_dictionary">Φόρτωση Λεξικού&#8230;</string>
+  <string name="msg_auto_install">Φαίνεται ότι δεν έχετε εγκαταστήσει ακόμη το προεπιλεγμένο λεξικό σας.\n\nΘα θέλατε να το κατεβάσετε και να το εγκαταστήσετε τώρα;</string>
+  <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="title_load_dictionary_first">Παρακαλώ φορτώστε ένα λεξικό πρώτα.</string>
+  <string name="title_about_heading">Εφαρμογή Java DictonaryForMIDs</string>
+  <string name="title_about_copyright_owner">Πνευματικά δικαιώματα από τους Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) και άλλων χορηγών.</string>
+  <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+  <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">Έκδοση: %1$s</string>
+  <string name="title_about_copyright">Η εφαρμογή Java DictionaryForMIDs είναι δωρεάν λογισμικό: μπορείτε να την διανέμετε ξανά και/ή να την τροποποιήσετε
+    υπό τους όρους της Γενικής Δημόσιας Άδειας του GNU όπως έχουν δημοσιευτεί από
+    το Ίδρυμα Ελεύθερου Λογισμικού: είτε την έκδοση 2 της Άδειας, είτε
+    (κατ\' επιλογή σας) οποιαδήποτε άλλη νεότερη έκδοση. Δείτε το αρχείο ΑΝΤΙΓΡΑΦΗ ή επισκεφθείτε το http://www.gnu.org/licenses/\n\nΑυτό το πρόγραμμα διανέμεται με την ελπίδα ότι θα φανεί χρήσιμο,
+    αλλά ΧΩΡΙΣ ΚΑΜΙΑ ΕΓΓΥΗΣΗ: χωρίς ακόμη και την υπονοούμενη εγγύηση της ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑΣ ή της ΚΑΤΑΛΛΗΛΟΤΗΤΑΣ ΓΙΑ ΣΥΓΚΕΚΡΙΜΕΝΟ ΣΚΟΠΟ. Δείτε την
+   Γενική Δημόσια Άδεια του GNU για περισσότερες λεπτομέρειες.
+	</string>
+  <string name="title_about_dictionary">Λεξικό:</string>
+  <string name="title_about_ui_translation">Εντοπισμός:</string>
+  <string name="title_about_translation_request">Βοηθείστε μας να μεταφράσουμε αυτή την εφαρμογή στην γλώσσα σας ή να βελτιώσουμε τις υπάρχουσες μεταφράσεις στο http://crowdin.net/project/dictionaryformids</string>
+  <string name="title_information">Πληροφορίες</string>
+  <string name="title_welcome">Καλώς ορίσατε!</string>
+  <string name="title_seconds">%1$d δευτερόλεπτα</string>
+  <string name="msg_first_run">Φαίνεται ότι εκτελείτε αυτό το πρόγραμμα για πρώτη φορά! Παρακαλώ επιλέξτε ένα λεξικό χρησιμοποιώντας την ακόλουθη οθόνη.</string>
+  <string name="msg_slow_archive_loading">Η μετάφραση ακυρώθηκε μετά τη λήξη του χρονικού ορίου.\nΜπορείτε να επιταχύνετε τη μετάφραση με την εξαγωγή του αρχειοθετημένου λεξικού σε ένα φάκελο στην κάρτα SD σας και με την επιλογή αυτού του φακέλου ως λεξικό. Διαφορετικά, μπορείτε να αυξήσετε το χρονικό όριο στον διάλογο προτιμήσεων.</string>
+  <string name="msg_parsing_error">Σφάλμα κατά την ανάλυση πόρων.\n\n%1$s</string>
+  <string name="msg_extract_dictionary">Αδυναμία φόρτωσης του επιλεγμένου αρχείου, αλλά φαίνεται ότι περιέχει συμπιεσμένο λεξικό. Παρακαλώ εξάγετε το συμπεριλαμβανόμενο αρχείο jar πρώτα.</string>
+  <string-array name="search_mode">
+    <item>Κανονική</item>
+    <item>Λέξεις που ταιριάζουν με τον όρο αναζήτησης</item>
+    <item>Λέξεις που αρχίζουν με τον όρο αναζήτησης</item>
+    <item>Λέξεις που περιλαμβάνουν τον όρο αναζήτησης</item>
+  </string-array>
+  <string name="title_help">Βοήθεια DictionaryForMIDs</string>
+  <string name="desc_help">Χρησιμοποιήστε χαρακτήρες μπαλαντέρ για να ανανεώσετε την αναζήτησή σας:\n%1$c ταιριάζει με οποιεσδήποτε σειρές χαρακτήρων\n%2$c ταιριάζει με κάθε χαρακτήρα\n\nΓια να ελέγξετε την δευτερεύουσα αναζήτηση:\n%3$c αφού ο πρώτος χαρακτήρας παράγει αποτελέσματα ξεκινώντας από την εγγραφή αναζήτησής σας\n%4$c μετά απ\' όταν η εγγραφή σας παράξει αποτελέσματα τελειώνοντας με αυτό.\n\nΠαρακαλώ σημειώστε ότι: η προσθήκη χαρακτήρων μπαλαντέρ παρακάμπτει τις προτιμήσεις της λειτουργίας αναζήτησης.</string>
+  <string name="desc_see_website">Δείτε την ιστοσελίδα για περισσότερες πληροφορίες:\n%1$s</string>
+  <string name="tab_load_recent">Πρόσφατα</string>
+  <string name="tab_load_from_file">Από αρχείο</string>
+  <string name="tab_load_included">Συμπεριλαμβανόμενα</string>
+  <string name="tab_load_download">Λήψη</string>
+  <string name="title_activity_about">Σχετικά με την οθόνη</string>
+  <string name="title_activity_help">Βοήθεια Οθόνης</string>
+  <string name="title_activity_choose_dictionary">Επιλογή λεξικού</string>
+  <string name="title_activity_file_list">Επιλογή λεξικού</string>
+  <string name="title_activity_dictionary_list">Επιλογή λεξικού</string>
+  <string name="title_activity_recent_list">Επιλογή λεξικού</string>
+  <string name="title_activity_preferences">Προτιμήσεις</string>
+  <string name="title_activity_install_dictionary">Εγκατάσταση Λεξικού</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_remove_from_list">Αφαίρεση από τη λίστα</string>
+  <string name="app_description">Το DictionaryForMIDs είναι ένα δωρεάν πολύγλωσσο λεξικό για κινητά τηλέφωνα και PDA</string>
+  <string name="hint_enter_word">Εισάγετε λέξη για μετάφραση</string>
+  <string name="hint_filter">Φίλτρο</string>
+  <string name="title_pref_search_options">Επιλογές αναζήτησης</string>
+  <string name="title_pref_search_mode">Λειτουργία αναζήτησης</string>
+  <string name="title_pref_max_results">Μεγ. αποτελέσματα</string>
+  <string name="title_pref_timeout">Χρονικό όριο αναζήτησης</string>
+  <string name="title_pref_search_as_you_type">Αναζήτηση κατά την πληκτρολόγηση</string>
+  <string name="title_pref_display_options">Επιλογές εμφάνισης</string>
+  <string name="title_pref_result_font_size">Μέγεθος γραμματοσειράς αποτελεσμάτων</string>
+  <string name="title_pref_ignore_font_styles">Χρήση του στυλ συστήματος</string>
+  <string name="title_pref_language_code">Γλώσσα</string>
+  <string name="title_pref_advanced_features">Προηγμένες Λειτουργίες</string>
+  <string name="title_pref_enable_starred_words">Ενεργοποίηση λέξεων με αστέρι</string>
+  <string name="title_pref_theme">Θέμα</string>
+  <string name="title_default_language_code">Προεπιλογή</string>
+  <string name="summary_pref_ignore_font_style_checked">Τα αποτελέσματα εμφανίζονται χρησιμοποιώντας το στυλ που ορίζεται από το λεξικό.</string>
+  <string name="summary_pref_ignore_font_style_unchecked">Τα αποτελέσματα εμφανίζονται χρησιμοποιώντας το στυλ του συστήματος.</string>
+  <string name="language_english">Ελληνικά</string>
+  <string name="language_esperanto">Εσπεράντο</string>
+  <string name="language_vietnamese">Βιετναμικά</string>
+  <string name="language_chinese">Κινεζικά</string>
+  <string name="language_japanese">Ιαπωνικά</string>
+  <string name="language_thai">Ταϊλανδικά</string>
+  <string name="language_hindi">Χίντι</string>
+  <string name="language_indonesian">Ινδονησιακά</string>
+  <string name="language_french">Γαλλικά</string>
+  <string name="language_spanish">Ισπανικά</string>
+  <string name="language_german">Γερμανικά</string>
+  <string name="language_italian">Ιταλικά</string>
+  <string name="language_latin">Λατινικά</string>
+  <string name="language_russian">Ρωσικά</string>
+  <string name="language_arabic">Αραβικά</string>
+  <string name="language_czech">Τσεχικά</string>
+  <string name="language_slovak">Σλοβακικά</string>
+  <string name="language_bulgarian">Βουλγαρικά</string>
+  <string name="language_catalan">Καταλανικά</string>
+  <string name="language_persian">Περσικά</string>
+  <string name="language_finnish">Φινλανδικά</string>
+  <string name="language_greek">Ελληνικά</string>
+  <string name="language_hebrew">Εβραϊκά</string>
+  <string name="language_croatian">Κροατικά</string>
+  <string name="language_hungarian">Ουγγρικά</string>
+  <string name="language_lithuanian">Λιθουανικά</string>
+  <string name="language_dutch">Ολλανδικά</string>
+  <string name="language_polish">Πολωνικά</string>
+  <string name="language_portuguese">Πορτογαλικά</string>
+  <string name="language_swedish">Σουηδικά</string>
+  <string name="language_norwegian">Νορβηγικά</string>
+  <string name="language_turkish">Τουρκικά</string>
+  <string name="language_tagalog">Ταγκαλογκικά</string>
+  <string name="language_tamil">Ταμιλικά</string>
+  <string name="language_turkmen">Τουρκμενικά</string>
+  <string name="language_danish">Δανικά</string>
+  <string name="language_korean">Κορεατικά</string>
+  <string name="language_swahili">Σουαχίλι</string>
+  <string name="load_dictionary_button">Περισσότερα&#8230;</string>
+  <plurals name="open_dictionary_drawer">
+    <item quantity="one"><![CDATA[Μια ενεργή γλώσσα. <a href="#">Αλλαγή&#8230;</a>]]></item>
+    <item quantity="other"><![CDATA[%1$d ενεργές γλώσσες. <a href="#">Αλλαγή&#8230;</a>]]></item>
+  </plurals>
+</resources>

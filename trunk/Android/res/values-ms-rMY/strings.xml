@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">Bahasa Melayu</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">FaIzaL3040@Mohd Faizal Ramli</string>
+  <string name="app_name">KamusUntukMIDs</string>
+  <string name="no_files">Tiada fail dijumpai.</string>
+  <string name="to_top">/ (atas)</string>
+  <string name="to_upper_level">.. (ke atas)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">Sila tunggu</string>
+  <string name="msg_searching">Mencari...</string>
+  <string name="copy_all">Salin Semua</string>
+  <string name="copy_word">Salin: %1$s</string>
+  <string name="not_found">tidak dijumpai</string>
+  <string name="no_included_dictionaries">Kamus tidak ditemui.\n\nSentuh di sini untuk memuat turun.</string>
+  <string name="no_starred_words">Tiada kata berbintang ditemui.\n\nSentuh ikon bintang pada entri kamus untuk menanda.</string>
+  <string name="starred_words_current_dictionary">Semasa: %1$d</string>
+  <string name="starred_words_all_dictionaries">Semua: %1$d</string>
+  <string name="no_recent_dictionaries">Tiada kamus dimuat sebelum ini.\n\nSentuh di sini untuk muat turun.</string>
+  <string name="loading_download_dictionaries">Sila tunggu.\n\nMemuat naik kamus yang ada&#8230;</string>
+  <string name="no_download_dictionaries">Maaf, tiada kamus yang boleh dimuat turun ketika ini.</string>
+  <string name="msg_error_downloading_available_dictionaries">Ralat berlaku semasa memuat turun senarai kamus.\n\n\nSentuh di sini untuk mencuba lagi.\n\n\nDetails:\n%1$s</string>
+  <string name="msg_error_dictionary_not_found">Kamus dengan id %1$d tidak dijumpai.</string>
+  <string name="msg_error_accessing_storage">Penyimpan luar tidak dapat diakses.  Pastikan peranti tidak disambung melalui USB.\n\nStatus penyimpan semasa: %1$s</string>
+  <string name="msg_suggest_update">Versi DictionaryForMIDs anda telah luput. Sila kemaskini sebelum memuat turun kamus. \nKemaskini sekarang?</string>
+  <string name="msg_suggest_update_with_message">Versi DictionaryForMIDs anda telah luput. Sila kemaskini sebelum memuat turun kamus. \nKemaskini sekarang?\n\nPerincian: %1$s</string>
+  <string name="msg_confirm_installation">Muat turun dan pasang \"%1$s\" kamus? \nSaiz: tidak diketahui</string>
+  <string name="msg_confirm_installation_size">Muat turun dan pasang \"%1$s\" kamus? \nSaiz: %2$s</string>
+  <string name="msg_installation_exception">Pengecualian semasa pemasangan:\n%1$s</string>
+  <string name="msg_installation_exception_cause">Pengecualian semasa pemasangan:\n%1$s\n\nPerincian:\n%1$s</string>
+  <string name="msg_installation_already_started">Maaf, pemasangan sudah berjalan.</string>
+  <string name="msg_installation_started">Pemasangan akan mengambil sedikit masa, anda boleh terus menggunakan aplikasi.</string>
+  <string name="msg_auto_installation_started">Muat turun \"%1$s\", kamus ini mungkin mengambil masa.\n\nAnda boleh keluar daripada aplikasi dan boleh menyemak bar status untuk melihat kemajuan.</string>
+  <string name="msg_installation_finished">Kamus dipasang!</string>
+  <string name="msg_list_already_downloaded">Senarai sudah dimuat turun.</string>
+  <string name="msg_installation_error">Ralat pemasangan</string>
+  <string name="msg_external_storage_inaccessible">Penyimpan luar tidak boleh diakses.</string>
+  <string name="msg_exported_starred_words">Berjaya mengeksport perkataan ke penyimpan luar.</string>
+  <string name="msg_error_parsing_integer_preference">Maaf, gagal mengenali nombor. Nilai diset semula ke nilai asal.</string>
+  <string name="title_exception">Pengecualian</string>
+  <string name="title_activity_starred_words">Perkataan berbintang</string>
+  <string name="exception_failed_create_directory">Gagal mencipta direktori: %1$s</string>
+  <string name="exception_failed_create_file">Gagal untuk mencipta fail: %1$s</string>
+  <string name="exception_failed_delete_file">Gagal membuang fail: %1$s</string>
+  <string name="title_installation_finished">Selesai</string>
+  <string name="msg_successfully_installed_dictionary">Berjaya memasang kamus.</string>
+  <string name="msg_installation_complete">Pemasangan lengkap</string>
+  <string name="title_installation_status">Status pemasangan</string>
+  <string name="msg_installing_dictionary">Memasang kamus...</string>
+  <string name="msg_installation_aborted">Pemasangan dibatalkan oleh pengguna.</string>
+  <string name="msg_installation_status">Status: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">Dalam arkib \"%1$s\" tiada entri yang sepadan dengan pola berikut \"%2$s\"</string>
+  <string name="unit_byte">B</string>
+  <string name="unit_kilo_byte">KB</string>
+  <string name="unit_mega_byte">MB</string>
+  <string name="unit_giga_byte">GB</string>
+  <string name="file_size">%1$.2f%1$.2f %2$s</string>
+  <string name="results_found_maximum">Lebih daripada %1$d (maksimum) ditemui.</string>
+  <string name="results_found_cancel">%1$d hasil carian sebelum dibatalkan.</string>
+  <string name="results_found_timeout">%1$d hasil carian sebelum kehabisan masa.</string>
+  <string name="results_found">%1$d hasil carian.</string>
+  <string name="results_found_one">1 keputusan ditemui.</string>
+  <string name="no_results_found">Maaf, tiada keputusan ditemui.</string>
+  <string-array name="font_sizes">
+    <item>10sp</item>
+    <item>11sp</item>
+    <item>12sp</item>
+    <item>13sp</item>
+    <item>14sp</item>
+    <item>15sp</item>
+    <item>16sp</item>
+    <item>17sp</item>
+    <item>18sp</item>
+    <item>19sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
+  </string-array>
+  <string-array name="themes">
+    <item>Tetapan Sistem</item>
+    <item>Gelap</item>
+    <item>Terang</item>
+  </string-array>
+  <string name="title_translation_error">Ralat terjemahan berlaku.</string>
+  <string name="msg_translation_error">Perincian:\n\n%1$s</string>
+  <string name="msg_translation_cancelled">Terjemahan dibatalkan.</string>
+  <string name="menu_dictionary">Kamus</string>
+  <string name="menu_preferences">Tetapan</string>
+  <string name="menu_about">Mengenai aplikasi</string>
+  <string name="menu_help">Bantuan</string>
+  <string name="menu_starred">Bertanda</string>
+  <string name="menu_export_all_starred">Eksport semua</string>
+  <string name="menu_download_dictionaries">Download secara manual...</string>
+  <string name="menu_find_hidden_dictionaries">Tambah semula kamus tersembunyi</string>
+  <string name="menu_clear_recent_dictionary_list">Kosongkan perkataan terdahulu...</string>
+  <string name="msg_enter_word_first">Sila masukkan perkataan dahulu.</string>
+  <string name="menu_reload_dictionary_list">Muat semula senarai</string>
+  <string name="menu_cancel_installation">Batalkan pemasangan</string>
+  <string name="menu_reinstall_default_dictionary">Pasang semula kamus asal</string>
+  <string name="msg_load_dictionary_first">Sila muatkan kamus terlebih dahulu.</string>
+  <string name="msg_reload_dictionary">Sila muat semula kamus.</string>
+  <string name="msg_exception">Pengecualian berlaku:\n%1$s</string>
+  <string name="msg_restart_app_after_settings_changed">Mula semula aplikasi untuk perubahan berlaku.</string>
+  <string name="button_ok">Ok</string>
+  <string name="button_cancel">Batal</string>
+  <string name="button_do_not_show_again">Jangan Tunjukkan lagi</string>
+  <string name="button_exit">Keluar</string>
+  <string name="msg_download_dictionaries">Memuat turun kamus melibatkan 4 langkah (berikut menganggap anda mempunyai pengurus fail seperti Astro dipasang):\n\n1.Choose dan memuat turun kamus di laman web yang dibuka selepas mengesahkan dialog ini. Nota: Hanya kamus versi 2.4.4 atau lebih tinggi disokong\n\n2.Extract kandungan zip-file untuk direktori pada SD-kad anda (misalnya menggunakan Astro)\n\n3.Optional:.. Extract balang termasuk kandungan-arkib lain ke SD-kad anda untuk lebih cepat melihat-up.\n\n4.Select kamus dalam sebelum ini menunjukkan dialog.\n\nAlternatively, anda boleh memuat turun dan mengekstrak kamus menggunakan PC anda, maka memindahkan fail ke sd-kad.</string>
+  <string name="msg_clear_recent_dictionaries_list">Kosongkan Senarai kamus sebelum ini?</string>
+  <string name="msg_cancel_installation">Batalkan pemasangan?</string>
+  <string name="msg_load_dictionary">Muatkan kamus baru sekarang? \n\nAnda boleh memuatkan kamus lain dari senarai kamus.</string>
+  <string name="button_load_dictionary_from_current_directory">Muatkan kamus daripada direktori ini</string>
+  <string name="msg_dictionary_error">Ralat pada kamus</string>
+  <string name="msg_dictionary_not_found">Kamus tidak boleh dimuatkan.\n\nAnda boleh memilih kamus daripada paparan berikutnya.</string>
+  <string name="msg_dictionary_load_error">Ralat memuatkan kamus.</string>
+  <string name="msg_internal_dictionary_load_error">Ralat memuatkan kamus tersedia.\n\n%1$s</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="msg_no_dictionary">Pilihan tidak kelihatan seperti kamus.</string>
+  <string name="title_load_dictionary">Muatkan Kamus&#8230;</string>
+  <string name="msg_auto_install">Anda belum lagi memasang kamus asal.\n\nAnda mahu muat turun dan pasang sekarang?</string>
+  <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="title_load_dictionary_first">Sila muatkan kamus terlebih dahulu.</string>
+  <string name="title_about_heading">Aplikasi Java DictonaryForMIDs</string>
+  <string name="title_about_copyright_owner">Hakcipta oleh Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) dan penyumbang-penyumbang lain.</string>
+  <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+  <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">Versi: %1$s</string>
+  <string name="title_about_copyright">Aplikasi DictionaryForMIDs Java adalah perisian percuma: anda boleh menyebar atau mengubahnya dibawah syarat-syarat Lesen Umum Awam, GNU yang digubal oleh Free Software Foundation; ataupun mana-mana versi lesen yang lebih baharu. Sila lihat MENYALIN atau http://www.gnu.org/licenses/\n\nAplikasi ini disebarkan dengan harapan untuk menjadi perisian berguna, TANPA SEBARANG JAMINAN; termasuklah jaminan KEBOLEHNIAGAAN atau KECERGASAN UNTUK TUJUAN TERTENTU. Lihat See the Lesen Umum Awam, GNU untuk maklumat lanjut. </string>
+  <string name="title_about_dictionary">Kamus:</string>
+  <string name="title_about_ui_translation">Persetempatan:</string>
+  <string name="title_about_translation_request">Bantu kami menterjemah aplikasi ini kedalam bahasa anda atau memperbaik terjemahan yang sedia ada di http://crowdin.net/project/dictionaryformids</string>
+  <string name="title_information">Maklumat</string>
+  <string name="title_welcome">Selamat datang!</string>
+  <string name="title_seconds">%1$d saat</string>
+  <string name="msg_first_run">Anda menjalankan aplikasi ini untuk pertama kali! Sila pilih kamus yang pada skrin berikut.</string>
+  <string name="msg_slow_archive_loading">Penterjemahan dibatalkan selepas kehabisan masa.\nAnda boleh mempercepatkan terjemahan oleh memindahkan kamus terarkib ke folder dalam kad SD dan memilih folder ini sebagai kamus. Sebagai alternatif, anda boleh menambah masa tamat pada tetapan carian.</string>
+  <string name="msg_parsing_error">Ralat semasa menghuraikan sumber.\n\n%1$s</string>
+  <string name="msg_extract_dictionary">Arkib terpilih tidak dapat dimuatkan, tetapi kelihatan seperti kamus termampat. Sila ekstrak fail jar terlebih dahulu.</string>
+  <string-array name="search_mode">
+    <item>Standard</item>
+    <item>Perkataan yang sepadan dengan kriteria</item>
+    <item>Perkataan yang bermula dengan kriteria carian</item>
+    <item>Perkataan yang termasuk dalam kriteria carian</item>
+  </string-array>
+  <string name="title_help">Bantuan DictionaryForMIDs</string>
+  <string name="desc_help">Gunakan aksara kad liar untuk memperhalus carian:\n%1$c padan dengan sebarang siri aksara\n%2$c padan dengan sebarang aksara\n\nUntuk mengawal carian sub-ekspresi:\n%3$c sebagai aksara pertama menghasilkan carian bermula dengan entri carian\n%4$c selepas entri menghasilkan carian berakhir dengannya.\n\nPerhatian: Menambah kad liar akan mengatasi mod carian pada tetapan.</string>
+  <string name="desc_see_website">Sila lihat Laman web untuk maklumat lanjut:\n%1$s</string>
+  <string name="tab_load_recent">Terbaharu</string>
+  <string name="tab_load_from_file">Dari fail</string>
+  <string name="tab_load_included">Termasuk</string>
+  <string name="tab_load_download">Muat turun</string>
+  <string name="title_activity_about">Halaman Mengenai</string>
+  <string name="title_activity_help">Halaman Bantuan</string>
+  <string name="title_activity_choose_dictionary">Pilih kamus</string>
+  <string name="title_activity_file_list">Pilih kamus</string>
+  <string name="title_activity_dictionary_list">Pilih kamus</string>
+  <string name="title_activity_recent_list">Pilih kamus</string>
+  <string name="title_activity_preferences">Tetapan</string>
+  <string name="title_activity_install_dictionary">Pasang kamus</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_remove_from_list">Buang dari senarai</string>
+  <string name="app_description">DictionaryForMIDs adalah kamus multi-bahasa percuma untuk telefon bimbit dan PDA</string>
+  <string name="hint_enter_word">Masukkan perkataan untuk diterjemah</string>
+  <string name="hint_filter">Penapis</string>
+  <string name="title_pref_search_options">Opsyen carian</string>
+  <string name="title_pref_search_mode">Mod Carian</string>
+  <string name="title_pref_max_results">Keputusan Maksima</string>
+  <string name="title_pref_timeout">Carian kehabisan masa</string>
+  <string name="title_pref_search_as_you_type">Carian semasa anda menaip</string>
+  <string name="title_pref_display_options">Opsyen paparan</string>
+  <string name="title_pref_result_font_size">Saiz font untuk keputusan</string>
+  <string name="title_pref_ignore_font_styles">Gunakan gaya sistem</string>
+  <string name="title_pref_language_code">Bahasa</string>
+  <string name="title_pref_advanced_features">Ciri-ciri lanjutan</string>
+  <string name="title_pref_enable_starred_words">Aktifkan perkataan berbintang</string>
+  <string name="title_pref_theme">Tema</string>
+  <string name="title_default_language_code">Asalan</string>
+  <string name="summary_pref_ignore_font_style_checked">Keputusan dipaparkan menggunakan gaya yang ditakrifkan oleh kamus.</string>
+  <string name="summary_pref_ignore_font_style_unchecked">Keputusan dipaparkan menggunakan gaya sistem.</string>
+  <string name="language_english">Bahasa Melayu</string>
+  <string name="language_esperanto">bahasa Esperanto</string>
+  <string name="language_vietnamese">Bahasa Vietnam</string>
+  <string name="language_chinese">Bahasa Cina</string>
+  <string name="language_japanese">Bahasa Jepun</string>
+  <string name="language_thai">Bahasa Thai</string>
+  <string name="language_hindi">Bahasa Hidi</string>
+  <string name="language_indonesian">Bahasa Indonesia</string>
+  <string name="language_french">Bahasa Perancis</string>
+  <string name="language_spanish">Bahasa Sepanyol</string>
+  <string name="language_german">Bahasa Jerman</string>
+  <string name="language_italian">Bahasa Itali</string>
+  <string name="language_latin">Bahasa Latin</string>
+  <string name="language_russian">Bahasa Rusia</string>
+  <string name="language_arabic">Bahasa Arab</string>
+  <string name="language_czech">Bahasa Czech</string>
+  <string name="language_slovak">Bahasa Slovak</string>
+  <string name="language_bulgarian">Bahasa Bulgaria</string>
+  <string name="language_catalan">Bahasa Catalonia</string>
+  <string name="language_persian">bahasa Parsi</string>
+  <string name="language_finnish">bahasa Finland</string>
+  <string name="language_greek">bahasa Greek</string>
+  <string name="language_hebrew">bahasa Ibrani</string>
+  <string name="language_croatian">bahasa Croatia</string>
+  <string name="language_hungarian">bahasa Hungary</string>
+  <string name="language_lithuanian">bahasa Lithuania</string>
+  <string name="language_dutch">bahasa Belanda</string>
+  <string name="language_polish">bahasa Poland</string>
+  <string name="language_portuguese">bahasa Portugis</string>
+  <string name="language_swedish">bahasa Sweden</string>
+  <string name="language_norwegian">bahasa Norway</string>
+  <string name="language_turkish">bahasa Turki</string>
+  <string name="language_tagalog">bahasa Tagalog</string>
+  <string name="language_tamil">bahasa Tamil</string>
+  <string name="language_turkmen">bahasa Turkmen</string>
+  <string name="language_danish">bahasa Denmark</string>
+  <string name="language_korean">bahasa Korea</string>
+  <string name="language_swahili">bahasa Swahili</string>
+  <string name="load_dictionary_button">Lagi&#8230;</string>
+  <plurals name="open_dictionary_drawer">
+    <item quantity="other"><![CDATA[%1$d Bahasa-bahasa yang aktif. <a href="#">Menukar...</a>]]></item>
+  </plurals>
+</resources>

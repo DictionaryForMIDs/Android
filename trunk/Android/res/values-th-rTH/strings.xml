@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">ภาษาไทย</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">Boonying (boonyingsound@gmail.com)</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">ไม่พบไฟล์</string>
+  <string name="to_top">/ (บนสุด)</string>
+  <string name="to_upper_level">.. (ขึ้น)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">กรุณารอสักครู่</string>
+  <string name="msg_searching">กำลังค้นหา&#8230;</string>
+  <string name="copy_all">คัดลอกทั้งหมด</string>
+  <string name="copy_word">คัดลอก: %1$s</string>
+  <string name="not_found">ไม่พบ</string>
+  <string name="no_included_dictionaries">ไม่พบพจนานุกรม.\n\nแตะที่นี่เพื่อดาวน์โหลด.</string>
+  <string name="no_starred_words">ไม่พบคำที่ถูกติดดาว\n\nแตะที่รูปดาวที่ด้านขวาของคำศัพท์เพื่อติดดาว</string>
+  <string name="starred_words_current_dictionary">ปัจจุบัน: %1$d</string>
+  <string name="starred_words_all_dictionaries">ทั้งหมด: %1$d</string>
+  <string name="no_recent_dictionaries">ยังไม่มีพจนานุกรมที่เพิ่งดาวน์โหลด.\n\nแตะที่นี่เพื่อดาวน์โหลด</string>
+  <string name="loading_download_dictionaries">กรุณารอสักครู่\n\nกำลังดาวน์โหลดพจนานุกรมที่มีอยู่&#8230;</string>
+  <string name="no_download_dictionaries">ขออภัย ยังไม่มีพจนานุกรมให้ดาวน์โหลดในตอนนี้</string>
+  <string name="msg_error_downloading_available_dictionaries">มีข้อผิดพลาดในขณะกำลังดาวน์โหลดรายชื่อพจนานุกรม\n\n\nแตะที่นี่เพื่อลองอีกครั้ง\n\n\nรายละเอียด:\n%1$s</string>
+  <string name="msg_error_dictionary_not_found">ยังไม่มีพจนานุกรมหมายเลข %1$d ในตอนนี้</string>
+  <string name="msg_error_accessing_storage">ไม่สามารถเข้าถึงพื้นที่จัดเก็บข้อมูลภายนอกได้ กรุณาตรวจสอบว่าอุปกรณ์ของคุณไม่ได้เชื่อมต่อผ่าน USB อยู่.\n\nสถานะการจัดเก็บ: %1$s</string>
+  <string name="msg_suggest_update">เวอร์ชันของ DictionaryForMIDs ล้าสมัยแล้ว กรุณาอัพเดตก่อนดาวน์โหลดพจนานุกรม\nอัพเดตตอนนี้?</string>
+  <string name="msg_suggest_update_with_message">เวอร์ชันของ DictionaryForMIDs ล้าสมัยแล้ว กรุณาอัพเดตก่อนดาวน์โหลดพจนานุกรม\nอัพเดตตอนนี้?\n\nรายละเอียด: %1$s</string>
+  <string name="msg_confirm_installation">ดาวน์โหลดและติดตั้งพจนานุกรม \"%1$s\"?\nขนาดไฟล์: ไม่ทราบ</string>
+  <string name="msg_confirm_installation_size">ดาวน์โหลดและติดตั้งพจนานุกรม \"%1$s\"?\nขนาดไฟล์: %2$s</string>
+  <string name="msg_installation_exception">ข้อยกเว้นขณะติดตั้ง:\n%1$s</string>
+  <string name="msg_installation_exception_cause">ข้อยกเว้นขณะติดตั้ง:\n%1$s\n\nสาเหตุ:\n%1$s</string>
+  <string name="msg_installation_already_started">ขออภัย การติดตั้งกำลังทำงานอยู่</string>
+  <string name="msg_installation_started">การติดตั้งอาจใช้เวลาสักครู่, คุณยังสามารถใช้แอพพลิเคชันต่อไปได้.</string>
+  <string name="msg_auto_installation_started">กำลังดาวน์โหลดพจนานุกรม \"%1$s\" อาจใช้เวลาสักครู่\n\nคุณสามารถออกจากแอพพลิเคชั่นได้เลย ซึ่งความคืบหน้าจะแสดงตรงแถบสถานะ</string>
+  <string name="msg_installation_finished">ติดตั้งพจนานุกรมแล้ว!</string>
+  <string name="msg_list_already_downloaded">กำลังดาวน์โหลดรายชื่ออยู่</string>
+  <string name="msg_installation_error">มีข้อผิดพลาดในการติดตั้ง</string>
+  <string name="msg_external_storage_inaccessible">ไม่สามารถเข้าถึงพื้นที่จัดเก็บข้อมูลภายนอกได้</string>
+  <string name="msg_exported_starred_words">ส่งคำศัพท์ออกไปยังหน่วยความจำภายนอกแล้ว</string>
+  <string name="msg_error_parsing_integer_preference">ขออภัย ไม่รู้จักตัวเลขนี้ เปลี่ยนกลับไปเป็นค่าเริ่มต้นแล้ว</string>
+  <string name="title_exception">ข้อยกเว้น</string>
+  <string name="title_activity_starred_words">คำที่ถูกติดดาว</string>
+  <string name="exception_failed_create_directory">ไม่สามารถสร้างไดเร็กทอรี: %1$s</string>
+  <string name="exception_failed_create_file">ไม่สามารถสร้างไฟล์: %1$s</string>
+  <string name="exception_failed_delete_file">ไม่สามารถลบไฟล์: %1$s</string>
+  <string name="title_installation_finished">เสร็จแล้ว</string>
+  <string name="msg_successfully_installed_dictionary">ติดตั้งพจนานุกรมแล้ว</string>
+  <string name="msg_installation_complete">การติดตั้งเสร็จสมบูรณ์แล้ว</string>
+  <string name="title_installation_status">สถานะการติดตั้ง</string>
+  <string name="msg_installing_dictionary">กำลังติดตั้งพจนานุกรม&#8230;</string>
+  <string name="msg_installation_aborted">การติดตั้งถูกยกเลิกโดยผู้ใช้.</string>
+  <string name="msg_installation_status">สถานะ: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">ยังไม่มีเอ็นทรี่ใดๆ ที่ตรงกับแพทเทิร์น \"%2$s\" ในอาร์ไคฟ์ \"%1$s\"</string>
+  <string name="unit_byte">ไบต์</string>
+  <string name="unit_kilo_byte">กิโลไบต์</string>
+  <string name="unit_mega_byte">เมกะไบต์</string>
+  <string name="unit_giga_byte">GB</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_maximum">ตรวจพบมากกว่า %1$d ผลลัพธ์ (สูงสุด)</string>
+  <string name="results_found_cancel">ตรวจพบ %1$d ผลลัพธ์ก่อนถูกยกเลิก</string>
+  <string name="results_found_timeout">ตรวจพบ %1$d ผลลัพธ์ก่อนหมดเวลา</string>
+  <string name="results_found">ตรวจพบ %1$d ผลลัพธ์</string>
+  <string name="results_found_one">ตรวจพบ 1 ผลลัพธ์</string>
+  <string name="no_results_found">ขออภัย ไม่พบผลลัพธ์</string>
+  <string-array name="font_sizes">
+    <item>10sp</item>
+    <item>11sp</item>
+    <item>12sp</item>
+    <item>13sp</item>
+    <item>14sp</item>
+    <item>15sp</item>
+    <item>16sp</item>
+    <item>17sp</item>
+    <item>18sp</item>
+    <item>19sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
+  </string-array>
+  <string-array name="themes">
+    <item>ค่าเริ่มต้นของระบบ</item>
+    <item>มืด</item>
+    <item>สว่าง</item>
+  </string-array>
+  <string name="title_translation_error">มีปัญหาขณะทำการแปล</string>
+  <string name="msg_translation_error">รายละเอียด:\n\n%1$s</string>
+  <string name="msg_translation_cancelled">ยกเลิก การแปล</string>
+  <string name="menu_dictionary">พจนานุกรม</string>
+  <string name="menu_preferences">การตั้งค่า</string>
+  <string name="menu_about">เกี่ยวกับ</string>
+  <string name="menu_help">ช่วยเหลือ</string>
+  <string name="menu_starred">ติดดาว</string>
+  <string name="menu_export_all_starred">ส่งออกทั้งหมด</string>
+  <string name="menu_download_dictionaries">ดาวน์โหลดด้วยตนเอง&#8230;</string>
+  <string name="msg_enter_word_first">กรุณาป้อนคำศัพท์ก่อน</string>
+  <string name="menu_reload_dictionary_list">โหลดรายการอีกครั้ง</string>
+  <string name="menu_cancel_installation">ยกเลิกการติดตั้ง</string>
+  <string name="menu_reinstall_default_dictionary">ติดตั้งพจนานุกรมเริ่มต้นใหม่</string>
+  <string name="msg_load_dictionary_first">กรุณาโหลดพจนานุกรมก่อน</string>
+  <string name="msg_reload_dictionary">กรุณาโหลดพจนานุกรมใหม่อีกครั้ง</string>
+  <string name="msg_exception">มีข้อยกเว้น:\n%1$s</string>
+  <string name="msg_restart_app_after_settings_changed">เริ่มแอพใหม่เพื่อให้การตั้งค่ามีผลบังคับใช้</string>
+  <string name="button_ok">ตกลง</string>
+  <string name="button_cancel">ยกเลิก</string>
+  <string name="button_do_not_show_again">อย่าแสดงให้เห็นอีก</string>
+  <string name="button_exit">ออก</string>
+  <string name="msg_clear_recent_dictionaries_list">ล้างรายชื่อพจนานุกรมล่าสุดออก?</string>
+  <string name="msg_cancel_installation">ยกเลิกการติดตั้ง?</string>
+  <string name="msg_load_dictionary">โหลดพจนานุกรมใหม่ตอนนี้?\n\nคุณสามารถโหลดพจนานุกรมในภายหลังจากรายชื่อพจนานุกรมล่าสุด</string>
+  <string name="button_load_dictionary_from_current_directory">โหลดพจนานุกรมจากไดเร็กทอรีปัจจุบัน</string>
+  <string name="msg_dictionary_error">มีข้อผิดพลาดในพจนานุกรม</string>
+  <string name="msg_dictionary_not_found">ไม่สามารถโหลดพจนานุกรมได้.\n\nคุณสามารถเลือกพจนานุกรมได้จากกล่องโต้ตอบต่อไปนี้</string>
+  <string name="msg_dictionary_load_error">มีปัญหาในขณะโหลดพจนานุกรม</string>
+  <string name="msg_internal_dictionary_load_error">มีปัญหาในขณะโหลดพจนานุกรมภายใน\n\n%1$s</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="msg_no_dictionary">สิ่งที่คุณเลือกมาดูเหมือนว่ามันไม่ใช่พจนานุกรม</string>
+  <string name="title_load_dictionary">กำลังโหลดพจนานุกรม&#8230;</string>
+  <string name="msg_auto_install">ดูเหมือนว่าคุณยังไม่ได้ติดตั้งพจนานุกรมเริ่มต้นของคุณ\n\nดาวน์โหลดและติดตั้งตอนนี้?</string>
+  <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="title_load_dictionary_first">กรุณาโหลดพจนานุกรมก่อน</string>
+  <string name="title_about_heading">DictonaryForMIDs ฉบับแอพจาวา</string>
+  <string name="title_about_copyright_owner">ลิขสิทธิ์โดย Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) และผู้ร่วมสนับสนุนอื่นๆ.</string>
+  <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+  <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">เวอร์ชัน: %1$s</string>
+  <string name="title_about_dictionary">พจนานุกรม:</string>
+  <string name="title_about_ui_translation">ภาษา:</string>
+  <string name="title_about_translation_request">ช่วยพวกเราแปลแอพพลิเคชั่นเป็นภาษาของคุณหรือปรับปรุงการแปลได้ที่ http://crowdin.net/project/dictionaryformids</string>
+  <string name="title_information">ข้อมูล</string>
+  <string name="title_welcome">ยินดีต้อนรับ!</string>
+  <string name="title_seconds">%1$d วินาที</string>
+  <string-array name="search_mode">
+    <item>ทั่วไป</item>
+    <item>คำศัพท์ที่ตรงกับการค้นหา</item>
+    <item>คำศัพท์ที่ขึ้นต้นด้วยการค้นหา</item>
+    <item>คำศัพท์ที่มีคำที่ใช้ค้นหา</item>
+  </string-array>
+  <string name="title_help">วิธีใช้ DictionaryForMIDs</string>
+  <string name="desc_see_website">ดูข้อมูลเพิ่มเติมได้จากเว็บไซต์:\n%1$s</string>
+  <string name="tab_load_recent">ล่าสุด</string>
+  <string name="tab_load_from_file">จากไฟล์</string>
+  <string name="tab_load_included">รวม</string>
+  <string name="tab_load_download">ดาวน์โหลด</string>
+  <string name="title_activity_about">เกี่ยวกับ</string>
+  <string name="title_activity_help">ช่วยเหลือ</string>
+  <string name="title_activity_choose_dictionary">เลือกพจนานุกรม</string>
+  <string name="title_activity_file_list">เลือกพจนานุกรม</string>
+  <string name="title_activity_dictionary_list">เลือกพจนานุกรม</string>
+  <string name="title_activity_recent_list">เลือกพจนานุกรม</string>
+  <string name="title_activity_preferences">การตั้งค่า</string>
+  <string name="title_activity_install_dictionary">ติดตั้งพจนานุกรม</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_remove_from_list">ลบ​ออก​จากรายการ</string>
+  <string name="app_description">DictionaryForMIDs เป็นพจนานุกรมหลายภาษาฟรีสำหรับโทรศัพท์มือถือและ PDAs</string>
+  <string name="hint_enter_word">ป้อนคำศัพท์ที่จะแปล</string>
+  <string name="hint_filter">ตัวกรอง</string>
+  <string name="title_pref_search_options">ตัวเลือกการค้นหา</string>
+  <string name="title_pref_search_mode">โหมดการค้นหา</string>
+  <string name="title_pref_max_results">จำนวนผลลัพธ์สูงสุด</string>
+  <string name="title_pref_timeout">ตั้งเวลาค้นหา</string>
+  <string name="title_pref_search_as_you_type">ค้นหาในขณะพิมพ์</string>
+  <string name="title_pref_display_options">แสดงตัวเลือก</string>
+  <string name="title_pref_result_font_size">ขนาดตัวอักษรของผลลัพธ์</string>
+  <string name="title_pref_ignore_font_styles">ใช้รูปแบบของระบบ</string>
+  <string name="title_pref_language_code">ภาษา</string>
+  <string name="title_pref_advanced_features">คุณลักษณะขั้นสูง</string>
+  <string name="title_pref_enable_starred_words">เปิดใช้การติดดาว</string>
+  <string name="title_pref_theme">ธีม</string>
+  <string name="title_default_language_code">ค่าเริ่มต้น</string>
+  <string name="summary_pref_ignore_font_style_checked">ผลลัพธ์จะถูกแสดงโดยใช้ลักษณะที่กำหนดโดยพจนานุกรม</string>
+  <string name="summary_pref_ignore_font_style_unchecked">ผลลัพธ์จะถูกแสดงโดยใช้รูปแบบของระบบ</string>
+  <string name="language_english">ภาษาอังกฤษ</string>
+  <string name="language_vietnamese">ภาษาเวียดนาม</string>
+  <string name="language_chinese">ภาษาจีน</string>
+  <string name="language_japanese">ภาษาญี่ปุ่น</string>
+  <string name="language_thai">ภาษาไทย</string>
+  <string name="language_hindi">ฮินดี</string>
+  <string name="language_indonesian">ภาษาอินโดนิเซีย</string>
+  <string name="language_french">ภาษาฝรั่งเศส</string>
+  <string name="language_spanish">สเปน</string>
+  <string name="language_german">เยอรมัน</string>
+  <string name="language_italian">อิตาเลียน</string>
+  <string name="language_latin">ละติน</string>
+  <string name="language_russian">รัสเซีย</string>
+  <string name="language_arabic">อาหรับ</string>
+  <string name="language_czech">เช็ก</string>
+  <string name="language_slovak">สโลวัค</string>
+  <string name="language_bulgarian">เบลเยียม</string>
+  <string name="language_persian">เปอร์เชีย</string>
+  <string name="language_finnish">ภาษาฟินแลนด์</string>
+  <string name="language_greek">ภาษากรีก</string>
+  <string name="language_hebrew">ฮีบรู</string>
+  <string name="language_croatian">โครเอเชีย</string>
+  <string name="language_hungarian">ฮังการี</string>
+  <string name="language_dutch">ดัตช์</string>
+  <string name="language_portuguese">ภาษาโปรตุเกส</string>
+  <string name="language_swedish">สวีเดน</string>
+  <string name="language_norwegian">นอร์เวย์</string>
+  <string name="language_turkish">ภาษาตุรกี</string>
+  <string name="language_tagalog">ภาษาตากาล็อก</string>
+  <string name="language_tamil">ภาษาทมิฬ</string>
+  <string name="language_turkmen">ภาษาเติร์กเมน</string>
+  <string name="language_danish">ภาษาเดนมาร์ก</string>
+  <string name="language_korean">ภาษาเกาหลี</string>
+  <string name="language_swahili">ภาษาสะวาฮิลี่</string>
+  <string name="load_dictionary_button">เพิ่มเติม...</string>
+  <plurals name="open_dictionary_drawer">
+    <item quantity="other"><![CDATA[%1$d ภาษาที่ใช้อยู่ <a href="#">เปลี่ยนเป็น&#8230;</a>]]></item>
+  </plurals>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="no_files">هیچ فایلی یافت نشد.</string>
+  <string name="title_please_wait">لطفاً منتظر بمانید</string>
+  <string name="msg_searching">در حال جستجو...</string>
+  <string name="copy_all">کپی همه</string>
+  <string name="not_found">یافت نشد</string>
+  <string name="msg_installation_finished">واژه نامه نصب شد!</string>
+  <string name="msg_installation_error">خطا در نصب</string>
+  <string name="title_exception">استثنا</string>
+  <string name="title_activity_starred_words">واژه های ستاره دار</string>
+  <string name="title_installation_finished">به پایان رسید</string>
+  <string name="msg_successfully_installed_dictionary">واژه نامه با موفقیت نصب شد.</string>
+  <string name="msg_installation_complete">نصب کامل شد</string>
+  <string name="title_installation_status">وضعیت نصب</string>
+  <string name="msg_installing_dictionary">نصب واژه نامه...</string>
+  <string name="msg_installation_aborted">نصب توسط کاربر متوقف شد.</string>
+  <string name="menu_about">درباره</string>
+  <string name="menu_help">کمک</string>
+  <string name="menu_starred">ستاره دار</string>
+  <string name="menu_download_dictionaries">دانلود دستی...</string>
+  <string name="msg_enter_word_first">لطفا ابتدا یک کلمه را وارد کنید.</string>
+  <string name="button_ok">باشه</string>
+  <string name="button_cancel">لغو</string>
+  <string name="button_do_not_show_again">دوباره نشان داده نشود</string>
+  <string name="button_exit">خروج</string>
+</resources>

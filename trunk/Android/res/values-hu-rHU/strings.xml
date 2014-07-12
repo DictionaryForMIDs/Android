@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">Magyar</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned"> </string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">Nem találhatók fájlok.</string>
+  <string name="to_top">/ (fel)</string>
+  <string name="to_upper_level">.. (feljebb)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">Kérem várjon</string>
+  <string name="msg_searching">Keresés&#8230;</string>
+  <string name="copy_all">Az összes másolása</string>
+  <string name="copy_word">Másolás: %1$s</string>
+  <string name="not_found">nem található</string>
+  <string name="no_included_dictionaries">Nem található telepített szótár.\n\nKoppintson ide a letöltéshez.</string>
+  <string name="no_starred_words">Nincs csillaggal megjelölt szó.\n\nKoppintson bármely szótári bejegyzésnél a csillag ikonra a megjelöléshez.</string>
+  <string name="starred_words_current_dictionary">Aktuális: %1$d</string>
+  <string name="starred_words_all_dictionaries">Összes: %1$d</string>
+  <string name="no_recent_dictionaries">Nem található mostanában betöltött szótár.\n\nKoppintson ide a letöltéshez.</string>
+  <string name="loading_download_dictionaries">Kérjük várjon.\n\nElérhető szótárak betöltése&#8230;</string>
+  <string name="no_download_dictionaries">Jelenleg nincs letölthető szótár.</string>
+  <string name="msg_error_downloading_available_dictionaries">Hiba történt az elérhető szótárak letöltése közben.\n\n\nKlikk ide, hogy újra megpróbáljam.\n\n\nRészletek:\n%1$s</string>
+  <string name="msg_error_dictionary_not_found">A %1$d azonosítójú szótár jelenleg nem elérhető.</string>
+  <string name="msg_error_accessing_storage">Nem érhető el a külső tároló. Győzödjön meg arról, hogy a készülék nem USB-n keresztül csatlakozik. \n\nA tároló állapota: %1$s</string>
+  <string name="msg_suggest_update">Az Ön DictionaryForMIDs verziója elavult. A szótárak letöltése előtt frissítsen.\nFrissít most?</string>
+  <string name="msg_suggest_update_with_message">Az Ön DictionaryForMIDs verziója elavult. A szótárak letöltése előtt frissítsen.\nFrissít most?\n\nRészletek: %1$s</string>
+  <string name="msg_confirm_installation">Letölti és telepíti a(z) \"%1$s\" szótárat?\nMérete: ismeretlen</string>
+  <string name="msg_confirm_installation_size">Letölti és telepíti a(z) \"%1$s\" szótárat?\nMérete: %2$s</string>
+  <string name="msg_installation_exception">Kivételhiba történt telepítés közben:\n%1$s</string>
+  <string name="msg_installation_exception_cause">Kivételhiba történt telepítés közben:\n%1$s\n\nOka:\n%1$s</string>
+  <string name="msg_installation_already_started">Egy telepítés már működik!</string>
+  <string name="msg_installation_started">A telepítés eltarthat egy ideig, tovább használhatja az alkalmazást.</string>
+  <string name="msg_auto_installation_started">A(z) \"%1$s\" szótár letöltése folyamatban, ez eltarthat egy ideig.\n\nKiléphet az alkalmazásból, a letöltés állapota a státusz soron nyomon követhető.</string>
+  <string name="msg_installation_finished">A szótár telepítése sikerült!</string>
+  <string name="msg_list_already_downloaded">A lista letöltése folyamatban.</string>
+  <string name="msg_installation_error">Telepítési hiba</string>
+  <string name="msg_external_storage_inaccessible">Külső tároló jelenleg nem érhető el.</string>
+  <string name="msg_exported_starred_words">A szavak külső tárolóra történő exportálása sikeresen befejeződött.</string>
+  <string name="msg_error_parsing_integer_preference">Nem megfelelő számot adott meg. Visszaállítva az alapértékre.</string>
+  <string name="title_exception">Kivétel</string>
+  <string name="title_activity_starred_words">Csillaggal megjelölt szavak</string>
+  <string name="exception_failed_create_directory">Nem sikerült létrehozni a szótárat: %1$s</string>
+  <string name="exception_failed_create_file">Nem sikerült létrehozni a fájlt: %1$s</string>
+  <string name="exception_failed_delete_file">Nem sikerült törölni a fájlt: %1$s</string>
+  <string name="title_installation_finished">Kész</string>
+  <string name="msg_successfully_installed_dictionary">A szótár telepítése sikerült.</string>
+  <string name="msg_installation_complete">A telepítés kész</string>
+  <string name="title_installation_status">A telepítés állapota</string>
+  <string name="msg_installing_dictionary">Szótár telepítése&#8230;</string>
+  <string name="msg_installation_aborted">A telepítést a felhasználó megszakította.</string>
+  <string name="msg_installation_status">Állapot: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">A(z) \"%1$s\" archívumban nincs a(z) \"%2$s\" mintához illeszthető bejegyzés</string>
+  <string name="unit_byte">B</string>
+  <string name="unit_kilo_byte">KB</string>
+  <string name="unit_mega_byte">MB</string>
+  <string name="unit_giga_byte">GB</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_maximum">A találatok száma nagyobb mint %1$d (a maximum).</string>
+  <string name="results_found_cancel">%1$d találat a törlés előtt.</string>
+  <string name="results_found_timeout">%1$d találat az idő lejárta előtt.</string>
+  <string name="results_found">%1$d találat.</string>
+  <string name="results_found_one">1 találat.</string>
+  <string name="no_results_found">Nincs találat.</string>
+  <string-array name="font_sizes">
+    <item>10sp</item>
+    <item>11sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
+    <item>12sp</item>
+    <item>13sp</item>
+    <item>14sp</item>
+    <item>15sp</item>
+    <item>16sp</item>
+    <item>17sp</item>
+    <item>18sp</item>
+    <item>19sp</item>
+  </string-array>
+  <string-array name="themes">
+    <item>Rendszer alapértelmezett</item>
+    <item>Sötét</item>
+    <item>Világos</item>
+  </string-array>
+  <string name="title_translation_error">Fordítási hiba.</string>
+  <string name="msg_translation_error">Részletek:\n\n%1$s</string>
+  <string name="msg_translation_cancelled">Fordítás törölve.</string>
+  <string name="menu_dictionary">Szótár</string>
+  <string name="menu_preferences">Beállítások</string>
+  <string name="menu_about">Névjegy</string>
+  <string name="menu_help">Súgó</string>
+  <string name="menu_starred">Csillagozott</string>
+  <string name="menu_export_all_starred">Összes exportálása</string>
+  <string name="menu_download_dictionaries">Szótár letöltése&#8230;</string>
+  <string name="menu_find_hidden_dictionaries">Rejtettek hozzáadása</string>
+  <string name="menu_clear_recent_dictionary_list">Előzmények törlése&#8230;</string>
+  <string name="msg_enter_word_first">Előbb adjon meg egy szót.</string>
+  <string name="menu_reload_dictionary_list">Lista újratöltése</string>
+  <string name="menu_cancel_installation">Telepítés törlése</string>
+  <string name="menu_reinstall_default_dictionary">Az alapértelmezett szótár újratelepítése</string>
+  <string name="msg_load_dictionary_first">Előbb töltsön be egy szótárat.</string>
+  <string name="msg_reload_dictionary">Töltse be ismét szótárat.</string>
+  <string name="msg_exception">Kivételhiba történt:\n%1$s</string>
+  <string name="msg_restart_app_after_settings_changed">A beállítások érvénybe léptetéséhez újra kell indítani az alkalmazást.</string>
+  <string name="button_ok">Rendben</string>
+  <string name="button_cancel">Mégse</string>
+  <string name="button_do_not_show_again">Ne mutassa többé</string>
+  <string name="button_exit">Kilépés</string>
+  <string name="msg_download_dictionaries">A szótárak letöltése 4 lépésből áll (feltételezve, hogy van fájl kezelő telepítve, mint pl. az Astro):\n\n1. Válasszon és töltsön le egy szótárat a honlapról, ami hamarosan megnyílik. Megjegyzés: Csak a 2.4.4 vagy magasabb verziójú szótárak támogatottak.\n\n2. Csomagolja ki a zip fájl tartalmát az SD kártya egy tetszőleges könyvtárába (pl. Astro használatával).\n\n3. Opcionális: Csomagolja ki a mellékelt jar állományokat az SD kártyára a gyorsabb keresés érdekében.\n\n4. Válassza ki a szótárat az imént feldobott dialógusablakon.\n\nA szótárat PC segítségével is letöltheti és kicsomagolhatja, majd átmásolhatja az SD kártyára.</string>
+  <string name="msg_clear_recent_dictionaries_list">Törli az új szótárak listáját?</string>
+  <string name="msg_cancel_installation">Abbahagyja a telepítést?</string>
+  <string name="msg_load_dictionary">Most töltsön be új szótárat?\n\nKésőbb is bármikor betöltheti az új szótárak listája alapján.</string>
+  <string name="button_load_dictionary_from_current_directory">Szótár betöltése az aktuális könyvtárból</string>
+  <string name="msg_dictionary_error">Szótárhiba</string>
+  <string name="msg_dictionary_not_found">A szótár betöltése nem sikerült.\n\nA következő párbeszédablakból választhat egy szótárat.</string>
+  <string name="msg_dictionary_load_error">Hiba a szótár betöltése közben.</string>
+  <string name="msg_internal_dictionary_load_error">Hiba belső szótárak betöltése közben.\n\n%1$s</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="msg_no_dictionary">A kiválasztott elem nem szótár.</string>
+  <string name="title_load_dictionary">Szótár betöltése&#8230;</string>
+  <string name="msg_auto_install">Úgy tűnik, még nem telepítette az alapértelmezett szótárat.\n\nSzeretné most letölteni és telepíteni?</string>
+  <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="title_load_dictionary_first">Előbb töltse be a szótárat.</string>
+  <string name="title_about_heading">DictonaryForMIDs Java-alkalmazás</string>
+  <string name="title_about_copyright_owner">Szerzői jog fenntartva: Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) és mások.</string>
+  <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+  <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">Verzió: %1$s</string>
+  <string name="title_about_copyright">A DictionaryForMIDs Java-alkalmazás ingyenes szoftver: a Szabad Szoftver Alapítvány által kiadott GNU Általános Nyilvános Licensz feltételei szerint terjeszthető és/vagy módosítható a licensz 2. sz. vagy (választhatóan) későbbi változatában foglaltaknak megfelelően. Lásd a COPYING állományt vagy a http://www.gnu.org/licenses/ portált.\n\nA programot abban a reményben adjuk közre, hogy hasznosnak bizonyul, azonban MINDENNEMŰ GARANCIA VÁLLALÁSA NÉLKÜL; ideértve az ELADHATÓSÁG vagy valamely KONKRÉT CÉLRA VALÓ ALKALMASSÁG szavatolását. A további részleteket lásd a GNU Általános Nyilvános Licenszben.</string>
+  <string name="title_about_dictionary">Szótár:</string>
+  <string name="title_about_ui_translation">Nyelv:</string>
+  <string name="title_about_translation_request">Segítsen lefordítani az alkalmazást az ön nyelvére vagy javítsa a meglévő fordításokat: http://crowdin.net/project/dictionaryformids</string>
+  <string name="title_information">Infó</string>
+  <string name="title_welcome">Üdvözöljük!</string>
+  <string name="title_seconds">%1$d mp</string>
+  <string name="msg_first_run">Úgy tűnik, először használja ezt a programot! A következő képernyő segítségével válasszon egy szótárat.</string>
+  <string name="msg_slow_archive_loading">A fordítás az idő lejárta miatt törölve lett.\nFelgyorsíthatja a fordítást, ha az archivált szótárat kicsomagolja az SD-kártyán egy mappába, és ezt a mappát adja meg szótárként. Másik megoldásként növelje meg a lejárati időt a Beállítások párbeszédablakban.</string>
+  <string name="msg_parsing_error">Hiba a forrás feldolgozása közben.\n\n%1$s</string>
+  <string name="msg_extract_dictionary">A kiválasztott archívumot nem lehetett betölteni, de úgy látszik, tömörített szótár van benne. Először csomagolja ki a mellékelt jar állományt.</string>
+  <string-array name="search_mode">
+    <item>Standard</item>
+    <item>Kereső kifejezésnek megfelelő szavak</item>
+    <item>Kereső kifejezéssel kezdődő szavak</item>
+    <item>Kereső kifejezést tartalmazó szavak</item>
+  </string-array>
+  <string name="title_help">A DictionaryForMIDs súgója</string>
+  <string name="desc_help">Keresésének pontosításához használjon helyettesítő karaktereket:\n%1$c - bármilyen karaktersorral egyezik\n%2$c - egyetlen karakterrel egyezik\n\nRészkifejezésekkel való keresés szabályozása:\n%3$c - amint az első karakter a kereső kifejezésével kezdődő találatokat eredményez\n%4$c - miután kifejezése a vele végződő találatokat eredményez.\n\nNe feledje, hogy helyettesítő karakterek használata esetén a keresési mód beállításai nem érvényesek.</string>
+  <string name="desc_see_website">További információkért látogasson el erre a weboldalra:\n%1$s</string>
+  <string name="tab_load_recent">Utóbbi</string>
+  <string name="tab_load_from_file">Fáljból</string>
+  <string name="tab_load_included">Csatolva</string>
+  <string name="tab_load_download">Letöltés</string>
+  <string name="title_activity_about">Névjegy</string>
+  <string name="title_activity_help">Súgó</string>
+  <string name="title_activity_choose_dictionary">Szótár kiválasztása</string>
+  <string name="title_activity_file_list">Szótár kiválasztása</string>
+  <string name="title_activity_dictionary_list">Szótár kiválasztása</string>
+  <string name="title_activity_recent_list">Szótár kiválasztása</string>
+  <string name="title_activity_preferences">Beállítások</string>
+  <string name="title_activity_install_dictionary">Szótár telepítése</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_remove_from_list">Törlés a listából</string>
+  <string name="app_description">A DictionaryForMIDs ingyenesis többnyelvű szótár mobiltelefonokhoz és zsebszámítógépekhez</string>
+  <string name="hint_enter_word">Írja be a fordítandó szót</string>
+  <string name="hint_filter">Szűrő</string>
+  <string name="title_pref_search_options">Keresési lehetőségek</string>
+  <string name="title_pref_search_mode">Keresési mód</string>
+  <string name="title_pref_max_results">Max. találat</string>
+  <string name="title_pref_timeout">Keresési időtartam</string>
+  <string name="title_pref_search_as_you_type">Azonnali keresés gépeléskor</string>
+  <string name="title_pref_display_options">Megjelenítési lehetőségek</string>
+  <string name="title_pref_result_font_size">Találatok betűmérete</string>
+  <string name="title_pref_ignore_font_styles">Rendszerstílusok használata</string>
+  <string name="title_pref_language_code">Nyelv</string>
+  <string name="title_pref_advanced_features">Speciális funkciók</string>
+  <string name="title_pref_enable_starred_words">Csillaggal megjelölt szavak engedélyezése</string>
+  <string name="title_pref_theme">Téma</string>
+  <string name="title_default_language_code">Alapbeállítás</string>
+  <string name="summary_pref_ignore_font_style_checked">Az eredmények a szótár által meghatározott stílus használatával jelennek meg.</string>
+  <string name="summary_pref_ignore_font_style_unchecked">Az eredmények a rendszer által meghatározott stílus használatával jelennek meg.</string>
+  <string name="language_english">Angol</string>
+  <string name="language_esperanto">Esperanto</string>
+  <string name="language_vietnamese">Vietnami</string>
+  <string name="language_chinese">Kínai</string>
+  <string name="language_japanese">Japán</string>
+  <string name="language_thai">Thai</string>
+  <string name="language_hindi">Hindi</string>
+  <string name="language_indonesian">Indonéz</string>
+  <string name="language_french">Francia</string>
+  <string name="language_spanish">Spanyol</string>
+  <string name="language_german">Német</string>
+  <string name="language_italian">Olasz</string>
+  <string name="language_latin">Latin</string>
+  <string name="language_russian">Orosz</string>
+  <string name="language_arabic">Arab</string>
+  <string name="language_czech">Cseh</string>
+  <string name="language_slovak">Szlovák</string>
+  <string name="language_bulgarian">bolgár</string>
+  <string name="language_catalan">katalán</string>
+  <string name="language_persian">perzsa</string>
+  <string name="language_finnish">finn</string>
+  <string name="language_greek">görög</string>
+  <string name="language_hebrew">héber</string>
+  <string name="language_croatian">horvát</string>
+  <string name="language_hungarian">magyar</string>
+  <string name="language_lithuanian">litván</string>
+  <string name="language_dutch">holland</string>
+  <string name="language_polish">lengyel</string>
+  <string name="language_portuguese">portugál</string>
+  <string name="language_swedish">svéd</string>
+  <string name="language_norwegian">norvég</string>
+  <string name="language_turkish">török</string>
+  <string name="language_tagalog">tagalog</string>
+  <string name="language_tamil">tamil</string>
+  <string name="language_turkmen">türkmén</string>
+  <string name="language_danish">dán</string>
+  <string name="language_korean">koreai</string>
+  <string name="language_swahili">szuahéli</string>
+  <string name="load_dictionary_button">Továbbiak&#8230;</string>
+  <plurals name="open_dictionary_drawer">
+    <item quantity="one"><![CDATA[Aktív nyelv. <a href="#">Megváltoztatás&#8230;</a>]]></item>
+    <item quantity="other"><![CDATA[%1$d aktív nyelv. <a href="#">Megváltoztatás&#8230;</a>]]></item>
+  </plurals>
+</resources>
