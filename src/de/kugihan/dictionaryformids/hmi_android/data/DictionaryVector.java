@@ -28,6 +28,10 @@ public class DictionaryVector extends Observable implements Iterable<Dictionary>
 		notifyObservers(dictionary);
 	}
 
+	public void addEnd(Dictionary dictionary) {
+		dictionaries.add(dictionaries.size(), dictionary);
+	}
+
 	public void addAll(Collection<? extends Dictionary> dictionaryCollection) {
 		dictionaries.addAll(dictionaryCollection);
 		for (Dictionary dictionary : dictionaryCollection) {
@@ -58,6 +62,15 @@ public class DictionaryVector extends Observable implements Iterable<Dictionary>
 		notifyObservers(dictionary);
 	}
 
+	public void removeAll(Collection<? extends Dictionary> dictionaryCollection) {
+		dictionaries.removeAll(dictionaryCollection);
+		for (Dictionary dictionary : dictionaryCollection) {
+			dictionary.deleteObserver(dictionaryObserver);
+		}
+		setChanged();
+		notifyObservers();
+	}
+
 	@Override
 	public Iterator<Dictionary> iterator() {
 		return dictionaries.iterator();
@@ -77,5 +90,14 @@ public class DictionaryVector extends Observable implements Iterable<Dictionary>
 
 	public Dictionary firstElement() {
 		return dictionaries.firstElement();
+	}
+
+	public boolean contains(Dictionary dictionaryToSearch) {
+		for (Dictionary dictionary : dictionaries) {
+			if (dictionaryToSearch.equals(dictionary)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
