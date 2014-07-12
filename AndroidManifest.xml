@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="de.kugihan.dictionaryformids.hmi_android" android:installLocation="auto"
-	android:versionCode="103" android:versionName="0.92.3">
+	android:versionCode="117" android:versionName="1.0.0">
 	<uses-sdk android:minSdkVersion="4" android:targetSdkVersion="15" />
 	<supports-screens android:anyDensity="true" />
 	<uses-permission android:name="android.permission.INTERNET" />
