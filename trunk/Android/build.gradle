@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.9.+'
+        classpath 'com.android.tools.build:gradle:0.12.+'
     }
 }
 
@@ -30,12 +30,14 @@ dependencies {
     compile project(':DictionaryForMIDs_Core')
 }
 
-sourceCompatibility = '1.6'
-targetCompatibility = '1.6'
-
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.3"
+    buildToolsVersion "19.1.0"
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 
     sourceSets {
         main {
@@ -73,7 +75,7 @@ android {
 
     buildTypes {
         debug {
-            packageNameSuffix ".debug"
+            applicationIdSuffix ".debug"
             versionNameSuffix "-debug"
             resValue "string", "provider_authority", "de.kugihan.dictionaryformids.hmi_android.data.debug.starredwordsprovider"
             resValue "string", "app_name_build", "@string/app_name_debug"
