@@ -42,12 +42,10 @@ public class Preferences extends PreferenceActivity implements
 	/**
 	 * The version of the current preferencesInstance implementation.
 	 */
-	public static final int CURRENT_PREF_VERSION = 2;
+	public static final int CURRENT_PREF_VERSION = 3;
 
 	public static final String PREF_LOAD_DICTIONARIES = "loadDictionaries";
 	public static final String PREF_VERSION = "preferencesVersion";
-	public static final String PREF_DICTIONARY_PATH = "dictionaryPath";
-	public static final String PREF_SELECTED_LANGUAGE_INDEX = "selectedLanguageIndex";
 	public static final String PREF_RESULT_FONT_SIZE = "resultFontSize";
 	public static final String PREF_MAX_RESULTS = "maxResults";
 	public static final String PREF_SEARCH_TIMEOUT = "searchTimeout";
@@ -197,12 +195,14 @@ public class Preferences extends PreferenceActivity implements
 				.getDefaultSharedPreferences(context);
 		firstRun = !preferencesInstance.contains(PREF_VERSION);
 		if (firstRun) {
+			Log.i(DictionaryForMIDs.LOG_TAG, "First run of app");
 			saveCurrentVersion();
 			saveAutoInstallDictionaryId();
 		} else {
 			final int preferencesVersion = preferencesInstance.getInt(PREF_VERSION,
 					CURRENT_PREF_VERSION);
 			if (preferencesVersion < CURRENT_PREF_VERSION) {
+				Log.i(DictionaryForMIDs.LOG_TAG, "Upgrading. Previous preferences version: " + preferencesVersion + "  Current version: " + CURRENT_PREF_VERSION);
 				// save settings version
 				saveCurrentVersion();
 				// migrate old settings into new format here
@@ -228,6 +228,81 @@ public class Preferences extends PreferenceActivity implements
 			// dictionary styles never worked before, reset setting
 			setIgnoreDictionaryTextStyles(false);
 		}
+		if (previousVersion < 3) {
+			// Migrate loaded dictionaries as the format changed
+			// to support multiple active dictionaries
+			migrateRecentDictionarySettings();
+		}
+	}
+
+	/**
+	 * Migrates the settings of the active dictionary and recent dictionaries
+	 * as the format changed to support multiple active dictionaries in
+	 * preferences version 3.
+	 */
+	private static void migrateRecentDictionarySettings() {
+		// Obsolete constants
+		final String PREF_DICTIONARY_TYPE = "dictionaryType";
+		final String PREF_DICTIONARY_PATH = "dictionaryPath";
+		final String PREF_SELECTED_LANGUAGE_INDEX = "selectedLanguageIndex";
+
+		// Convert selected index to a language selection set
+		final int selectedLanguageIndex = preferencesInstance.getInt(PREF_SELECTED_LANGUAGE_INDEX, 0);
+		final Dictionary.LanguageIndexSelectionSet selectionSet = new Dictionary.LanguageIndexSelectionSet(selectedLanguageIndex);
+
+		// Load saved dictionaries in old format
+		String[] dictionaries = Preferences.getRecentDictionaryStrings();
+		Vector<Dictionary> recentDictionaries = new Vector<Dictionary>();
+		for (String dictionaryString : dictionaries) {
+			int typeInt;
+			String path;
+			String languages = "";
+			try {
+				JSONObject parts = new JSONObject(dictionaryString);
+				typeInt = parts.getInt("type");
+				path = parts.getString("path");
+				JSONArray languagesArray = new JSONArray(parts
+						.getString("languages"));
+				for (int i = 0; i < languagesArray.length(); i++) {
+					final String language = languagesArray.getString(i);
+					final String localizedLanguage = LocalizationHelper
+							.getLanguageName(contextInstance.getResources(), language);
+					languages += localizedLanguage + " ";
+				}
+				languages = languages.trim();
+			} catch (JSONException e) {
+				continue;
+			}
+
+			// Convert int to enum
+			DictionaryType type = DictionaryType.values()[typeInt];
+
+			// Create dictionary object
+			Dictionary dictionary = new Dictionary(languages, type, path);
+			recentDictionaries.add(dictionary);
+		}
+
+		Vector<Dictionary> loadedDictionaries = new Vector<Dictionary>();
+
+		// In previous versions the first recent dictionary is the active one
+		if (!recentDictionaries.isEmpty()) {
+			// Get and remove the first dictionary from recent dictionaries
+			final Dictionary dictionary = recentDictionaries.remove(0);
+			Preferences.removeRecentDictionary(dictionary.getPath(), dictionary.getType());
+			// Update selected languages and add to loaded dictionaries
+			dictionary.setLanguageSelectionSet(selectionSet);
+			loadedDictionaries.add(dictionary);
+		}
+
+		// Write updated loaded dictionaries in new format
+		Preferences.setLoadDictionary(loadedDictionaries, false);
+
+		// Clean-up obsolete preferences
+		final Editor editor = preferencesInstance.edit();
+		editor.remove(PREF_DICTIONARY_PATH);
+		editor.remove(PREF_DICTIONARY_TYPE);
+		editor.remove(PREF_SELECTED_LANGUAGE_INDEX);
+		editor.commit();
 	}
 
 	public static int getMaxResults() {
@@ -321,12 +396,6 @@ public class Preferences extends PreferenceActivity implements
 		return preferencesInstance.getBoolean(PREF_SEARCH_AS_YOU_TYPE, defaultValue);
 	}
 
-	public static void setSelectedLanguageIndex(final int selectedLanguageIndex) {
-		final Editor editor = preferencesInstance.edit();
-		editor.putInt(PREF_SELECTED_LANGUAGE_INDEX, selectedLanguageIndex);
-		editor.commit();
-	}
-
 	private static void saveCurrentVersion() {
 		final Editor editor = preferencesInstance.edit();
 		editor.putInt(PREF_VERSION, CURRENT_PREF_VERSION);
@@ -346,10 +415,6 @@ public class Preferences extends PreferenceActivity implements
 
 	public static boolean isFirstRun() {
 		return firstRun;
-	}
-
-	public static int getSelectedLanguageIndex() {
-		return preferencesInstance.getInt(PREF_SELECTED_LANGUAGE_INDEX, 0);
 	}
 
 	/**
@@ -388,33 +453,34 @@ public class Preferences extends PreferenceActivity implements
 	}
 
 	public static void setLoadDictionary(final Iterable<Dictionary> dictionaries) {
+		setLoadDictionary(dictionaries, true);
+	}
+
+	/**
+	 * Saves the given currently loaded dictionaries for restoring at a later point.
+	 * @param dictionaries the currently loaded dictionaries
+	 * @param skipCurrentlyUnloaded false to prevent check if dictionary is really active
+	 */
+	private static void setLoadDictionary(final Iterable<Dictionary> dictionaries, boolean skipCurrentlyUnloaded) {
 
 		final JSONArray data = new JSONArray();
 
 		for (Dictionary dictionary : dictionaries) {
-			if (dictionary.getFile() == null) {
+			if (skipCurrentlyUnloaded && dictionary.getFile() == null) {
 				continue;
 			}
 			final JSONObject jsonObject = new JSONObject();
-			final JSONArray jsonArraySelectionPairs = new JSONArray();
 			// Create object including info to load dictionary
 			try {
-				// Create array of selected language pairs
-				for (Dictionary.LanguagePair languagePair : dictionary.getSelectedPairs()) {
-					JSONObject languagePairJsonObject = new JSONObject();
-					languagePairJsonObject.put("from", languagePair.getFromLanguage());
-					languagePairJsonObject.put("to", languagePair.getToLanguage());
-					jsonArraySelectionPairs.put(languagePairJsonObject);
-				}
 				jsonObject.put("path", dictionary.getPath());
 				jsonObject.put("type", dictionary.getType().ordinal());
 				jsonObject.put("abbreviation", dictionary.getAbbreviation());
-				jsonObject.put("selectedLanguagePairs", jsonArraySelectionPairs);
+				jsonObject.put("languageSelection", dictionary.getSelectedLanguages().serializeAsJson());
 			} catch (JSONException e) {
 				Log.e(DictionaryForMIDs.LOG_TAG, "Failed to save loaded dictionaries", e);
 			}
 
-			data.put(jsonObject.toString());
+			data.put(jsonObject);
 		}
 
 		final Editor editor = preferencesInstance.edit();
@@ -422,6 +488,11 @@ public class Preferences extends PreferenceActivity implements
 		editor.commit();
 	}
 
+	/**
+	 * Get the list of dictionaries that were active last time settings were saved.
+	 *
+	 * @return list of active dictionaries
+	 */
 	public static final Vector<Dictionary> getLoadedDictionaries() {
 		Vector<Dictionary> dictionaries = new Vector<Dictionary>();
 
@@ -436,22 +507,8 @@ public class Preferences extends PreferenceActivity implements
 
 		for (int i = 0; i < jsonArray.length(); i++) {
 			try {
-				String dictionaryString = jsonArray.getString(i);
-				JSONObject dictionaryJsonObject = new JSONObject(dictionaryString);
-				String path = dictionaryJsonObject.getString("path");
-				int typeId = dictionaryJsonObject.getInt("type");
-				String abbreviation = dictionaryJsonObject.getString("abbreviation");
-				DictionaryType type = DictionaryType.values()[typeId];
-
-				Dictionary dictionary = new Dictionary(abbreviation, type, path);
-				JSONArray languagePairsJsonArray = dictionaryJsonObject.getJSONArray("selectedLanguagePairs");
-				for (int j = 0; j < languagePairsJsonArray.length(); j++) {
-					JSONObject languagePairJsonObject = languagePairsJsonArray.getJSONObject(j);
-					int from = languagePairJsonObject.getInt("from");
-					int to = languagePairJsonObject.getInt("to");
-					dictionary.setPairSelection(from, to, true);
-				}
-
+				JSONObject dictionaryJsonObject = jsonArray.getJSONObject(i);
+				Dictionary dictionary = getDictionaryFromJson(dictionaryJsonObject);
 				dictionaries.add(dictionary);
 			} catch (JSONException e) {
 				Log.e(DictionaryForMIDs.LOG_TAG, "Failed to retrieve loaded dictionaries", e);
@@ -461,21 +518,17 @@ public class Preferences extends PreferenceActivity implements
 		return dictionaries;
 	}
 
-//	private static int getLoadDictionaryType() {
-//		return preferencesInstance.getInt(PREF_DICTIONARY_TYPE, -1);
-//	}
-//
-//	public static boolean getLoadIncludedDictionary() {
-//		return getLoadDictionaryType() == DictionaryType.INCLUDED.ordinal();
-//	}
-//
-//	public static boolean getLoadArchiveDictionary() {
-//		return getLoadDictionaryType() == DictionaryType.ARCHIVE.ordinal();
-//	}
-//
-//	public static boolean getLoadDirectoryDictionary() {
-//		return getLoadDictionaryType() == DictionaryType.DIRECTORY.ordinal();
-//	}
+	private static Dictionary getDictionaryFromJson(JSONObject dictionaryJsonObject) throws JSONException {
+		String path = dictionaryJsonObject.getString("path");
+		int typeId = dictionaryJsonObject.getInt("type");
+		String abbreviation = dictionaryJsonObject.getString("abbreviation");
+		DictionaryType type = DictionaryType.values()[typeId];
+
+		Dictionary dictionary = new Dictionary(abbreviation, type, path);
+		JSONObject languageSelectionJsonObject = dictionaryJsonObject.getJSONObject("languageSelection");
+		dictionary.setLanguageSelectionSet(Dictionary.LanguageSelectionSet.unserialize(languageSelectionJsonObject));
+		return dictionary;
+	}
 
 	public static void setWarnOnTimeout(final boolean warnOnTimeout) {
 		final Editor editor = preferencesInstance.edit();
@@ -485,12 +538,6 @@ public class Preferences extends PreferenceActivity implements
 
 	public static boolean getWarnOnTimeout() {
 		return preferencesInstance.getBoolean(PREF_WARN_ON_TIMEOUT, true);
-	}
-
-	private static void setDictionaryPath(final String path) {
-		final Editor editor = preferencesInstance.edit();
-		editor.putString(PREF_DICTIONARY_PATH, path);
-		editor.commit();
 	}
 
 	public static String getLanguageCode() {
@@ -550,7 +597,7 @@ public class Preferences extends PreferenceActivity implements
 		editor.commit();
 	}
 
-	public static String[] getRecentDictionaryStrings() {
+	private static String[] getRecentDictionaryStrings() {
 		final String stringData = preferencesInstance.getString(
 				PREF_RECENT_DICTIONARIES, "");
 		JSONArray data;
@@ -571,6 +618,11 @@ public class Preferences extends PreferenceActivity implements
 		return dictionaryEntries;
 	}
 
+	/**
+	 * Get the list of dictionaries that were not active when settings were saved the last time.
+	 *
+	 * @return list of available unloaded dictionaries
+	 */
 	public static Vector<Dictionary> getRecentDictionaries() {
 		final String[] dictionaries = Preferences.getRecentDictionaryStrings();
 		final Vector<Dictionary> result = new Vector<Dictionary>();

@@ -430,11 +430,11 @@ public final class DictionaryForMIDs extends Activity {
 		dialogHelper = DialogHelper.getInstance(this);
 
 		setupSearchBar();
-		updateActiveDictionariesCount();
+		updateActiveLanguagesCount();
 		dictionaries.addObserver(new Observer() {
 			@Override
 			public void update(Observable observable, Object o) {
-				updateActiveDictionariesCount();
+				updateActiveLanguagesCount();
 			}
 		});
 
@@ -468,8 +468,7 @@ public final class DictionaryForMIDs extends Activity {
 			@Override
 			public void onClick(View view) {
 				if (isDictionaryAvailable()) {
-					DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-					drawerLayout.openDrawer(findViewById(R.id.left_drawer));
+					openDictionaryDrawer();
 				} else {
 					startChooseDictionaryActivity();
 				}
@@ -498,6 +497,11 @@ public final class DictionaryForMIDs extends Activity {
 			} else {
 				final boolean silent = processIntent(getIntent());
 				loadLastUsedDictionary(silent);
+			}
+			boolean hasNoActiveDictionaries = Preferences.getLoadedDictionaries().isEmpty();
+			boolean hasRecentDictionaries = !dictionaries.isEmpty();
+			if (hasNoActiveDictionaries && hasRecentDictionaries) {
+				openDictionaryDrawer();
 			}
 		}
 
@@ -537,6 +541,11 @@ public final class DictionaryForMIDs extends Activity {
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 			getActionBar().setHomeButtonEnabled(true);
 		}
+	}
+
+	private void openDictionaryDrawer() {
+		DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		drawerLayout.openDrawer(findViewById(R.id.left_drawer));
 	}
 
 	private static int getExpandedGroup(TranslationsAdapter translationsAdapter, ExpandableListView translationListView) {
@@ -708,11 +717,32 @@ public final class DictionaryForMIDs extends Activity {
 	 */
 	private void loadLastUsedDictionary(final boolean silent) {
 
-		this.dictionaries.addAll(Preferences.getRecentDictionaries());
-
-		Vector<Dictionary> dictionaries = Preferences.getLoadedDictionaries();
-
+		Vector<Dictionary> dictionariesToRemove = new Vector<Dictionary>();
 		for (Dictionary dictionary : dictionaries) {
+			if (dictionary.getFile() == null) {
+				dictionariesToRemove.add(dictionary);
+			}
+		}
+		dictionaries.removeAll(dictionariesToRemove);
+
+		Vector<Dictionary> recentDictionaries = Preferences.getRecentDictionaries();
+		for (Dictionary recentDictionary : recentDictionaries) {
+			if (dictionaries.contains(recentDictionary)) {
+				continue;
+			} else {
+				dictionaries.addEnd(recentDictionary);
+			}
+		}
+
+		// Update the list of dictionaries
+		createDictionariesAdapterAndConnectToList();
+
+		Vector<Dictionary> loadedDictionaries = Preferences.getLoadedDictionaries();
+		for (Dictionary dictionary : loadedDictionaries) {
+			if (isDictionaryLoaded(dictionary.getType(), dictionary.getPath())) {
+				continue;
+			}
+
 			DfMInputStreamAccess inputStreamAccess = null;
 
 			// Check if dictionary is part of the recent dictionaries and remove it there
@@ -732,7 +762,7 @@ public final class DictionaryForMIDs extends Activity {
 			} else {
 				return;
 			}
-			startLoadDictionary(inputStreamAccess, dictionary.getType(), dictionary.getPath(), dictionary.getSelectedPairs(),
+			startLoadDictionary(inputStreamAccess, dictionary.getType(), dictionary.getPath(), dictionary.getSelectedLanguages(),
 					silent);
 		}
 	}
@@ -902,6 +932,8 @@ public final class DictionaryForMIDs extends Activity {
 					// trigger new search
 					startTranslation();
 				}
+			} else if (key.equals(Preferences.PREF_RECENT_DICTIONARIES)) {
+				loadLastUsedDictionary(true);
 			}
 		}
 
@@ -916,7 +948,7 @@ public final class DictionaryForMIDs extends Activity {
 	 *            the type of the dictionary
 	 * @param dictionaryPath
 	 *            the path of the dictionary
-	 * @param selectedPairs
+	 * @param languageSelectionSet
 	 *            the selected language pairs
 	 * @param exitSilently
 	 *            true if the thread should not display dialogs
@@ -924,7 +956,7 @@ public final class DictionaryForMIDs extends Activity {
 	private void startLoadDictionary(
 			final DfMInputStreamAccess inputStreamAccess,
 			final DictionaryType dictionaryType, final String dictionaryPath,
-			final Dictionary.LanguagePair[] selectedPairs, final boolean exitSilently) {
+			final Dictionary.LanguageSelectionSet languageSelectionSet, final boolean exitSilently) {
 
 		if (isDictionaryLoaded(dictionaryType, dictionaryPath)) {
 			// dictionary is already loaded
@@ -954,7 +986,7 @@ public final class DictionaryForMIDs extends Activity {
 
 		setProgressBarIndeterminateVisibility(true);
 		loadDictionaryThread = new LoadDictionaryThread();
-		final OnThreadResultListener threadListener = createThreadListener(dictionaryType, dictionaryPath, selectedPairs, exitSilently);
+		final OnThreadResultListener threadListener = createThreadListener(dictionaryType, dictionaryPath, languageSelectionSet, exitSilently);
 		loadDictionaryThread.setOnThreadResultListener(threadListener);
 		loadDictionaryThread.execute(inputStreamAccess);
 	}
@@ -1002,67 +1034,39 @@ public final class DictionaryForMIDs extends Activity {
 	 * @return the thread result listener
 	 */
 	private OnThreadResultListener createThreadListener(final DictionaryType type, final String path,
-														final Dictionary.LanguagePair[] selectedPairs, final boolean exitSilently) {
+														final Dictionary.LanguageSelectionSet languageSelectionSet, final boolean exitSilently) {
 		return new OnThreadResultListener() {
 
 			@Override
 			public void onSuccess(DictionaryDataFile dataFile) {
 				forgetThread();
 
-				Dictionary dictionary = getLoadedDictionary(type, path);
-				if (dictionary == null) {
-					dictionary = new Dictionary(dataFile, type, path, selectedPairs);
-					dictionaries.add(0, dictionary);
-					dictionary.addObserver(new Observer() {
-						@Override
-						public void update(Observable observable, Object o) {
-							// Trigger search when selection changes
-							// TODO: analyze selection changes and query only changed data
-							final String translationInput = ((TextView) findViewById(R.id.TranslationInput))
-									.getText().toString();
-							if (Preferences.getSearchAsYouType()
-									&& translationInput.length() > 0) {
-								startTranslation();
-							}
-						}
-					});
-				} else {
-					dictionary.setFile(dataFile);
-					for (Dictionary.LanguagePair selectedPair : selectedPairs) {
-						dictionary.setPairSelection(selectedPair.getFromLanguage(), selectedPair.getToLanguage(), true);
-					}
+				Dictionary activeDictionary = getLoadedDictionary(type, path);
+				if (activeDictionary != null) {
+					languageSelectionSet.applyToDictionary(activeDictionary);
+					return;
 				}
 
-				DictionariesAdapter adapter = new DictionariesAdapter(dictionaries);
-
-				ListView listView = (ListView) findViewById(R.id.loaded_dictionary_list);
-				listView.setAdapter(adapter);
-
-				DataSetObserver dataSetObserver = new DataSetObserver() {
+				Dictionary dictionary = new Dictionary(dataFile, type, path);
+				if (languageSelectionSet != null) {
+					languageSelectionSet.applyToDictionary(dictionary);
+				}
+				dictionaries.add(0, dictionary);
+				dictionary.addObserver(new Observer() {
 					@Override
-					public void onChanged() {
-						if (!isDictionaryAvailable()) {
-							translationsAdapter.clearData();
-							return;
-						}
-
-						// start search according to intent
+					public void update(Observable observable, Object o) {
+						// Trigger search when selection changes
+						// TODO: analyze selection changes and query only changed data
 						final String translationInput = ((TextView) findViewById(R.id.TranslationInput))
 								.getText().toString();
-						final String query = getIntent().getStringExtra(SearchManager.QUERY);
-						final boolean hasSearchIntent = Intent.ACTION_SEARCH.equals(getIntent()
-								.getAction());
-						if (hasSearchIntent && translationInput.equals(query)) {
-							getIntent().removeExtra(SearchManager.QUERY);
-							startTranslation();
-						} else if (Preferences.getSearchAsYouType()
+						if (Preferences.getSearchAsYouType()
 								&& translationInput.length() > 0) {
 							startTranslation();
 						}
 					}
-				};
-				adapter.registerDataSetObserver(dataSetObserver);
-				dataSetObserver.onChanged();
+				});
+
+				createDictionariesAdapterAndConnectToList();
 
 				hideProgressBar();
 
@@ -1133,7 +1137,47 @@ public final class DictionaryForMIDs extends Activity {
 		};
 	}
 
-	private void updateActiveDictionariesCount() {
+	private void createDictionariesAdapterAndConnectToList() {
+		DictionariesAdapter adapter = new DictionariesAdapter(dictionaries);
+
+		ListView listView = (ListView) findViewById(R.id.loaded_dictionary_list);
+		listView.setAdapter(adapter);
+
+		DataSetObserver dataSetObserver = new DataSetObserver() {
+			@Override
+			public void onChanged() {
+				if (!isDictionaryAvailable()) {
+					translationsAdapter.clearData();
+					return;
+				}
+
+				// start search according to intent
+				final String translationInput = ((TextView) findViewById(R.id.TranslationInput))
+						.getText().toString();
+				final String query = getIntent().getStringExtra(SearchManager.QUERY);
+				final boolean hasSearchIntent = Intent.ACTION_SEARCH.equals(getIntent()
+						.getAction());
+				if (hasSearchIntent && translationInput.equals(query)) {
+					getIntent().removeExtra(SearchManager.QUERY);
+					startTranslation();
+				} else if (Preferences.getSearchAsYouType()
+						&& translationInput.length() > 0) {
+					startTranslation();
+				}
+			}
+		};
+		adapter.registerDataSetObserver(dataSetObserver);
+		dataSetObserver.onChanged();
+	}
+
+	private void updateActiveLanguagesCount() {
+		int size = getActiveLanguagesCount();
+		TextView openDictionaryView = (TextView) findViewById(R.id.openDictionaryMenu);
+		String htmlString = getResources().getQuantityString(R.plurals.open_dictionary_drawer, size, size);
+		openDictionaryView.setText(Html.fromHtml(htmlString));
+	}
+
+	private int getActiveLanguagesCount() {
 		int size = 0;
 		if (dictionaries != null) {
 			// Count selected language pairs of each dictionary
@@ -1144,9 +1188,7 @@ public final class DictionaryForMIDs extends Activity {
 				size = size + dictionary.getSelectedPairs().length;
 			}
 		}
-		TextView openDictionaryView = (TextView) findViewById(R.id.openDictionaryMenu);
-		String htmlString = getResources().getQuantityString(R.plurals.open_dictionary_drawer, size, size);
-		openDictionaryView.setText(Html.fromHtml(htmlString));
+		return size;
 	}
 
 	/**
@@ -1821,6 +1863,8 @@ public final class DictionaryForMIDs extends Activity {
 			default:
 				break;
 			}
+			// Reload dictionary list
+			this.dictionaries.addAll(Preferences.getRecentDictionaries());
 		} else if (requestCode == REQUEST_STARRED_WORDS) {
 			// reload data set to push changes to stars to the view
 			translationsAdapter.notifyDataSetChanged();
