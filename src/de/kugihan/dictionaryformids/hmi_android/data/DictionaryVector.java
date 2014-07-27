@@ -29,7 +29,7 @@ public class DictionaryVector extends Observable implements Iterable<Dictionary>
 	}
 
 	public void addEnd(Dictionary dictionary) {
-		dictionaries.add(dictionaries.size(), dictionary);
+		this.add(dictionaries.size(), dictionary);
 	}
 
 	public void addAll(Collection<? extends Dictionary> dictionaryCollection) {
