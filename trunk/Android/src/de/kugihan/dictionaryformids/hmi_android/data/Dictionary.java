@@ -306,12 +306,11 @@ public class Dictionary extends Observable {
 		return null;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (o instanceof Dictionary) {
-			Dictionary dictionary = (Dictionary) o;
-			return path.equals(dictionary.path) && type == dictionary.type;
-		}
-		return super.equals(o);
+	public boolean equals(Dictionary dictionary) {
+		return this.equals(dictionary.type, dictionary.path);
+	}
+
+	public boolean equals(Preferences.DictionaryType type, String path) {
+		return this.path.equals(path) && this.type == type;
 	}
 }
