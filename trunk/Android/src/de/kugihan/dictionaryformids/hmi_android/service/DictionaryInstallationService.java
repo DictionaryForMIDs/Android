@@ -41,8 +41,8 @@ import de.kugihan.dictionaryformids.hmi_android.DictionaryForMIDs;
 import de.kugihan.dictionaryformids.hmi_android.FileList;
 import de.kugihan.dictionaryformids.hmi_android.InstallDictionary;
 import de.kugihan.dictionaryformids.hmi_android.Preferences;
-import de.kugihan.dictionaryformids.hmi_android.Preferences.DictionaryType;
 import de.kugihan.dictionaryformids.hmi_android.R;
+import de.kugihan.dictionaryformids.hmi_android.data.DictionaryType;
 import de.kugihan.dictionaryformids.hmi_android.data.DownloadDictionaryItem;
 
 /**

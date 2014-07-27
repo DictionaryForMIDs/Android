@@ -6,8 +6,6 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Vector;
 
-import de.kugihan.dictionaryformids.hmi_android.Preferences;
-
 /**
  * Abstraction over a dictionary collection that propagates child events.
  */
@@ -130,7 +128,7 @@ public class DictionaryVector extends Observable implements Iterable<Dictionary>
 		return null;
 	}
 
-	public Dictionary findMatchOrNull(Preferences.DictionaryType type, String path) {
+	public Dictionary findMatchOrNull(DictionaryType type, String path) {
 		for (Dictionary dictionary : dictionaries) {
 			if (dictionary.equalsDictionary(type, path)) {
 				return dictionary;

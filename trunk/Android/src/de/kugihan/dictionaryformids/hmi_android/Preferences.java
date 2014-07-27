@@ -27,6 +27,7 @@ import org.json.JSONObject;
 import java.util.Vector;
 
 import de.kugihan.dictionaryformids.hmi_android.data.Dictionary;
+import de.kugihan.dictionaryformids.hmi_android.data.DictionaryType;
 import de.kugihan.dictionaryformids.hmi_android.view_helper.LocalizationHelper;
 
 /**
@@ -105,42 +106,6 @@ public class Preferences extends PreferenceActivity implements
 		 */
 		FIND_ENTRIES_INCLUDING_SEARCH_TERM
 	}
-
-	/**
-	 * This type includes states for all supported dictionary types.
-	 */
-	public enum DictionaryType {
-		/**
-		 * Dictionary files are located in a directory.
-		 */
-		DIRECTORY,
-
-		/**
-		 * Dictionary files have been packed into an archive.
-		 */
-		ARCHIVE,
-
-		/**
-		 * Dictionary files are included into the application.
-		 */
-		INCLUDED;
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public String toString() {
-			if (ordinal() == DictionaryType.DIRECTORY.ordinal()) {
-				return "DIR";
-			} else if (ordinal() == DictionaryType.ARCHIVE.ordinal()) {
-				return "ZIP";
-			} else if (ordinal() == DictionaryType.INCLUDED.ordinal()) {
-				return "INC";
-			} else {
-				return "";
-			}
-		}
-	};
 
 	/**
 	 * {@inheritDoc}

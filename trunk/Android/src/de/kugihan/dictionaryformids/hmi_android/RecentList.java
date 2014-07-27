@@ -41,8 +41,8 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Vector;
 
-import de.kugihan.dictionaryformids.hmi_android.Preferences.DictionaryType;
 import de.kugihan.dictionaryformids.hmi_android.data.Dictionary;
+import de.kugihan.dictionaryformids.hmi_android.data.DictionaryType;
 import de.kugihan.dictionaryformids.hmi_android.data.ExternalStorageState;
 import de.kugihan.dictionaryformids.hmi_android.data.ResultProvider;
 import de.kugihan.dictionaryformids.hmi_android.thread.HiddenDictionaryFinderTask;
