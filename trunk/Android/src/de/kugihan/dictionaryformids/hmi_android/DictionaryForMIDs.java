@@ -478,6 +478,8 @@ public final class DictionaryForMIDs extends Activity {
 		final Button loadDictionaryButton = (Button) findViewById(R.id.load_dictionary_button);
 		loadDictionaryButton.setOnClickListener(loadDictionaryClickListener);
 
+		createDictionariesAdapterAndConnectToList();
+
 		Util util = Util.getUtil();
 		if (util instanceof AndroidUtil) {
 			final AndroidUtil androidUtil = (AndroidUtil) util;
@@ -716,16 +718,22 @@ public final class DictionaryForMIDs extends Activity {
 	 *            true if the user should not be informed about loading results
 	 */
 	private void loadLastUsedDictionary(final boolean silent) {
+		Vector<Dictionary> recentDictionaries = Preferences.getRecentDictionaries();
 
+		// Remove dictionaries that have been removed from the list of recent dictionaries
 		Vector<Dictionary> dictionariesToRemove = new Vector<Dictionary>();
 		for (Dictionary dictionary : dictionaries) {
-			if (dictionary.getFile() == null) {
-				dictionariesToRemove.add(dictionary);
+			if (recentDictionaries.contains(dictionary)) {
+				continue;
 			}
+			if (isDictionaryLoaded(dictionary.getType(), dictionary.getPath())) {
+				continue;
+			}
+			dictionariesToRemove.add(dictionary);
 		}
 		dictionaries.removeAll(dictionariesToRemove);
 
-		Vector<Dictionary> recentDictionaries = Preferences.getRecentDictionaries();
+		// Load newly added dictionaries
 		for (Dictionary recentDictionary : recentDictionaries) {
 			if (dictionaries.contains(recentDictionary)) {
 				continue;
@@ -734,24 +742,18 @@ public final class DictionaryForMIDs extends Activity {
 			}
 		}
 
-		// Update the list of dictionaries
-		createDictionariesAdapterAndConnectToList();
-
+		// Load all dictionaries that should be loaded but are not loaded yet
 		Vector<Dictionary> loadedDictionaries = Preferences.getLoadedDictionaries();
 		for (Dictionary dictionary : loadedDictionaries) {
 			if (isDictionaryLoaded(dictionary.getType(), dictionary.getPath())) {
 				continue;
 			}
 
-			DfMInputStreamAccess inputStreamAccess = null;
+			// Move initially loaded dictionaries to the front
+			dictionaries.remove(dictionary);
+			dictionaries.addAfterLoadedDictionaries(dictionary);
 
-			// Check if dictionary is part of the recent dictionaries and remove it there
-			for (int i = 0; i < this.dictionaries.size(); i++) {
-				if (this.dictionaries.get(i).equals(dictionary)) {
-					this.dictionaries.remove(i);
-					break;
-				}
-			}
+			DfMInputStreamAccess inputStreamAccess = null;
 
 			if (dictionary.getType() == DictionaryType.INCLUDED) {
 				inputStreamAccess = new AssetDfMInputStreamAccess(this.getAssets(), dictionary.getPath());
@@ -1041,36 +1043,21 @@ public final class DictionaryForMIDs extends Activity {
 			public void onSuccess(DictionaryDataFile dataFile) {
 				forgetThread();
 
-				Dictionary activeDictionary = getLoadedDictionary(type, path);
+				Dictionary activeDictionary = dictionaries.findMatchOrNull(type, path);
 				if (activeDictionary != null) {
-					languageSelectionSet.applyToDictionary(activeDictionary);
-					return;
-				}
-
-				Dictionary dictionary = new Dictionary(dataFile, type, path);
-				if (languageSelectionSet != null) {
-					languageSelectionSet.applyToDictionary(dictionary);
-				}
-				dictionaries.add(0, dictionary);
-				dictionary.addObserver(new Observer() {
-					@Override
-					public void update(Observable observable, Object o) {
-						// Trigger search when selection changes
-						// TODO: analyze selection changes and query only changed data
-						final String translationInput = ((TextView) findViewById(R.id.TranslationInput))
-								.getText().toString();
-						if (Preferences.getSearchAsYouType()
-								&& translationInput.length() > 0) {
-							startTranslation();
-						}
+					if (activeDictionary.getFile() != dataFile) {
+						activeDictionary.setFile(dataFile);
 					}
-				});
-
-				createDictionariesAdapterAndConnectToList();
-
+					languageSelectionSet.applyToDictionary(activeDictionary);
+				} else {
+					Dictionary dictionary = new Dictionary(dataFile, type, path);
+					if (languageSelectionSet != null) {
+						languageSelectionSet.applyToDictionary(dictionary);
+					}
+					dictionaries.add(0, dictionary);
+					Preferences.addRecentDictionaryUrl(dictionary.getType(), dictionary.getPath(), dictionary.getLanguages());
+				}
 				hideProgressBar();
-
-				Preferences.addRecentDictionaryUrl(dictionary.getType(), dictionary.getPath(), dictionary.getLanguages());
 			}
 
 			@Override
@@ -1863,8 +1850,6 @@ public final class DictionaryForMIDs extends Activity {
 			default:
 				break;
 			}
-			// Reload dictionary list
-			this.dictionaries.addAll(Preferences.getRecentDictionaries());
 		} else if (requestCode == REQUEST_STARRED_WORDS) {
 			// reload data set to push changes to stars to the view
 			translationsAdapter.notifyDataSetChanged();
