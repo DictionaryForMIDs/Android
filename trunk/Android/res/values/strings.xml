@@ -245,6 +245,18 @@
 	<string name="language_danish">Danish</string>
 	<string name="language_korean">Korean</string>
 	<string name="language_swahili">Swahili</string>
+    <string name="language_macedonian">Macedonian</string>
+    <string name="language_occitan">Occitan</string>
+    <string name="language_ukrainian">Ukrainian</string>
+    <string name="language_sanskrit">Sanskrit</string>
+    <string name="language_belarusian">Belarusian</string>
+    <string name="language_afrikaans">Afrikaans</string>
+    <string name="language_scottish_gaelic">Scottish Gaelic</string>
+    <string name="language_icelandic">Icelandic</string>
+    <string name="language_welsh">Welsh</string>
+    <string name="language_irish">Irish</string>
+    <string name="language_asturian">Asturian</string>
+    <string name="language_definition">Definition</string>
     <string name="load_dictionary_button">More…</string>
     <plurals name="open_dictionary_drawer">
         <item quantity="one"><![CDATA[One active language. <a href="#">Change…</a>]]></item>
