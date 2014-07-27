@@ -306,11 +306,11 @@ public class Dictionary extends Observable {
 		return null;
 	}
 
-	public boolean equals(Dictionary dictionary) {
-		return this.equals(dictionary.type, dictionary.path);
+	public boolean equalsDictionary(Dictionary dictionary) {
+		return this.equalsDictionary(dictionary.type, dictionary.path);
 	}
 
-	public boolean equals(Preferences.DictionaryType type, String path) {
+	public boolean equalsDictionary(Preferences.DictionaryType type, String path) {
 		return this.path.equals(path) && this.type == type;
 	}
 }

@@ -123,7 +123,7 @@ public class DictionaryVector extends Observable implements Iterable<Dictionary>
 
 	public Dictionary findMatchOrNull(Dictionary dictionaryToSearch) {
 		for (Dictionary dictionary : dictionaries) {
-			if (dictionaryToSearch.equals(dictionary)) {
+			if (dictionaryToSearch.equalsDictionary(dictionary)) {
 				return dictionary;
 			}
 		}
@@ -132,7 +132,7 @@ public class DictionaryVector extends Observable implements Iterable<Dictionary>
 
 	public Dictionary findMatchOrNull(Preferences.DictionaryType type, String path) {
 		for (Dictionary dictionary : dictionaries) {
-			if (dictionary.equals(type, path)) {
+			if (dictionary.equalsDictionary(type, path)) {
 				return dictionary;
 			}
 		}
