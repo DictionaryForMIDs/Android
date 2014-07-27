@@ -6,6 +6,8 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Vector;
 
+import de.kugihan.dictionaryformids.hmi_android.Preferences;
+
 /**
  * Abstraction over a dictionary collection that propagates child events.
  */
@@ -26,6 +28,21 @@ public class DictionaryVector extends Observable implements Iterable<Dictionary>
 		dictionary.addObserver(dictionaryObserver);
 		setChanged();
 		notifyObservers(dictionary);
+	}
+
+	private int firstUnloadedDictionaryPosition() {
+		for (int i = 0; i < dictionaries.size(); i++) {
+			if (dictionaries.get(i).getFile() != null) {
+				continue;
+			}
+			return i;
+		}
+		return dictionaries.size();
+	}
+
+	public void addAfterLoadedDictionaries(Dictionary dictionary) {
+		int position = firstUnloadedDictionaryPosition();
+		this.add(position, dictionary);
 	}
 
 	public void addEnd(Dictionary dictionary) {
@@ -62,6 +79,13 @@ public class DictionaryVector extends Observable implements Iterable<Dictionary>
 		notifyObservers(dictionary);
 	}
 
+	public void remove(Dictionary dictionary) {
+		dictionaries.remove(dictionary);
+		dictionary.deleteObserver(dictionaryObserver);
+		setChanged();
+		notifyObservers();
+	}
+
 	public void removeAll(Collection<? extends Dictionary> dictionaryCollection) {
 		dictionaries.removeAll(dictionaryCollection);
 		for (Dictionary dictionary : dictionaryCollection) {
@@ -93,11 +117,25 @@ public class DictionaryVector extends Observable implements Iterable<Dictionary>
 	}
 
 	public boolean contains(Dictionary dictionaryToSearch) {
+		Dictionary dictionary = findMatchOrNull(dictionaryToSearch);
+		return dictionary != null;
+	}
+
+	public Dictionary findMatchOrNull(Dictionary dictionaryToSearch) {
 		for (Dictionary dictionary : dictionaries) {
 			if (dictionaryToSearch.equals(dictionary)) {
-				return true;
+				return dictionary;
 			}
 		}
-		return false;
+		return null;
+	}
+
+	public Dictionary findMatchOrNull(Preferences.DictionaryType type, String path) {
+		for (Dictionary dictionary : dictionaries) {
+			if (dictionary.equals(type, path)) {
+				return dictionary;
+			}
+		}
+		return null;
 	}
 }
