@@ -166,5 +166,39 @@
 		<item>@string/language_turkish</item>
 		<item>Tagalog</item>
 		<item>@string/language_tagalog</item>
+        <item>Tamil</item>
+        <item>@string/language_tamil</item>
+        <item>Turkmen</item>
+        <item>@string/language_turkmen</item>
+        <item>Danish</item>
+        <item>@string/language_danish</item>
+        <item>Korean</item>
+        <item>@string/language_korean</item>
+        <item>Swahili</item>
+        <item>@string/language_swahili</item>
+        <item>Macedonian</item>
+        <item>@string/language_macedonian</item>
+        <item>Occitan</item>
+        <item>@string/language_occitan</item>
+        <item>Ukrainian</item>
+        <item>@string/language_ukrainian</item>
+        <item>Sanskrit</item>
+        <item>@string/language_sanskrit</item>
+        <item>Belarusian</item>
+        <item>@string/language_belarusian</item>
+        <item>Afrikaans</item>
+        <item>@string/language_afrikaans</item>
+        <item>Scottish Gaelic</item>
+        <item>@string/language_scottish_gaelic</item>
+        <item>Icelandic</item>
+        <item>@string/language_icelandic</item>
+        <item>Welsh</item>
+        <item>@string/language_welsh</item>
+        <item>Irish</item>
+        <item>@string/language_irish</item>
+        <item>Asturian</item>
+        <item>@string/language_asturian</item>
+        <item>Definition</item>
+        <item>@string/language_definition</item>
 	</string-array>
 </resources>
