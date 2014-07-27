@@ -13,11 +13,11 @@
   <string name="copy_word">คัดลอก: %1$s</string>
   <string name="not_found">ไม่พบ</string>
   <string name="no_included_dictionaries">ไม่พบพจนานุกรม.\n\nแตะที่นี่เพื่อดาวน์โหลด.</string>
-  <string name="no_starred_words">ไม่พบคำที่ถูกติดดาว\n\nแตะที่รูปดาวที่ด้านขวาของคำศัพท์เพื่อติดดาว</string>
+  <string name="no_starred_words">ไม่พบคำที่ถูกติดดาว\n\nแตะรูปดาวที่ด้านขวาของคำศัพท์เพื่อติดดาว</string>
   <string name="starred_words_current_dictionary">ปัจจุบัน: %1$d</string>
   <string name="starred_words_all_dictionaries">ทั้งหมด: %1$d</string>
-  <string name="no_recent_dictionaries">ยังไม่มีพจนานุกรมที่เพิ่งดาวน์โหลด.\n\nแตะที่นี่เพื่อดาวน์โหลด</string>
-  <string name="loading_download_dictionaries">กรุณารอสักครู่\n\nกำลังดาวน์โหลดพจนานุกรมที่มีอยู่&#8230;</string>
+  <string name="no_recent_dictionaries">ยังไม่มีพจนานุกรมที่เพิ่งโหลด.\n\nแตะที่นี่เพื่อดาวน์โหลด</string>
+  <string name="loading_download_dictionaries">กรุณารอสักครู่\n\nกำลังโหลดพจนานุกรมที่มีอยู่&#8230;</string>
   <string name="no_download_dictionaries">ขออภัย ยังไม่มีพจนานุกรมให้ดาวน์โหลดในตอนนี้</string>
   <string name="msg_error_downloading_available_dictionaries">มีข้อผิดพลาดในขณะกำลังดาวน์โหลดรายชื่อพจนานุกรม\n\n\nแตะที่นี่เพื่อลองอีกครั้ง\n\n\nรายละเอียด:\n%1$s</string>
   <string name="msg_error_dictionary_not_found">ยังไม่มีพจนานุกรมหมายเลข %1$d ในตอนนี้</string>
@@ -91,10 +91,12 @@
   <string name="menu_dictionary">พจนานุกรม</string>
   <string name="menu_preferences">การตั้งค่า</string>
   <string name="menu_about">เกี่ยวกับ</string>
-  <string name="menu_help">ช่วยเหลือ</string>
+  <string name="menu_help">วิธีใช้</string>
   <string name="menu_starred">ติดดาว</string>
   <string name="menu_export_all_starred">ส่งออกทั้งหมด</string>
   <string name="menu_download_dictionaries">ดาวน์โหลดด้วยตนเอง&#8230;</string>
+  <string name="menu_find_hidden_dictionaries">เพิ่มพจนานุกรมที่ถูกซ่อน</string>
+  <string name="menu_clear_recent_dictionary_list">ล้างรายชื่อล่าสุด&#8230;</string>
   <string name="msg_enter_word_first">กรุณาป้อนคำศัพท์ก่อน</string>
   <string name="menu_reload_dictionary_list">โหลดรายการอีกครั้ง</string>
   <string name="menu_cancel_installation">ยกเลิกการติดตั้ง</string>
@@ -107,9 +109,10 @@
   <string name="button_cancel">ยกเลิก</string>
   <string name="button_do_not_show_again">อย่าแสดงให้เห็นอีก</string>
   <string name="button_exit">ออก</string>
+  <string name="msg_download_dictionaries">4 ขั้นตอนในการดาวน์โหลดพจนานุกรม (สมมุติว่าคุณได้ติดตั้งและกำลังใช้โปรแกรมจัดการไฟล์ เช่น Astro อยู่):\n\n1.เลือกและดาวน์โหลดพจนานุกรมจากเว็บไซต์ที่ถูกเปิดขึ้นมาหลังกดยืนยันจากกล่องโต้ตอบแล้ว หมายเหตุ: รองรับเฉพาะพจนานุกรมเวอร์ชัน 2.4.4 ขึ้นไป\n\n2.แตกไฟล์ zip ไปยังการ์ด SD ของคุณ (ตัวอย่างเช่น โดยใช้ Astro).\n\n3.Optional: แตกไฟล์ jar ไปยังการ์ด SD ของคุณเพื่อให้การค้นหาคำศัพท์ทำได้เร็วขึ้น\n\n4.เลือกไฟล์พจนานุกรมจากกล่องโต้ตอบที่แสดงไปก่อนหน้านี้\n\nหรืออีกวิธีหนึ่งคือ คุณสามารถใช้คอมพิวเตอร์ในการดาวน์โหลดและแตกไฟล์พจนานุกรมและคัดลอกไฟล์ไปยังการ์ด SD ของคุณ.</string>
   <string name="msg_clear_recent_dictionaries_list">ล้างรายชื่อพจนานุกรมล่าสุดออก?</string>
   <string name="msg_cancel_installation">ยกเลิกการติดตั้ง?</string>
-  <string name="msg_load_dictionary">โหลดพจนานุกรมใหม่ตอนนี้?\n\nคุณสามารถโหลดพจนานุกรมในภายหลังจากรายชื่อพจนานุกรมล่าสุด</string>
+  <string name="msg_load_dictionary">โหลดพจนานุกรมใหม่ตอนนี้?\n\nคุณสามารถโหลดพจนานุกรมจากรายชื่อพจนานุกรมล่าสุดในภายหลัง</string>
   <string name="button_load_dictionary_from_current_directory">โหลดพจนานุกรมจากไดเร็กทอรีปัจจุบัน</string>
   <string name="msg_dictionary_error">มีข้อผิดพลาดในพจนานุกรม</string>
   <string name="msg_dictionary_not_found">ไม่สามารถโหลดพจนานุกรมได้.\n\nคุณสามารถเลือกพจนานุกรมได้จากกล่องโต้ตอบต่อไปนี้</string>
@@ -121,18 +124,30 @@
   <string name="msg_auto_install">ดูเหมือนว่าคุณยังไม่ได้ติดตั้งพจนานุกรมเริ่มต้นของคุณ\n\nดาวน์โหลดและติดตั้งตอนนี้?</string>
   <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
   <string name="title_load_dictionary_first">กรุณาโหลดพจนานุกรมก่อน</string>
-  <string name="title_about_heading">DictonaryForMIDs ฉบับแอพจาวา</string>
+  <string name="title_about_heading">จาวาแอพพลิเคชัน DictonaryForMIDs</string>
   <string name="title_about_copyright_owner">ลิขสิทธิ์โดย Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) และผู้ร่วมสนับสนุนอื่นๆ.</string>
   <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
   <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
   <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
   <string name="title_version">เวอร์ชัน: %1$s</string>
+  <string name="title_about_copyright">จาวาแอพพลิเคชัน DictionaryForMIDs เป็นซอฟต์แวร์ฟรี: คุณสามารถนำไปแจกจ่ายและ/หรือนำไปพัฒนาต่อ
+    ภายใต้เงื่อนไขของ GNU General Public License และเผยแพร่โดย
+    Free Software Foundation; ใบอนุญาตเวอร์ชัน 2 หรือใหม่กว่า
+    (แล้วแต่ตัวเลือก) ซึ่งสามารถดูได้จากไฟล์หรือที่ http://www.gnu.org/licenses/\n\nเราหวังว่าซอฟต์แวร์นี้จะถูกนำไปใช้ให้เกิดประโยชน์สูงสุด
+    แต่จะไม่มีการรับประกันใดๆ; นอกเหนือจากการรับประกันโดยนัยของ
+    MERCHANTABILITY หรือ FITNESS สำหรับวัตถุประสงค์เฉพาะ ดูรายละเอียดเพิ่มเติมได้จาก
+    GNU General Public License.
+	</string>
   <string name="title_about_dictionary">พจนานุกรม:</string>
-  <string name="title_about_ui_translation">ภาษา:</string>
+  <string name="title_about_ui_translation">แปลโดย:</string>
   <string name="title_about_translation_request">ช่วยพวกเราแปลแอพพลิเคชั่นเป็นภาษาของคุณหรือปรับปรุงการแปลได้ที่ http://crowdin.net/project/dictionaryformids</string>
   <string name="title_information">ข้อมูล</string>
   <string name="title_welcome">ยินดีต้อนรับ!</string>
   <string name="title_seconds">%1$d วินาที</string>
+  <string name="msg_first_run">ดูเหมือนว่าคุณเพิ่งใช้โปรแกรมนี้เป็นครั้งแรก! จงเลือกพจนานุกรมจากหน้าจอต่อไปนี้</string>
+  <string name="msg_slow_archive_loading">การแปลถูกยกเลิกหลังจากหมดเวลาแล้ว\nคุณสามารถเร่งการแปลให้เร็วขึ้นโดยการแตกไฟล์พจนานุกรมออกจากอาร์ไคฟ์ไปยังโฟลเดอร์บนการ์ด SD ของคุณและเลือกโฟลเดอร์นั้นเป็นที่เก็บพจนานุกรม อีกวิธีหนึ่งคือคุณสามารถเพิ่มเวลา Timeout ได้จากการตั้งค่า</string>
+  <string name="msg_parsing_error">มีข้อผิดพลาดในขณะทำการวิเคราะห์ resource.\n\n%1$s</string>
+  <string name="msg_extract_dictionary">ไม่สามารถโหลดอาร์ไคฟ์ได้ แต่ดูเหมือนว่าเป็นพจนานุกรมที่ถูกบีบอัด กรุณาแตกไฟล์ Jar ออกมาก่อน</string>
   <string-array name="search_mode">
     <item>ทั่วไป</item>
     <item>คำศัพท์ที่ตรงกับการค้นหา</item>
@@ -140,6 +155,7 @@
     <item>คำศัพท์ที่มีคำที่ใช้ค้นหา</item>
   </string-array>
   <string name="title_help">วิธีใช้ DictionaryForMIDs</string>
+  <string name="desc_help">ใช้ตัวอักษรชนิด wildcard เพื่อคัดกรองการค้นหาของคุณ:\n%1$c ตรงกับตัวอักษรชุดใดก็ได้\n%2$c ตรงกับตัวอักษรตัวใดก็ได้\n\nเพื่อควบคุมการค้นหานิพจน์ย่อย:\n%3$c ใช้เป็นอักษรตัวแรกเพื่อค้นหาคำที่ขึ้นต้นด้วยตัวอักษรนั้น\n%4$c ใช้เป็นอักษรตัวสุดท้ายเพื่อค้นหาคำที่ลงท้ายด้วยตัวอักษรนั้น.\n\nหมายเหตุ: การใช้ตัวอักษรชนิด wildcard จะเป็นการลบล้างโหมดการค้นหาที่คุณได้ตั้งค่าไว้</string>
   <string name="desc_see_website">ดูข้อมูลเพิ่มเติมได้จากเว็บไซต์:\n%1$s</string>
   <string name="tab_load_recent">ล่าสุด</string>
   <string name="tab_load_from_file">จากไฟล์</string>
@@ -163,7 +179,7 @@
   <string name="title_pref_max_results">จำนวนผลลัพธ์สูงสุด</string>
   <string name="title_pref_timeout">ตั้งเวลาค้นหา</string>
   <string name="title_pref_search_as_you_type">ค้นหาในขณะพิมพ์</string>
-  <string name="title_pref_display_options">แสดงตัวเลือก</string>
+  <string name="title_pref_display_options">ตัวเลือกการแสดง</string>
   <string name="title_pref_result_font_size">ขนาดตัวอักษรของผลลัพธ์</string>
   <string name="title_pref_ignore_font_styles">ใช้รูปแบบของระบบ</string>
   <string name="title_pref_language_code">ภาษา</string>
@@ -174,6 +190,7 @@
   <string name="summary_pref_ignore_font_style_checked">ผลลัพธ์จะถูกแสดงโดยใช้ลักษณะที่กำหนดโดยพจนานุกรม</string>
   <string name="summary_pref_ignore_font_style_unchecked">ผลลัพธ์จะถูกแสดงโดยใช้รูปแบบของระบบ</string>
   <string name="language_english">ภาษาอังกฤษ</string>
+  <string name="language_esperanto">Esperanto</string>
   <string name="language_vietnamese">ภาษาเวียดนาม</string>
   <string name="language_chinese">ภาษาจีน</string>
   <string name="language_japanese">ภาษาญี่ปุ่น</string>
@@ -190,13 +207,16 @@
   <string name="language_czech">เช็ก</string>
   <string name="language_slovak">สโลวัค</string>
   <string name="language_bulgarian">เบลเยียม</string>
+  <string name="language_catalan">Catalan</string>
   <string name="language_persian">เปอร์เชีย</string>
   <string name="language_finnish">ภาษาฟินแลนด์</string>
   <string name="language_greek">ภาษากรีก</string>
   <string name="language_hebrew">ฮีบรู</string>
   <string name="language_croatian">โครเอเชีย</string>
   <string name="language_hungarian">ฮังการี</string>
+  <string name="language_lithuanian">ลิธัวเนีย</string>
   <string name="language_dutch">ดัตช์</string>
+  <string name="language_polish">Polish</string>
   <string name="language_portuguese">ภาษาโปรตุเกส</string>
   <string name="language_swedish">สวีเดน</string>
   <string name="language_norwegian">นอร์เวย์</string>
