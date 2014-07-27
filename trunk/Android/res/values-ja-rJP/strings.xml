@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">日本語</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">ファイルが見つかりません。</string>
+  <string name="to_top">/ (トップ)</string>
+  <string name="to_upper_level">.. (上)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">お待ちください</string>
+  <string name="msg_searching">検索中&#8230;</string>
+  <string name="copy_all">すべてコピー</string>
+  <string name="copy_word">コピー: %1$s</string>
+  <string name="not_found">見つかりません</string>
+  <string name="no_recent_dictionaries">最近ロードされた辞書はありません。\n\nここをタップしてダウンロードします。</string>
+  <string name="loading_download_dictionaries">お待ちください。\n\n使用可能な辞書の一覧をロード中&#8230;</string>
+  <string name="no_download_dictionaries">現在ダウンロード可能な辞書がありません。</string>
+  <string name="msg_error_downloading_available_dictionaries">使用可能な辞書の一覧をダウンロード中にエラーが発生しました。\n\n\nここをタップして再試行してください。\n\n\n詳細:\n%1$s</string>
+  <string name="msg_error_dictionary_not_found">Id %1$d の辞書は現在利用できません。</string>
+  <string name="msg_error_accessing_storage">外部ストレージにアクセスできません。デバイスがUSB接続されていないことを確認してください。\n\n現在のストレージの状態: %1$s</string>
+  <string name="msg_suggest_update">お使いの DictionaryForMIDs は古いバージョンです。辞書をダウンロードする前にアップデートしてください。 \n今すぐアップデートしますか？</string>
+  <string name="msg_suggest_update_with_message">お使いの DictionaryForMIDs は古いバージョンです。辞書をダウンロードする前にアップデートしてください。 \n今すぐアップデートしますか？\n\n詳細: %1$s</string>
+  <string name="msg_confirm_installation">辞書 \"%1$s\" をダウンロードしてインストールしますか?\nサイズ: 不明</string>
+  <string name="msg_confirm_installation_size">辞書 \"%1$s\" をダウンロードしてインストールしますか?\nサイズ: %2$s</string>
+  <string name="msg_installation_exception">インストール中にエラーが発生しました:\n%1$s</string>
+  <string name="msg_installation_exception_cause">インストール中にエラーが発生しました:\n%1$s\n\n原因:\n%1$s</string>
+  <string name="msg_installation_already_started">インストールは既にアクティブです。</string>
+  <string name="msg_installation_started">インストールには時間がかかることがありますが、アプリケーションは引続き使用可能です。</string>
+  <string name="msg_auto_installation_started">辞書 \"%1$s\" をダウンロードしていますが、時間がかかる場合があります。\n\n今アプリケーションを終了しても、進捗はステータスバーに表示されます。</string>
+  <string name="msg_installation_finished">辞書がインストールされました！</string>
+  <string name="msg_list_already_downloaded">一覧は既にダウンロード中です。</string>
+  <string name="msg_installation_error">インストールエラー</string>
+  <string name="msg_external_storage_inaccessible">外部ストレージは現在アクセスできません。</string>
+  <string name="msg_exported_starred_words">単語は正常に外部ストレージにエクスポートされました。</string>
+  <string name="msg_error_parsing_integer_preference">数字を認識できませんでした。既定値が設定されました。</string>
+  <string name="title_exception">エラー</string>
+  <string name="exception_failed_create_directory">ディレクトリの作成に失敗しました: %1$s</string>
+  <string name="exception_failed_create_file">ファイルの作成に失敗しました: %1$s</string>
+  <string name="exception_failed_delete_file">ファイルの削除に失敗しました: %1$s</string>
+  <string name="title_installation_finished">完了</string>
+  <string name="msg_successfully_installed_dictionary">辞書が正常にインストールされました。</string>
+  <string name="msg_installation_complete">インストール完了</string>
+  <string name="title_installation_status">インストール状況</string>
+  <string name="msg_installing_dictionary">辞書をインストールしています&#8230;</string>
+  <string name="msg_installation_aborted">インストールはユーザによって中止されました。</string>
+  <string name="msg_installation_status">ステータス: %1$.2f%%</string>
+  <string name="unit_byte">B</string>
+  <string name="unit_kilo_byte">KB</string>
+  <string name="unit_mega_byte">MB</string>
+  <string name="unit_giga_byte">GB</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_maximum">%1$d 件(最大)以上</string>
+  <string name="results_found">%1$d 件</string>
+  <string-array name="font_sizes">
+    <item>10sp</item>
+    <item>11sp</item>
+    <item>12sp</item>
+    <item>13sp</item>
+    <item>14sp</item>
+    <item>15sp</item>
+    <item>16sp</item>
+    <item>17sp</item>
+    <item>18sp</item>
+    <item>19sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
+  </string-array>
+  <string-array name="themes">
+    <item>システムの既定値</item>
+    <item>Dark</item>
+    <item>Light</item>
+  </string-array>
+  <string name="menu_dictionary">辞書</string>
+  <string name="menu_preferences">設定</string>
+  <string name="menu_about">アプリについて</string>
+  <string name="menu_help">ヘルプ</string>
+  <string name="msg_exception">エラーが発生しました:\n%1$s</string>
+  <string name="button_ok">OK</string>
+  <string name="button_cancel">キャンセル</string>
+  <string name="title_load_dictionary">辞書をロード&#8230;</string>
+  <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="title_load_dictionary_first">はじめに辞書をロードしてください。</string>
+  <string name="title_about_heading">Java アプリケーション DictonaryForMIDs</string>
+  <string name="title_about_copyright_owner">Copyright by Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) and other contributors.</string>
+  <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+  <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">バージョン: %1$s</string>
+  <string name="title_about_copyright">DictionaryForMIDs Java application is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version. See file COPYING or http://www.gnu.org/licenses/\n\nThis program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+	</string>
+  <string name="title_about_dictionary">辞書:</string>
+  <string name="title_about_ui_translation">ローカライズ:</string>
+  <string name="title_about_translation_request">このアプリをあなたの言語に翻訳または既存の翻訳の改善にご協力ください:   http://crowdin.net/project/dictionaryformids </string>
+  <string name="title_information">情報</string>
+  <string name="title_welcome">ようこそ！</string>
+  <string name="title_seconds">%1$d 秒</string>
+  <string name="msg_first_run">プログラムを起動するのは初めてのようです！ 次の画面で使用する辞書を選択してください。</string>
+  <string-array name="search_mode">
+    <item>Standard</item>
+    <item>完全一致</item>
+    <item>前方一致</item>
+    <item>部分一致</item>
+  </string-array>
+  <string name="tab_load_recent">最近</string>
+  <string name="tab_load_from_file">ファイル</string>
+  <string name="tab_load_download">ダウンロード</string>
+  <string name="title_activity_about">このアプリについて</string>
+  <string name="title_activity_help">ヘルプ</string>
+  <string name="title_activity_choose_dictionary">辞書を選択</string>
+  <string name="title_activity_file_list">辞書を選択</string>
+  <string name="title_activity_dictionary_list">辞書を選択</string>
+  <string name="title_activity_recent_list">辞書を選択</string>
+  <string name="title_activity_preferences">設定</string>
+  <string name="title_remove_from_list">リストから削除</string>
+  <string name="hint_enter_word">翻訳する単語を入力してください</string>
+  <string name="hint_filter">フィルタ</string>
+  <string name="title_pref_search_options">検索オプション</string>
+  <string name="title_pref_search_mode">検索モード</string>
+  <string name="title_pref_language_code">言語</string>
+  <string name="title_pref_advanced_features">高度な機能</string>
+  <string name="title_pref_theme">テーマ</string>
+  <string name="title_default_language_code">既定</string>
+  <string name="language_english">英語</string>
+  <string name="language_esperanto">エスペラント語</string>
+  <string name="language_vietnamese">ベトナム語</string>
+  <string name="language_chinese">中国語</string>
+  <string name="language_japanese">日本語</string>
+  <string name="language_thai">タイ語</string>
+  <string name="language_hindi">ヒンディー語</string>
+  <string name="language_indonesian">インドネシア語</string>
+  <string name="language_french">フランス語</string>
+  <string name="language_spanish">スペイン語</string>
+  <string name="language_german">ドイツ語</string>
+  <string name="language_italian">イタリア語</string>
+  <string name="language_latin">ラテン語</string>
+  <string name="language_russian">ロシア語</string>
+  <string name="language_arabic">アラビア語</string>
+  <string name="language_czech">チェコ語</string>
+  <string name="language_slovak">スロバキア語</string>
+  <string name="language_bulgarian">ブルガリア語</string>
+  <string name="language_catalan">カタロニア語</string>
+  <string name="language_persian">ペルシャ語</string>
+  <string name="language_finnish">フィンランド語</string>
+  <string name="language_greek">ギリシャ語</string>
+  <string name="language_hebrew">ヘブライ語</string>
+  <string name="language_croatian">クロアチア語</string>
+  <string name="language_hungarian">ハンガリー語</string>
+  <string name="language_lithuanian">リトアニア語</string>
+</resources>
