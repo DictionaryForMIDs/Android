@@ -130,11 +130,11 @@ public class DictionariesAdapter extends BaseAdapter {
 
 					final DfMInputStreamAccess inputStreamAccess;
 
-					if (dictionary.getType() == Preferences.DictionaryType.INCLUDED) {
+					if (dictionary.getType() == DictionaryType.INCLUDED) {
 						inputStreamAccess = new AssetDfMInputStreamAccess(viewGroup.getContext().getAssets(), dictionary.getPath());
-					} else if (dictionary.getType() == Preferences.DictionaryType.DIRECTORY) {
+					} else if (dictionary.getType() == DictionaryType.DIRECTORY) {
 						inputStreamAccess = new FileDfMInputStreamAccess(dictionary.getPath());
-					} else if (dictionary.getType() == Preferences.DictionaryType.ARCHIVE) {
+					} else if (dictionary.getType() == DictionaryType.ARCHIVE) {
 						inputStreamAccess = new NativeZipInputStreamAccess(dictionary.getPath());
 					} else {
 						throw new IllegalArgumentException("Invalid Type: " + dictionary.getType().ordinal());

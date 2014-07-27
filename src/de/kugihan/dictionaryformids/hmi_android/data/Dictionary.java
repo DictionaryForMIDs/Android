@@ -13,13 +13,12 @@ import java.util.Observable;
 import de.kugihan.dictionaryformids.dataaccess.DictionaryDataFile;
 import de.kugihan.dictionaryformids.dataaccess.LanguageDefinition;
 import de.kugihan.dictionaryformids.hmi_android.DictionaryForMIDs;
-import de.kugihan.dictionaryformids.hmi_android.Preferences;
 
 public class Dictionary extends Observable {
 
 	private DictionaryDataFile file;
 	private final HashSet<LanguagePair> selectedPairs = new HashSet<LanguagePair>();
-	private final Preferences.DictionaryType type;
+	private final DictionaryType type;
 	private final String path;
 	private String abbreviation;
 
@@ -184,11 +183,11 @@ public class Dictionary extends Observable {
 		}
 	}
 
-	public Dictionary(String abbreviation, Preferences.DictionaryType type, String path) {
+	public Dictionary(String abbreviation, DictionaryType type, String path) {
 		this(abbreviation, type, path, null);
 	}
 
-	public Dictionary(String abbreviation, Preferences.DictionaryType type, String path, LanguageSelectionSet languageSelectionSet) {
+	public Dictionary(String abbreviation, DictionaryType type, String path, LanguageSelectionSet languageSelectionSet) {
 		this.file = null;
 		this.type = type;
 		this.path = path;
@@ -196,14 +195,14 @@ public class Dictionary extends Observable {
 		this.languageSelectionSet = languageSelectionSet;
 	}
 
-	public Dictionary(DictionaryDataFile file, String abbreviation, Preferences.DictionaryType type, String path) {
+	public Dictionary(DictionaryDataFile file, String abbreviation, DictionaryType type, String path) {
 		this.file = file;
 		this.type = type;
 		this.path = path;
 		this.abbreviation = abbreviation;
 	}
 
-	public Dictionary(DictionaryDataFile file, Preferences.DictionaryType type, String path) {
+	public Dictionary(DictionaryDataFile file, DictionaryType type, String path) {
 		this(file, file.dictionaryAbbreviation, type, path);
 	}
 
@@ -242,7 +241,7 @@ public class Dictionary extends Observable {
 		notifyObservers();
 	}
 
-	public Preferences.DictionaryType getType() {
+	public DictionaryType getType() {
 		return type;
 	}
 
@@ -310,7 +309,7 @@ public class Dictionary extends Observable {
 		return this.equalsDictionary(dictionary.type, dictionary.path);
 	}
 
-	public boolean equalsDictionary(Preferences.DictionaryType type, String path) {
+	public boolean equalsDictionary(DictionaryType type, String path) {
 		return this.path.equals(path) && this.type == type;
 	}
 }

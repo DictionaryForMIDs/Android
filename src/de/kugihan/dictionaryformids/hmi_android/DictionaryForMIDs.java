@@ -72,7 +72,7 @@ import de.kugihan.dictionaryformids.dataaccess.fileaccess.FileDfMInputStreamAcce
 import de.kugihan.dictionaryformids.dataaccess.fileaccess.NativeZipInputStreamAccess;
 import de.kugihan.dictionaryformids.general.DictionaryException;
 import de.kugihan.dictionaryformids.general.Util;
-import de.kugihan.dictionaryformids.hmi_android.Preferences.DictionaryType;
+import de.kugihan.dictionaryformids.hmi_android.data.DictionaryType;
 import de.kugihan.dictionaryformids.hmi_android.data.AndroidUtil;
 import de.kugihan.dictionaryformids.hmi_android.data.DfMTranslationExecutor;
 import de.kugihan.dictionaryformids.hmi_android.data.DictionariesAdapter;
