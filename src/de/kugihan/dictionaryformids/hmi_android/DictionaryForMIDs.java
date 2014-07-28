@@ -721,15 +721,14 @@ public final class DictionaryForMIDs extends Activity {
 		Vector<Dictionary> recentDictionaries = Preferences.getRecentDictionaries();
 
 		// Remove dictionaries that have been removed from the list of recent dictionaries
-		Vector<Dictionary> dictionariesToRemove = new Vector<Dictionary>();
-		for (Dictionary dictionary : dictionaries) {
-			if (recentDictionaries.contains(dictionary)) {
-				continue;
+		Vector<Dictionary> dictionariesToRemove = new Vector<Dictionary>(recentDictionaries);
+		for (Dictionary dictionary : recentDictionaries) {
+			if (dictionaries.contains(dictionary)) {
+				dictionariesToRemove.remove(dictionary);
 			}
 			if (isDictionaryLoaded(dictionary.getType(), dictionary.getPath())) {
-				continue;
+				dictionariesToRemove.remove(dictionary);
 			}
-			dictionariesToRemove.add(dictionary);
 		}
 		dictionaries.removeAll(dictionariesToRemove);
 
