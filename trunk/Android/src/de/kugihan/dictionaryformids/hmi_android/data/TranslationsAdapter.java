@@ -319,7 +319,7 @@ public class TranslationsAdapter extends BaseExpandableListAdapter implements Ob
 
 	@Override
 	public boolean isChildSelectable(int i, int i2) {
-		return false;
+		return true;
 	}
 
 	public int getAllChildrenCount() {
