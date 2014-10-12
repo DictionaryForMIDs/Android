@@ -1738,10 +1738,18 @@ public final class DictionaryForMIDs extends Activity {
 	public void onCreateContextMenu(final ContextMenu menu, final View v,
 			final ContextMenuInfo contextMenuInfo) {
 		// get selected translation
-		final ListView list = (ListView) findViewById(R.id.translationsListView);
-		final AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) contextMenuInfo;
+		final ExpandableListView list = (ExpandableListView) findViewById(R.id.translationsListView);
+		final ExpandableListView.ExpandableListContextMenuInfo menuInfo = (ExpandableListView.ExpandableListContextMenuInfo) contextMenuInfo;
+		final int type = ExpandableListView.getPackedPositionType(menuInfo.packedPosition);
+
+		// Only add menu for child entries
+		if (type != ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+			return;
+		}
+
+		final int flatPosition = list.getFlatListPosition(menuInfo.packedPosition);
 		final SingleTranslationExtension translation = (SingleTranslationExtension) list
-				.getItemAtPosition(menuInfo.position);
+				.getItemAtPosition(flatPosition);
 
 		// load texts from translation
 		String fromText = null;
