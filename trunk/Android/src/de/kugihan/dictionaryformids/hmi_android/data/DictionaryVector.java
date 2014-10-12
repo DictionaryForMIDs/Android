@@ -142,4 +142,16 @@ public class DictionaryVector extends Observable implements Iterable<Dictionary>
 		}
 		return null;
 	}
+
+	public int getLoadedLanguagePairs() {
+		int size = 0;
+		// Count selected language pairs of each dictionary
+		for (Dictionary dictionary : dictionaries) {
+			if (dictionary.getFile() == null) {
+				continue;
+			}
+			size = size + dictionary.getSelectedPairs().length;
+		}
+		return size;
+	}
 }
