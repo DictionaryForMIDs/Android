@@ -126,6 +126,7 @@ public class DictionariesAdapter extends BaseAdapter {
 			public void onCheckedChanged(final CompoundButton compoundButton, boolean checked) {
 				if (!checked) {
 					dictionary.unloadFile();
+					Preferences.setLoadDictionary(dictionaries);
 				} else {
 
 					final DfMInputStreamAccess inputStreamAccess;
