@@ -78,6 +78,12 @@ public class DictionaryVector extends Observable implements Iterable<Dictionary>
 	}
 
 	public void remove(Dictionary dictionary) {
+		if (!dictionaries.contains(dictionary)) {
+			dictionary = findMatchOrNull(dictionary);
+		}
+		if (dictionary == null) {
+			return;
+		}
 		dictionaries.remove(dictionary);
 		dictionary.deleteObserver(dictionaryObserver);
 		setChanged();
