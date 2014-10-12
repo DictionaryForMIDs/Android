@@ -179,11 +179,18 @@ public final class DictionaryForMIDs extends Activity {
 			// hide heading
 			((LinearLayout) findViewById(R.id.HeadingLayout))
 					.setVisibility(View.GONE);
+
+			final ExpandableListView listView = (ExpandableListView) findViewById(R.id.translationsListView);
+
 			// scroll to top
-			((ListView) findViewById(R.id.translationsListView))
-					.setSelectionFromTop(0, 0);
+			listView.setSelectionFromTop(0, 0);
 			// show list
-			((ListView) findViewById(R.id.translationsListView)).setVisibility(View.VISIBLE);
+			listView.setVisibility(View.VISIBLE);
+			// expand first result when all results are available
+			final boolean isTranslationFinished = translationsAdapter.getGroupCount() == dictionaries.getLoadedLanguagePairs();
+			if (translationsAdapter.getGroupCount() > 0 && isTranslationFinished && translationsAdapter.getChildrenCount(0) > 0) {
+				listView.expandGroup(0);
+			}
 			// try closing search progress dialog
 			if (!Preferences.getSearchAsYouType()) {
 				try {
@@ -1157,24 +1164,10 @@ public final class DictionaryForMIDs extends Activity {
 	}
 
 	private void updateActiveLanguagesCount() {
-		int size = getActiveLanguagesCount();
+		int size = dictionaries.getLoadedLanguagePairs();
 		TextView openDictionaryView = (TextView) findViewById(R.id.openDictionaryMenu);
 		String htmlString = getResources().getQuantityString(R.plurals.open_dictionary_drawer, size, size);
 		openDictionaryView.setText(Html.fromHtml(htmlString));
-	}
-
-	private int getActiveLanguagesCount() {
-		int size = 0;
-		if (dictionaries != null) {
-			// Count selected language pairs of each dictionary
-			for (Dictionary dictionary : dictionaries) {
-				if (dictionary.getFile() == null) {
-					continue;
-				}
-				size = size + dictionary.getSelectedPairs().length;
-			}
-		}
-		return size;
 	}
 
 	/**
