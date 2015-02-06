@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
   <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">العربية</string>
   <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">محمد ماهر</string>
   <string name="app_name">قاموس MIDs</string>
@@ -230,10 +230,10 @@
   <string name="load_dictionary_button">أكثر...</string>
   <plurals name="open_dictionary_drawer">
     <item quantity="zero"><![CDATA[لغات%1$d نشطه. <a href="#">تغيير…</a>]]></item>
-    <item quantity="one"><![CDATA[لغة نشطة. <a href="#">تغيير&#8230;</a>]]></item>
+    <item quantity="one"><![CDATA[لغة نشطة. <a href="#">تغيير…</a>]]></item>
     <item quantity="two"><![CDATA[لغة نشطة%1$d. <a href="#">تغيير…</a>]]></item>
     <item quantity="few"><![CDATA[لغة نشطة%1$d. <a href="#">تغيير…</a>]]></item>
     <item quantity="many"><![CDATA[لغة نشطة%1$d. <a href="#">تغيير…</a>]]></item>
-    <item quantity="other"><![CDATA[لغة نشطة%1$d. <a href="#">تغيير&#8230;</a>]]></item>
+    <item quantity="other"><![CDATA[لغة نشطة%1$d. <a href="#">تغيير…</a>]]></item>
   </plurals>
 </resources>

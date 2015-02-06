@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">Gutrazda</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">roel11112@live.nl http://airushimmadaga.wordpress.com</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">Ni feila bigitans.</string>
+  <string name="to_top">/ (hauhisti)</string>
+  <string name="to_upper_level">.. (iupa)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">Skalt beidan</string>
+  <string name="msg_searching">Sokjands&#8230;</string>
+  <string name="not_found">ni bigitans</string>
+  <string name="no_included_dictionaries">Ni gahabandeins waurdabokos bigitans.\n\nHer kramjan du dalahlaþan.</string>
+  <string name="no_starred_words">Ni stairnowaurda bigitans.\n\nKramais ana stairnofrisahts waurdaboko du giban stairno.</string>
+  <string name="starred_words_current_dictionary">Andwairþs: %1$d</string>
+  <string name="starred_words_all_dictionaries">Ala: %1$d</string>
+  <string name="no_recent_dictionaries">Uslukans andwairþa waurdabokos ni bigitans.\n\nKram her du dalahlaþan waurdabokos.</string>
+  <string name="loading_download_dictionaries">Skalt beidan.\n\nAtligandeins Waurdabokos Ataugjands&#8230;</string>
+  <string name="msg_suggest_update">þeins usmeri DictionaryForMIDs usalþans ist. þu skalt ananiujan faurþizai dalahlaþan waurdabokos.\nNu ananiujan?</string>
+  <string name="msg_installation_exception">Usleta miþþan satjan:\n%1$s</string>
+  <string name="msg_installation_exception_cause">Usleta miþþan satjan:\n%1$s\n\nFairina:\n%1$s</string>
+  <string name="msg_installation_finished">Waurdabokos skapiþs!</string>
+  <string name="msg_list_already_downloaded">Leista ju dalahlaþs ist.</string>
+  <string name="title_exception">Uslaita</string>
+  <string name="title_activity_starred_words">Waurda miþ Stairnon</string>
+  <string name="title_installation_finished">Skafts</string>
+  <string name="msg_installing_dictionary">Waurdabokos skafts wairþiþ&#8230;</string>
+  <string name="unit_byte">B</string>
+  <string name="unit_kilo_byte">KB</string>
+  <string name="unit_mega_byte">MB</string>
+  <string name="unit_giga_byte">GB</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_cancel">%1$d waurd(a) bigitans faura fraqiþan.</string>
+  <string name="results_found_timeout">%1$d waurd(a) bigitans faura tajmawt.</string>
+  <string name="results_found">%1$d waurda bigitans.</string>
+  <string name="results_found_one">1 waurd bigitans.</string>
+  <string name="no_results_found">Ni waurda bigitans.</string>
+  <string-array name="font_sizes">
+    <item>10sp</item>
+    <item>11sp</item>
+    <item>12sp</item>
+    <item>13sp</item>
+    <item>14sp</item>
+    <item>15sp</item>
+    <item>16sp</item>
+    <item>17sp</item>
+    <item>18sp</item>
+    <item>19sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
+  </string-array>
+  <string-array name="themes">
+    <item>System Default</item>
+    <item>Riqizeins</item>
+    <item>Liuhts</item>
+  </string-array>
+  <string name="title_translation_error">Gaskeireinairzei warþ.</string>
+  <string name="msg_translation_cancelled">Gaskeireins fraqiþans.</string>
+  <string name="menu_dictionary">Waurdabokos</string>
+  <string name="menu_preferences">Waleineis</string>
+  <string name="menu_about">Bi</string>
+  <string name="menu_help">Hilpa</string>
+  <string name="menu_starred">Staurno gibans</string>
+  <string name="menu_download_dictionaries">Silba dalahlaþan&#8230;</string>
+  <string name="msg_enter_word_first">Melais frumist waurd.</string>
+  <string name="menu_reload_dictionary_list">Leista aftra ataugjan</string>
+  <string name="msg_load_dictionary_first">Skalt þata frumist waurdabokos laþan.</string>
+  <string name="button_ok">Ja</string>
+  <string name="button_cancel">Fraqiþan</string>
+  <string name="button_do_not_show_again">Ni aftra ataugjan</string>
+  <string name="button_exit">Afleiþan</string>
+  <string name="msg_dictionary_error">Waurdabokosairzei</string>
+  <string name="title_current_path">&gt;%1$s</string>
+  <string name="title_load_dictionary">Waurdabokos ataugjan&#8230;</string>
+  <string name="msg_auto_install">Ni satides waurdabokos biuhts þeina.\n\nWileis nu dalahlaþan jah satjan?</string>
+  <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="title_load_dictionary_first">Skalt þata frumist waurdabokos laþan.</string>
+  <string name="title_about_heading">Java aplikati DictionaryForMIDs</string>
+  <string name="title_about_copyright_owner">Meljabelagines þairh Gert Nuber (dict@kugihand.de), Achim Weimert (axw.dev@gmail.com) jah aljai gadailnans.</string>
+  <string name="title_version">Usgiba: %1$s</string>
+  <string name="title_about_dictionary">Waurdabokos:</string>
+  <string name="title_information">Infaurmati</string>
+  <string name="title_welcome">Waila andanems!</string>
+  <string-array name="search_mode">
+    <item>Biuhts</item>
+    <item>Waurda þaiei sind analeiks</item>
+    <item>Waurda þaiei duginnand miþ sokjawaurda</item>
+    <item>Waurda þaiei haband sokjawaurd</item>
+  </string-array>
+  <string name="title_help">DictionaryForMIDs Hilpa</string>
+  <string name="tab_load_recent">Andwairþs</string>
+  <string name="tab_load_from_file">Fram feilai</string>
+  <string name="tab_load_included">Habands</string>
+  <string name="tab_load_download">Dalahlaþan</string>
+  <string name="title_activity_about">Bi Augadauron</string>
+  <string name="title_activity_help">Hilpa augadauro</string>
+  <string name="title_activity_choose_dictionary">Walais waurdabokos</string>
+  <string name="title_activity_file_list">Walais waurdabokos</string>
+  <string name="title_activity_dictionary_list">Walais waurdabokos</string>
+  <string name="title_activity_recent_list">Walais waurdabokos</string>
+  <string name="title_activity_preferences">Waleineis</string>
+  <string name="title_activity_install_dictionary">Waurdabokos Satjan</string>
+  <string name="title_remove_from_list">Usniman fram leistai</string>
+  <string name="app_description">DictionaryForMIDs ist arwjo waurdabokos faur managans razdos faur fairrarodjands jah PDAs</string>
+  <string name="hint_enter_word">Melais waurd du gaskeirjan</string>
+  <string name="title_pref_search_options">Sokjamahteis</string>
+  <string name="title_pref_search_mode">Sokjahaidus</string>
+  <string name="title_pref_search_as_you_type">Sokjan miþþan melais</string>
+  <string name="title_pref_display_options">Mahteis ataugjan</string>
+  <string name="title_pref_result_font_size">Bokamikilduþs faur ataugeineis</string>
+  <string name="title_pref_language_code">Razda</string>
+  <string name="title_default_language_code">Ibuhts</string>
+  <string name="summary_pref_ignore_font_style_checked">Waurda ataugjandona miþ stila þammei in waurdabokom ist.</string>
+  <string name="summary_pref_ignore_font_style_unchecked">Waurda ataugjand miþ biuhtastila.</string>
+  <string name="language_english">Aggiliskarazda</string>
+  <string name="language_esperanto">Esperantorazda</string>
+  <string name="language_vietnamese">Vietnamarazda</string>
+  <string name="language_chinese">Kiniskarazda</string>
+  <string name="language_japanese">Japaniskarazda</string>
+  <string name="language_thai">Taiarazda</string>
+  <string name="language_hindi">Indaiwiskarazda</string>
+  <string name="language_indonesian">Indonesiskarazda</string>
+  <string name="language_french">Fragkarazda</string>
+  <string name="language_spanish">Heispanjarazda</string>
+  <string name="language_german">þiudiskarazda</string>
+  <string name="language_italian">Italianiskarazda</string>
+  <string name="language_latin">Latiniskarazda</string>
+  <string name="language_russian">Rusarazda</string>
+  <string name="language_arabic">Arabiskarazda</string>
+  <string name="language_bulgarian">Bulgariskarazda</string>
+  <string name="language_finnish">Finnarazda</string>
+  <string name="language_greek">Krekarazda</string>
+  <string name="language_hebrew">Haibraiskarazda</string>
+  <string name="language_dutch">Niþeralandarazda</string>
+  <string name="language_polish">Polarazda</string>
+  <string name="language_swedish">Swaiharazda</string>
+  <string name="language_norwegian">Naurwigarazda</string>
+  <string name="language_turkish">Taurkarazda</string>
+  <string name="language_tagalog">Tagalaugarazda</string>
+  <string name="language_tamil">Tamilarazda</string>
+  <string name="language_turkmen">Taurkmainarazda</string>
+  <string name="language_danish">Daniskarazda</string>
+  <string name="language_swahili">Swahilirazda</string>
+  <string name="load_dictionary_button">Mais&#8230;</string>
+  <plurals name="open_dictionary_drawer">
+    <item quantity="one"><![CDATA[Aina brukjandei razdos. <a href="#">Inmaidjan…</a>]]></item>
+    <item quantity="other"><![CDATA[%1$d brukjandeins razdos. <a href="#">Inmaidjan…</a>]]></item>
+  </plurals>
+</resources>

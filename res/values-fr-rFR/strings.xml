@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
   <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">Français</string>
   <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">Pierre Techoueyres</string>
   <string name="app_name">DictionaryForMIDs</string>
@@ -222,7 +222,7 @@
   <string name="language_swahili">Swahili</string>
   <string name="load_dictionary_button">Plus&#8230;</string>
   <plurals name="open_dictionary_drawer">
-    <item quantity="one"><![CDATA[Une langue active. <a href="#">Changer&#8230;</a>]]></item>
-    <item quantity="other"><![CDATA[%1$d langues actives. <a href="#">Changer&#8230;</a>]]></item>
+    <item quantity="one"><![CDATA[Une langue active. <a href="#">Changer…</a>]]></item>
+    <item quantity="other"><![CDATA[%1$d langues actives. <a href="#">Changer…</a>]]></item>
   </plurals>
 </resources>

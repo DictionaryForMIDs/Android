@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
   <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">英文</string>
   <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">使用者自訂翻譯的名稱（可保持空白）</string>
   <string name="app_name">DictionaryForMIDs</string>
@@ -222,6 +222,6 @@
   <string name="language_swahili">史瓦西里語</string>
   <string name="load_dictionary_button">更多......</string>
   <plurals name="open_dictionary_drawer">
-    <item quantity="other"><![CDATA[%1$d 選用語言. <a href="#">改變成&#8230;</a>]]></item>
+    <item quantity="other"><![CDATA[%1$d 選用語言. <a href="#">改變成…</a>]]></item>
   </plurals>
 </resources>
