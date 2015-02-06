@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">Frysk</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">Robin van der Vliet</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">Gjin triemmen fûn.</string>
+  <string name="to_top">/ (boppenoan)</string>
+  <string name="to_upper_level">.. (omheech)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">Efkes geduld</string>
+  <string name="copy_all">Alles kopiearje</string>
+  <string name="copy_word">Kopiearje: %1$s</string>
+  <string name="not_found">net fûn</string>
+  <string name="starred_words_current_dictionary">Hjoeddeistige: %1$d</string>
+  <string name="starred_words_all_dictionaries">Alles: %1$d</string>
+  <string name="msg_installation_finished">Wurdboek ynstallearre!</string>
+  <string name="msg_installation_error">Ynstallaasjeflater</string>
+  <string name="title_exception">Útsûndering</string>
+  <string name="title_installation_finished">Dien</string>
+  <string name="msg_installation_complete">Ynstallaasje dienmakke</string>
+  <string name="title_installation_status">Ynstallaasjestatus</string>
+  <string name="msg_installation_status">Status: %1$.2f%%</string>
+  <string name="unit_byte">B</string>
+  <string name="unit_kilo_byte">KB</string>
+  <string name="unit_mega_byte">MB</string>
+  <string name="unit_giga_byte">GB</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found">%1$d resultaten fûn.</string>
+  <string name="results_found_one">1 resultaat fûn.</string>
+  <string-array name="font_sizes">
+    <item>10sp</item>
+    <item>11sp</item>
+    <item>12sp</item>
+    <item>13sp</item>
+    <item>14sp</item>
+    <item>15sp</item>
+    <item>16sp</item>
+    <item>17sp</item>
+    <item>18sp</item>
+    <item>19sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
+  </string-array>
+  <string-array name="themes">
+    <item>Systeemstandert</item>
+    <item>Tsjuster</item>
+    <item>Ljocht</item>
+  </string-array>
+  <string name="msg_translation_error">Details:\n\n%1$s</string>
+  <string name="menu_dictionary">Wurdboek</string>
+  <string name="menu_preferences">Foarkarren</string>
+  <string name="menu_about">Oer</string>
+  <string name="menu_help">Help</string>
+  <string name="button_ok">OK</string>
+  <string name="button_cancel">Annulearje</string>
+  <string name="button_exit">Slute</string>
+  <string name="msg_dictionary_error">Wurdboekflater</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="title_about_copyright_owner">Kopijrjocht Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) en oare bydragers.</string>
+  <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+  <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">Ferzje: %1$s</string>
+  <string name="title_about_dictionary">Wurdboek:</string>
+  <string name="title_about_ui_translation">Lokalisaasje:</string>
+  <string name="title_information">Ynfo</string>
+  <string name="title_welcome">Wolkom!</string>
+  <string name="title_seconds">%1$d sek</string>
+  <string-array name="search_mode">
+    <item>Standert</item>
+    <item>Words matching search term</item>
+    <item>Words starting with search term</item>
+    <item>Words including search term</item>
+  </string-array>
+  <string name="title_help">DictionaryForMIDs Help</string>
+  <string name="tab_load_from_file">Út triem</string>
+  <string name="tab_load_included">Ynbegrepen</string>
+  <string name="title_activity_about">Ynfoskerm</string>
+  <string name="title_activity_help">Helpskerm</string>
+  <string name="title_activity_preferences">Foarkarren</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="hint_filter">Filter</string>
+  <string name="title_pref_search_options">Sykopsjes</string>
+  <string name="title_pref_search_mode">Sykmodus</string>
+  <string name="title_pref_max_results">Maks. resultaten</string>
+  <string name="title_pref_language_code">Taal</string>
+  <string name="title_pref_theme">Tema</string>
+  <string name="title_default_language_code">Standert</string>
+  <string name="language_english">Ingelsk</string>
+  <string name="language_esperanto">Esperanto</string>
+  <string name="language_vietnamese">Vietnameesk</string>
+  <string name="language_chinese">Sineesk</string>
+  <string name="language_japanese">Japansk</string>
+  <string name="language_thai">Taisk</string>
+  <string name="language_hindi">Hindy</string>
+  <string name="language_indonesian">Yndonesysk</string>
+  <string name="language_french">Frânsk</string>
+  <string name="language_spanish">Spaansk</string>
+  <string name="language_german">Dútsk</string>
+  <string name="language_italian">Italjaansk</string>
+  <string name="language_latin">Latyn</string>
+  <string name="language_russian">Russysk</string>
+  <string name="language_arabic">Arabysk</string>
+  <string name="language_czech">Tsjechysk</string>
+  <string name="language_slovak">Slowaaksk</string>
+  <string name="language_bulgarian">Bulgaarsk</string>
+  <string name="language_catalan">Katalaansk</string>
+  <string name="language_persian">Perzysk</string>
+  <string name="language_finnish">Finsk</string>
+  <string name="language_greek">Gryksk</string>
+  <string name="language_hebrew">Hebrieusk</string>
+  <string name="language_croatian">Kroatysk</string>
+  <string name="language_hungarian">Hongaarsk</string>
+  <string name="language_lithuanian">Litousk</string>
+  <string name="language_dutch">Nederlânsk</string>
+  <string name="language_polish">Poalsk</string>
+  <string name="language_portuguese">Portegeesk</string>
+  <string name="language_swedish">Sweedsk</string>
+  <string name="language_norwegian">Noarsk</string>
+  <string name="language_turkish">Turksk</string>
+  <string name="language_tagalog">Tagalog</string>
+  <string name="language_tamil">Tamyl</string>
+  <string name="language_turkmen">Turkmeensk</string>
+  <string name="language_danish">Deensk</string>
+  <string name="language_korean">Koreaansk</string>
+  <string name="language_swahili">Swahily</string>
+  <string name="load_dictionary_button">Mear&#8230;</string>
+</resources>

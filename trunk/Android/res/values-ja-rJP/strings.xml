@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
   <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">日本語</string>
   <string name="app_name">DictionaryForMIDs</string>
   <string name="no_files">ファイルが見つかりません。</string>
@@ -11,6 +11,10 @@
   <string name="copy_all">すべてコピー</string>
   <string name="copy_word">コピー: %1$s</string>
   <string name="not_found">見つかりません</string>
+  <string name="no_included_dictionaries">辞書が見つかりませんでした。\n\nダウンロードするにはここをタップしてください。</string>
+  <string name="no_starred_words">スター付き単語がありません。\n\nスターを付けるには辞書のエントリーでスターアイコンをタップします。</string>
+  <string name="starred_words_current_dictionary">現在の辞書: %1$d</string>
+  <string name="starred_words_all_dictionaries">全ての辞書: %1$d</string>
   <string name="no_recent_dictionaries">最近ロードされた辞書はありません。\n\nここをタップしてダウンロードします。</string>
   <string name="loading_download_dictionaries">お待ちください。\n\n使用可能な辞書の一覧をロード中&#8230;</string>
   <string name="no_download_dictionaries">現在ダウンロード可能な辞書がありません。</string>
@@ -33,6 +37,7 @@
   <string name="msg_exported_starred_words">単語は正常に外部ストレージにエクスポートされました。</string>
   <string name="msg_error_parsing_integer_preference">数字を認識できませんでした。既定値が設定されました。</string>
   <string name="title_exception">エラー</string>
+  <string name="title_activity_starred_words">スター付きの単語</string>
   <string name="exception_failed_create_directory">ディレクトリの作成に失敗しました: %1$s</string>
   <string name="exception_failed_create_file">ファイルの作成に失敗しました: %1$s</string>
   <string name="exception_failed_delete_file">ファイルの削除に失敗しました: %1$s</string>
@@ -43,13 +48,18 @@
   <string name="msg_installing_dictionary">辞書をインストールしています&#8230;</string>
   <string name="msg_installation_aborted">インストールはユーザによって中止されました。</string>
   <string name="msg_installation_status">ステータス: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">アーカイブ \"%1$s\" にはパターン \"%2$s\" にマッチするエントリはありません。</string>
   <string name="unit_byte">B</string>
   <string name="unit_kilo_byte">KB</string>
   <string name="unit_mega_byte">MB</string>
   <string name="unit_giga_byte">GB</string>
   <string name="file_size">%1$.2f %2$s</string>
-  <string name="results_found_maximum">%1$d 件(最大)以上</string>
-  <string name="results_found">%1$d 件</string>
+  <string name="results_found_maximum">%1$d 件(最大検索件数)以上の結果が見つかりました。</string>
+  <string name="results_found_cancel">キャンセルまでに %1$d 件の結果が見つかりました。</string>
+  <string name="results_found_timeout">タイムアウトまでに %1$d 件の結果が見つかりました。</string>
+  <string name="results_found">%1$d 件の結果が見つかりました。</string>
+  <string name="results_found_one">1件見つかりました。</string>
+  <string name="no_results_found">該当する単語が見つかりませんでした。</string>
   <string-array name="font_sizes">
     <item>10sp</item>
     <item>11sp</item>
@@ -71,17 +81,44 @@
   </string-array>
   <string-array name="themes">
     <item>システムの既定値</item>
-    <item>Dark</item>
-    <item>Light</item>
+    <item>ダーク</item>
+    <item>ライト</item>
   </string-array>
+  <string name="title_translation_error">翻訳中にエラーが発生しました。</string>
+  <string name="msg_translation_error">詳細:\n\n%1$s</string>
+  <string name="msg_translation_cancelled">翻訳がキャンセルされました。</string>
   <string name="menu_dictionary">辞書</string>
   <string name="menu_preferences">設定</string>
   <string name="menu_about">アプリについて</string>
   <string name="menu_help">ヘルプ</string>
+  <string name="menu_starred">スター付</string>
+  <string name="menu_export_all_starred">全てエクスポート</string>
+  <string name="menu_download_dictionaries">手動ダウンロード&#8230;</string>
+  <string name="menu_find_hidden_dictionaries">非表示辞書を再表示</string>
+  <string name="menu_clear_recent_dictionary_list">最近の一覧をクリア&#8230;</string>
+  <string name="msg_enter_word_first">最初に単語を入力してください。</string>
+  <string name="menu_reload_dictionary_list">一覧を再取得</string>
+  <string name="menu_cancel_installation">インストールをキャンセル</string>
+  <string name="menu_reinstall_default_dictionary">既定の辞書の再インストール</string>
+  <string name="msg_load_dictionary_first">はじめに辞書をロードしてください。</string>
+  <string name="msg_reload_dictionary">辞書を再ロードしてください。</string>
   <string name="msg_exception">エラーが発生しました:\n%1$s</string>
+  <string name="msg_restart_app_after_settings_changed">設定を有効にするにはアプリを再起動してください。</string>
   <string name="button_ok">OK</string>
   <string name="button_cancel">キャンセル</string>
+  <string name="button_do_not_show_again">次回から表示しない</string>
+  <string name="msg_clear_recent_dictionaries_list">最近ロードした辞書の一覧をクリアしますか？</string>
+  <string name="msg_cancel_installation">インストールを取り消しますか？</string>
+  <string name="msg_load_dictionary">新規辞書をロードしますか？ \n\n後から最近使用した辞書の一覧でいつでもロードすることができます。</string>
+  <string name="button_load_dictionary_from_current_directory">現在のディレクトリから辞書をロード</string>
+  <string name="msg_dictionary_error">辞書エラー</string>
+  <string name="msg_dictionary_not_found">辞書はをロードできませんでした。\n\n次のダイアログ ボックスで辞書を選択できます。</string>
+  <string name="msg_dictionary_load_error">辞書のロード中にエラーが発生しました。</string>
+  <string name="msg_internal_dictionary_load_error">内部辞書のロード中にエラーが発生しました。\n\n%1$s</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="msg_no_dictionary">選択されたアイテムは辞書ではないようです。</string>
   <string name="title_load_dictionary">辞書をロード&#8230;</string>
+  <string name="msg_auto_install">既定の辞書がインストールされていないようです。\n\nダウンロードしてインストールしますか？</string>
   <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
   <string name="title_load_dictionary_first">はじめに辞書をロードしてください。</string>
   <string name="title_about_heading">Java アプリケーション DictonaryForMIDs</string>
@@ -104,13 +141,18 @@
   <string name="title_information">情報</string>
   <string name="title_welcome">ようこそ！</string>
   <string name="title_seconds">%1$d 秒</string>
-  <string name="msg_first_run">プログラムを起動するのは初めてのようです！ 次の画面で使用する辞書を選択してください。</string>
+  <string name="msg_first_run">このアプリを起動するのは初めてのようです！ 次の画面で使用する辞書を選択してください。</string>
+  <string name="msg_slow_archive_loading">翻訳はタイムアウトによりキャンセルされました。\nアーカイブされた辞書をSDカード上のフォルダに展開し、辞書としてそのフォルダを指定することにより翻訳速度を上げることができます。もしくは、設定でタイムアウト時間を増やしてください。</string>
+  <string name="msg_parsing_error">リソース解析中にエラーが発生しました。\n\n%1$s</string>
+  <string name="msg_extract_dictionary">選択したアーカイブを読み込めませんでした。しかし、圧縮された辞書を含んでいるようです。最初に含まれている jar ファイルを展開してください。</string>
   <string-array name="search_mode">
-    <item>Standard</item>
+    <item>標準</item>
     <item>完全一致</item>
     <item>前方一致</item>
     <item>部分一致</item>
   </string-array>
+  <string name="title_help">DictionaryForMIDs ヘルプ</string>
+  <string name="desc_see_website">更に多くの情報についてはウェブサイトを参照してください:\n%1$s</string>
   <string name="tab_load_recent">最近</string>
   <string name="tab_load_from_file">ファイル</string>
   <string name="tab_load_download">ダウンロード</string>
@@ -121,15 +163,27 @@
   <string name="title_activity_dictionary_list">辞書を選択</string>
   <string name="title_activity_recent_list">辞書を選択</string>
   <string name="title_activity_preferences">設定</string>
+  <string name="title_activity_install_dictionary">辞書をインストール</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
   <string name="title_remove_from_list">リストから削除</string>
+  <string name="app_description">DictionaryForMIDs は携帯電話やPDA用の無料の多言語辞書です。</string>
   <string name="hint_enter_word">翻訳する単語を入力してください</string>
   <string name="hint_filter">フィルタ</string>
   <string name="title_pref_search_options">検索オプション</string>
   <string name="title_pref_search_mode">検索モード</string>
+  <string name="title_pref_max_results">最大検索件数</string>
+  <string name="title_pref_timeout">検索タイムアウト</string>
+  <string name="title_pref_search_as_you_type">入力中に検索する</string>
+  <string name="title_pref_display_options">表示オプション</string>
+  <string name="title_pref_result_font_size">結果のフォントサイズ</string>
+  <string name="title_pref_ignore_font_styles">システムのスタイルを使用</string>
   <string name="title_pref_language_code">言語</string>
   <string name="title_pref_advanced_features">高度な機能</string>
+  <string name="title_pref_enable_starred_words">スター付きの単語を有効にする</string>
   <string name="title_pref_theme">テーマ</string>
   <string name="title_default_language_code">既定</string>
+  <string name="summary_pref_ignore_font_style_checked">辞書で定義されたスタイルを使用して結果を表示します。</string>
+  <string name="summary_pref_ignore_font_style_unchecked">システムスタイルを使用して結果を表示します。</string>
   <string name="language_english">英語</string>
   <string name="language_esperanto">エスペラント語</string>
   <string name="language_vietnamese">ベトナム語</string>
@@ -156,4 +210,17 @@
   <string name="language_croatian">クロアチア語</string>
   <string name="language_hungarian">ハンガリー語</string>
   <string name="language_lithuanian">リトアニア語</string>
+  <string name="language_dutch">オランダ語</string>
+  <string name="language_polish">ポーランド語</string>
+  <string name="language_portuguese">ポルトガル語</string>
+  <string name="language_swedish">スウェーデン語</string>
+  <string name="language_norwegian">ノルウェー語</string>
+  <string name="language_turkish">トルコ語</string>
+  <string name="language_tagalog">タガログ語</string>
+  <string name="language_tamil">タミール語</string>
+  <string name="language_turkmen">トルクメン語</string>
+  <string name="language_danish">デンマーク語</string>
+  <string name="language_korean">韓国語</string>
+  <string name="language_swahili">スワヒリ語</string>
+  <string name="load_dictionary_button">その他&#8230;</string>
 </resources>

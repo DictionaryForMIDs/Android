@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">অসমীয়া</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">দীপাংকৰ_চেতিয়া</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">কোনো ফাইল পোৱা নগ’ল।</string>
+  <string name="to_top">/ (একেবাৰে ওপৰলৈ)</string>
+  <string name="to_upper_level">.. (ওপৰলৈ)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">অনুগ্ৰহ কৰি অপেক্ষা কৰক</string>
+  <string name="msg_searching">সন্ধান কৰি থকা হৈছে&#8230;</string>
+  <string name="copy_all">সকলোবোৰ প্ৰতিলিপি কৰক</string>
+  <string name="copy_word">%1$s প্ৰতিলিপি কৰক</string>
+  <string name="not_found">বিচাৰি পোৱা নগ’ল</string>
+  <string name="no_included_dictionaries">ইতিমধ্যে থকা অভিধান পোৱা নগ’ল।\n\nএখন ডাউনলোড কৰিবলৈ ইয়াত ক্লিক কৰক।</string>
+  <string name="no_starred_words">কোনো মানক শব্দ পোৱা নগ’ল।\n\nতৰাযুক্ত কৰিবলৈ অভিধানৰ তৰা চিহ্নটো ক্লিক কৰক। </string>
+  <string name="starred_words_current_dictionary">বৰ্তমান: %1$d</string>
+  <string name="starred_words_all_dictionaries">মুঠ: %1$d</string>
+  <string name="no_recent_dictionaries">শেষতীয়াভাৱে ল’ড কৰা কোনো অভিধান পোৱা নগ’ল।\n\nএখন ডাউনলোড কৰিবলৈ ক্লিক কৰক।</string>
+  <string name="loading_download_dictionaries">অনুগ্ৰহ কৰি অপেক্ষা কৰক।\n\nউপলব্ধ অভিধান সমূহ ল’ড কৰি থকা হৈছে&#8230;</string>
+  <string name="no_download_dictionaries">ক্ষমা কৰিব, বৰ্তমানে ডাউনল’ড কৰিব পৰাকৈ কোনো অভিধান নাই।</string>
+  <string name="msg_error_downloading_available_dictionaries">উপলব্ধ অভিধান সমূহৰ তালিকা ডাউনল’ড কৰোঁতে ক্ৰুতি হৈছে\n\n\nপুনৰ চেষ্টা কৰিবলৈ ইয়াত ক্লিক কৰক।\n\n\nসবিশেষ:\n%1$s</string>
+</resources>

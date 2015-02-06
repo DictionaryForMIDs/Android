@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
   <string name="no_files">هیچ فایلی یافت نشد.</string>
   <string name="title_please_wait">لطفاً منتظر بمانید</string>
   <string name="msg_searching">در حال جستجو...</string>

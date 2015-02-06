@@ -1,42 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
   <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">Dansk</string>
-  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">embøl http://about.me/embql</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">Embøl http://about.me/embql
+Jensen http://www.theboogiedane.com</string>
   <string name="app_name">DictionaryForMIDs</string>
   <string name="no_files">Ingen filer fundet.</string>
   <string name="to_top">/ (Øverst)</string>
   <string name="to_upper_level">.. (op)</string>
-  <string name="to_sdcard">/sdcard</string>
+  <string name="to_sdcard">/sd-kort</string>
   <string name="title_please_wait">Vent venligst</string>
   <string name="msg_searching">Søger&#8230;</string>
-  <string name="copy_all">Kopier alt</string>
-  <string name="copy_word">Kopier: %1$s</string>
+  <string name="copy_all">Kopiér alt</string>
+  <string name="copy_word">Kopiér: %1$s</string>
   <string name="not_found">ikke fundet</string>
   <string name="no_included_dictionaries">Ingen inkluderede ordbøger fundet.\n\nTryk her for at hente en.</string>
-  <string name="no_starred_words">Ingen stjernemarkerede ord fundet.\n\nTryk på stjernen ved en indsendt ordbog for at stjernemarkere den.</string>
+  <string name="no_starred_words">Ingen stjernemarkerede ord fundet.\n\nTryk på stjernen ved ordet i ordbogen for at stjernemarkere det.</string>
   <string name="starred_words_current_dictionary">Valgte: %1$d</string>
   <string name="starred_words_all_dictionaries">Alle: %1$d</string>
-  <string name="no_recent_dictionaries">Ingen for nyligt indlæste ordbøger fundet.\n\nTryk her for at hente en.</string>
-  <string name="loading_download_dictionaries">Vent Venligst.\n\nHenter tilgængelige ordbøger&#8230;</string>
+  <string name="no_recent_dictionaries">Ingen nyligt indlæste ordbøger fundet.\n\nTryk her for at hente en.</string>
+  <string name="loading_download_dictionaries">Vent venligst.\n\nHenter tilgængelige ordbøger&#8230;</string>
   <string name="no_download_dictionaries">Beklager, der er i øjeblikket ingen ordbøger tilgængelige for download.</string>
-  <string name="msg_error_downloading_available_dictionaries">Der opstod en fejl mens listen over tilgængelige ordbøger blev hentet.\n\n\nTryk her at prøve igen.\n\n\nDetaljer:\n%1$s</string>
+  <string name="msg_error_downloading_available_dictionaries">Der opstod en fejl, mens listen over tilgængelige ordbøger blev hentet.\n\n\nTryk her at prøve igen.\n\n\nDetaljer:\n%1$s</string>
   <string name="msg_error_dictionary_not_found">Ordbogen med id %1$d er ikke tilgængelig p.t.</string>
-  <string name="msg_error_accessing_storage">Ekstern lagring er ikke tilgængelig. Kontroller, at enheden ikke er tilsluttet via USB.\n\nNuværende lagringstilstand: %1$s</string>
-  <string name="msg_suggest_update">Din version af DictionaryForMIDs er forældet. Opdater venligst før du downloader ordbger.\nvil du opdatere nu?</string>
-  <string name="msg_suggest_update_with_message">Din version af DictionaryForMIDs er forældet. Opdater venligst før du downloader ordbøger.\nvil du opdatere nu?\n\ndetaljer: %1$s</string>
-  <string name="msg_confirm_installation">Hent og installer \"%1$s\" ordbog? \nStørrelse: ukendt</string>
-  <string name="msg_confirm_installation_size">\nHent og installer \"%1$s\" ordbog? \nStørrelse: %2$s</string>
-  <string name="msg_installation_exception">Undtagelse, mens du installerer: \n%1$s</string>
-  <string name="msg_installation_exception_cause">Undtagelse, mens du installerer:\n%1$s\n\nårsag:\n%1$s</string>
-  <string name="msg_installation_already_started">Beklager, en installation er igang.</string>
-  <string name="msg_installation_started">Installation kan tage et stykke tid, men du kan godt fortsætte med at bruge programmet.</string>
-  <string name="msg_auto_installation_started">Henter ordbogen \"%1$s\", det kan tage noget tid.\n\nHvis du vil kan du arbejde med andre programmer i mellemtiden (fremgangen blir vist i statusfeltet).</string>
+  <string name="msg_error_accessing_storage">Ekstern lagring er ikke tilgængelig. Kontrollér, at enheden ikke er tilsluttet via USB.\n\nNuværende lagringstilstand: %1$s</string>
+  <string name="msg_suggest_update">Din version af DictionaryForMIDs er forældet. Opdater venligst, før du downloader ordbøger.\nVil du opdatere nu?</string>
+  <string name="msg_suggest_update_with_message">Din version af DictionaryForMIDs er forældet. Opdater venligst, før du downloader ordbøger.\nVil du opdatere nu?\n\ndetaljer: %1$s</string>
+  <string name="msg_confirm_installation">Hent og installér \"%1$s\" ordbog? \nStørrelse: ukendt</string>
+  <string name="msg_confirm_installation_size">\nHent og installér \"%1$s\" ordbog?\nStørrelse: %2$s</string>
+  <string name="msg_installation_exception">Fejl under installation: \n%1$s</string>
+  <string name="msg_installation_exception_cause">Fejl under installation:\n%1$s\n\nÅrsag:\n%1$s</string>
+  <string name="msg_installation_already_started">Beklager, en installation er allerede i gang.</string>
+  <string name="msg_installation_started">Installation kan tage et stykke tid, men du kan fortsætte med at bruge programmet.</string>
+  <string name="msg_auto_installation_started">Henter ordbogen \"%1$s\", dette kan tage noget tid.\n\nDu kan afslutte applikationen nu, fremgangen bliver vist i statuslinjen.</string>
   <string name="msg_installation_finished">Ordbog installeret!</string>
   <string name="msg_list_already_downloaded">Listen er allerede ved at blive hentet.</string>
   <string name="msg_installation_error">Installationsfejl</string>
   <string name="msg_external_storage_inaccessible">Ekstern lagring er i øjeblikket utilgængelig.</string>
-  <string name="msg_exported_starred_words">Gennemført eksportering af ord til ekstern lagring.</string>
-  <string name="msg_error_parsing_integer_preference">Desværre, kunne ikke genkende nummeret. Har omvendt værdien til standard.</string>
+  <string name="msg_exported_starred_words">Eksportering af ord til ekstern lagring gennemført.</string>
+  <string name="msg_error_parsing_integer_preference">Desværre, kunne ikke genkende nummeret. Værdien sat tilbage til standard.</string>
   <string name="title_exception">Undtagelse</string>
   <string name="title_activity_starred_words">Stjernemarkerede Ord</string>
   <string name="exception_failed_create_directory">Kunne ikke oprette mappe: %1$s</string>
@@ -44,12 +45,12 @@
   <string name="exception_failed_delete_file">Kunne ikke fjerne fil: %1$s</string>
   <string name="title_installation_finished">Færdig</string>
   <string name="msg_successfully_installed_dictionary">Ordbogen er succesfuldt installeret.</string>
-  <string name="msg_installation_complete">Installation gennemført</string>
-  <string name="title_installation_status">Installations status</string>
+  <string name="msg_installation_complete">Installation fuldført</string>
+  <string name="title_installation_status">Installationsstatus</string>
   <string name="msg_installing_dictionary">Installerer ordbog&#8230;</string>
   <string name="msg_installation_aborted">Installation afbrudt af bruger.</string>
   <string name="msg_installation_status">Status: %1$.2f%%</string>
-  <string name="msg_compressed_entry_not_found">I arkivet \"%1$s\" var der ikke nogen entry der matcher det følgende mønster \"%2$s\"</string>
+  <string name="msg_compressed_entry_not_found">I arkivet \"%1$s\" var der ikke nogen entry, der matcher det følgende mønster \"%2$s\"</string>
   <string name="unit_byte">B</string>
   <string name="unit_kilo_byte">KB</string>
   <string name="unit_mega_byte">MB</string>
@@ -64,13 +65,6 @@
   <string-array name="font_sizes">
     <item>10sp</item>
     <item>11sp</item>
-    <item>20sp</item>
-    <item>21sp</item>
-    <item>22sp</item>
-    <item>23sp</item>
-    <item>24sp</item>
-    <item>25sp</item>
-    <item>26sp</item>
     <item>12sp</item>
     <item>13sp</item>
     <item>14sp</item>
@@ -79,6 +73,13 @@
     <item>17sp</item>
     <item>18sp</item>
     <item>19sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
   </string-array>
   <string-array name="themes">
     <item>Systemstandard</item>
@@ -86,32 +87,32 @@
     <item>Lys</item>
   </string-array>
   <string name="title_translation_error">Oversættelsesfejl opstod.</string>
-  <string name="msg_translation_error">Details:\n\n%1$s</string>
+  <string name="msg_translation_error">Detaljer:\n\n%1$s</string>
   <string name="msg_translation_cancelled">Oversættelse annulleret.</string>
   <string name="menu_dictionary">Ordbog</string>
-  <string name="menu_preferences">Preferencer</string>
+  <string name="menu_preferences">Indstillinger</string>
   <string name="menu_about">Om</string>
   <string name="menu_help">Hjælp</string>
   <string name="menu_starred">Stjernemarkerede</string>
-  <string name="menu_export_all_starred">Eksporter alle</string>
+  <string name="menu_export_all_starred">Eksportér alle</string>
   <string name="menu_download_dictionaries">Hent manuelt&#8230;</string>
   <string name="menu_find_hidden_dictionaries">Tilføj skjulte igen</string>
   <string name="menu_clear_recent_dictionary_list">Ryd seneste&#8230;</string>
   <string name="msg_enter_word_first">Indtast et ord først.</string>
   <string name="menu_reload_dictionary_list">Genindlæs listen</string>
-  <string name="menu_cancel_installation">Annuller installation</string>
-  <string name="menu_reinstall_default_dictionary">Geninstaller standardordbog</string>
+  <string name="menu_cancel_installation">Annullér installation</string>
+  <string name="menu_reinstall_default_dictionary">Geninstallér standardordbog</string>
   <string name="msg_load_dictionary_first">Indlæs venligst en ordbog først.</string>
   <string name="msg_reload_dictionary">Genindlæs ordbogen.</string>
-  <string name="msg_exception">undtagelse forekommet:\n%1$s</string>
+  <string name="msg_exception">Undtagelse forekommet:\n%1$s</string>
   <string name="msg_restart_app_after_settings_changed">Genstart programmet for at få indstillingerne til at træde i kraft.</string>
   <string name="button_ok">OK</string>
-  <string name="button_cancel">Annuller</string>
+  <string name="button_cancel">Annullér</string>
   <string name="button_do_not_show_again">Vis ikke igen</string>
   <string name="button_exit">Afslut</string>
-  <string name="msg_download_dictionaries">At hente en ordbog i 4 trin (følgende antager at du har en filmanager som Astro installeret): \n\n1.Vælg og download en ordbog på det websted der er åbnet, efter at du har bekræftet denne dialogboks. Bemærk: Kun ordbøger af version 2.4.4 eller højere er understøttede.\n\n2.Udtræk zip-filens indhold til en mappe på dit SD-kort (f.eks. ved hjælp af Astro).\n\n3.Valgfrit: Udtræk det inkluderede jar-arkivs indhold over på dit SD-kort for hurtigere ordbogsopslag.\n\n4.Vælg ordbogen på den tidligere viste skærm.\n\nAlternativt kan du hente og udtrække filerne fra zip-mappen ved hjælp af din PC, for derefter at overføre filerne til dit SD-kort.</string>
+  <string name="msg_download_dictionaries">At hente en ordbog i 4 trin (følgende antager at du har en filmanager som Astro installeret): \n\n1.Vælg og download en ordbog på det websted der er åbnet, efter at du har bekræftet denne dialogboks. Bemærk: Kun ordbøger af version 2.4.4 eller højere er understøttet.\n\n2.Udtræk zip-filens indhold til en mappe på dit SD-kort (f.eks. ved hjælp af Astro).\n\n3.Valgfrit: Udtræk det inkluderede jar-arkivs indhold over på dit SD-kort for hurtigere ordbogsopslag.\n\n4.Vælg ordbogen på den tidligere viste skærm.\n\nAlternativt kan du hente og udtrække filerne fra zip-mappen ved hjælp af din PC, for derefter at overføre filerne til dit SD-kort.</string>
   <string name="msg_clear_recent_dictionaries_list">Ryd listen over de seneste ordbøger?</string>
-  <string name="msg_cancel_installation">Annuller den aktuelle installation?</string>
+  <string name="msg_cancel_installation">Afbryd den nuværende installation?</string>
   <string name="msg_load_dictionary">Hent ny ordbog nu?\n\nDu kan altid indlæse den senere fra listen over seneste ordbøger.</string>
   <string name="button_load_dictionary_from_current_directory">Indlæs ordbog fra aktuelle direktorie</string>
   <string name="msg_dictionary_error">Ordbogs fejl</string>
@@ -160,7 +161,7 @@
   <string name="title_activity_file_list">Vælg ordbog</string>
   <string name="title_activity_dictionary_list">Vælg ordbog</string>
   <string name="title_activity_recent_list">Vælg ordbog</string>
-  <string name="title_activity_preferences">Preferencer</string>
+  <string name="title_activity_preferences">Indstillinger</string>
   <string name="title_activity_install_dictionary">Installer ordbog</string>
   <string name="title_recent_dictionary">%1$s: %2$s</string>
   <string name="title_remove_from_list">Fjern fra liste</string>
@@ -222,7 +223,7 @@
   <string name="language_swahili">Swahili</string>
   <string name="load_dictionary_button">Mere&#8230;</string>
   <plurals name="open_dictionary_drawer">
-    <item quantity="one"><![CDATA[Et aktivt sprog. <a href="#"> Skift&#8230;</a>]]></item>
-    <item quantity="other"><![CDATA[%1$d aktive sprog. <a href="#"> Skift&#8230;</a>]]></item>
+    <item quantity="one"><![CDATA[Et aktivt sprog. <a href="#"> Skift…</a>]]></item>
+    <item quantity="other"><![CDATA[%1$d aktive sprog. <a href="#"> Skift…</a>]]></item>
   </plurals>
 </resources>

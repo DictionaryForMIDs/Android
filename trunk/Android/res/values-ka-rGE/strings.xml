@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">ქართული</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">აკაკი ფეიქრიშვილი</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">არ მოიძებნა ფაილები.</string>
+  <string name="to_top">/ (საწყისი)</string>
+  <string name="to_upper_level">.. (ერთით ზევით)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">გთხოვთ მოითმინოთ</string>
+  <string name="msg_searching">ვეძებ&#8230;</string>
+  <string name="copy_all">ყველას გაუკეთე ასლი</string>
+  <string name="copy_word">ასლის გაკეთება: %1$s</string>
+  <string name="not_found">ვერ მოიძებნა</string>
+  <string name="no_included_dictionaries">ვერ მოიძებნა ლექსიკონი. \n\nდააკლიკეთ აქ გადმოსატვირთად.</string>
+  <string name="no_starred_words">ვერ მოიძებნა დამახსუვრებული სიტყვები.\n\nდააკლიკეთ ვარსკვლავს რომ დაიმახსოვროთ ის.</string>
+  <string name="starred_words_current_dictionary">ამორჩეული: %1$d</string>
+  <string name="starred_words_all_dictionaries">ყველა: %1$d</string>
+  <string name="no_recent_dictionaries">ვერ მოიძებნა ცოტა ხნის ჩატვირთული ლექსიკონები.\n\nდააკლიკეთ აქ გადმოსატვირთად.</string>
+  <string name="loading_download_dictionaries">გთხოვთ მოითმინოთ.\n\nიტვირთება ხელმისაწვოდმი ლექსიკონები&#8230;</string>
+  <string name="no_download_dictionaries">უკაცრავად, ამ დროისთვის არცერთი ლექსიკონი არ არის ხელმისაწვდომი ჩამოსატვირთად.</string>
+  <string name="msg_error_dictionary_not_found">ლექსიკონი ნომრით %1$d ამ დროისთვის არ არის ხელმისაწვდომი.</string>
+</resources>

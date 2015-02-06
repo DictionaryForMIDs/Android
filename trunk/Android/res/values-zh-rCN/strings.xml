@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
   <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">中文(简)</string>
   <string name="app_name">DictionaryForMIDs</string>
   <string name="no_files">没有找到文件</string>
