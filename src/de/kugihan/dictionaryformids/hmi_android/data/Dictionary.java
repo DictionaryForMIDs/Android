@@ -233,8 +233,10 @@ public class Dictionary extends Observable {
 	}
 
 	public void unloadFile() {
-		String languages = TextUtils.join(" ", getLanguages());
-		this.abbreviation = languages;
+		if (this.file != null) {
+			String languages = TextUtils.join(" ", getLanguages());
+			this.abbreviation = languages;
+		}
 		this.file = null;
 		this.selectedPairs.clear();
 		setChanged();
