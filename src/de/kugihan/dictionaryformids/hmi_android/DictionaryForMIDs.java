@@ -1047,7 +1047,9 @@ public final class DictionaryForMIDs extends Activity {
 					if (activeDictionary.getFile() != dataFile) {
 						activeDictionary.setFile(dataFile);
 					}
-					languageSelectionSet.applyToDictionary(activeDictionary);
+					if (languageSelectionSet != null) {
+						languageSelectionSet.applyToDictionary(activeDictionary);
+					}
 				} else {
 					Dictionary dictionary = new Dictionary(dataFile, type, path);
 					if (languageSelectionSet != null) {
