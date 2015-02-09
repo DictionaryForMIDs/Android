@@ -113,10 +113,14 @@ task readPasswordFromInput << {
 
 task createReleaseZip(type: Zip, dependsOn: assembleRelease) {
     def versionName = getVersionName()
-    from("${buildDir}/apk/") {
-        include 'DictionaryForMIDs_Android-release.apk'
-        rename 'DictionaryForMIDs_Android-release.apk', 'DictionaryForMIDs.apk'
+    def releaseFile = file("${buildDir}/outputs/apk/DictionaryForMIDs_Android-release.apk");
+    assert releaseFile.exists()
+    from(releaseFile.getParent()) {
+        include releaseFile.getName()
+        rename releaseFile.getName(), 'DictionaryForMIDs.apk'
     }
+    assert file("../COPYING").exists()
+    assert file("../README").exists()
     from("../") {
         include 'COPYING'
         include 'README'
