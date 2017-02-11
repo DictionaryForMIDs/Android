@@ -67,6 +67,9 @@ android {
 
         release {
             debuggable false
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt')
         }
     }
 
