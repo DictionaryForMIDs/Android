@@ -77,14 +77,10 @@ android {
         debug {
             applicationIdSuffix ".debug"
             versionNameSuffix "-debug"
-            resValue "string", "provider_authority", "de.kugihan.dictionaryformids.hmi_android.data.debug.starredwordsprovider"
-            resValue "string", "app_name_build", "@string/app_name_debug"
         }
 
         release {
             debuggable false
-            resValue "string", "provider_authority", "de.kugihan.dictionaryformids.hmi_android.data.starredwordsprovider"
-            resValue "string", "app_name_build", "@string/app_name"
         }
     }
 

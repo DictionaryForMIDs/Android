@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_build" translatable="false">@string/app_name</string>
+    <string name="provider_authority" translatable="false">de.kugihan.dictionaryformids.hmi_android.data.starredwordsprovider</string>
+</resources>
