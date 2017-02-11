@@ -7,6 +7,10 @@ buildscript {
     }
 }
 
+plugins {
+    id "com.mendhak.gradlecrowdin" version "0.0.9"
+}
+
 tasks.whenTaskAdded { task ->
     if (task.name == 'validateReleaseSigning') {
         task.dependsOn readPasswordFromInput
@@ -19,6 +23,7 @@ tasks.whenTaskAdded { task ->
 }
 
 apply plugin: 'com.android.application'
+apply plugin: "com.mendhak.gradlecrowdin"
 
 repositories {
     mavenCentral()
@@ -132,4 +137,13 @@ def getVersionName() {
     def manifestXml = builderFactory.newDocumentBuilder().parse(project.file(android.sourceSets.main.manifest.srcFile)).documentElement
     def versionName = manifestXml.getAttributeNS("http://schemas.android.com/apk/res/android", "versionName")
     return versionName
+}
+
+crowdinDownload{
+    projectId = crowdinProjectId
+    apiKey = crowdinApiKey
+    destination = "$projectDir"
+
+    // Exclude store description files which are saved as .txt on crowdin
+    excludePattern = '**/*.txt'
 }
