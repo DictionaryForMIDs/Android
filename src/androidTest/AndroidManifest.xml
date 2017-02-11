@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="de.kugihan.dictionaryformids.hmi_android.tests"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="18"
+        tools:overrideLibrary="android.support.test.espresso,
+        android.support.test.espresso.idling,
+        android.support.test.espresso.intent,
+        android.support.test.rule,
+        android.support.test,
+        android.app" />
+
+    <application>
+        <uses-library android:name="android.test.runner" />
+    </application>
+
+    <instrumentation
+        android:name="android.support.test.runner.AndroidJUnitRunner"
+        android:targetPackage="de.kugihan.dictionaryformids.hmi_android" />
+
+</manifest>

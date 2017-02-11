@@ -34,6 +34,8 @@ dependencies {
     compile 'com.android.support:support-v4:23.+'
     compile fileTree(dir: 'libs', include: '*.jar')
     compile project(':DictionaryForMIDs_Core')
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.2'
 }
 
 android {
@@ -47,6 +49,7 @@ android {
 
     defaultConfig {
         applicationId 'de.kugihan.dictionaryformids.hmi_android'
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
