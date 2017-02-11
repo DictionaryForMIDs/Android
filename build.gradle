@@ -4,6 +4,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.github.triplet.gradle:play-publisher:1.1.5'
     }
 }
 
@@ -146,4 +147,10 @@ crowdinDownload{
 
     // Exclude store description files which are saved as .txt on crowdin
     excludePattern = '**/*.txt'
+}
+
+apply plugin: 'com.github.triplet.play'
+
+play {
+    jsonFile = file(playJsonFile)
 }
