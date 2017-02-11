@@ -18,12 +18,6 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -32,6 +26,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Enumeration;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -816,43 +812,41 @@ public final class DictionaryInstallationService extends Service {
 		 */
 		private void downloadFile(final String downloadUrl, final String destinationFile)
 				throws IOException {
-			HttpClient client = new DefaultHttpClient();
-			HttpGet httpGet = new HttpGet(downloadUrl);
+			final URL urlObj = new URL(downloadUrl);
+			final HttpURLConnection urlConnection = (HttpURLConnection) urlObj.openConnection();
+			urlConnection.setInstanceFollowRedirects(true);
+
 
 			final File outputFile = new File(destinationFile);
 			createParentDirectories(outputFile);
 			FileOutputStream outputStream;
 			outputStream = new FileOutputStream(outputFile);
 
-			final HttpResponse response = client.execute(httpGet);
-
 			if (isInterrupted()) {
 				outputStream.close();
 				return;
 			}
 
-			final HttpEntity entity = response.getEntity();
 			InputStream inputStream = null;
 			try {
-				if (entity != null) {
-					inputStream = entity.getContent();
-					CopyStreamStatusCallback callback = new CopyStreamStatusCallback() {
+				inputStream = urlConnection.getInputStream();
 
-						@Override
-						public long getSkipBetweenUpdates() {
-							return entity.getContentLength() * 2 / PERCENTAGE_BASE;
-						}
+				CopyStreamStatusCallback callback = new CopyStreamStatusCallback() {
 
-						@Override
-						public void onUpdate(final long copiedLength) {
-							int percentage = (int) (copiedLength * PERCENTAGE_BASE / entity
-									.getContentLength());
-							handleUpdate(STATUS_DOWNLOADING, percentage);
-						}
+					@Override
+					public long getSkipBetweenUpdates() {
+						return urlConnection.getContentLength() * 2 / PERCENTAGE_BASE;
+					}
 
-					};
-					copyStreams(inputStream, outputStream, callback);
-				}
+					@Override
+					public void onUpdate(final long copiedLength) {
+						int percentage = (int) (copiedLength * PERCENTAGE_BASE / urlConnection
+								.getContentLength());
+						handleUpdate(STATUS_DOWNLOADING, percentage);
+					}
+
+				};
+				copyStreams(inputStream, outputStream, callback);
 			} finally {
 				try {
 					outputStream.close();

@@ -2,13 +2,11 @@ package de.kugihan.dictionaryformids.hmi_android.thread;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 
 import de.kugihan.dictionaryformids.hmi_android.data.DictionaryListParser;
@@ -149,30 +147,24 @@ public class ListDownloadThread extends Thread {
 	 */
 	private DictionaryListParser downloadList(final String url)
 			throws IOException, JSONException {
-		final HttpClient client = new DefaultHttpClient();
-		final HttpGet httpGet = new HttpGet(url);
+		final URL urlObj = new URL(url);
+		final HttpURLConnection urlConnection = (HttpURLConnection) urlObj.openConnection();
+        urlConnection.setInstanceFollowRedirects(true);
+		final InputStream inputStream = urlConnection.getInputStream();
 
-		final HttpResponse response = client.execute(httpGet);
-		final HttpEntity entity = response.getEntity();
-		if (entity == null) {
-			throw new IOException("HttpResponse.getEntity() IS NULL");
-		}
-		final boolean isValidType = entity.getContentType().getValue().startsWith(
-				RESPONSE_CONTENT_TYPE);
+        final boolean isValidType = urlConnection.getContentType().startsWith(RESPONSE_CONTENT_TYPE);
 		if (!isValidType) {
-			final String message = "CONTENT_TYPE IS '"
-							+ entity.getContentType().getValue() + "'";
+			final String message = "CONTENT_TYPE IS '" + urlConnection.getContentType() + "'";
 			throw new IOException(message);
 		}
 
 		final BufferedReader reader = new BufferedReader(new InputStreamReader(
-				entity.getContent(), RESPONSE_ENCODING));
+				inputStream, RESPONSE_ENCODING));
 
 		final StringBuilder stringResult = new StringBuilder();
 
 		try {
-			for (String line = reader.readLine(); line != null; line = reader
-					.readLine()) {
+			for (String line = reader.readLine(); line != null; line = reader.readLine()) {
 				stringResult.append(line);
 			}
 		} finally {
