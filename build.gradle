@@ -99,7 +99,7 @@ task readPasswordFromInput << {
     console.println()
 }
 
-task createReleaseZip(type: Zip, dependsOn: assembleRelease) {
+task createReleaseZip(type: Zip, dependsOn: "assembleRelease") {
     def versionName = getVersionName()
     def releaseFile = file("${buildDir}/outputs/apk/DictionaryForMIDs_Android-release.apk");
     assert releaseFile.exists()
