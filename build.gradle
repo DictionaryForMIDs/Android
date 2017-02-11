@@ -107,9 +107,9 @@ task createReleaseZip(type: Zip, dependsOn: "assembleRelease") {
         include releaseFile.getName()
         rename releaseFile.getName(), 'DictionaryForMIDs.apk'
     }
-    assert file("../COPYING").exists()
-    assert file("../README").exists()
-    from("../") {
+    assert file("./COPYING").exists()
+    assert file("./README").exists()
+    from("./") {
         include 'COPYING'
         include 'README'
         expand versionName: versionName
