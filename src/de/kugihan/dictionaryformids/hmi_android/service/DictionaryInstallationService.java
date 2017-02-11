@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import org.apache.http.HttpEntity;
@@ -460,10 +461,17 @@ public final class DictionaryInstallationService extends Service {
 		final PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
 				PendingIntent.FLAG_UPDATE_CURRENT);
 
-		// the next two lines initialize the Notification, using the
-		// configurations above
-		final Notification notification = new Notification(icon, tickerText, when);
-		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
+		// Use above's configuration to create a notification
+		NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
+				.setContentIntent(contentIntent)
+				.setContentTitle(contentTitle)
+				.setContentText(contentText)
+				.setSmallIcon(icon)
+				.setTicker(tickerText)
+				.setWhen(when)
+				.setAutoCancel(false);
+
+		final Notification notification = notificationBuilder.build();
 		notificationManager.notify(NOTIFICATION_STATUS_UPDATE, notification);
 		startForegroundCompat(NOTIFICATION_STATUS_UPDATE, notification);
 
@@ -544,11 +552,17 @@ public final class DictionaryInstallationService extends Service {
 		final PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
 				PendingIntent.FLAG_UPDATE_CURRENT);
 
-		// the next two lines initialize the Notification, using the
-		// configurations above
-		final Notification notification = new Notification(icon, tickerText, when);
-		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
-		notification.flags = Notification.FLAG_AUTO_CANCEL;
+		// Use above's configuration to create a notification
+		NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
+				.setContentIntent(contentIntent)
+				.setContentTitle(contentTitle)
+				.setContentText(contentText)
+				.setSmallIcon(icon)
+				.setTicker(tickerText)
+				.setWhen(when)
+				.setAutoCancel(true);
+
+		final Notification notification = notificationBuilder.build();
 		notificationManager.notify(NOTIFICATION_RESULT, notification);
 
 		final String[] languages = { dictionaryItem.getLocalizedName(getResources()) };
@@ -597,11 +611,17 @@ public final class DictionaryInstallationService extends Service {
 		final PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
 				PendingIntent.FLAG_UPDATE_CURRENT);
 
-		// the next two lines initialize the Notification, using the
-		// configurations above
-		final Notification notification = new Notification(icon, tickerText, when);
-		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
-		notification.flags = Notification.FLAG_AUTO_CANCEL;
+		// Use above's configuration to create a notification
+		NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
+				.setContentIntent(contentIntent)
+				.setContentTitle(contentTitle)
+				.setContentText(contentText)
+				.setSmallIcon(icon)
+				.setTicker(tickerText)
+				.setWhen(when)
+				.setAutoCancel(true);
+
+		final Notification notification = notificationBuilder.build();
 		notificationManager.notify(NOTIFICATION_EXCEPTION, notification);
 		stopSelf();
 	}
