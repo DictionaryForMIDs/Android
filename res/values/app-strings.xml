@@ -55,6 +55,8 @@
 		<item>Esperanto</item>
         <item>Français</item>
 		<item>Magyar</item>
+		<item>Italiano</item>
+		<item>日本語</item>
         <item>Bahasa Melayu</item>
         <item>Nederlands</item>
         <item>Português-Brasil</item>
@@ -64,6 +66,7 @@
         <item>Slovensky</item>
 		<item>தமிழ்</item>
         <item>ภาษาไทย</item>
+		<item>Türkçe</item>
 		<item>اردو</item>
         <item>Tiếng Việt</item>
 		<item>简体中文</item>
@@ -81,6 +84,8 @@
 		<item>eo</item>
         <item>fr-FR</item>
 		<item>hu-HU</item>
+		<item>it</item>
+		<item>ja</item>
         <item>ms-MY</item>
         <item>nl-NL</item>
         <item>pt-BR</item>
@@ -90,6 +95,7 @@
         <item>sk-SK</item>
 		<item>ta-IN</item>
         <item>th-TH</item>
+		<item>tr</item>
 		<item>ur-PK</item>
         <item>vi-VN</item>
 		<item>zh-CN</item>
