@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -49,7 +50,7 @@ import de.kugihan.dictionaryformids.hmi_android.data.DownloadDictionaryItem;
  */
 public final class DictionaryInstallationService extends Service {
 
-	/**
+    /**
 	 * Number of milliseconds between pushing status updates to the listeners.
 	 */
 	private static final int LISTENER_NOTIFICATION_INTERVAL = 300;
@@ -137,8 +138,9 @@ public final class DictionaryInstallationService extends Service {
 	 * The base used for calculating "percentages".
 	 */
 	public static final int PERCENTAGE_BASE = 1000;
+    public static final int MAX_REDIRECTS = 30;
 
-	/**
+    /**
 	 * The GUI that listens for updates.
 	 */
 	private static ServiceUpdateListener listener = null;
@@ -782,8 +784,11 @@ public final class DictionaryInstallationService extends Service {
 			} catch (IOException e) {
 				handleException(e);
 				return;
-			}
-			if (interrupted()) {
+			} catch (InterruptedException e) {
+                handleException(e);
+                return;
+            }
+            if (interrupted()) {
 				handleException(new InterruptedException(
 						getString(R.string.msg_installation_aborted)));
 				return;
@@ -800,6 +805,50 @@ public final class DictionaryInstallationService extends Service {
 			handleResult(dictionaryItem, resultPath);
 		}
 
+        private boolean isRedirect(int responseCode) {
+            final int[] redirectCodes = new int[] {
+                    HttpURLConnection.HTTP_MULT_CHOICE,
+                    HttpURLConnection.HTTP_MOVED_PERM,
+                    HttpURLConnection.HTTP_MOVED_TEMP,
+                    HttpURLConnection.HTTP_SEE_OTHER,
+                    307, // temporary redirect
+                    308, // permanent redirect
+            };
+            for (int code : redirectCodes) {
+                if (code == responseCode) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+		@NonNull
+        private HttpURLConnection getConnection(final String connectionUrl) throws IOException, InterruptedException {
+            String url = connectionUrl;
+			int redirectCount = 0;
+			while (redirectCount++ < MAX_REDIRECTS) {
+                final URL urlObj = new URL(url);
+				if (isInterrupted()) {
+					throw new InterruptedException(getString(R.string.msg_installation_aborted));
+				}
+
+				final HttpURLConnection urlConnection = (HttpURLConnection) urlObj.openConnection();
+				urlConnection.setInstanceFollowRedirects(false);
+				urlConnection.connect();
+
+				final int responseCode = urlConnection.getResponseCode();
+				if (!isRedirect(responseCode)) {
+					return urlConnection;
+				}
+
+                url = urlConnection.getHeaderField("Location");
+                if (url == null) {
+                    throw new IOException("Failed to get location on redirect. Code = " + responseCode);
+                }
+			}
+            throw new IOException("Connection failed after " + redirectCount + " redirects.");
+		}
+
 		/**
 		 * Downloads the file specified by url.
 		 *
@@ -811,12 +860,7 @@ public final class DictionaryInstallationService extends Service {
 		 *             if an input or output exception occurred
 		 */
 		private void downloadFile(final String downloadUrl, final String destinationFile)
-				throws IOException {
-			final URL urlObj = new URL(downloadUrl);
-			final HttpURLConnection urlConnection = (HttpURLConnection) urlObj.openConnection();
-			urlConnection.setInstanceFollowRedirects(true);
-
-
+                throws IOException, InterruptedException {
 			final File outputFile = new File(destinationFile);
 			createParentDirectories(outputFile);
 			FileOutputStream outputStream;
@@ -829,6 +873,7 @@ public final class DictionaryInstallationService extends Service {
 
 			InputStream inputStream = null;
 			try {
+                final HttpURLConnection urlConnection = getConnection(downloadUrl);
 				inputStream = urlConnection.getInputStream();
 
 				CopyStreamStatusCallback callback = new CopyStreamStatusCallback() {
