@@ -1,0 +1,22 @@
+# This file includes relevant settings for the gradle build process.
+#
+# Note: Most settings are only relevant for releasing new versions.
+#
+# How to use this file:
+# 1.Copy settings template
+#   cp gradle.properties.TEMPLATE gradle.properties
+# 2.Then set settings as required
+
+# Release settings
+releaseSigning=true
+releaseStoreFile=path/to/store
+releaseStorePassword=
+releaseStoreKeyAlias=
+releaseStoreKeyPassword=
+
+# Crowdin settings
+crowdinProjectId=
+crowdinApiKey=
+
+# Play store settings
+playJsonFile=path/to/Google Play Android Developer-abc.json
