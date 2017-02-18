@@ -126,13 +126,18 @@ def getVersionName() {
     return versionName
 }
 
-crowdinDownload{
+crowdinDownload {
     projectId = crowdinProjectId
     apiKey = crowdinApiKey
-    destination = "$projectDir"
+    destination = "$projectDir/src/main"
+}
 
-    // Exclude store description files which are saved as .txt on crowdin
-    excludePattern = '**/*.txt'
+crowdinUpload {
+    projectId = crowdinProjectId
+    apiKey = crowdinApiKey
+    sourceFiles = [
+            ['strings.xml', "$projectDir/src/main/res/values/strings.xml"],
+    ]
 }
 
 apply plugin: 'com.github.triplet.play'
