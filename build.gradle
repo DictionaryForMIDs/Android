@@ -99,23 +99,23 @@ task readPasswordFromInput << {
     console.println()
 }
 
-task createReleaseZip(type: Zip, dependsOn: "assembleRelease") {
-    def versionName = getVersionName()
-    def releaseFile = file("${buildDir}/outputs/apk/DictionaryForMIDs_Android-release.apk");
-    assert releaseFile.exists()
-    from(releaseFile.getParent()) {
-        include releaseFile.getName()
-        rename releaseFile.getName(), 'DictionaryForMIDs.apk'
-    }
-    assert file("./COPYING").exists()
-    assert file("./README").exists()
-    from("./") {
-        include 'COPYING'
-        include 'README'
-        expand versionName: versionName
-    }
-    archiveName project.name + '_' + versionName + '.' + extension
-}
+//task createReleaseZip(type: Zip, dependsOn: "assembleRelease") {
+//    def versionName = getVersionName()
+//    def releaseFile = file("${buildDir}/outputs/apk/DictionaryForMIDs_Android-release.apk");
+//    assert releaseFile.exists()
+//    from(releaseFile.getParent()) {
+//        include releaseFile.getName()
+//        rename releaseFile.getName(), 'DictionaryForMIDs.apk'
+//    }
+//    assert file("./COPYING").exists()
+//    assert file("./README").exists()
+//    from("./") {
+//        include 'COPYING'
+//        include 'README'
+//        expand versionName: versionName
+//    }
+//    archiveName project.name + '_' + versionName + '.' + extension
+//}
 
 import javax.xml.parsers.DocumentBuilderFactory
 def getVersionName() {
