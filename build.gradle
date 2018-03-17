@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:3.0.1'
         classpath 'com.github.triplet.gradle:play-publisher:1.1.5'
     }
 }
@@ -40,7 +40,6 @@ dependencies {
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "25.0.1"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
