@@ -1587,7 +1587,7 @@ public final class DictionaryForMIDs extends Activity {
 	 */
 	private void hideSoftKeyboard() {
 		InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		manager.hideSoftInputFromWindow(findViewById(R.id.TranslationInput)
+		manager.hideSoftInputFromWindow(findViewById(android.R.id.content)
 				.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS, null);
 		// move focus away from keyboard to list
 		findViewById(R.id.translationsListView).requestFocus();
