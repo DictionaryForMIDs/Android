@@ -5,71 +5,69 @@
 		put the name of the current language into language_name, e.g. Deutsch
 		if this is the German language file
 	-->
-  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">Español</string>
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">Español colombiano</string>
   <!--
 		put the name/e-mail/website of the translator (that's probably you)
 		here, it will appear on the about screen; leave empty if you don't
 		want to be mentioned
 	-->
-  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">Eugenio \'Ryo567\' Martínez Seguín
- Email: eumase-04@hotmail.com
- Twitter: @Ryo_567</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">NOMBRE_DE_LA_INTERFAZ_DE_USUARIO</string>
   <string name="app_name">DictionaryForMIDs</string>
-  <string name="no_files">No se han encontrado archivos.</string>
-  <string name="to_top">/ (superior)</string>
+  <string name="no_files">No se encontraron archivos.</string>
+  <string name="to_top">/ (subir)</string>
   <string name="to_upper_level">.. (arriba)</string>
-  <string name="to_sdcard">/sdcard</string>
-  <string name="title_please_wait">Espera por favor</string>
+  <string name="to_sdcard">/tarjetaSD</string>
+  <string name="title_please_wait">Por favor espere</string>
   <string name="msg_searching">Buscando&#8230;</string>
   <string name="copy_all">Copiar todo</string>
   <string name="copy_word">Copiar: %1$s</string>
   <string name="not_found">no encontrado</string>
-  <string name="no_included_dictionaries">No se han encontrado diccionarios.\n\nPulsa aquí para descargar uno.</string>
-  <string name="no_starred_words">No hay palabras favoritas.\n\nToca el icono de la estrella de un diccionario para añadir nuevas.</string>
-  <string name="starred_words_current_dictionary">Actual: %1$d</string>
-  <string name="starred_words_all_dictionaries">Todos: %1$d</string>
-  <string name="no_recent_dictionaries">No se han encontrado diccionarios cargados recientemente.\n\nToca aquí para descargar uno.</string>
-  <string name="loading_download_dictionaries">Por favor, espera.\n\nCargando diccionarios disponibles&#8230;</string>
-  <string name="no_download_dictionaries">Lo sentimos, no hay diccionarios disponibles para descargar.</string>
-  <string name="msg_error_downloading_available_dictionaries">Se ha producido un error descargando la lista de diccionarios disponibles.\n\n\nToca aquí para intentarlo de nuevo.\n\n\nDetalles:\n%1$s</string>
-  <string name="msg_error_dictionary_not_found">El diccionario con ID %1$d no está disponible actualmente.</string>
-  <string name="msg_error_accessing_storage">Almacenamiento externo no accesible. Por favor, asegúrate de que tu dispositivo no está conectado por USB.\n\nEstado de almacenamiento actual: %1$s</string>
-  <string name="msg_suggest_update">Tu versión de DictionaryForMIDs está desactualizada. Por favor, actualízala antes de descargar diccionarios.\n¿Quieres hacerlo ya?</string>
-  <string name="msg_suggest_update_with_message">Tu versión de DictionaryForMIDs está desactualizada. Por favor, actualízala antes de descargar diccionarios.\n¿Quieres hacerlo ya?\n\nDetalles: %1$s</string>
-  <string name="msg_confirm_installation">¿Descargar e instalar el diccionario \"%1$s\"?\nTamaño: desconocido</string>
-  <string name="msg_confirm_installation_size">¿Descargar e instalar el diccionario \"%1$s\"?\nTamaño: %2$s</string>
-  <string name="msg_installation_exception">Excepción al instalar:\n%1$s</string>
-  <string name="msg_installation_exception_cause">Excepción instalando:\n%1$s\n\nCausa:\n%1$s</string>
-  <string name="msg_installation_already_started">Una instalación ya está activa.</string>
-  <string name="msg_installation_started">La instalación puede tardar un poco, puedes seguir utilizando la aplicación.</string>
-  <string name="msg_auto_installation_started">Descargando el diccionario \"%1$s\", esto llevará un rato.\n\nPuedes salirte de la aplicación, la descarga continuará y se mostrará el progreso en la barra de estado.</string>
-  <string name="msg_installation_finished">¡Diccionario instalado!</string>
-  <string name="msg_list_already_downloaded">La lista ya se está descargando.</string>
+  <string name="no_included_dictionaries">No se encontraron diccionarios.\n\n Presione para descargar uno.</string>
+  <string name="no_starred_words">No se encontraron favoritos.\n\n Presione el ícono de la estrella para agregar uno.</string>
+  <string name="starred_words_current_dictionary">Actual:%1$d</string>
+  <string name="starred_words_all_dictionaries">Todo:%1$d</string>
+  <string name="no_recent_dictionaries">No se encontraron diccionarios recientes. \n\n Presione aquí para descargar uno.</string>
+  <string name="loading_download_dictionaries">Por favor espere.\n\nCargando diccionarios disponibles&#8230;</string>
+  <string name="no_download_dictionaries">Disculpe, actualmente no hay diccionarios disponibles para descargar.</string>
+  <string name="msg_error_downloading_available_dictionaries">Ocurrió un error al descargar la lista de diccionarios.\n\n\nPresione para reintentar.\n\n\nDetalles:\n%1$s</string>
+  <string name="msg_error_dictionary_not_found">El diccionario %1$d no esta disponible actualmente.</string>
+  <string name="msg_error_accessing_storage">Memoria externa no accesible. Asegúrese que el equipo no está conectado por USB.\n\nEstado actual de memoria:%1$s</string>
+  <string name="msg_suggest_update">Tu versión de DictionaryForMIDs esta desactualizada. Por favor actualízala antes de descargar duccionarios.\nActualizar ahora?</string>
+  <string name="msg_suggest_update_with_message">Tu versión de DictionaryForMIDs esta desactualizada. Por favor actualízala antes de descargar duccionarios.\nActualizar ahora?\n\nDetalles:%1$s</string>
+  <string name="msg_confirm_installation">Descargar e instalar \"%1$s\" diccionario?\nTamaño: desconocido</string>
+  <string name="msg_confirm_installation_size">Descargar e instalar \"%1$s\" diccionario?\nTamaño:%2$s</string>
+  <string name="msg_installation_exception">Error durante la instalación:\n%1$s</string>
+  <string name="msg_installation_exception_cause">Error durante la instalación:\n%1$s\n\nCausa:\n%1$s</string>
+  <string name="msg_installation_already_started">Disculpe, hay otra instalación activa.</string>
+  <string name="msg_installation_started">La instalación tomará tiempo, puede usar la aplicación en el proceso.</string>
+  <string name="msg_auto_installation_started">Descargando diccionario \"%1$s\", esto tomará tiempo.\n\nPuede salir de la aplicación y observar el progreso en la barra de estado.</string>
+  <string name="msg_installation_finished">Diccionario instalado!</string>
+  <string name="msg_list_already_downloaded">La lista ya se ha descargado.</string>
   <string name="msg_installation_error">Error de instalación</string>
-  <string name="msg_external_storage_inaccessible">El almacenamiento externo no es accesible actualmente.</string>
-  <string name="msg_exported_starred_words">Palabras exportadas con éxito al almacenamiento externo.</string>
-  <string name="msg_error_parsing_integer_preference">Lo sentimos, no se ha podido reconocer el número. Establecido al valor predeterminado.</string>
+  <string name="msg_external_storage_inaccessible">Almacenamiento externo no disponible.</string>
+  <string name="msg_exported_starred_words">Palabras exportadas a la memoria externa correctamente.</string>
+  <string name="msg_error_parsing_integer_preference">Disculpe, no se reconoce el número. Se reestableció el valor predeterminado.</string>
   <string name="title_exception">Excepción</string>
   <string name="title_activity_starred_words">Palabras favoritas</string>
-  <string name="exception_failed_create_directory">No se pudo crear el directorio: %1$s</string>
-  <string name="exception_failed_create_file">Error al crear el archivo: %1$s</string>
-  <string name="exception_failed_delete_file">Error al eliminar el archivo: %1$s</string>
+  <string name="exception_failed_create_directory">Error al crear el directorio:%1$s</string>
+  <string name="exception_failed_create_file">Error al crear el archivo:%1$s</string>
+  <string name="exception_failed_delete_file">Error al borrar el archivo:%1$s</string>
   <string name="title_installation_finished">Terminado</string>
   <string name="msg_successfully_installed_dictionary">Diccionario instalado correctamente.</string>
   <string name="msg_installation_complete">Instalación completa</string>
   <string name="title_installation_status">Estado de la instalación</string>
   <string name="msg_installing_dictionary">Instalando diccionario&#8230;</string>
-  <string name="msg_installation_aborted">Instalación detenida por el usuario.</string>
-  <string name="msg_installation_status">Estado: %1$.2f%%</string>
-  <string name="msg_compressed_entry_not_found">En el archivo \"%1$s\" no ha habido ninguna entrada que coincida con el siguiente patrón: \"%2$s\"</string>
+  <string name="msg_installation_aborted">Instalación abortada por el usuario.</string>
+  <string name="msg_installation_status">Estado:%1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">En el archivo \"%1$s\" no se encontraron coincidencias con \"%2$s\"</string>
   <string name="unit_byte">B</string>
   <string name="unit_kilo_byte">KB</string>
   <string name="unit_mega_byte">MB</string>
   <string name="unit_giga_byte">GB</string>
   <string name="file_size">%1$.2f %2$s</string>
-  <string name="results_found_maximum">Se han encontrado más de %1$d (máximo) resultados.</string>
-  <string name="results_found_cancel">%1$d resultado(s) encontrados antes de cancelar.</string>
-  <string name="results_found_timeout">%1$d resultado(s) encontraros antes de agotar el tiempo de espera.</string>
+  <string name="results_found_maximum">Se encontraron más de %1$d resultados.</string>
+  <string name="results_found_cancel">%1$d Resultado(s) encontrados antes de abortar.</string>
+  <string name="results_found_timeout">%1$d Resultado(s) encontrados antes de agotarse el tiempo.</string>
   <string name="results_found">%1$d resultados encontrados.</string>
   <string name="results_found_one">1 resultado encontrado.</string>
   <string name="no_results_found">Lo sentimos, no hay resultados.</string>
@@ -116,86 +114,80 @@
   <string name="msg_load_dictionary_first">Carga un diccionario primero, por favor.</string>
   <string name="msg_reload_dictionary">Recarga el diccionario, por favor.</string>
   <string name="msg_exception">Excepción ocurrida:\n%1$s</string>
-  <string name="msg_restart_app_after_settings_changed">Reinicia la aplicación para la configuración surta efecto.</string>
-  <string name="button_ok">Aceptar</string>
+  <string name="msg_restart_app_after_settings_changed">Reinicie la aplicación para aplicar los cambios.</string>
+  <string name="button_ok">OK</string>
   <string name="button_cancel">Cancelar</string>
   <string name="button_do_not_show_again">No volver a mostrar</string>
   <string name="button_exit">Salir</string>
-  <string name="msg_download_dictionaries">La descarga de un diccionario consta de 4 pasos (se supone que tienes que tener un gestor de archivos, por ejemplo Astro):\n\n1. Elige y descarga un diccionario de la web que se abra tras confirmar este diálogo. Nota: solo son compatibles los diccionarios de versión 2.4.4 o mayor.\n\n2. Extraer el contenido del archivo zip a un directorio de tu tarjeta SD (con Astro, por ejemplo).\n\n3. Opcional: extrae el contenido del archivo jar incluido en tu tarjeta SD para unas búsquedas más veloces.\n\n4. Elige el diccionario en diálogo mostrado anteriormente.\n\nTambién puedes descargar y extraer el diccionario en el PC y, a continuación, transferir los archivos a tu tarjeta SD.</string>
-  <string name="msg_clear_recent_dictionaries_list">¿Borrar lista de diccionarios recientes?</string>
-  <string name="msg_cancel_installation">¿Cancelar la instalación actual?</string>
-  <string name="msg_load_dictionary">¿Cargar un nuevo diccionario ahora?\n\nSiempre podrás cargarlo más tarde desde la lista de diccionarios recientes.</string>
-  <string name="button_load_dictionary_from_current_directory">Cargar diccionario del directorio actual</string>
-  <string name="msg_dictionary_error">Error del diccionario</string>
-  <string name="msg_dictionary_not_found">No se ha podido cargar el diccionario.\n\nPuedes seleccionar uno en el siguiente cuadro de diálogo.</string>
-  <string name="msg_dictionary_load_error">Error al cargar el diccionario.</string>
-  <string name="msg_internal_dictionary_load_error">Error al cargar diccionarios internos.\n\n%1$s</string>
-  <string name="title_current_path">&gt; %1$s</string>
-  <string name="msg_no_dictionary">El elemento seleccionado no parece ser un diccionario.</string>
+  <string name="msg_download_dictionaries">Descargar un diccionario consta de 4 pasos (asumiendo que ya posee un administrador de archivos como astro o similar instalado):\n\n1. Seleccione y descargue un diccionario de la página web que se abrirá al confirmar esta ventana. Nota: Solo son aceptados diccionarios de la version 2.4.4 en adelante.\n\n2. Extraiga el contenido del archivo zip en su tarjeta SD.\n\n3.Opcional: Extraiga el archivo jar en su tarjeta SD para conseguir vistas mas rápidas.\n\n4.Seleccione el diccionario en la ventana anteior.\n\nTambién puede descargar los diccionarios desde su PC y luego transferirlos a su tarjeta SD.</string>
+  <string name="msg_clear_recent_dictionaries_list">Borrar diccionarios recientes?</string>
+  <string name="msg_cancel_installation">Cancelar instalación en curso?</string>
+  <string name="msg_load_dictionary">Cargar nuevo diccionario ahora?\n\nPuede hacerlo después desde diccionarios recientes.</string>
+  <string name="button_load_dictionary_from_current_directory">Cargando diccionario desde el directorio actual</string>
+  <string name="msg_dictionary_error">Error en el diccionario</string>
+  <string name="msg_dictionary_not_found">El diccionario no se puede cargar.\n\nPuede seleccionar otro en la siguiente ventana.</string>
+  <string name="msg_dictionary_load_error">Error al cargar diccionario.</string>
+  <string name="msg_internal_dictionary_load_error">Error cargando los diccionarios guardados.\n\n%1$s</string>
+  <string name="title_current_path">&gt;%1$s</string>
+  <string name="msg_no_dictionary">El elemento seleccionado no parece un diccionario.</string>
   <string name="title_load_dictionary">Cargar diccionario&#8230;</string>
-  <string name="msg_auto_install">Parece que aún no has instalado el diccionario predeterminado.\n\n¿Te gustaría descargarlo e instalarlo ahora?</string>
+  <string name="msg_auto_install">Parece que no tiene un diccionario predetemrinado.\n\nDesea descargarlo e instalarlo ahora?</string>
   <!--
 		specifies a translation direction, e.g. English -> German; if this
 		language is right-to-left you may want to swap %1$s and %2$s as well
 		as replace &#8594; (right-arrow) with &#8592; (left-arrow)
 	-->
   <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
-  <string name="title_load_dictionary_first">Carga un diccionario primero, por favor.</string>
-  <string name="title_about_heading">Aplicación Java DictonaryForMIDs</string>
-  <string name="title_about_copyright_owner">Copyright de Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) o otros colaboradores.</string>
+  <string name="title_load_dictionary_first">Por favor cargue un diccionario antes.</string>
+  <string name="title_about_heading">Aplicación java DictonaryForMIDs</string>
+  <string name="title_about_copyright_owner">Derechos de autor de Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) y otros.</string>
   <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
   <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
   <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
   <string name="title_version">Versión: %1$s</string>
-  <string name="title_about_copyright">La aplicación Java DictionaryForMIDs es software gratuito: puedes redistribuirlo y modificarlo
-    bajo los términos de la licencia pública general GNU publicada por
-    la fundación del software gratuito; tanto la versión 2 de la licencia o
-    (en tu opción) cualquiera anterior. Observa el archivo COPYING o http://www.gnu.org/licenses/\n\nEste programa está distribuido con la intención de ser útil,
-    pero SIN NINGUNA GARANTÍA; ni siquiera la garantía implícita de
-    COMERCIABILIDAD o IDONEIDAD PARA UN FIN DETERMINADO. Observa la
-    licencia pública general GNU para más detalles.
-	</string>
+  <string name="title_about_copyright">La aplicación java DictioaryForMIDs es un software libre: usted puede distribuirlo y/o modificarlo bajo los         términos de la Licencia Pública General publicada por la Fundación del Software Libre; en la 2da u otra versión posterior (si lo desea) de la licencia. Revise el archivo COPIANDO el link  http://www.gnu.org/licenses/\n\n Este programa se distribuye esperando que sea útil.
+pero sin garantía alguna; incluso sin garantía de mercado o afinidad por algún propósito particular. Revise la Licencia Publica General para mas información.</string>
   <string name="title_about_dictionary">Diccionario:</string>
-  <string name="title_about_ui_translation">Traducción:</string>
-  <string name="title_about_translation_request">Ayúdanos a traducir la aplicación a tu idioma o mejorar la ya existente en http://crowdin.net/project/dictionaryformids</string>
+  <string name="title_about_ui_translation">Localización:</string>
+  <string name="title_about_translation_request">Ayúdenos a traducir este aplicación a su lenguaje y a mejorar las traducciones existentes en http://crowdin.net/project/dictionaryformids</string>
   <string name="title_information">Información</string>
-  <string name="title_welcome">¡Bienvenido!</string>
+  <string name="title_welcome">Bienvenido!</string>
   <string name="title_seconds">%1$d seg</string>
-  <string name="msg_first_run">¡Parece que es la primera vez que ejecutas este programa! Por favor, selecciona un diccionario en la siguiente pantalla.</string>
-  <string name="msg_slow_archive_loading">Se ha cancelado la traducción tras agotar el tiempo de espera.\nPuedes aumentar la velocidad de traducción extrayendo el diccionario archivado a una carpeta SD, eligiéndola como diccionario. También puedes aumentar el tiempo de espera en las preferencias.</string>
-  <string name="msg_parsing_error">Error al analizar los recursos.\n\n%1$s</string>
-  <string name="msg_extract_dictionary">No se ha podido cargar el archivo seleccionado, pero parece que incluye un diccionario comprimido. Por favor, extrae primero el archivo jar.</string>
+  <string name="msg_first_run">Parece que ingresa primera vez! Por favor seleecione un diccionario en la siguiente ventana.</string>
+  <string name="msg_slow_archive_loading">Se agotó el tiempo de traducción.\nPuede acelerar la traduccion extrayendo el diccionario archivado en una carpeta de su memoria SD y luego seleccionándola como diccionario. También puede aumentar el tiempo en la sección de preferencias.</string>
+  <string name="msg_parsing_error">Error analizando la fuente.\n\n%1$s</string>
+  <string name="msg_extract_dictionary">El archivo seleccionado no se puede cargar, pero parece un diccionario comrimido. Por favor extraiga el archivo jar.</string>
   <string-array name="search_mode">
     <item>Estándar</item>
-    <item>Palabras que coinciden con el término de búsqueda</item>
-    <item>Palabras que comienzan con el término de búsqueda</item>
-    <item>Palabras que incluyen el término de búsqueda</item>
+    <item>Palabras que coinciden con el criterio de búsqueda</item>
+    <item>Palabras que comienzan con el criterio de búsqueda</item>
+    <item>Palabras que contienen el criterio de búsqueda</item>
   </string-array>
-  <string name="title_help">Ayuda con DictionaryForMIDs</string>
+  <string name="title_help">Ayuda del DictionaryForMIDs</string>
   <string name="desc_help">Utilizar caracteres comodín para refinar tus búsquedas:\n%1$c coincidencias con algún tipo de caracter\n%2$c coincidencias con un solo tipo de caracter\n\nPara controlar las búsquedas de subexpresión:\n%3$c como primer caracter produce el resultado de empezar con tu entrada de búsqueda\n%4$c después de tu entrada produce el resultado de acabar con él.\n\nRecuerda: añadir caracteres comodín anula las preferencias del modo búsqueda.</string>
-  <string name="desc_see_website">Consulta la web para más información:\n%1$s</string>
-  <string name="tab_load_recent">Recientes</string>
-  <string name="tab_load_from_file">Desde archivo</string>
-  <string name="tab_load_included">Incluido</string>
+  <string name="desc_see_website">Consulte la página web para mas información:\n%1$s</string>
+  <string name="tab_load_recent">Reciente</string>
+  <string name="tab_load_from_file">Desde el archivo</string>
+  <string name="tab_load_included">Incluído</string>
   <string name="tab_load_download">Descargar</string>
-  <string name="title_activity_about">Información</string>
-  <string name="title_activity_help">Pantalla de ayuda</string>
-  <string name="title_activity_choose_dictionary">Elegir diccionario</string>
-  <string name="title_activity_file_list">Elegir diccionario</string>
-  <string name="title_activity_dictionary_list">Elegir diccionario</string>
-  <string name="title_activity_recent_list">Elegir diccionario</string>
+  <string name="title_activity_about">Acerca de la pantalla</string>
+  <string name="title_activity_help">Interfaz de ayuda</string>
+  <string name="title_activity_choose_dictionary">Seleccionar diccionario</string>
+  <string name="title_activity_file_list">Seleccionar diccionario</string>
+  <string name="title_activity_dictionary_list">Seleccionar diccionario</string>
+  <string name="title_activity_recent_list">Seleccionar diccionario</string>
   <string name="title_activity_preferences">Preferencias</string>
   <string name="title_activity_install_dictionary">Instalar diccionario</string>
   <string name="title_recent_dictionary">%1$s: %2$s</string>
-  <string name="title_remove_from_list">Eliminar de la lista</string>
-  <string name="app_description">DictionaryForMIDs es un diccionario multilingüe gratuito para móviles y PDAs</string>
-  <string name="hint_enter_word">Introduce una palabra para traducir</string>
+  <string name="title_remove_from_list">Quitar de la lista</string>
+  <string name="app_description">DictionaryForMIDs es un diccionario multi-idioma gratis para smartphones y tabletas</string>
+  <string name="hint_enter_word">Ingrese la palabra a traducir</string>
   <string name="hint_filter">Filtro</string>
   <string name="title_pref_search_options">Opciones de búsqueda</string>
   <string name="title_pref_search_mode">Modo de búsqueda</string>
   <string name="title_pref_max_results">Resultados máximos</string>
-  <string name="title_pref_timeout">Tiempo de espera</string>
-  <string name="title_pref_search_as_you_type">Buscar mientras escribes</string>
+  <string name="title_pref_timeout">Tiempo de búsqueda agotado</string>
+  <string name="title_pref_search_as_you_type">Busca en tiempo real</string>
   <string name="title_pref_display_options">Opciones de visualización</string>
   <string name="title_pref_result_font_size">Tamaño de los resultados</string>
   <string name="title_pref_ignore_font_styles">Utilizar estilos de sistema</string>
@@ -243,14 +235,14 @@
   <string name="language_turkmen">Turco</string>
   <string name="language_danish">Danés</string>
   <string name="language_korean">Coreano</string>
-  <string name="language_swahili">Swahil</string>
+  <string name="language_swahili">Suahili</string>
   <string name="language_macedonian">Macedonio</string>
   <string name="language_occitan">Occitano</string>
   <string name="language_ukrainian">Ucraniano</string>
   <string name="language_sanskrit">Sánscrito</string>
   <string name="language_belarusian">Bielorruso</string>
-  <string name="language_afrikaans">Africaans</string>
-  <string name="language_scottish_gaelic">Gaélico de Escocia</string>
+  <string name="language_afrikaans">Africano</string>
+  <string name="language_scottish_gaelic">Gaélico escocés</string>
   <string name="language_icelandic">Islandés</string>
   <string name="language_welsh">Galés</string>
   <string name="language_irish">Irlandés</string>
@@ -259,6 +251,6 @@
   <string name="load_dictionary_button">Más&#8230;</string>
   <plurals name="open_dictionary_drawer">
     <item quantity="one"><![CDATA[Un idioma activo. <a href="#">Cambiar…</a>]]></item>
-    <item quantity="other"><![CDATA[%1$d idiomas activos. <a href="#">Cambiar…</a>]]></item>
+    <item quantity="other"><![CDATA[%1$d Idiomas activos. <a href="#">Cambiar…</a>]]></item>
   </plurals>
 </resources>

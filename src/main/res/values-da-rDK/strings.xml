@@ -25,11 +25,11 @@ Jensen http://www.theboogiedane.com</string>
   <string name="not_found">ikke fundet</string>
   <string name="no_included_dictionaries">Ingen inkluderede ordbøger fundet.\n\nTryk her for at hente en.</string>
   <string name="no_starred_words">Ingen stjernemarkerede ord fundet.\n\nTryk på stjernen ved ordet i ordbogen for at stjernemarkere det.</string>
-  <string name="starred_words_current_dictionary">Valgte: %1$d</string>
+  <string name="starred_words_current_dictionary">Nuværende: %1$d</string>
   <string name="starred_words_all_dictionaries">Alle: %1$d</string>
   <string name="no_recent_dictionaries">Ingen nyligt indlæste ordbøger fundet.\n\nTryk her for at hente en.</string>
   <string name="loading_download_dictionaries">Vent venligst.\n\nHenter tilgængelige ordbøger&#8230;</string>
-  <string name="no_download_dictionaries">Beklager, der er i øjeblikket ingen ordbøger tilgængelige for download.</string>
+  <string name="no_download_dictionaries">Beklager, der er i øjeblikket ingen tilgængelige ordbøger til download.</string>
   <string name="msg_error_downloading_available_dictionaries">Der opstod en fejl under download af listen over tilgængelige ordbøger.\n\n\nTryk her for at forsøge igen.\n\n\nDetaljer:\n%1$s</string>
   <string name="msg_error_dictionary_not_found">Ordbogen med id %1$d er ikke tilgængelig p.t.</string>
   <string name="msg_error_accessing_storage">Ekstern lagerplads utilgængelig. Kontrollér venligst at din enhed ikke er tilsluttet via USB.\n\nAktuel lagringstilstand: %1$s</string>

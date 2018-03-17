@@ -10,9 +10,107 @@
 		here, it will appear on the about screen; leave empty if you don't
 		want to be mentioned
 	-->
+  <string name="no_files">Neniuj dosieroj trovataj.</string>
+  <string name="unit_byte">B</string>
+  <string name="unit_kilo_byte">KB</string>
+  <string name="unit_mega_byte">MB</string>
+  <string name="unit_giga_byte">GB</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string-array name="font_sizes">
+    <item>10sp</item>
+    <item>11sp</item>
+    <item>12sp</item>
+    <item>13sp</item>
+    <item>14sp</item>
+    <item>15sp</item>
+    <item>16sp</item>
+    <item>17sp</item>
+    <item>18sp</item>
+    <item>19sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
+  </string-array>
+  <string-array name="themes">
+    <item>Sistema defaŭlto</item>
+    <item>Malhela</item>
+    <item>Hela</item>
+  </string-array>
+  <string name="menu_dictionary">Vortaro</string>
+  <string name="menu_preferences">Agordoj</string>
+  <string name="menu_about">Pri</string>
+  <string name="menu_help">Helpo</string>
+  <string name="button_ok">Bone</string>
+  <string name="button_cancel">Nuligi</string>
+  <string name="button_do_not_show_again">Ne montru denove</string>
+  <string name="title_current_path">&gt; %1$s</string>
   <!--
 		specifies a translation direction, e.g. English -> German; if this
 		language is right-to-left you may want to swap %1$s and %2$s as well
 		as replace &#8594; (right-arrow) with &#8592; (left-arrow)
 	-->
+  <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+  <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">Versio: %1$s</string>
+  <string name="title_about_dictionary">Vortaro:</string>
+  <string name="title_welcome">Bonvenon!</string>
+  <string name="title_seconds">%1$d s</string>
+  <string name="title_activity_preferences">Agordoj</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_pref_language_code">Lingvo</string>
+  <string name="language_english">Angla</string>
+  <string name="language_esperanto">Esperanto</string>
+  <string name="language_vietnamese">Vjetnama</string>
+  <string name="language_chinese">Ĉina</string>
+  <string name="language_japanese">Japana</string>
+  <string name="language_thai">Taja</string>
+  <string name="language_hindi">Hindia</string>
+  <string name="language_indonesian">Indonezia</string>
+  <string name="language_french">Franca</string>
+  <string name="language_spanish">Hispana</string>
+  <string name="language_german">Germana</string>
+  <string name="language_italian">Itala</string>
+  <string name="language_latin">Latina</string>
+  <string name="language_russian">Rusa</string>
+  <string name="language_arabic">Araba</string>
+  <string name="language_czech">Ĉeĥa</string>
+  <string name="language_slovak">Slovaka</string>
+  <string name="language_bulgarian">Bulgara</string>
+  <string name="language_catalan">Kataluna</string>
+  <string name="language_persian">Persa</string>
+  <string name="language_finnish">Finna</string>
+  <string name="language_greek">Greka</string>
+  <string name="language_hebrew">Hebrea</string>
+  <string name="language_croatian">Kroata</string>
+  <string name="language_hungarian">Hungara</string>
+  <string name="language_lithuanian">Litova</string>
+  <string name="language_dutch">Nederlanda</string>
+  <string name="language_polish">Pola</string>
+  <string name="language_portuguese">Portugala</string>
+  <string name="language_swedish">Sveda</string>
+  <string name="language_norwegian">Norvega</string>
+  <string name="language_turkish">Turka</string>
+  <string name="language_tagalog">Tagaloga</string>
+  <string name="language_tamil">Tamila</string>
+  <string name="language_turkmen">Turkmena</string>
+  <string name="language_danish">Dana</string>
+  <string name="language_korean">Korea</string>
+  <string name="language_swahili">Svahila</string>
+  <string name="language_macedonian">Makedona</string>
+  <string name="language_occitan">Okcitana</string>
+  <string name="language_ukrainian">Ukraina</string>
+  <string name="language_sanskrit">Sanskrito</string>
+  <string name="language_belarusian">Belorusa</string>
+  <string name="language_afrikaans">Afrikansa</string>
+  <string name="language_scottish_gaelic">Skotgaela</string>
+  <string name="language_icelandic">Islanda</string>
+  <string name="language_welsh">Valisa</string>
+  <string name="language_irish">Irlanda</string>
+  <string name="language_asturian">Asturia</string>
 </resources>

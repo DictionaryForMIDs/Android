@@ -11,12 +11,243 @@
 		here, it will appear on the about screen; leave empty if you don't
 		want to be mentioned
 	-->
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">Pastalaka S</string>
   <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">Файлів не знайдено.</string>
+  <string name="to_top">Перейти до топу</string>
+  <string name="to_upper_level">Перейти вгору</string>
+  <string name="to_sdcard">Перейти до карти пам`яті</string>
+  <string name="title_please_wait">Зачекайте, будь ласка</string>
+  <string name="msg_searching">Пошук&#8230;</string>
+  <string name="copy_all">Скопіювати все</string>
+  <string name="copy_word">Скопіюйте слово</string>
+  <string name="not_found">не знайдено</string>
+  <string name="no_included_dictionaries">Не знайдено жодного з зазначених словників. Натисніть тут для завантаження.</string>
+  <string name="no_starred_words">Жодного дібраного слова  не знайдено. Натисніть на зображення зірки, щоб обрати слово.</string>
+  <string name="starred_words_current_dictionary">Поточне слово</string>
+  <string name="starred_words_all_dictionaries">Усі</string>
+  <string name="no_recent_dictionaries">Жодного нещодавно завантаженого словника не знайдено. Натисніть тут для завантаження.</string>
+  <string name="loading_download_dictionaries">Зачекайте будь ласка. Йде завантаження можливих словників&#8230;</string>
+  <string name="no_download_dictionaries">На жаль, в даний час немає доступних для скачування словників.</string>
+  <string name="msg_error_downloading_available_dictionaries">Помилка при завантаженні списку словників.\n\n\nКлацніть тут, щоб спробувати знову.\n\n\nПодробиці:\n%1$s</string>
+  <string name="msg_error_dictionary_not_found">Словник %1$d у теперішній час недоступно.</string>
+  <string name="msg_error_accessing_storage">Зовнішня пам\'ять недоступна. Переконайтеся, що пристрій не підключено через USB.\n\nПоточний стан пам\'яті: %1$s</string>
+  <string name="msg_suggest_update">Ваша версія DictionaryForMIDs застаріла. Будь ласка, поновіть програму перед завантаженням словників.\nОновити зараз?</string>
+  <string name="msg_suggest_update_with_message">Ваша версія DictionaryForMIDs застаріла. Будь ласка, оновіть програму перед завантаженням словників.\nОновити зараз?\n\nПодробиці: %1$s</string>
+  <string name="msg_confirm_installation">Завантажити та встановити словник \"%1$s\"?\nРозмір: невідомо</string>
+  <string name="msg_confirm_installation_size">Завантажити та встановити словник \"%1$s\"?\nРозмір: %2$s</string>
+  <string name="msg_installation_exception">Виключення при установці:\n%1$s</string>
+  <string name="msg_installation_exception_cause">Виключення при установці:\n%1$s\n\nПричина:\n%1$s</string>
+  <string name="msg_installation_already_started">На жаль, установка вже виконується.</string>
+  <string name="msg_installation_started">Установка займе деякий час, Ви можете продовжувати використовувати додаток.</string>
+  <string name="msg_auto_installation_started">Завантаження словника \"%1$s\" займе деякий час.\n\nМожете вийти з програми, хід операції відображатиметься в рядку стану.</string>
+  <string name="msg_installation_finished">Словник встановлено!</string>
+  <string name="msg_list_already_downloaded">Список вже завантажується.</string>
+  <string name="msg_installation_error">Помилка встановлення</string>
+  <string name="msg_external_storage_inaccessible">Зовнішня пам\'ять наразі недоступна.</string>
+  <string name="msg_exported_starred_words">Слова успішно експортовано в зовнішню пам\'ять.</string>
+  <string name="msg_error_parsing_integer_preference">На жаль, неможливо розпізнати номер. Відновлено значення за замовчуванням.</string>
+  <string name="title_exception">Виняток</string>
+  <string name="title_activity_starred_words">Зазначені слова</string>
+  <string name="exception_failed_create_directory">Не вдалося створити каталог: %1$s</string>
+  <string name="exception_failed_create_file">Не вдалося створити файл: %1$s</string>
+  <string name="exception_failed_delete_file">Не вдається видалити файл: %1$s</string>
+  <string name="title_installation_finished">Готово</string>
+  <string name="msg_successfully_installed_dictionary">Словник успішно встановлено.</string>
+  <string name="msg_installation_complete">Установку завершено</string>
+  <string name="title_installation_status">Стан установки</string>
+  <string name="msg_installing_dictionary">Установка словника&#8230;</string>
+  <string name="msg_installation_aborted">Установку перервано користувачем.</string>
+  <string name="msg_installation_status">Статус: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">В архіві \"%1$s\" немає елемента, відповідного до \"%2$s\"</string>
+  <string name="unit_byte">байт</string>
+  <string name="unit_kilo_byte">КБ</string>
+  <string name="unit_mega_byte">МБ</string>
+  <string name="unit_giga_byte">ГБ</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_maximum">Більше за %1$d (максимум) результатів знайдено.</string>
+  <string name="results_found_cancel">Знайдено результатів до відміни: %1$d.</string>
+  <string name="results_found_timeout">Знайдено результатів до закінчення часу: %1$d.</string>
+  <string name="results_found">Знайдено результатів: %1$d.</string>
+  <string name="results_found_one">Знайдено 1 результат.</string>
+  <string name="no_results_found">На жаль, результатів не знайдено.</string>
+  <string-array name="font_sizes">
+    <item>10sp</item>
+    <item>11sp</item>
+    <item>12sp</item>
+    <item>13sp</item>
+    <item>14sp</item>
+    <item>15sp</item>
+    <item>16sp</item>
+    <item>17sp</item>
+    <item>18sp</item>
+    <item>19sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
+  </string-array>
+  <string-array name="themes">
+    <item>За замовчуванням</item>
+    <item>Темна</item>
+    <item>Світла</item>
+  </string-array>
+  <string name="title_translation_error">Помилка перекладу.</string>
+  <string name="msg_translation_error">Подробиці:\n\n%1$s</string>
+  <string name="msg_translation_cancelled">Переклад скасовано.</string>
+  <string name="menu_dictionary">Словник</string>
+  <string name="menu_preferences">Налаштування</string>
+  <string name="menu_about">Про додаток</string>
+  <string name="menu_help">Довідка</string>
+  <string name="menu_starred">Зазначені</string>
+  <string name="menu_export_all_starred">Експорт усього</string>
+  <string name="menu_download_dictionaries">Завантаження вручну&#8230;</string>
+  <string name="menu_find_hidden_dictionaries">Повторне додавання прихованих</string>
+  <string name="menu_clear_recent_dictionary_list">Очищення останніх&#8230;</string>
+  <string name="msg_enter_word_first">Будь ласка, введіть слово.</string>
+  <string name="menu_reload_dictionary_list">Поновити список</string>
+  <string name="menu_cancel_installation">Скасувати установку</string>
+  <string name="menu_reinstall_default_dictionary">Перевстановіть словник за замовчуванням</string>
+  <string name="msg_load_dictionary_first">Будь ласка, спочатку завантажте словник.</string>
+  <string name="msg_reload_dictionary">Будь ласка, перезавантажте словник.</string>
+  <string name="msg_exception">Виняток:\n%1$s</string>
+  <string name="msg_restart_app_after_settings_changed">Перезапустіть додаток для активації параметрів.</string>
+  <string name="button_ok">OK</string>
+  <string name="button_cancel">Скасування</string>
+  <string name="button_do_not_show_again">Не показувати знову</string>
+  <string name="button_exit">Вихід</string>
+  <string name="msg_download_dictionaries">Завантаження словника включає 4 етапи (передбачається, що Ви користуєтеся менеджером файлів, наприклад, Astro):\n\n1.Оберіть та завантажте словник на сайті, який відкриється після підтвердження даного діалогу. Примітка: підтримуються тільки словники версії 2.4.4 або вище.\n\n2.Розпакуйте вміст zip-архіву в каталог на SD-карті (наприклад, з допомогою Astro).\n\n3.Опціонально: для прискорення пошуку витягніть на SD-карту вміст jar-файлу.\n\n4.Виберіть словник в попередньому діалоговому вікні.\n\nВи можете завантажити та отримати словник на комп\'ютері, а потім перенести файли на карту пам\'яті.</string>
+  <string name="msg_clear_recent_dictionaries_list">Очистити список останніх словників?</string>
+  <string name="msg_cancel_installation">Скасувати поточну установку?</string>
+  <string name="msg_load_dictionary">Завантажити новий словник зараз?\n\nВи завжди можете завантажити його пізніше зі списку недавніх словників.</string>
+  <string name="button_load_dictionary_from_current_directory">Завантаження словника з поточного каталогу</string>
+  <string name="msg_dictionary_error">Помилка словника</string>
+  <string name="msg_dictionary_not_found">Не вдалося завантажити словник.\n\nМожете вибрати словник в наступному діалоговому вікні.</string>
+  <string name="msg_dictionary_load_error">Помилка при завантаженні словника.</string>
+  <string name="msg_internal_dictionary_load_error">Помилка при завантаженні внутрішніх словників.\n\n%1$s</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="msg_no_dictionary">Вибраний елемент не схожий на словник.</string>
+  <string name="title_load_dictionary">Завантаження словника&#8230;</string>
+  <string name="msg_auto_install">Схоже, Ви ще не встановили словник за замовчуванням.\n\nХочете завантажити й встановити його зараз?</string>
   <!--
 		specifies a translation direction, e.g. English -> German; if this
 		language is right-to-left you may want to swap %1$s and %2$s as well
 		as replace &#8594; (right-arrow) with &#8592; (left-arrow)
 	-->
+  <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="title_load_dictionary_first">Будь ласка, спочатку завантажте словник.</string>
+  <string name="title_about_heading">Java-додаток DictonaryForMIDs</string>
+  <string name="title_about_copyright_owner">Copyright Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) і інші автори.</string>
+  <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+  <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">Версія: %1$s</string>
+  <string name="title_about_copyright">Додаток Java DictionaryForMIDs - безкоштовне З: Ви можете вільно поширювати та/або змінювати його на умовах загальної громадської ліцензії GNU, опублікованої Фондом безкоштовного програмного забезпечення, або версії 2 ліцензії, або (на ваш розсуд) будь-якої пізнішої версії. Див. file COPYING або http://www.gnu.org/licenses/ \n\nЦя програма поширюється з наміром, що вона буде корисною, але БЕЗ БУДЬ-ЯКИХ ГАРАНТІЙ, включаючи можливі гарантії товарної придатності або ПРИДАТНОСТІ ДЛЯ КОНКРЕТНОЇ МЕТИ. Див. подробиці у GNU General Public License.</string>
+  <string name="title_about_dictionary">Словник:</string>
+  <string name="title_about_ui_translation">Локалізація:</string>
+  <string name="title_about_translation_request">Допоможіть нам перекласти програму Вашою мовою або покращити існуючі переклади http://crowdin.net/project/dictionaryformids</string>
+  <string name="title_information">Інформація</string>
+  <string name="title_welcome">Ласкаво просимо!</string>
+  <string name="title_seconds">%1$d с</string>
+  <string name="msg_first_run">Схоже, Ви використовуєте цю програму в перший раз! Будь ласка, виберіть словник на наступному екрані.</string>
+  <string name="msg_slow_archive_loading">Переклад було скасовано після закінчення часу очікування.\nПереклад можна прискорити, якщо витягти заархівований словник в папку на SD-карті та вибрати цю папку як словник. Або можна збільшити час очікування в налаштуваннях.</string>
+  <string name="msg_parsing_error">Помилка при обробці ресурсу.\n\n%1$s</string>
+  <string name="msg_extract_dictionary">Не вдалося завантажити обраний архів, проте, схоже, він включає стислий словник. Спочатку вийміть вміст jar-файлу.</string>
+  <string-array name="search_mode">
+    <item>Стандартний</item>
+    <item>Слова, які відповідають пошуковому запиту</item>
+    <item>Слова, що починаються з пошукового запиту</item>
+    <item>Слова, що включають пошуковий запит</item>
+  </string-array>
+  <string name="title_help">Довідка DictionaryForMIDs</string>
+  <string name="desc_help">Використовуйте знаки знаки для уточнення пошуку:\n%1$c відповідає будь серії символів\n%2$c відповідає будь-якому окремому символу\n\nДля управління пошуком вкладеного вирази:\n%3$c як перший символ дає результати, які починаються з пошукового запиту\n%4$c після запиту дає результати, що закінчуються ним.\n\nБудь ласка, майте на увазі: додавання символів знаків перевизначає параметри режиму пошуку.</string>
+  <string name="desc_see_website">Див. подробиці на сайті:\n%1$s</string>
+  <string name="tab_load_recent">Нещодавні</string>
+  <string name="tab_load_from_file">Із файлу</string>
+  <string name="tab_load_included">Включено</string>
+  <string name="tab_load_download">Скачати</string>
+  <string name="title_activity_about">Про додаток</string>
+  <string name="title_activity_help">Довідка</string>
+  <string name="title_activity_choose_dictionary">Виберіть словник</string>
+  <string name="title_activity_file_list">Виберіть словник</string>
+  <string name="title_activity_dictionary_list">Виберіть словник</string>
+  <string name="title_activity_recent_list">Виберіть словник</string>
+  <string name="title_activity_preferences">Налаштування</string>
+  <string name="title_activity_install_dictionary">Установіть словник</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_remove_from_list">Видалити зі списку</string>
+  <string name="app_description">DictionaryForMIDs — безкоштовний багатомовний словник для мобільних телефонів і кишенькових ПК</string>
+  <string name="hint_enter_word">Введіть слово для перекладу</string>
+  <string name="hint_filter">Фільтр</string>
+  <string name="title_pref_search_options">Параметри пошуку</string>
+  <string name="title_pref_search_mode">Режим пошуку</string>
+  <string name="title_pref_max_results">Макс. результатів</string>
+  <string name="title_pref_timeout">Розмір шрифту результатів</string>
+  <string name="title_pref_search_as_you_type">Пошук при вводі</string>
+  <string name="title_pref_display_options">Відображення</string>
+  <string name="title_pref_result_font_size">Розмір шрифту результатів</string>
+  <string name="title_pref_ignore_font_styles">Системні стилі</string>
+  <string name="title_pref_language_code">Мова</string>
+  <string name="title_pref_advanced_features">Додаткові функції</string>
+  <string name="title_pref_enable_starred_words">Включити зазначені слова</string>
+  <string name="title_pref_theme">Тема</string>
+  <string name="title_default_language_code">За замовчуванням</string>
+  <string name="summary_pref_ignore_font_style_checked">Результати відображаються з використанням стилю, який визначається словником.</string>
+  <string name="summary_pref_ignore_font_style_unchecked">Результати відображаються з використанням системного стилю.</string>
+  <string name="language_english">Англійська</string>
+  <string name="language_esperanto">Есперанто</string>
+  <string name="language_vietnamese">В\'єтнамська</string>
+  <string name="language_chinese">Китайська</string>
+  <string name="language_japanese">Японська</string>
+  <string name="language_thai">Тайська</string>
+  <string name="language_hindi">Гінді</string>
+  <string name="language_indonesian">Індонезійська</string>
+  <string name="language_french">Французька</string>
+  <string name="language_spanish">Іспанська</string>
+  <string name="language_german">Німецька</string>
+  <string name="language_italian">Італійська</string>
+  <string name="language_latin">Латинська</string>
+  <string name="language_russian">Російська</string>
+  <string name="language_arabic">Арабська</string>
+  <string name="language_czech">Чеська</string>
+  <string name="language_slovak">Словацька</string>
+  <string name="language_bulgarian">Болгарська</string>
+  <string name="language_catalan">Каталонська</string>
+  <string name="language_persian">Фарсі</string>
+  <string name="language_finnish">Фінська</string>
+  <string name="language_greek">Грецька</string>
+  <string name="language_hebrew">Іврит</string>
+  <string name="language_croatian">Хорватська</string>
+  <string name="language_hungarian">Угорська</string>
+  <string name="language_lithuanian">Литовська</string>
+  <string name="language_dutch">Нідерландська</string>
+  <string name="language_polish">Польська</string>
+  <string name="language_portuguese">Португальська</string>
+  <string name="language_swedish">Шведська</string>
+  <string name="language_norwegian">Норвезька</string>
+  <string name="language_turkish">Турецька</string>
+  <string name="language_tagalog">Тагальська</string>
+  <string name="language_tamil">Тамільська</string>
+  <string name="language_turkmen">Туркменська</string>
+  <string name="language_danish">Данська</string>
+  <string name="language_korean">Корейська</string>
+  <string name="language_swahili">Суахілі</string>
+  <string name="language_macedonian">Македонська</string>
+  <string name="language_occitan">Окситанська</string>
+  <string name="language_ukrainian">Українська</string>
+  <string name="language_sanskrit">Санскрит</string>
+  <string name="language_belarusian">Білоруська</string>
+  <string name="language_afrikaans">Африкаанс</string>
+  <string name="language_scottish_gaelic">Гельська</string>
+  <string name="language_icelandic">Ісландська</string>
+  <string name="language_welsh">Валлійська</string>
+  <string name="language_irish">Ірландська</string>
+  <string name="language_asturian">Астурійська</string>
+  <string name="language_definition">Визначення</string>
+  <string name="load_dictionary_button">Ще&#8230;</string>
   <plurals name="open_dictionary_drawer">
     <item quantity="one"><![CDATA[Одна активна мова. <a href="#">Змінити…</a>]]></item>
     <item quantity="few"><![CDATA[%1$d активні мови. <a href="#">Змінити…</a>]]></item>

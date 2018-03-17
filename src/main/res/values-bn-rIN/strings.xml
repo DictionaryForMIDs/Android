@@ -5,14 +5,251 @@
 		put the name of the current language into language_name, e.g. Deutsch
 		if this is the German language file
 	-->
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">বাংলা</string>
   <!--
 		put the name/e-mail/website of the translator (that's probably you)
 		here, it will appear on the about screen; leave empty if you don't
 		want to be mentioned
 	-->
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">ব্যবহারকারী_ইন্টারফেস_অনুবাদক_Adnan</string>
+  <string name="app_name">এমআইডি\'র জন্য অভিধান</string>
+  <string name="no_files">কোন নথি পাওয়া যায়নি.</string>
+  <string name="to_top">/(উপরে)</string>
+  <string name="to_upper_level">.. (উপরের স্তর)</string>
+  <string name="to_sdcard">/এসডি কার্ড</string>
+  <string name="title_please_wait">অপেক্ষা করুন</string>
+  <string name="msg_searching">খোঁজা হচ্ছে&#8230;</string>
+  <string name="copy_all">সব কপি করুন</string>
+  <string name="copy_word">কপি:%1$s</string>
+  <string name="not_found">পাওয়া যায়নি</string>
+  <string name="no_included_dictionaries">অন্তর্ভুক্ত কোন অভিধান নেই.\n\nডাউনলোড এর জন্য এখানে চাপুন.</string>
+  <string name="no_starred_words">কোন চিহ্নিত শব্দ নেই\n\nচিহ্নিত করার জন্য স্টার বাটন এ চাপুন.</string>
+  <string name="starred_words_current_dictionary">চলমান: %1$d</string>
+  <string name="starred_words_all_dictionaries">সব: %1$d</string>
+  <string name="no_recent_dictionaries">কোন সাম্প্রতিক অর্পিত অভিধান পাওয়া যায়নি\n\nডাউনলোড এর জন্য এখানে চাপুন.</string>
+  <string name="loading_download_dictionaries">দয়া করে অপেক্ষা করুন.\n\nসহজলভ্য অভিধান লোড হচ্ছে&#8230;</string>
+  <string name="no_download_dictionaries">দুঃখিত, এখানে ডাউনলোড করার মত কোন অভিধান নেই.</string>
+  <string name="msg_error_downloading_available_dictionaries">সহজলভ্য অভিধানের তালিকা ডাউনলোডের সময় একটা ভুল হয়েছে.\n\n\nআবার চেষ্টা করার জন্য এখানে চাপুন.\n\n\nবিস্তারিতঃ\n%1$s</string>
+  <string name="msg_error_dictionary_not_found">এই আইডি %1$d এর অভিধান এইমুহুর্তে সহজলভ্য নয়.</string>
+  <string name="msg_error_accessing_storage">বাড়তি সংরক্ষনস্থল প্রবেশযোগ্য নয়. আপনার যন্ত্র USB দ্বারা যুক্ত নয় তা নিশ্চিত করুন.\n\nবর্তমান সংরক্ষনস্থল অবস্থাঃ %1$s</string>
+  <string name="msg_suggest_update">আপনার DictionaryForMID এর ভার্সন মেয়াদোত্তীর্ন. দয়া করে অভিধান ডাউনলোড করার পূর্বে হালনাগাদ করুন.\nহালনাগাদ করবেন?</string>
+  <string name="msg_suggest_update_with_message">আপনার DictionaryForMID এর ভার্সন মেয়াদোত্তীর্ন. দয়া করে অভিধান ডাউনলোড করার পূর্বে হালনাগাদ করুন.\nহালনাগাদ করবেন?\n\nবিস্তারিতঃ %1$s</string>
+  <string name="msg_confirm_installation">ডাউনলোড এবং ইন্সটল \"%1$s\" অভিধান?\nআকারঃঅজানা</string>
+  <string name="msg_confirm_installation_size">ডাউনলোড এবং ইন্সটল \"%1$s\" অভিধান?\nআকারঃ%2$s</string>
+  <string name="msg_installation_exception">ইন্সটল হওয়ার সময় ব্যতিক্রম:\n%1$s</string>
+  <string name="msg_installation_exception_cause">ইন্সটল হওয়ার সময় ব্যতিক্রম:\n%1$s\n\nকারণ:\n%1$s</string>
+  <string name="msg_installation_already_started">দুঃখিত, একটি ইন্সটলেশন ইতিমধ্যে সক্রিয়.</string>
+  <string name="msg_installation_started">কিছুক্ষনের মধ্যে ইন্সটল শুরু হবে, আপনি এপটি ব্যবহার চালিয়ে যেতে পারবেন.</string>
+  <string name="msg_auto_installation_started">ডাউনলোড হচ্ছে \"%1$s\" অভিধান, এটা কিছুক্ষন সময় নিতে পারে.\n\nআপনি এখন এপ থেকে বের হতে পারবেন, এই প্রক্রিয়া স্ট্যটাস বারে দেখানো হবে.</string>
+  <string name="msg_installation_finished">অভিধান ইন্সটল হয়েছে!</string>
+  <string name="msg_list_already_downloaded">তালিকা ইতিমধ্যে ডাউনলোড হয়েছে.</string>
+  <string name="msg_installation_error">ইন্সটল এ ত্রুটি হচ্ছে</string>
+  <string name="msg_external_storage_inaccessible">বাইরের সংরক্ষনস্থল এইমুহুর্তে প্রবেশযোগ্য নয়.</string>
+  <string name="msg_exported_starred_words">বাড়তি সংরক্ষনস্থল এ সফলভাবে পাঠানো হয়েছে.</string>
+  <string name="msg_error_parsing_integer_preference">দুঃখিত, নম্বর চেনা যায়নি, মান ডিফল্ট এ ফিরে গেছে.</string>
+  <string name="title_exception">ব্যতিক্রম</string>
+  <string name="title_activity_starred_words">চিহ্নিত শব্দসমূহ</string>
+  <string name="exception_failed_create_directory">ডিরেক্টরি তৈরি করতে ব্যর্থ হয়েছে: %1$s</string>
+  <string name="exception_failed_create_file">ফাইল তৈরি করতে ব্যর্থ হয়েছে: %1$s</string>
+  <string name="exception_failed_delete_file">ফাইল অপসারণ করতে ব্যর্থ হয়েছে: %1$s</string>
+  <string name="title_installation_finished">সমাপ্ত হয়েছে</string>
+  <string name="msg_successfully_installed_dictionary">সফলভাবে অভিধান ইন্সটল হয়েছে.</string>
+  <string name="msg_installation_complete">ইনস্টলেশন সম্পূর্ণ হয়েছে</string>
+  <string name="title_installation_status">ইন্সটলেশনের অবস্থা</string>
+  <string name="msg_installing_dictionary">অভিধান ইনস্টল করা হচ্ছে&#8230;</string>
+  <string name="msg_installation_aborted">ইনস্টলেশন ব্যবহারকারী দ্বারা বাতিল করা হয়েছে.</string>
+  <string name="msg_installation_status">অবস্থা: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">আর্কাইভে \'%1$s \' এখানে নিচের \'%2$s\' অংশের কোন এন্ট্রি নেই</string>
+  <string name="unit_byte">ব</string>
+  <string name="unit_kilo_byte">KB</string>
+  <string name="unit_mega_byte">MB</string>
+  <string name="unit_giga_byte">GB</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_maximum">%1$d (সর্বোচ্চ) ফলাফল পাওয়া যায় বেশি।.</string>
+  <string name="results_found_cancel">%1$d ফলাফল(গুলো) বাতিলের আগে পাওয়া গেছে.</string>
+  <string name="results_found_timeout">%1$d ফলাফল(গুলো) সময় শেষের আগে পাওয়া গেছে.</string>
+  <string name="results_found">%1$d টি ফলাফল পাওয়া গেছে.</string>
+  <string name="results_found_one">১ টি ফলাফল পাওয়া গেছে.</string>
+  <string name="no_results_found">দুঃখিত, কোন ফলাফল পাওয়া যায়নি.</string>
+  <string-array name="font_sizes">
+    <item>১০এসপি</item>
+    <item>১১এসপি</item>
+    <item>১২এসপি</item>
+    <item>১৩এসপি</item>
+    <item>১৪এসপি</item>
+    <item>১৫এসপি</item>
+    <item>১৬এসপি</item>
+    <item>১৭এসপি</item>
+    <item>১৮এসপি</item>
+    <item>১৯এসপি</item>
+    <item>২০এসপি</item>
+    <item>২১এসপি</item>
+    <item>২২এসপি</item>
+    <item>২৩এসপি</item>
+    <item>২৪এসপি</item>
+    <item>২৫এসপি</item>
+    <item>২৬এসপি</item>
+  </string-array>
+  <string-array name="themes">
+    <item>পূর্বনির্ধারিত সিস্টেম</item>
+    <item>অন্ধকার</item>
+    <item>হাল্কা</item>
+  </string-array>
+  <string name="title_translation_error">অনুবাদে ত্রুটি হয়েছে.</string>
+  <string name="msg_translation_error">বিস্তারিত: \n\n%1$s</string>
+  <string name="msg_translation_cancelled">অনুবাদ বাতিল করা হয়েছে।.</string>
+  <string name="menu_dictionary">অভিধান</string>
+  <string name="menu_preferences">পছন্দসমূহ</string>
+  <string name="menu_about">বিষয়ে</string>
+  <string name="menu_help">সাহায্য</string>
+  <string name="menu_starred">চিহ্নিত</string>
+  <string name="menu_export_all_starred">সবগুলো পাঠান</string>
+  <string name="menu_download_dictionaries">হাতেকলমে ডাউনলোড&#8230;</string>
+  <string name="menu_find_hidden_dictionaries">গোপন পুনরায় যুক্ত করুন</string>
+  <string name="menu_clear_recent_dictionary_list">সাম্প্রতিক তালিকা পরিষ্কার করুন&#8230;</string>
+  <string name="msg_enter_word_first">দয়া করে একটা শব্দ লিখুন.</string>
+  <string name="menu_reload_dictionary_list">আবার লোড</string>
+  <string name="menu_cancel_installation">ইন্সটল বাতিল করুন</string>
+  <string name="menu_reinstall_default_dictionary">সয়ংক্রিয় অভিধান আবার ইন্সটল</string>
+  <string name="msg_load_dictionary_first">দয়া করে একটা অভিধান লোড করুন.</string>
+  <string name="msg_reload_dictionary">দয়া করে অভিধান রিলোড করুন.</string>
+  <string name="msg_exception">ব্যতিক্রম ঘটেছে: \n%1$s</string>
+  <string name="msg_restart_app_after_settings_changed">সেটিংস এর প্রভাব এর জন্য এই অ্যাপটি আবার চালু করুন.</string>
+  <string name="button_ok">ঠিক আছে</string>
+  <string name="button_cancel">বাতিল</string>
+  <string name="button_do_not_show_again">আবার দেখাবেন না</string>
+  <string name="button_exit">প্রস্থান</string>
+  <string name="msg_download_dictionaries">ডিকশনারি ডাউনলোড করা 4 (নিচের ধরে নেয় আপনি ফাইল ম্যানেজার ইনস্টল Astro মত আছে) পদক্ষেপ: \n\n1। চয়ন করুন এবং ওয়েবসাইটে এই সংলাপ সুদৃঢ়ীকরণের পরে খোলা হয় এই অভিধান ডাউনলোড করুন। উল্লেখ্য: শুধুমাত্র অভিধান সংস্করণ 2.4.4 বা supported.\n\n2 বেশি হয়। Zip ফাইল এর জন্য একটি নির্দেশিকা (যেমন Astro).\n\n3 ব্যবহার করে। আপনার এসডি-কার্ড বিষয়বস্তু নিষ্কাশন করুন ঐচ্ছিক: অন্তর্ভুক্ত করা জার ফাইল এর বিষয়বস্তুর উপর আপনার এসডি কার্ডের জন্য দ্রুত look-ups.\n\n4 সম্প্রসারণ করা হবে। পূর্বে দেখানো হয়েছে dialog.\n\nAlternatively রয়েছে অভিধান নির্বাচন করুন, আপনি পারে ডাউনলোড অভিধান আপনার PC ব্যবহার করে সম্প্রসারণ করা হবে, তখন আপনার এসডি কার্ড থেকে ফাইল ট্রান্সফার।.</string>
+  <string name="msg_clear_recent_dictionaries_list">সম্প্রতি অভিধান তালিকা মুছুন?</string>
+  <string name="msg_cancel_installation">বর্তমান ইনস্টলেশন বাতিল করতে চান?</string>
+  <string name="msg_load_dictionary">এখন নতুন অভিধান লোড? \n\nআপনি সবসময় পরে সাম্প্রতিক অভিধান তালিকা থেকে লোড করতে পারেন.</string>
+  <string name="button_load_dictionary_from_current_directory">বর্তমান ডিরেক্টরি থেকে লোড অভিধান</string>
+  <string name="msg_dictionary_error">অভিধান ত্রুটি</string>
+  <string name="msg_dictionary_not_found">অভিধান লোড করা যায়নি.\n\nআপনি পরবর্তী কথা অনুসারে অভিধান নির্বাচন করুন.</string>
+  <string name="msg_dictionary_load_error">অভিধান লোড করার সময় ত্রুটি.</string>
+  <string name="msg_internal_dictionary_load_error">অভ্যন্তরীণ অভিধান.\n\n%1$s লোড করার সময় ত্রুটি</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="msg_no_dictionary">নির্বাচিত আইটেম দেখে অভিধান মনে হচ্ছে না.</string>
+  <string name="title_load_dictionary">অভিধান লোড&#8230;</string>
+  <string name="msg_auto_install">মনে হচ্ছে আপনি এখনও ডিফল্ট অভিধান নেননি.\n\n ডাউনলোড এবং ইনস্টল করবেন?</string>
   <!--
 		specifies a translation direction, e.g. English -> German; if this
 		language is right-to-left you may want to swap %1$s and %2$s as well
 		as replace &#8594; (right-arrow) with &#8592; (left-arrow)
 	-->
+  <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="title_load_dictionary_first">দয়া করে অভিধান লোড করুন.</string>
+  <string name="title_about_heading">জাভা অ্যাপ্লিকেশন DictonaryForMIDs</string>
+  <string name="title_about_copyright_owner">উৎসর্গ করা হয়েছে Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) ও অন্যান্য-এর উদ্দ্যেশ্যে.</string>
+  <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+  <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">সংস্করণ: %1$s</string>
+  <string name="title_about_copyright">DictionaryForMIDs জাভা অ্যাপ্লিকেশন একটি ফ্রী সফটওয়্যার। আপনি পারেন পুনঃবিতরণ এ Free Software Foundation দ্বারা প্রকাশিত GNU সাধারণ পাবলিক লাইসেন্সের শর্তাবলীর অধীনে পরিবর্তন করুন। সংস্করণ হতে হবে ২, বা (আপনার ইচ্ছানুসারে) লাইসেন্সের পরবর্তী যেকোন সংস্করণ। দেখুন উপকৃত হবেন, কিন্তু কোন ওয়ারেন্টি ছাড়াই ফাইল COPYING বা http://www.gnu.org/licenses/ \n\nThis প্রোগ্রামে বিতরণ করা হয়। এমনকি ইঙ্গিতপূর্ণ ওয়ারেন্টি MERCHANTABILITY or FITNESS কোনও নির্দিষ্ট উদ্দেশ্যে না। বিস্তারিত জানার জন্য GNU সাধারণ পাবলিক লাইসেন্স দেখুন।.</string>
+  <string name="title_about_dictionary">অভিধান:</string>
+  <string name="title_about_ui_translation">স্থানীয়করণ:</string>
+  <string name="title_about_translation_request">আপনার ভাষায় অনুবাদ এবং বর্তমান অনুবাদ কে উন্নত করুন এখানে http://crowdin.net/project/dictionaryformids</string>
+  <string name="title_information">তথ্য</string>
+  <string name="title_welcome">স্বাগতম!</string>
+  <string name="title_seconds">%1$d সেকেন্ড</string>
+  <string name="msg_first_run">মনে হচ্ছে প্রথমবারের মতো এই কার্যক্রম চালানো হচ্ছে। অভিধান নিচের স্ক্রিন ব্যবহার করে নির্বাচন করুন.</string>
+  <string name="msg_slow_archive_loading">সময় শেষ হওয়ায় অনুবাদ বাতিল হয়েছে.\nআপনি অনুবাদ করুন গতি সংরক্ষণাগারের অভিধান একটি ফোল্ডারে আপনার এসডি কার্ড সম্প্রসারিত হচ্ছে এবং অভিধান হিসেবে এই ফোল্ডার নির্বাচন করতে পারেনি। পরে বাতিল করা হয়। বিকল্প হিসেবে আপনি সময়সীমা পছন্দ নির্দেশক ডায়ালগ আছে বেড়ে যায়.</string>
+  <string name="msg_parsing_error">সম্পদ\n\n%1$s পার্স করার সময় ত্রুটি দেখা দিয়েছে</string>
+  <string name="msg_extract_dictionary">নির্বাচিত আর্কাইভ লোড করা যায় নি, কিন্তু সংক্ষিপ্ত অভিধানে অন্তর্ভুক্ত করা হয়। অনুগ্রহ করে প্রথমে অন্তর্ভুক্ত করা জার ফাইল সম্প্রসারণ করুন.</string>
+  <string-array name="search_mode">
+    <item>আদর্শমান</item>
+    <item>অনুসন্ধানের অনুরূপ শব্দ</item>
+    <item>অনুসন্ধান অংশ শব্দ দ্বারা শুরু</item>
+    <item>অনুসন্ধানের অনুরূপ শব্দ বিদ্যমান</item>
+  </string-array>
+  <string name="title_help">DictionaryForMIDs সহায়তা</string>
+  <string name="desc_help">সুনির্দিষ্ট কোন ধারাবাহিক characters\n%2$c সাথে মিলে যায় কোন একক character\n\nTo নিয়ন্ত্রণ উপ-মত প্রকাশের স্বাধীনতার সন্ধান: \n%3$c প্রথম অক্ষর দিয়ে শুরু করে ফলাফল সৃষ্টি করে যেমন আপনার অনুসন্ধান: \n%1$c ম্যাচ ওয়াইল্ডকার্ড বর্ণ-চিহ্ন ব্যবহার করুন আপনার অনুসন্ধান করুন-আপনার ফলাফল it.\n\nPlease নোট দিয়ে শেষ হয়। পরে entry\n%4$c: ওয়াইল্ডকার্ড অক্ষর প্রতিস্থাপন করে অনুসন্ধান মোড পছন্দ যোগ করা হচ্ছে.</string>
+  <string name="desc_see_website">আরো তথ্য \n%1$s এই ওয়েব সাইট দেখুন</string>
+  <string name="tab_load_recent">সাম্প্রতিক</string>
+  <string name="tab_load_from_file">ফাইল থেকে</string>
+  <string name="tab_load_included">অন্তর্ভুক্ত</string>
+  <string name="tab_load_download">ডাউনলোড</string>
+  <string name="title_activity_about">পর্দা সম্পর্কে</string>
+  <string name="title_activity_help">সহায়তা পর্দা</string>
+  <string name="title_activity_choose_dictionary">অভিধান পছন্দ করুন</string>
+  <string name="title_activity_file_list">অভিধান পছন্দ করুন</string>
+  <string name="title_activity_dictionary_list">অভিধান পছন্দ করুন</string>
+  <string name="title_activity_recent_list">অভিধান পছন্দ করুন</string>
+  <string name="title_activity_preferences">পছন্দসমূহ</string>
+  <string name="title_activity_install_dictionary">অভিধান ইন্সটল করুন</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_remove_from_list">তালিকা থেকে মুছুন</string>
+  <string name="app_description">DictionaryForMIDs মোবাইল ফোন ও PDAs এর জন্য ফ্রী বহুভাষী অভিধান।</string>
+  <string name="hint_enter_word">অনুবাদের শব্দটি লিখুন</string>
+  <string name="hint_filter">বাছাই</string>
+  <string name="title_pref_search_options">সন্ধানের অপশনসমূহ</string>
+  <string name="title_pref_search_mode">সন্ধান ধরণ</string>
+  <string name="title_pref_max_results">সর্বোচ্চ ফল</string>
+  <string name="title_pref_timeout">সন্ধানের সময় উত্তীর্ণ হয়েছে</string>
+  <string name="title_pref_search_as_you_type">টাইপ অনুসারে সন্ধান করুন</string>
+  <string name="title_pref_display_options">প্রদর্শনী অপশন</string>
+  <string name="title_pref_result_font_size">ফলাফলের জন্য ফন্টের আকার</string>
+  <string name="title_pref_ignore_font_styles">সিস্টেম শৈলী ব্যবহার</string>
+  <string name="title_pref_language_code">ভাষা</string>
+  <string name="title_pref_advanced_features">উন্নত বৈশিষ্ট্য</string>
+  <string name="title_pref_enable_starred_words">চিহ্নিত শব্দ চালু</string>
+  <string name="title_pref_theme">বিষয়বস্তু</string>
+  <string name="title_default_language_code">পূর্ব-নির্ধারিত</string>
+  <string name="summary_pref_ignore_font_style_checked">অভিধান অনুযায়ী নির্ধারিত ধরন ব্যবহার করে ফলাফল প্রদর্শন করা হয়েছে.</string>
+  <string name="summary_pref_ignore_font_style_unchecked">পদ্ধতির ধরন ব্যবহার করে ফলাফল প্রদর্শন করা হয়েছে.</string>
+  <string name="language_english">English</string>
+  <string name="language_esperanto">Esperanto</string>
+  <string name="language_vietnamese">Vietnamese</string>
+  <string name="language_chinese">Chinese</string>
+  <string name="language_japanese">Japanese</string>
+  <string name="language_thai">Thai</string>
+  <string name="language_hindi">Hindi</string>
+  <string name="language_indonesian">Indonesian</string>
+  <string name="language_french">French</string>
+  <string name="language_spanish">Spanish</string>
+  <string name="language_german">German</string>
+  <string name="language_italian">Italian</string>
+  <string name="language_latin">Latin</string>
+  <string name="language_russian">Russian</string>
+  <string name="language_arabic">Arabic</string>
+  <string name="language_czech">Czech</string>
+  <string name="language_slovak">Slovak</string>
+  <string name="language_bulgarian">Bulgarian</string>
+  <string name="language_catalan">Catalan</string>
+  <string name="language_persian">Persian</string>
+  <string name="language_finnish">Finnish</string>
+  <string name="language_greek">Greek</string>
+  <string name="language_hebrew">Hebrew</string>
+  <string name="language_croatian">Croatian</string>
+  <string name="language_hungarian">Hungarian</string>
+  <string name="language_lithuanian">Lithuanian</string>
+  <string name="language_dutch">Dutch</string>
+  <string name="language_polish">Polish</string>
+  <string name="language_portuguese">Portuguese</string>
+  <string name="language_swedish">Swedish</string>
+  <string name="language_norwegian">Norwegian</string>
+  <string name="language_turkish">Turkish</string>
+  <string name="language_tagalog">Tagalog</string>
+  <string name="language_tamil">Tamil</string>
+  <string name="language_turkmen">Turkmen</string>
+  <string name="language_danish">Danish</string>
+  <string name="language_korean">Korean</string>
+  <string name="language_swahili">Swahili</string>
+  <string name="language_macedonian">Macedonian</string>
+  <string name="language_occitan">Occitan</string>
+  <string name="language_ukrainian">Ukrainian</string>
+  <string name="language_sanskrit">Sanskrit</string>
+  <string name="language_belarusian">Belarusian</string>
+  <string name="language_afrikaans">Afrikaans</string>
+  <string name="language_scottish_gaelic">Scottish Gaelic</string>
+  <string name="language_icelandic">Icelandic</string>
+  <string name="language_welsh">Welsh</string>
+  <string name="language_irish">Irish</string>
+  <string name="language_asturian">Asturian</string>
+  <string name="language_definition">Definition</string>
+  <string name="load_dictionary_button">আরো&#8230;</string>
+  <plurals name="open_dictionary_drawer">
+    <item quantity="one"><![CDATA[সক্রিয় একটি ভাষা. <a href="#"> পরিবর্তন করুন...</a>]]></item>
+    <item quantity="other"><![CDATA[%1$d সক্রিয় ভাষা। <a href="#"> পরিবর্তন করুন...</a>]]></item>
+  </plurals>
 </resources>

@@ -242,11 +242,11 @@
   <string name="language_sanskrit">Sanskriet</string>
   <string name="language_belarusian">Wit-Russisch</string>
   <string name="language_afrikaans">Afrikaans</string>
-  <string name="language_scottish_gaelic">Schots Gaelic</string>
+  <string name="language_scottish_gaelic">Schots-Gaelisch</string>
   <string name="language_icelandic">IJslands</string>
   <string name="language_welsh">Welsh</string>
   <string name="language_irish">Iers</string>
-  <string name="language_asturian">Asturisch</string>
+  <string name="language_asturian">Asturiaans</string>
   <string name="language_definition">Definitie</string>
   <string name="load_dictionary_button">Meer&#8230;</string>
   <plurals name="open_dictionary_drawer">

@@ -10,9 +10,85 @@
 		here, it will appear on the about screen; leave empty if you don't
 		want to be mentioned
 	-->
+  <string name="to_top">/ (ئۈستى)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">ساقلاڭ</string>
+  <string name="msg_searching">ئىزدەۋاتىدۇ&#8230;</string>
+  <string name="copy_all">ھەممە كۆچۈرۈش</string>
+  <string name="copy_word">كۆچۈرۈش: %1$s</string>
+  <string name="not_found">بايقالمىدى</string>
+  <string name="title_installation_finished">تاماملاندى</string>
+  <string name="msg_successfully_installed_dictionary">قاچىلانغا لۇغەت.</string>
+  <string-array name="font_sizes">
+    <item>10sp</item>
+    <item>11sp</item>
+    <item>12sp</item>
+    <item>13sp</item>
+    <item>14sp</item>
+    <item>15sp</item>
+    <item>16sp</item>
+    <item>17sp</item>
+    <item>18sp</item>
+    <item>19sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
+  </string-array>
+  <string-array name="themes">
+    <item>سىستېما كۆڭۈلدىكى</item>
+    <item>قارا</item>
+    <item>يورۇق</item>
+  </string-array>
+  <string name="menu_about">ھەققىدە</string>
+  <string name="menu_help">ياردەم</string>
+  <string name="menu_starred">يۇلتۇزلۇق</string>
+  <string name="menu_export_all_starred">ھەممە چىقىرىش</string>
+  <string name="button_ok">OK</string>
+  <string name="button_cancel">قايتىش</string>
+  <string name="button_do_not_show_again">يەنە كۆرۈنمىسۇن</string>
+  <string name="button_exit">چېكىنىش</string>
   <!--
 		specifies a translation direction, e.g. English -> German; if this
 		language is right-to-left you may want to swap %1$s and %2$s as well
 		as replace &#8594; (right-arrow) with &#8592; (left-arrow)
 	-->
+  <string name="tab_load_recent">يېقىنقى</string>
+  <string name="tab_load_download">چۈشۈرۈش</string>
+  <string name="hint_filter">قسقۇچ</string>
+  <string name="title_pref_search_options">ئىزدەش تاللانمىلىرى</string>
+  <string name="title_pref_language_code">تىل</string>
+  <string name="title_pref_advanced_features">ئالى دەرىجىلىك ئىقتىدار</string>
+  <string name="title_pref_theme">ئۇسلۇب</string>
+  <string name="title_default_language_code">كۆڭۈلدىكى</string>
+  <string name="language_english">ئىنگىلىزچە</string>
+  <string name="language_chinese">خەنچە</string>
+  <string name="language_japanese">ياپونچە</string>
+  <string name="language_thai">تايلاندچە</string>
+  <string name="language_hindi">ھىندى تىلى</string>
+  <string name="language_indonesian">ھىندونېزىيە تىلى</string>
+  <string name="language_french">فىرانسۇزچە</string>
+  <string name="language_spanish">ئىسپانچە</string>
+  <string name="language_german">گېرمانچە</string>
+  <string name="language_portuguese">پورتۇگالچە</string>
+  <string name="language_swedish">شۋېد تىلى</string>
+  <string name="language_norwegian">نورۋىگىيەچە</string>
+  <string name="language_turkish">تۈركچە</string>
+  <string name="language_tagalog">تاكالو تىلى</string>
+  <string name="language_tamil">تامىلچە</string>
+  <string name="language_turkmen">تۈركمەن تىلى</string>
+  <string name="language_danish">دانىش تىلى</string>
+  <string name="language_korean">كورىيەچە</string>
+  <string name="language_ukrainian">ئۇكرائىنچە</string>
+  <string name="language_sanskrit">سانسىكرىت</string>
+  <string name="language_belarusian">بىلۇروسىيە</string>
+  <string name="language_afrikaans">جەنۇبىي ئافرىقا تىلى</string>
+  <string name="language_icelandic">ئىسلاندچە</string>
+  <string name="language_irish">ئىرېلاندىيە تىلى</string>
+  <string name="language_asturian">ئاۋسترالىيەچە</string>
+  <string name="language_definition">ئىنىقلىما</string>
+  <string name="load_dictionary_button">كۆپ&#8230;</string>
 </resources>

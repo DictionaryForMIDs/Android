@@ -5,14 +5,229 @@
 		put the name of the current language into language_name, e.g. Deutsch
 		if this is the German language file
 	-->
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">LOCALIZED_NAME_OF_THIS_LANGUAGE</string>
   <!--
 		put the name/e-mail/website of the translator (that's probably you)
 		here, it will appear on the about screen; leave empty if you don't
 		want to be mentioned
 	-->
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">USER_INTERFACE_TRANSLATOR_NAME</string>
+  <string name="app_name">DictionaryForMIDs</string>
+  <string name="no_files">Walang nakitang file.</string>
+  <string name="to_top">/ (ibabaw)</string>
+  <string name="to_upper_level">.. (itaas)</string>
+  <string name="to_sdcard">/sdcard</string>
+  <string name="title_please_wait">Maghintay lamang</string>
+  <string name="msg_searching">Naghahanap&#8230;</string>
+  <string name="copy_all">Kopyahin lahat</string>
+  <string name="copy_word">Kopyahin: %1$s</string>
+  <string name="not_found">hindi nakita</string>
+  <string name="no_included_dictionaries">Hindi kasama sa mga diksyonaryo.\n\nTapikin ito upang mag-download ng isa.</string>
+  <string name="no_starred_words">Walang naka-star na mga salitang natagpuan.\n\nTapikin ang icon ng bituin ng isang entry sa diksyunaryo upang i-star ito.</string>
+  <string name="starred_words_current_dictionary">Kasalukuyan: %1$d</string>
+  <string name="starred_words_all_dictionaries">Lahat: %1$d</string>
+  <string name="no_recent_dictionaries">Walang na-load na diksyonaryo kamakailan lang.\n\nTapikin bago mag-download ng isa.</string>
+  <string name="loading_download_dictionaries">Maaaring maghintay.\n\nNaglo-load ng mga diksyunaryo na magagamit&#8230;</string>
+  <string name="no_download_dictionaries">Paumanhin, kasalukuyang walang mga diksyunaryong makikita sa pag-download.</string>
+  <string name="msg_error_downloading_available_dictionaries">May error na naganap habang nagdo-download ng mga listahan ng mga diksyunaryo na magagamit.\n\n\nTapikin dito upang subukan muli.\n\n\nMga detalye:\n%1$s</string>
+  <string name="msg_error_dictionary_not_found">Ang diksyunaryo na may id na %1$d ay kasalukuyang hindi magagamit.</string>
+  <string name="msg_error_accessing_storage">Ang External storage ay hindi maa-access. Pakisigurado na ang iyong device ay hindi konektado sa USB.\n\nKasalukuyang estado ng storage: %1$s</string>
+  <string name="msg_suggest_update">Bersyon ng iyong DictionaryForMIDs ay luma na. Paki-update bago mag-download ng mga diksyunaryo.\nI-update ng ngayon?</string>
+  <string name="msg_suggest_update_with_message">Ang bersyon ng iyong DictionaryForMIDs ay luma na. Paki-update bago mag-download ng mga diksyunaryo.\nI-update na ngayon?\n\nMga Detalye: %1$s</string>
+  <string name="msg_confirm_installation">I-download at i-install ang \"%1$s\" diskyunaryo?\nKalakihan: hindi tiyak</string>
+  <string name="msg_confirm_installation_size">I-download at i-install ang \"%1$s\" diskyunaryo?\nKalakihan: %2$s</string>
+  <string name="msg_installation_exception">Exception habang nag-i-install:\n%1$s</string>
+  <string name="msg_installation_exception_cause">Exception habang nag-i-install:\n%1$s\n\nSanhi\n%1$s</string>
+  <string name="msg_installation_already_started">Paumanhin, aktibo na ang pag-install.</string>
+  <string name="msg_installation_started">Ang pag-install ay maaaring tumagal ng sandali, puwede ka ng magpatuloy sa paggamit ng aplikasyon.</string>
+  <string name="msg_auto_installation_started">Nagdo-download ng \"%1$s\" ng diksyunaryo, tatagal ito ng ilang sandali.\n\nMaaari mong i-exit ang aplikasyon ngayon, ang progreso ay makikita sa status bar.</string>
+  <string name="msg_installation_finished">Diksyunaryo ay na-install!</string>
+  <string name="msg_list_already_downloaded">Ang mga listahan ay nai-download na.</string>
+  <string name="msg_installation_error">Error ang pag-install</string>
+  <string name="msg_external_storage_inaccessible">Ang External na storage ay kasalukuyang hindi ma-access.</string>
+  <string name="msg_exported_starred_words">Matagumpay nai-export ang mga salita sa external na storage.</string>
+  <string name="msg_error_parsing_integer_preference">Paumanhin, hindi matatanggap ang numero. Binalik ang value sa default.</string>
+  <string name="title_exception">Bukod</string>
+  <string name="exception_failed_create_directory">Nabigo ang paglikha ng direktoryo: %1$s</string>
+  <string name="exception_failed_create_file">Nabigo ang paglikha ng file: %1$s</string>
+  <string name="exception_failed_delete_file">Nabigo ang pagtanggal ng file: %1$s</string>
+  <string name="title_installation_finished">Tapos na</string>
+  <string name="msg_successfully_installed_dictionary">Matagumpay na-install ang diksyunaryo.</string>
+  <string name="msg_installation_complete">Kumpleto na ang pag-install</string>
+  <string name="title_installation_status">Estado ng pag-install</string>
+  <string name="msg_installing_dictionary">Pag-install ng diksyunaryo&#8230;</string>
+  <string name="msg_installation_aborted">Ang pag-install ay na-abort sa pamamagitan ng user.</string>
+  <string name="msg_installation_status">Estado: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">Sa archive \"%1$s\" walang entry na tumutugma sa sumusunod na pattern na \"%2$s\"</string>
+  <string name="unit_byte">B</string>
+  <string name="unit_kilo_byte">KB</string>
+  <string name="unit_mega_byte">MB</string>
+  <string name="unit_giga_byte">GB</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_maximum">Higit pa sa %1$d (pinakataas) mga resulta ang nakita.</string>
+  <string name="results_found_cancel">%1$d (mga) resulta na natagpuan bago ang pagkansela.</string>
+  <string name="results_found_timeout">%1$d (mga) resulta ang natukoy bago ang timeout.</string>
+  <string name="results_found">%1$d mga resulta ang nakita.</string>
+  <string name="results_found_one">1 resulta ang nakita.</string>
+  <string name="no_results_found">Paumanhin, walang mga resultang nakita.</string>
+  <string-array name="font_sizes">
+    <item>10sp</item>
+    <item>11sp</item>
+    <item>12sp</item>
+    <item>13sp</item>
+    <item>14sp</item>
+    <item>15sp</item>
+    <item>16sp</item>
+    <item>17sp</item>
+    <item>18sp</item>
+    <item>19sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
+  </string-array>
+  <string-array name="themes">
+    <item>Default na System</item>
+    <item>Madilim</item>
+    <item>Banayad</item>
+  </string-array>
+  <string name="title_translation_error">Naganap ang error sa pagsalin.</string>
+  <string name="msg_translation_error">Mga detalye:\n\n%1$s</string>
+  <string name="msg_translation_cancelled">Kinansela ang pagsasalin.</string>
+  <string name="menu_dictionary">Diksyonaryo</string>
+  <string name="menu_preferences">Kagustuhan</string>
+  <string name="menu_about">Tungkol sa</string>
+  <string name="menu_help">Tulong</string>
+  <string name="menu_starred">Naka-star</string>
+  <string name="menu_export_all_starred">I-export lahat</string>
+  <string name="menu_download_dictionaries">Mano-manong i-download&#8230;</string>
+  <string name="menu_find_hidden_dictionaries">Muling idagdag ang nakatago</string>
+  <string name="msg_enter_word_first">Mangyaring magpasok ng isang salita muna.</string>
+  <string name="menu_reload_dictionary_list">I-reload ang listahan</string>
+  <string name="menu_cancel_installation">Kanselahin ang pag-install</string>
+  <string name="menu_reinstall_default_dictionary">Muling i-install ang default na diksyunaryo</string>
+  <string name="msg_load_dictionary_first">Paki-load muna ang diksyunaryo.</string>
+  <string name="msg_reload_dictionary">Paki-reload ang diksyonaryo.</string>
+  <string name="msg_exception">Ang Exception ay naganap:\n%1$s</string>
+  <string name="msg_restart_app_after_settings_changed">I-restart ang application para magkabisa ang mga setting.</string>
+  <string name="button_ok">OK</string>
+  <string name="button_cancel">Kanselahin</string>
+  <string name="button_do_not_show_again">Huwag ipakita muli</string>
+  <string name="button_exit">Lumabas</string>
+  <string name="msg_download_dictionaries">Ang pag-download ng isang diksyunaryo ay nagsasangkot ng 4 na hakbang (ipinapalagay ng sumusunod na mayroon kang isang file manager tulad ng naka-install na Astro):\n\n1.Pumili at i-download ang isang diksyunaryo sa website na binuksan tapos na kumpirmahin ang dialog na ito. Tandaan: Ang mga diksyunaryo lamang ng bersyon 2.4.4 o mas mataas ay suportado.\n\n2.I-extract ang nilalaman ng zip-file sa isang direktoryo sa iyong SD-card (hal. Gamit ang Astro).\n\n3.Opsyonal: I-extract ang kasamang mga jar-file ng nilalaman papunta sa iyong SD-card para sa mas mabilis na mga look-ups.\n\n4.Piliin ang diksyunaryo sa dati na ipinapakita na dialog.\n\nBilang alternatibo, maaari mong i-download at i-extract ang diksyunaryo gamit ang iyong PC, pagkatapos ilipat ang mga file sa iyong sd-card.</string>
+  <string name="msg_clear_recent_dictionaries_list">I-clear ang listahan ng mga kamakailang mga diksyunaryo?</string>
+  <string name="msg_cancel_installation">Kanselahin ang kasalukuyang pag-install?</string>
+  <string name="msg_load_dictionary">Mag-load ka ba ng bagong diksyunaryo ngayon?\n\n Maaari mong i-load palagi ito sa ibang pagkakataon mula sa listahan ng mga kamakailang diksyunaryo.</string>
+  <string name="button_load_dictionary_from_current_directory">I-load ang diksyunaryo mula sa kasalukuyang direktoryo</string>
+  <string name="msg_dictionary_error">Error ng Diksyunaryo</string>
+  <string name="msg_dictionary_not_found">Hindi nai-load ang diksyunaryo.\n\n Maaari kang pumili ng diksyunaryo sa sumsunod na dialog.</string>
+  <string name="msg_dictionary_load_error">Error habang naglo-load ng diksyunaryo.</string>
+  <string name="msg_internal_dictionary_load_error">Error habang naglo-load ng internal na diksyunaryo.\n\n%1$s</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="msg_no_dictionary">Ang napiling item ay hindi tulad ng isang diksyonaryo.</string>
+  <string name="title_load_dictionary">Mag-load ng Diksyunaryo&#8230;</string>
+  <string name="msg_auto_install">Mukhang hindi mo pa na-install ang iyong default na diksyunaryo.\n\nGusto mo bang i-download at i-install ito ngayon?</string>
   <!--
 		specifies a translation direction, e.g. English -> German; if this
 		language is right-to-left you may want to swap %1$s and %2$s as well
 		as replace &#8594; (right-arrow) with &#8592; (left-arrow)
 	-->
+  <string name="title_load_dictionary_first">Paki-load muna ang diksyunaryo.</string>
+  <string name="title_about_heading">Java aplikasyon DictionaryForMIDs</string>
+  <string name="title_about_copyright_owner">Copyright ni Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) at iba pang mga nag-aambag.</string>
+  <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+  <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">Bersyon: %1$s</string>
+  <string name="title_about_copyright">DictionaryForMIDs ang Java application ay libreng software: maaari mong ipamahagi ito at/o baguhin
+    ito ay sa ilalim ng mga tuntunin ng GNU General Public License na inilathala ng
+    Free Software Foundation; alinman sa bersyon 2 ng Lisensya, o
+    (sa iyong opsyon) anumang susunod na bersyon. Tingnan ang file COPYING o http://www.gnu.org/licenses/\n\nAng program na ito ay ipinamamahagi sa pag-asa na ito ay magiging kapaki-pakinabang,
+    ngunit WALANG ANUMANG WARRANTY; nang walang kahit na ang ipinahiwatig na warranty ng
+    MERCHANTABILITY o KAANGKUPAN PARA SA ISANG PARTIKULAR NA LAYUNIN. Tingnan ang
+    GNU General Public License para sa higit pang mga detalye.</string>
+  <string name="title_about_dictionary">Diksyunaryo:</string>
+  <string name="title_about_ui_translation">Localization:</string>
+  <string name="title_about_translation_request">Tulungan kaming isalin ang app na ito sa iyong wika o pahusayin ang mga umiiral na pagsasalin sa http://crowdin.net/project/dictionaryformids</string>
+  <string name="title_information">Impormasyon</string>
+  <string name="title_welcome">Maligayang pagdating!</string>
+  <string name="title_seconds">%1$d sec</string>
+  <string name="msg_first_run">Mukhang nagru-run ka sa programang ito sa unang pagkakataon! Maaaring pumili ng isang diksyunaryo gamit ang sumusunod na screen.</string>
+  <string name="msg_slow_archive_loading">Kinansela ang pagsasalin pagkatapos ng timeout.\nMaaari mong pabilisin ang pagsasalin sa pamamagitan ng pag-extract ng naka-archive na diksyunaryo sa isang folder sa iyong SD-card at pagpili sa folder na ito bilang diksyunaryo. Bilang alternatibo maaari mong dagdagan ang timeout sa dialog ng mga kagustuhan.</string>
+  <string name="msg_parsing_error">Error sa pag-parse ng mapagkukunan.\n\n%1$s</string>
+  <string name="msg_extract_dictionary">Ang napiling archive ay hindi mai-load, ngunit tila isama ang isang compressed na diksyunaryo. Mangyaring i-extract ang kasama na jar-file.</string>
+  <string-array name="search_mode">
+    <item>Standard</item>
+    <item>Mga salita na tumutugma sa termino sa paghahanap</item>
+    <item>Mga salita na nagsisimula sa term ng paghahanap</item>
+    <item>Mga salita kabilang ang terminong ginamit sa paghahanap</item>
+  </string-array>
+  <string name="title_help">DictionaryForMIDs Help</string>
+  <string name="desc_see_website">Tingnan ang website para sa karagdagang impormasyon:\n%1$s</string>
+  <string name="tab_load_recent">Kamakailan</string>
+  <string name="tab_load_from_file">Mula sa file</string>
+  <string name="tab_load_included">Kasama</string>
+  <string name="tab_load_download">I-download</string>
+  <string name="title_activity_about">Tungkol sa Screen</string>
+  <string name="title_activity_help">Tulong sa Screen</string>
+  <string name="title_activity_choose_dictionary">Pumili ng diksyunaryo</string>
+  <string name="title_activity_file_list">Pumili ng diksyunaryo</string>
+  <string name="title_activity_dictionary_list">Pumili ng diksyunaryo</string>
+  <string name="title_activity_recent_list">Pumili ng diksyunaryo</string>
+  <string name="title_activity_preferences">Kagustuhan</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_remove_from_list">Tanggalin mula sa listahan</string>
+  <string name="summary_pref_ignore_font_style_unchecked">Ang mga resulta ay ipinapakita gamit ang estilo ng system.</string>
+  <string name="language_english">Ingles</string>
+  <string name="language_esperanto">Esperanto</string>
+  <string name="language_vietnamese">Vietnamese</string>
+  <string name="language_chinese">Chinese</string>
+  <string name="language_japanese">Hapon</string>
+  <string name="language_thai">Thai</string>
+  <string name="language_hindi">Hindi</string>
+  <string name="language_indonesian">Indonesian</string>
+  <string name="language_french">French</string>
+  <string name="language_spanish">Espanyol</string>
+  <string name="language_german">German</string>
+  <string name="language_italian">Italyano</string>
+  <string name="language_latin">Latin</string>
+  <string name="language_russian">Russian</string>
+  <string name="language_arabic">Arabo</string>
+  <string name="language_czech">Czech</string>
+  <string name="language_slovak">Slovak</string>
+  <string name="language_bulgarian">Bulgarian</string>
+  <string name="language_catalan">Catalan</string>
+  <string name="language_persian">Persian</string>
+  <string name="language_finnish">Finnish</string>
+  <string name="language_greek">Greek</string>
+  <string name="language_hebrew">Hebrew</string>
+  <string name="language_croatian">Croatian</string>
+  <string name="language_hungarian">Hungarian</string>
+  <string name="language_lithuanian">Lithuanian</string>
+  <string name="language_dutch">Dutch</string>
+  <string name="language_polish">Polish</string>
+  <string name="language_portuguese">Portuguese</string>
+  <string name="language_swedish">Swedish</string>
+  <string name="language_norwegian">Norwegian</string>
+  <string name="language_turkish">Turkish</string>
+  <string name="language_tagalog">Tagalog</string>
+  <string name="language_tamil">Tamil</string>
+  <string name="language_turkmen">Turkmen</string>
+  <string name="language_danish">Danish</string>
+  <string name="language_korean">Korean</string>
+  <string name="language_swahili">Swahili</string>
+  <string name="language_macedonian">Macedonian</string>
+  <string name="language_occitan">Occitan</string>
+  <string name="language_ukrainian">Ukrainian</string>
+  <string name="language_sanskrit">Sanskrit</string>
+  <string name="language_belarusian">Belarusian</string>
+  <string name="language_afrikaans">Afrikaans</string>
+  <string name="language_scottish_gaelic">Scottish Gaelic</string>
+  <string name="language_icelandic">Icelandic</string>
+  <string name="language_welsh">Welsh</string>
+  <string name="language_irish">Irish</string>
+  <string name="language_asturian">Asturian</string>
 </resources>

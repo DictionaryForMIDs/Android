@@ -5,14 +5,251 @@
 		put the name of the current language into language_name, e.g. Deutsch
 		if this is the German language file
 	-->
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">Norsk bokmål</string>
   <!--
 		put the name/e-mail/website of the translator (that's probably you)
 		here, it will appear on the about screen; leave empty if you don't
 		want to be mentioned
 	-->
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">Kim Andre R</string>
+  <string name="app_name">OrdbokForMID</string>
+  <string name="no_files">Ingen filer funnet.</string>
+  <string name="to_top">/ (topp)</string>
+  <string name="to_upper_level">.. (opp)</string>
+  <string name="to_sdcard">/SD-kort</string>
+  <string name="title_please_wait">Vennligst vent</string>
+  <string name="msg_searching">Søker&#8230;</string>
+  <string name="copy_all">Kopiér alt</string>
+  <string name="copy_word">Kopiér: %1$s</string>
+  <string name="not_found">ikke funnet</string>
+  <string name="no_included_dictionaries">Ingen inkluderte ordbøker funnet.\n\nTrykk her for å laste ned en.</string>
+  <string name="no_starred_words">Ingen stjernemerkede ord funnet.\n\nTrykk på stjerneikonet til et ord for å stjernemerke det.</string>
+  <string name="starred_words_current_dictionary">Nåværende: %1$d</string>
+  <string name="starred_words_all_dictionaries">Alt: %1$d</string>
+  <string name="no_recent_dictionaries">Ingen nylig nedlastede ordbøker funnet.\n\nTrykk her for å laste ned en.</string>
+  <string name="loading_download_dictionaries">Vennligst vent.\n\nLaster inn tilgjengelige ordbøker&#8230;</string>
+  <string name="no_download_dictionaries">Beklager, det er for tiden ingen ordbøker tilgjengelige for nedlasting.</string>
+  <string name="msg_error_downloading_available_dictionaries">En feil oppsto under nedlastingen av listen over tilgjengelige ordbøker.\n\n\nTrykk her for å prøve igjen.\n\n\nDetaljer:\n%1$s</string>
+  <string name="msg_error_dictionary_not_found">Ordboken med ID-en %1$d er for tiden utilgjengelig.</string>
+  <string name="msg_error_accessing_storage">Ekstern lagring er utilgjengelig. Vennligst sørg for at enheten din ikke er tilkoblet via USB.\n\nNåværende lagringsstatus: %1$s</string>
+  <string name="msg_suggest_update">Versjonen din av OrdbokForMID er utdatert. Vennligst oppdatér før du laster ned ordbøker.\nOppdatér nå?</string>
+  <string name="msg_suggest_update_with_message">Versjonen din av OrdbokForMID er utdatert. Vennligst oppdatér før du laster ned ordbøker.\nOppdatér nå?\n\nDetaljer: %1$s</string>
+  <string name="msg_confirm_installation">Last ned og installér ordboken \"%1$s\"?\nStørrelse: ukjent</string>
+  <string name="msg_confirm_installation_size">Last ned og installér ordboken \"%1$s\"?\nStørrelse: %2$s</string>
+  <string name="msg_installation_exception">Unntak under installasjonen av:\n%1$s</string>
+  <string name="msg_installation_exception_cause">Unntak under installasjonen av\n%1$s\n\nGrunn:\n%1$s</string>
+  <string name="msg_installation_already_started">Beklager, en installasjon er allerede i gang.</string>
+  <string name="msg_installation_started">Installasjonen kan ta en stund, du kan fortsette å bruke programmet.</string>
+  <string name="msg_auto_installation_started">Laster ned ordboken \"%1$s\", dette kan ta en stund.\n\nDu kan avslutte programmet nå, fremgangen vises på statuslinjen.</string>
+  <string name="msg_installation_finished">Ordbok installert!</string>
+  <string name="msg_list_already_downloaded">Listen blir alt lastet ned.</string>
+  <string name="msg_installation_error">Installasjonsfeil</string>
+  <string name="msg_external_storage_inaccessible">Ekstern lagring er for tiden utilgjengelig.</string>
+  <string name="msg_exported_starred_words">Vellykket eksportert ord til ekstern lagring.</string>
+  <string name="msg_error_parsing_integer_preference">Beklager, kunne ikke gjenkjenne nummer. Tilbakestilte verdi til standard.</string>
+  <string name="title_exception">Unntak</string>
+  <string name="title_activity_starred_words">Stjernemerkede ord</string>
+  <string name="exception_failed_create_directory">Kunne ikke lage katalogen: %1$s</string>
+  <string name="exception_failed_create_file">Kunne ikke lage filen: %1$s</string>
+  <string name="exception_failed_delete_file">Kunne ikke fjerne filen: %1$s</string>
+  <string name="title_installation_finished">Fullført</string>
+  <string name="msg_successfully_installed_dictionary">Vellykket installert ordbok.</string>
+  <string name="msg_installation_complete">Installasjon fullført</string>
+  <string name="title_installation_status">Installasjonsstatus</string>
+  <string name="msg_installing_dictionary">Installerer ordbok&#8230;</string>
+  <string name="msg_installation_aborted">Installasjon avbrutt av bruker.</string>
+  <string name="msg_installation_status">Status: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">Det var ingen innlegg som samsvarte med mønsteret \"%2$s\" i arkivet \"%1$s\"</string>
+  <string name="unit_byte">B</string>
+  <string name="unit_kilo_byte">KB</string>
+  <string name="unit_mega_byte">MB</string>
+  <string name="unit_giga_byte">GB</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_maximum">Mer enn %1$d (maksimum) resultater funnet.</string>
+  <string name="results_found_cancel">%1$d resultat(er) funnet før avbryting.</string>
+  <string name="results_found_timeout">%1$d resultat(er) funnet før tidsavbrudd.</string>
+  <string name="results_found">%1$d resultater funnet.</string>
+  <string name="results_found_one">1 resultat funnet.</string>
+  <string name="no_results_found">Beklager, ingen resultater funnet.</string>
+  <string-array name="font_sizes">
+    <item>10sp</item>
+    <item>11sp</item>
+    <item>12sp</item>
+    <item>13sp</item>
+    <item>14sp</item>
+    <item>15sp</item>
+    <item>16sp</item>
+    <item>17sp</item>
+    <item>18sp</item>
+    <item>19sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
+  </string-array>
+  <string-array name="themes">
+    <item>Systemstandard</item>
+    <item>Mørk</item>
+    <item>Lys</item>
+  </string-array>
+  <string name="title_translation_error">Oversettelsesfeil oppstod.</string>
+  <string name="msg_translation_error">Detaljer:\n\n%1$s</string>
+  <string name="msg_translation_cancelled">Oversettelse avbrutt.</string>
+  <string name="menu_dictionary">Ordbok</string>
+  <string name="menu_preferences">Innstillinger</string>
+  <string name="menu_about">Om</string>
+  <string name="menu_help">Hjelp</string>
+  <string name="menu_starred">Stjernemarkert</string>
+  <string name="menu_export_all_starred">Eksporter alt</string>
+  <string name="menu_download_dictionaries">Last ned manuelt&#8230;</string>
+  <string name="menu_find_hidden_dictionaries">Legg til skjult igjen</string>
+  <string name="menu_clear_recent_dictionary_list">Fjern nylig&#8230;</string>
+  <string name="msg_enter_word_first">Skriv inn ett ord først.</string>
+  <string name="menu_reload_dictionary_list">Oppdater liste</string>
+  <string name="menu_cancel_installation">Avbryt installasjonen</string>
+  <string name="menu_reinstall_default_dictionary">Re-installer standardordlisten</string>
+  <string name="msg_load_dictionary_first">Velg en ordbok først.</string>
+  <string name="msg_reload_dictionary">Vennligst last inn ordboken på nytt.</string>
+  <string name="msg_exception">Det oppstod et unntak:\n%1$s</string>
+  <string name="msg_restart_app_after_settings_changed">Start programmet på nytt for at innstillingene skal tre i kraft.</string>
+  <string name="button_ok">OK</string>
+  <string name="button_cancel">Avbryt</string>
+  <string name="button_do_not_show_again">Ikke vis dette igjen</string>
+  <string name="button_exit">Avslutt</string>
+  <string name="msg_download_dictionaries">Å laste ned en ordbok omfatter 4 trinn (følgende forutsetter at du har en filbehandler som f.eks Astro installert):\n\n1.Velg og last ned en ordbok på webområdet som åpnes etter at du bekrefter denne dialogboksen. Merk: Bare ordbøker med version 2.4.4 eller høyere er støttet.\n\n2. Pakk ut zip-filinnholdet i en mappe på SD-kortet (f.eks ved hjelp av Astro).\n\n3. Valgfritt: Ekstraher jar filens innehold til SD-kortet for kjappere søk.\n\n4. Velg ordlisten i den tidligere viste dialogboksen.\n\n.Alternativt kan du laste ned og ekstrahere innholdet på en PC og overføre filene derifra til ditt SD-kort.</string>
+  <string name="msg_clear_recent_dictionaries_list">Fjern listen over siste ordbøker?</string>
+  <string name="msg_cancel_installation">Avbryte den pågående installasjonen?</string>
+  <string name="msg_load_dictionary">Last inn ny ordbok nå?\n\nDu kan laste den inn senere fra listen over siste ordbøker.</string>
+  <string name="button_load_dictionary_from_current_directory">Last inn ordbok fra gjeldende mappe</string>
+  <string name="msg_dictionary_error">Ordboksfeil</string>
+  <string name="msg_dictionary_not_found">Ordboken kunne ikke lastes inn.\n\nDu kan velge en ordbok på neste skjermbilde.</string>
+  <string name="msg_dictionary_load_error">Feil under lasting av ordbok.</string>
+  <string name="msg_internal_dictionary_load_error">Feil under innlasting av interne ordbøker.\n\n%1$s</string>
+  <string name="title_current_path">&gt; %1$s</string>
+  <string name="msg_no_dictionary">Det valgte elementet ser ikke ut som er en ordbok.</string>
+  <string name="title_load_dictionary">Last inn ordbok&#8230;</string>
+  <string name="msg_auto_install">Det ser ut som du ikke har installert en standard ordbok enda.\n\nVil du laste ned og installere en nå?</string>
   <!--
 		specifies a translation direction, e.g. English -> German; if this
 		language is right-to-left you may want to swap %1$s and %2$s as well
 		as replace &#8594; (right-arrow) with &#8592; (left-arrow)
 	-->
+  <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="title_load_dictionary_first">Velg en ordbok først.</string>
+  <string name="title_about_heading">Java applikasjon DictonaryForMIDs</string>
+  <string name="title_about_copyright_owner">Opphavsrett av Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) og andre birdragsytere.</string>
+  <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+  <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">Versjon: %1$s</string>
+  <string name="title_about_copyright">DictionaryForMIDs sin Java applikasjon er fri programvare: du kan redistribuere det og/eller endre det under betingelsene i GNU General Public License utgitt av Free Software Foundation; enten versjon 2 av lisensen, eller (hvis du ønsker) enhver senere versjon. Se fil kopiering eller http://www.gnu.org/licenses/ \n\nDette programmet er distribuert i håp at det vil være nyttig, men uten noen garanti; Ikke engang en garantien for egnethet for ett bestemt formål. Se GNU General Public License for mer informasjon.</string>
+  <string name="title_about_dictionary">Ordbok:</string>
+  <string name="title_about_ui_translation">Lokalisering:</string>
+  <string name="title_about_translation_request">Hjelp oss å oversette denne appen til ditt språk eller hjelp til å forbedre eksisterende oversettelser på http://crowdin.net/project/dictionaryformids</string>
+  <string name="title_information">Info</string>
+  <string name="title_welcome">Velkommen!</string>
+  <string name="title_seconds">%1$d sek</string>
+  <string name="msg_first_run">Det ser ut som du kjører dette programmet for første gang! Velg en ordbok på neste skjermbilde.</string>
+  <string name="msg_slow_archive_loading">Oversettelsen ble annullert etter en timeout.\nDu kan fremskynde oversettelsen ved å pakke ut arkivet til ordboken i en mappe på SD-kortet og velge denne mappen som din ordbok. Alternativt kan du øke tidsavbruddlengden i innstillingene.</string>
+  <string name="msg_parsing_error">Feil under analyse av resurs.\n\n%1$s</string>
+  <string name="msg_extract_dictionary">Det valgte arkivet kan ikke lastes inn, men ser ut til å inneholde en komprimert ordliste. Vennligst pakk ut den inkluderte jar-filen først.</string>
+  <string-array name="search_mode">
+    <item>Standard</item>
+    <item>Ord som matcher søkeord</item>
+    <item>Ord som begynner med søkeord</item>
+    <item>Ord som inkluderer søkeord</item>
+  </string-array>
+  <string name="title_help">DictionaryForMIDs Hjelp</string>
+  <string name="desc_help">Bruk jokertegn for mer presise søk: \n%1$c Matcher alle karakterer\n%2$c Matcher enkeltstående karakterer\n\nFor å kontrollere deluttrykkssøk: \n%3$c som det første tegnet gir resultater som starter med ditt søkeparameter\n%4$c etter oppføringen gir resultater som slutter med det.\n\nOBS: Å legge til jokertegn overstyrer søkeinnstillingene.</string>
+  <string name="desc_see_website">Se nettsiden vår for mer informasjon:\n%1$s</string>
+  <string name="tab_load_recent">Siste</string>
+  <string name="tab_load_from_file">Fra fil</string>
+  <string name="tab_load_included">Inkludert</string>
+  <string name="tab_load_download">Nedlastninger</string>
+  <string name="title_activity_about">Om skjermen</string>
+  <string name="title_activity_help">Hjelp skjermen</string>
+  <string name="title_activity_choose_dictionary">Velg ordbok</string>
+  <string name="title_activity_file_list">Velg ordbok</string>
+  <string name="title_activity_dictionary_list">Velg ordbok</string>
+  <string name="title_activity_recent_list">Velg ordbok</string>
+  <string name="title_activity_preferences">Innstillinger</string>
+  <string name="title_activity_install_dictionary">Installer ordboken</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_remove_from_list">Fjern fra listen</string>
+  <string name="app_description">DictionaryForMIDs er en gratis flerspråklig ordbok for mobiltelefoner og PDAer</string>
+  <string name="hint_enter_word">Skriv inn ordet som skal oversettes</string>
+  <string name="hint_filter">Filter</string>
+  <string name="title_pref_search_options">Søkealternativer</string>
+  <string name="title_pref_search_mode">Søkemodus</string>
+  <string name="title_pref_max_results">Maks resultater</string>
+  <string name="title_pref_timeout">Tidsavbrudd for søk</string>
+  <string name="title_pref_search_as_you_type">Søk mens du skriver</string>
+  <string name="title_pref_display_options">Visningsalternativer</string>
+  <string name="title_pref_result_font_size">Skriftstørrelse for resultater</string>
+  <string name="title_pref_ignore_font_styles">Bruk systemets stiler</string>
+  <string name="title_pref_language_code">Språk</string>
+  <string name="title_pref_advanced_features">Avanserte funksjoner</string>
+  <string name="title_pref_enable_starred_words">Aktiver stjernemarkerte ord</string>
+  <string name="title_pref_theme">Tema</string>
+  <string name="title_default_language_code">Standard</string>
+  <string name="summary_pref_ignore_font_style_checked">Resultatene vises med stil definert av ordboken.</string>
+  <string name="summary_pref_ignore_font_style_unchecked">Resultatene vises med systemets stil.</string>
+  <string name="language_english">Engelsk</string>
+  <string name="language_esperanto">Esperanto</string>
+  <string name="language_vietnamese">Vietnamesisk</string>
+  <string name="language_chinese">Kinesisk</string>
+  <string name="language_japanese">Japansk</string>
+  <string name="language_thai">Thailandsk</string>
+  <string name="language_hindi">Hindi</string>
+  <string name="language_indonesian">Indonesisk</string>
+  <string name="language_french">Fransk</string>
+  <string name="language_spanish">Spansk</string>
+  <string name="language_german">Tysk</string>
+  <string name="language_italian">Italiensk</string>
+  <string name="language_latin">Latin</string>
+  <string name="language_russian">Russisk</string>
+  <string name="language_arabic">Arabisk</string>
+  <string name="language_czech">Tsjekkisk</string>
+  <string name="language_slovak">Slovakisk</string>
+  <string name="language_bulgarian">Bulgarsk</string>
+  <string name="language_catalan">Katalansk</string>
+  <string name="language_persian">Persisk</string>
+  <string name="language_finnish">Finsk</string>
+  <string name="language_greek">Gresk</string>
+  <string name="language_hebrew">Hebraisk</string>
+  <string name="language_croatian">Kroatisk</string>
+  <string name="language_hungarian">Ungarsk</string>
+  <string name="language_lithuanian">Litauisk</string>
+  <string name="language_dutch">Nederlandsk</string>
+  <string name="language_polish">Polsk</string>
+  <string name="language_portuguese">Portugisisk</string>
+  <string name="language_swedish">Svensk</string>
+  <string name="language_norwegian">Norsk</string>
+  <string name="language_turkish">Tyrkisk</string>
+  <string name="language_tagalog">Tagalog</string>
+  <string name="language_tamil">Tamilsk</string>
+  <string name="language_turkmen">Turkmensk</string>
+  <string name="language_danish">Dansk</string>
+  <string name="language_korean">Koreansk</string>
+  <string name="language_swahili">Swahili</string>
+  <string name="language_macedonian">Makedonsk</string>
+  <string name="language_occitan">Oksitansk</string>
+  <string name="language_ukrainian">Ukrainsk</string>
+  <string name="language_sanskrit">Sanskrit</string>
+  <string name="language_belarusian">Hviterussisk</string>
+  <string name="language_afrikaans">Afrikaans</string>
+  <string name="language_scottish_gaelic">Skotsk-gælisk</string>
+  <string name="language_icelandic">Islandsk</string>
+  <string name="language_welsh">Walisisk</string>
+  <string name="language_irish">Irsk</string>
+  <string name="language_asturian">Asturiansk</string>
+  <string name="language_definition">Definisjon</string>
+  <string name="load_dictionary_button">Mer&#8230;</string>
+  <plurals name="open_dictionary_drawer">
+    <item quantity="one"><![CDATA[Ett aktivt språk. <a href="#">Change…</a>]]></item>
+    <item quantity="other"><![CDATA[%1$d aktive språk. <a href="#">Change…</a>]]></item>
+  </plurals>
 </resources>

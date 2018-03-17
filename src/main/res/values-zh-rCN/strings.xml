@@ -119,6 +119,7 @@
   <string name="button_cancel">取消</string>
   <string name="button_do_not_show_again">不再显示</string>
   <string name="button_exit">离开</string>
+  <string name="msg_download_dictionaries">下载字典涉及4步骤 (以下假设您有一个像安装了天文的文件管理器): \n n1。选择并下载在确认此对话框后打开的网站上的词典。注意: 只支持2.4.4 或更高版本的字典. n2。将 zip 文件的内容解压到您的 SD 卡上的一个目录 (例如使用 \"阿童木\"). n3。可选: 将包含的 jar 文件内容解压到您的 SD 卡上, 以获得更快的查找.-n4-。在前面显示的对话框中选择词典. nAlternatively, 您可以下载并使用您的电脑提取词典, 然后将文件传输到您的 sd 卡。</string>
   <string name="msg_clear_recent_dictionaries_list">清除最近使用的辞典列表?</string>
   <string name="msg_cancel_installation">取消当前的安装?</string>
   <string name="msg_load_dictionary">现在载入新辞典?\n\n您也可以稍后使用最近辞典列表载入它。</string>
@@ -216,4 +217,38 @@
   <string name="language_bulgarian">保加利亚文</string>
   <string name="language_catalan">加泰罗尼亚文</string>
   <string name="language_persian">波斯文</string>
+  <string name="language_finnish">芬蘭文</string>
+  <string name="language_greek">希腊文</string>
+  <string name="language_hebrew">希伯来文</string>
+  <string name="language_croatian">克罗地亚文</string>
+  <string name="language_hungarian">匈牙利文</string>
+  <string name="language_lithuanian">立陶宛文</string>
+  <string name="language_dutch">荷兰文</string>
+  <string name="language_polish">波兰语</string>
+  <string name="language_portuguese">葡萄牙文</string>
+  <string name="language_swedish">瑞典语</string>
+  <string name="language_norwegian">挪威文</string>
+  <string name="language_turkish">土耳其文</string>
+  <string name="language_tagalog">他加禄语</string>
+  <string name="language_tamil">泰米尔文</string>
+  <string name="language_turkmen">土库曼语</string>
+  <string name="language_danish">丹麦语</string>
+  <string name="language_korean">韩语</string>
+  <string name="language_swahili">斯瓦希里文</string>
+  <string name="language_macedonian">马其顿文</string>
+  <string name="language_occitan">欧西坦语</string>
+  <string name="language_ukrainian">乌克兰语</string>
+  <string name="language_sanskrit">梵文</string>
+  <string name="language_belarusian">白俄罗斯文</string>
+  <string name="language_afrikaans">南非语</string>
+  <string name="language_scottish_gaelic">苏格兰盖尔文</string>
+  <string name="language_icelandic">冰岛语</string>
+  <string name="language_welsh">威尔士</string>
+  <string name="language_irish">爱尔兰语</string>
+  <string name="language_asturian">阿斯图里亚斯文</string>
+  <string name="language_definition">定義</string>
+  <string name="load_dictionary_button">更多&#8230;</string>
+  <plurals name="open_dictionary_drawer">
+    <item quantity="other"><![CDATA[%1$d 活动语言。<a href="#"> 更改... </a>]]></item>
+  </plurals>
 </resources>

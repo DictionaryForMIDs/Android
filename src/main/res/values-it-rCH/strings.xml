@@ -11,8 +11,8 @@
 		here, it will appear on the about screen; leave empty if you don't
 		want to be mentioned
 	-->
-  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">Robert Thomas Dewitt</string>
-  <string name="app_name">DictionaryForMIDs</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned"> </string>
+  <string name="app_name">Dizionario per Mid</string>
   <string name="no_files">Nessun file trovato.</string>
   <string name="to_top">/ (top)</string>
   <string name="to_upper_level">.. (fino)</string>
@@ -41,8 +41,8 @@
   <string name="msg_installation_already_started">Siamo spiacenti, un\'installazione è già attiva.</string>
   <string name="msg_installation_started">Installazione potrebbe richiedere del tempo, è possibile continuare a utilizzare l\'applicazione.</string>
   <string name="msg_auto_installation_started">Download dizionario \"%1$s\", ciò può richiedere un while.\n\nYou può uscire dall\'applicazione ora, il progresso è mostrato nella barra di stato.</string>
-  <string name="msg_installation_finished">Dizionario installato!</string>
-  <string name="msg_list_already_downloaded">Elenco è già in fase di download.</string>
+  <string name="msg_installation_finished">Dizionario Installato!</string>
+  <string name="msg_list_already_downloaded">Elenco è già in fase di scaricamento.</string>
   <string name="msg_installation_error">Errore di installazione</string>
   <string name="msg_external_storage_inaccessible">Archiviazione esterna è attualmente inaccessibile.</string>
   <string name="msg_exported_starred_words">Parole esportate con successo da storage esterno.</string>
@@ -116,7 +116,7 @@
   <string name="msg_exception">Eccezione: \n%1$s</string>
   <string name="msg_restart_app_after_settings_changed">Riavviare l\'applicazione per le impostazioni abbiano effetto.</string>
   <string name="button_ok">OK</string>
-  <string name="button_cancel">Cancelar</string>
+  <string name="button_cancel">Cancelare</string>
   <string name="button_do_not_show_again">Non mostrare ancora</string>
   <string name="button_exit">Uscire</string>
   <string name="msg_download_dictionaries">Scaricare un dizionario include 4 passaggi (seguenti si presuppone un file manager come Astro installato): \n\n1.Scegliere e scaricare un dizionario sito Web che si apre dopo questa finestra di dialogo di conferma. Nota: Soli dizionari della versione 2.4.4 o superiore sono supported.\n\n2.Estrarre il contenuto del file zip in una directory su scheda SD (ad esempio utilizzando Astro).\n\n3.Optional: Estrarre l\'incluso vaso-contenuto del file sulla scheda SD per look-ups.\n\n4 più veloce.Selezionare il dizionario nella dialog.\n\nAlternatively illustrato in precedenza, è possibile scaricare ed estrarre il dizionario utilizzando il PC, quindi trasferire i file nella scheda sd.</string>
@@ -145,6 +145,38 @@
   <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
   <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
   <string name="title_version">Versione: %1$s</string>
+  <string name="title_about_copyright">DictionaryForMID L\'applicazione Java è un software gratuito: è possibile ridistribuirlo e / o modificarlo
+     sotto i termini della GNU General Public License come pubblicata da
+     la Free Software Foundation; o la versione 2 della licenza, o
+     (a tua scelta) qualsiasi versione successiva. Vedi il file COPYING o http://www.gnu.org/licenses/\n\nQuesto programma è distribuito nella speranza che sia utile,
+     ma SENZA ALCUNA GARANZIA; senza nemmeno la garanzia implicita di
+     COMMERCIABILITÀ O IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere il
+     GNU General Public License per maggiori dettagli.</string>
+  <string name="title_about_dictionary">Dizionario:</string>
+  <string name="title_about_ui_translation">Localizzazione:</string>
+  <string name="title_about_translation_request">Aiutaci a tradurre questo app nella tua lingua o migliorare le traduzioni esistenti presso http://crowdin.net/project/dictionaryformids</string>
+  <string name="title_information">Info</string>
+  <string name="title_welcome">Benvenuto!</string>
+  <string name="title_seconds">%1$d sec</string>
+  <string name="msg_first_run">Sembra che questo programma si esegue per la prima volta! Si prega di selezionare un dizionario utilizzando la seguente schermata.</string>
+  <string name="msg_slow_archive_loading">Traduzione è stata annullata dopo un timeout.\nYou potrebbe accelerare traduzione estraendo il dizionario archiviato in una cartella sulla scheda SD e scegliendo questa cartella come dizionario. In alternativa è possibile aumentare il timeout nella finestra di dialogo Preferenze.</string>
+  <string name="msg_parsing_error">Errore durante l\'analisi di risorse.\n\n%1$s</string>
+  <string name="msg_extract_dictionary">L\'archivio selezionato non può essere caricato, ma sembra includere un dizionario compresso. Per prima cosa estrarre il file jar incluso.</string>
+  <string-array name="search_mode">
+    <item>Standard</item>
+    <item>Termine di ricerca di corrispondenza di parole</item>
+    <item>Parole che iniziano con il termine di ricerca</item>
+    <item>Termine di ricerca di corrispondenza di parole</item>
+  </string-array>
+  <string name="title_help">Dizionario per Mid Aiuto</string>
+  <string name="desc_help">Utilizza caratteri jolly per perfezionare la ricerca: \ n% 1 $ c corrisponde a qualsiasi serie di caratteri \ n% 2 $ c corrisponde a qualsiasi singolo carattere \ n \ nPer controllare la ricerca di sottoespressione: \ n% 3 $ c come il primo carattere produce risultati che iniziano con la tua immissione di ricerca \ n% 4 $ c dopo la tua immissione produce risultati che terminano con essa. \ n \ nNota: l\'aggiunta di caratteri jolly sostituisce le preferenze della modalità di ricerca.</string>
+  <string name="desc_see_website">Vedi sito Web per ulteriori informazioni: \n%1$s</string>
+  <string name="tab_load_recent">Recenti</string>
+  <string name="tab_load_from_file">Da file</string>
+  <string name="tab_load_included">Incluso</string>
+  <string name="tab_load_download">Scarica</string>
+  <string name="title_activity_about">Su schermo</string>
+  <string name="title_activity_help">Schermata di aiuto</string>
   <string name="title_activity_choose_dictionary">Scegli il dizionario</string>
   <string name="title_activity_file_list">Scegli il dizionario</string>
   <string name="title_activity_dictionary_list">Scegli il dizionario</string>

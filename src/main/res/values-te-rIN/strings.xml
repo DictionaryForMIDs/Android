@@ -5,14 +5,250 @@
 		put the name of the current language into language_name, e.g. Deutsch
 		if this is the German language file
 	-->
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">భాష_యొక్క _స్థానికీకరించిన_పేరు</string>
   <!--
 		put the name/e-mail/website of the translator (that's probably you)
 		here, it will appear on the about screen; leave empty if you don't
 		want to be mentioned
 	-->
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">వినియోగదారు_ఇంటర్ఫేస్అ_నువాదకుడు_పేరు</string>
+  <string name="app_name">Mids కు నిఘంటువు</string>
+  <string name="no_files">ఫైల్లు కనుగొనబడలేదు.</string>
+  <string name="to_top">\?(టాప్)</string>
+  <string name="to_upper_level">..(అప్)</string>
+  <string name="to_sdcard">/sdకార్డు</string>
+  <string name="title_please_wait">దయచేసి వేచి ఉండండి</string>
+  <string name="msg_searching">శోధించండి&#8230;</string>
+  <string name="copy_all">ప్రతిదాన్ని కాపీ చేయండి</string>
+  <string name="copy_word">కాపీని: %1$s</string>
+  <string name="not_found">దొరకలేదు</string>
+  <string name="no_included_dictionaries">చేర్చబడిన నిఘంటువులు కనుగొనబడలేదు.\n\nఒక డౌన్లోడ్ ఇక్కడ క్లిక్ చేయండి.</string>
+  <string name="no_starred_words">నక్షత్రం ఉన్న పదాలు కనుగొనబడలేదు.\n\nదీన్ని నక్షత్రం చేయడానికి ఒక నిఘంటువు ఎంట్రీ యొక్క నక్షత్ర చిహ్నాన్ని నొక్కండి.</string>
+  <string name="starred_words_current_dictionary">ప్రస్తుత: %1$d</string>
+  <string name="starred_words_all_dictionaries">అన్ని: %1$d</string>
+  <string name="no_recent_dictionaries">ఇటీవల లోడ్ చేసిన నిఘంటువులు కనుగొనబడలేదు.\n\nఒక డౌన్లోడ్ ఇక్కడ క్లిక్ చేయండి.</string>
+  <string name="loading_download_dictionaries">దయచేసి వేచి ఉండండి.\n\nఅందుబాటులో ఉన్న నిఘంటువులను లోడ్ చేస్తోంది&#8230;</string>
+  <string name="no_download_dictionaries">క్షమించండి, డౌన్లోడ్ చేయడానికి నిఘంటువులు లేవు.</string>
+  <string name="msg_error_downloading_available_dictionaries">అందుబాటులో ఉన్న నిఘంటువులు జాబితాను డౌన్లోడ్ చేస్తున్నప్పుడు లోపం సంభవించింది.\n\n\nమళ్లీ ప్రయత్నించడానికి ఇక్కడ క్లిక్ చేయండి.\n\n\nవివరాలు:\n%1$s</string>
+  <string name="msg_error_dictionary_not_found">Id తో నిఘంటువు %1$d ప్రస్తుతం అందుబాటులో లేదు.</string>
+  <string name="msg_error_accessing_storage">బాహ్య నిల్వ అందుబాటులో లేదు. దయచేసి మీ పరికరం USB ద్వారా కనెక్ట్ చేయబడలేదని నిర్ధారించుకోండి.\n\nప్రస్తుత నిల్వ స్థితి: %1$s</string>
+  <string name="msg_suggest_update">DictionaryForMIDs యొక్క మీ వెర్షన్ గడువు ముగిసింది. దయచేసి నిఘంటువులను డౌన్లోడ్ చేసే ముందు అనువర్తనాన్ని నవీకరించండి.\nఇప్పుడే నవీకరించండి?</string>
+  <string name="msg_suggest_update_with_message">DictionaryForMIDs యొక్క మీ వెర్షన్ గడువు ముగిసింది. దయచేసి నిఘంటువులను డౌన్లోడ్ చేసే ముందు అనువర్తనాన్ని నవీకరించండి.\nఇప్పుడే నవీకరించండి?\n\nవివరాలు: %1$s</string>
+  <string name="msg_confirm_installation">డౌన్లోడ్ మరియు ఇన్స్టాల్ \"%1$s\" నిఘంటువు?\nపరిమాణం: తెలియని</string>
+  <string name="msg_confirm_installation_size">డౌన్లోడ్ మరియు ఇన్స్టాల్ \"%1$s\" నిఘంటువు?\nపరిమాణం: %2$s</string>
+  <string name="msg_installation_exception">ఎక్సెప్షన్ చేస్తున్నప్పుడు:\n%1$s</string>
+  <string name="msg_installation_exception_cause">ఎక్సెప్షన్ చేస్తున్నప్పుడు:\n%1$s\n\nకారణం:\n%1$s</string>
+  <string name="msg_installation_already_started">క్షమించండి, ఇన్స్టాలేషన్ ఇప్పటికే చురుకుగా ఉంది.</string>
+  <string name="msg_installation_started">ఇన్స్టాలేషన్ కొంత సమయం పట్టవచ్చు, మీరు అనువర్తనాన్ని ఉపయోగించడం కొనసాగించవచ్చు.</string>
+  <string name="msg_auto_installation_started">డౌన్లోడ్ చేస్తోంది \"%1$s\" నిఘంటువు, దీనికి కొంత సమయం పట్టవచ్చు.\n\nమీరు ఇప్పుడు అప్లికేషన్ నుండి నిష్క్రమించగలరు మరియు పురోగతి స్థితి బార్లో చూపబడుతుంది.</string>
+  <string name="msg_installation_finished">నిఘంటువు ఇన్స్టాల్ చేయబడింది!</string>
+  <string name="msg_list_already_downloaded">జాబితా ఇప్పటికే డౌన్లోడ్ చేయబడుతోంది.</string>
+  <string name="msg_installation_error">ఇన్స్టాలేషన్ లోపం</string>
+  <string name="msg_external_storage_inaccessible">బాహ్య నిల్వ ప్రస్తుతం అందుబాటులో లేదు.</string>
+  <string name="msg_exported_starred_words">బాహ్య నిల్వ కోసం పదాలను విజయవంతంగా ఎగుమతి చేశారు.</string>
+  <string name="msg_error_parsing_integer_preference">క్షమించండి, మేము సంఖ్యను గుర్తించలేకపోయాము. డిఫాల్ట్ విలువకు తిరుగుతోంది.</string>
+  <string name="title_exception">మినహాయింపు</string>
+  <string name="title_activity_starred_words">స్టార్ పదాలు</string>
+  <string name="exception_failed_create_directory">డైరెక్టరీని సృష్టించడం విఫలమైంది: %1$s</string>
+  <string name="exception_failed_create_file">ఫైల్ను సృష్టించడం విఫలమైంది: %1$s</string>
+  <string name="exception_failed_delete_file">Failed to remove file: %1$s</string>
+  <string name="title_installation_finished">పూర్తయ్యింది</string>
+  <string name="msg_successfully_installed_dictionary">నిఘంటువు విజయవంతంగా ఇన్స్టాల్ చేయబడింది.</string>
+  <string name="msg_installation_complete">సంస్థాపన పూర్తయింది</string>
+  <string name="title_installation_status">సంస్థాపన స్థితి</string>
+  <string name="msg_installing_dictionary">నిఘంటువుని ఇన్స్టాల్ చేస్తోంది&#8230;</string>
+  <string name="msg_installation_aborted">ఇన్స్టాలేషన్ రద్దు చేయబడింది యూజర్ ద్వారా.</string>
+  <string name="msg_installation_status">స్థితి: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">ఆర్కైవ్ లో \"%1$s\" క్రింది మోడల్కు ఎంట్రీ లేదు \"%2$s\"</string>
+  <string name="unit_byte">బీ</string>
+  <string name="unit_kilo_byte">కేబీ</string>
+  <string name="unit_mega_byte">ఏంబీ</string>
+  <string name="unit_giga_byte">జీబీ</string>
+  <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_maximum">మించి %1$d (గరిష్ట) ఫలితాలు కనుగొనబడ్డాయి.</string>
+  <string name="results_found_cancel">%1$d రద్దుకు ముందు ఫలితం (లు) కనుగొనబడ్డాయి.</string>
+  <string name="results_found_timeout">%1$d సమయం ముగిసేలోపు ఫలితం (లు) అందుబాటులో ఉన్నాయి.</string>
+  <string name="results_found">%1$d ఫలితాలు కనుగొనబడ్డాయి.</string>
+  <string name="results_found_one">1 ఫలితం కనుగొనబడింది.</string>
+  <string name="no_results_found">క్షమించండి, ఫలితాలు కనుగొనబడలేదు.</string>
+  <string-array name="font_sizes">
+    <item>10sp</item>
+    <item>11sp</item>
+    <item>12sp</item>
+    <item>13sp</item>
+    <item>14sp</item>
+    <item>15sp</item>
+    <item>16sp</item>
+    <item>17sp</item>
+    <item>18sp</item>
+    <item>19sp</item>
+    <item>20sp</item>
+    <item>21sp</item>
+    <item>22sp</item>
+    <item>23sp</item>
+    <item>24sp</item>
+    <item>25sp</item>
+    <item>26sp</item>
+  </string-array>
+  <string-array name="themes">
+    <item>సిస్టమ్ డిఫాల్ట్</item>
+    <item>డార్క్</item>
+    <item>లైట్</item>
+  </string-array>
+  <string name="title_translation_error">అనువాద లోపం సంభవించింది.</string>
+  <string name="msg_translation_error">వివరాలు:\n\n%1$s</string>
+  <string name="msg_translation_cancelled">అనువాదం రద్దు చేయబడింది.</string>
+  <string name="menu_dictionary">నిఘంటువు</string>
+  <string name="menu_preferences">ప్రాధాన్యతలు</string>
+  <string name="menu_about">గురించి</string>
+  <string name="menu_help">సహాయం</string>
+  <string name="menu_starred">నక్షత్రం ఉంచిన</string>
+  <string name="menu_export_all_starred">అన్నీ ఎగుమతి చేయండి</string>
+  <string name="menu_download_dictionaries">మానవీయంగా డౌన్ లోడ్ చెయ్యి&#8230;</string>
+  <string name="menu_find_hidden_dictionaries">మరాళ కలుపు</string>
+  <string name="menu_clear_recent_dictionary_list">ఇటీవల క్లియర్ చెయ్యి&#8230;</string>
+  <string name="msg_enter_word_first">దయచేసి ముందుగా ఒక పదాన్ని నమోదు చేయండి.</string>
+  <string name="menu_reload_dictionary_list">జాబితాను రీలోడ్ చెయ్యి</string>
+  <string name="menu_cancel_installation">సంస్థాపనను రద్దు చేయండి</string>
+  <string name="menu_reinstall_default_dictionary">మళ్ళీ ఇన్స్టాల్ డిఫాల్ట్ నిఘంటువు</string>
+  <string name="msg_load_dictionary_first">దయచేసి మొదట నిఘంటువుని లోడ్ చేయండి.</string>
+  <string name="msg_reload_dictionary">దయచేసి నిఘంటువుని మళ్లీ లోడ్ చేయండి.</string>
+  <string name="msg_exception">మినహాయింపు సంభవించింది: \n%1$s</string>
+  <string name="msg_restart_app_after_settings_changed">సెట్టింగ్ల కోసం అనువర్తనాన్ని పునఃప్రారంభించండి ప్రభావం కోసం.</string>
+  <string name="button_ok">అలాగే</string>
+  <string name="button_cancel">రద్దు</string>
+  <string name="button_do_not_show_again">మళ్లీ చూపించకండి</string>
+  <string name="button_exit">నిష్క్రమించు</string>
+  <string name="msg_download_dictionaries">ఒక నిఘంటువును డౌన్లోడ్ చేయడం అనేది 4 అడుగులు(క్రింది మీరు ఆస్ట్రో వంటి ఇన్స్టాల్ ఫైల్ మేనేజర్ కలిగి ఊహిస్తుంది):\n\n.ఈ సంభాషణను నిర్ణయించిన తర్వాత దాన్ని తెరిచిన వెబ్సైట్లో నిఘంటువు ఎంచుకోండి మరియు డౌన్లోడ్ చేసుకోండి.గమనిక: సంస్కరణ \n\n2.4.4 లేదా అంతకన్నా ఎక్కువ మద్దతు ఉంది.\n\n2.మీ SD కార్డ్లోని డైరెక్టరీలో జిప్-ఫైల్ యొక్క కంటెంట్ను సంగ్రహించండి(ఉదా: ఆస్ట్రో ఉపయోగించి).\n\n4.డైలాగ్లో నిఘంటువుని డైలాగ్లో ఎంచుకోండి.\n\n
+ప్రత్యామ్నాయంగా, మీ SD కార్డుకు మీ PC మరియు బదిలీ ఫైళ్ళను ఉపయోగించి మీరు నిఘంటువును డౌన్లోడ్ చేసుకోవచ్చు మరియు సేకరించవచ్చు, అప్పుడు మీ SD కార్డుకు ఫైళ్ళను బదిలీ చేయండి.</string>
+  <string name="msg_clear_recent_dictionaries_list">ఇటీవలి నిఘంటువు యొక్క జాబితాను క్లియర్ చేయాలా?</string>
+  <string name="msg_cancel_installation">ప్రస్తుత ఇన్స్టాలేషన్ను రద్దు చేయాలా?</string>
+  <string name="msg_load_dictionary">ఇప్పుడు క్రొత్త నిఘంటువును లోడ్ చేసుకొని \n\n మీరు ఇటీవలి నిఘంటువులు జాబితా నుండి ఎప్పుడైనా లోడ్ చేయవచ్చు.</string>
+  <string name="button_load_dictionary_from_current_directory">ప్రస్తుత డైరెక్టరీ నుండి నిఘంటువును లోడ్ చేయండి</string>
+  <string name="msg_dictionary_error">నిఘంటువు లోపం</string>
+  <string name="msg_dictionary_not_found">Dictionary not loaded. \n\nYou can select a dictionary in the following dialog.</string>
+  <string name="msg_dictionary_load_error">నిఘంటువు నిఘంటువు లోడ్ చేయడంలో లోపం.</string>
+  <string name="msg_internal_dictionary_load_error">అంతర్గత నిఘంటువులను లోడ్ చేస్తున్నప్పుడు లోపం. \n\n%1$s</string>
+  <string name="title_current_path">&gt;%1$s</string>
+  <string name="msg_no_dictionary">ఎంచుకున్న అంశం నిఘంటువులో కనిపించదు.</string>
+  <string name="title_load_dictionary">నిఘంటువుని లోడ్ చెయ్యి&#8230;</string>
+  <string name="msg_auto_install">మీరు ఇంకా మీ డిఫాల్ట్ నిఘంటువును ఇన్స్టాల్ చేయలేదు.\n\nఇప్పుడే డౌన్లోడ్ చేసి, దానిని ఇన్స్టాల్ చేయాలని అనుకుంటున్నారా?</string>
   <!--
 		specifies a translation direction, e.g. English -> German; if this
 		language is right-to-left you may want to swap %1$s and %2$s as well
 		as replace &#8594; (right-arrow) with &#8592; (left-arrow)
 	-->
+  <string name="title_format_translation_direction">%1$s\t\t→\t%2$s</string>
+  <string name="title_load_dictionary_first">దయచేసి మొదట నిఘంటువుని లోడ్ చేయండి.</string>
+  <string name="title_about_heading">జావా అప్లికేషన్ DictonaryForMIDs</string>
+  <string name="title_about_copyright_owner">గెర్ట్ న్యూబర్ ద్వారా కాపీరైట్(dict@kugihan.de) అచిమ్ వీమర్ట్(axw.dev@gmail.com)మరియు ఇతర సహాయకులు.</string>
+  <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
+  <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
+  <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">వెర్షన్:%1$s</string>
+  <string name="title_about_copyright">DictionaryForMIDs జావా అప్లికేషన్ ఉచితం:మీరు దీన్ని పునఃపంపిణీ చేయవచ్చు మరియు / లేదా సవరించవచ్చు ప్రచురించిన విధంగా GNU జనరల్ పబ్లిక్ లైసెన్స్ నిబంధనల ప్రకారం ఫ్రీ సాఫ్ట్వేర్ఫౌం డేషన్; లైసెన్స్ యొక్క సంస్కరణ 2 లేదా(ఐచ్ఛికం) తదుపరి వెర్షన్ లేదు.ఫైల్ను కాపీ చేయండి లేదా చూడండి లేదా http://www.gnu.org/licenses/\n\nకార్యక్రమం ఉపయోగకరంగా ఉంటుందని ఆశతో పంపిణీ చేయబడింది,కానీ ఏ హామీ లేకుండా; కూడా ఊహాజనిత వారంటీ లేకుండా వాణిజ్య ప్రయోజనం లేదా నిర్దిష్ట ప్రయోజనం కోసం ఫిట్నెస్.చూడండి మరిన్ని వివరాలకు GNU జనరల్ పబ్లిక్ లైసెన్సు.</string>
+  <string name="title_about_dictionary">నిఘంటువు:</string>
+  <string name="title_about_ui_translation">స్థానికీకరణ:</string>
+  <string name="title_about_translation_request">మీ భాషలోకి ఈ అనువర్తనాన్ని అనువదించడానికి మాకు సహాయం చేయండి లేదా ఇప్పటికే ఉన్న అనువాదాలను మెరుగుపరచడంలో మాకు సహాయం చేయండి</string>
+  <string name="title_information">సమాచారం</string>
+  <string name="title_welcome">స్వాగతం!</string>
+  <string name="title_seconds">%1$d క్షణ</string>
+  <string name="msg_first_run">మొదటిసారి ఈ కార్యక్రమాన్ని అమలు చేస్తున్నట్లు అనిపిస్తోంది! దయచేసి క్రింది స్క్రీన్ ను ఉపయోగించి భాషను ఎంచుకోండి.</string>
+  <string name="msg_slow_archive_loading">గడువు ముగిసిన తర్వాత అనువాదం రద్దు చేయబడింది.\nమీరు మీ SD కార్డులోని ఫోల్డర్లోకి ఆర్కైవ్ నిఘంటువును అనువదించవచ్చు మరియు ఈ ఫోల్డర్ను నిఘంటువుగా ఎంచుకోవచ్చు. ప్రత్యామ్నాయంగా మీరు ప్రాధాన్యత డైలాగ్లో సమయాన్ని పెంచవచ్చు.</string>
+  <string name="msg_parsing_error">వనరు అన్వయించడంలో లోపం.\n\n%1$s</string>
+  <string name="msg_extract_dictionary">ఎంచుకున్న ఆర్కైవ్ లోడ్ చేయబడలేదు కానీ సంపీడనమైన నిఘంటువు కలిగి ఉన్నట్లు కనిపిస్తుంది. దయచేసి ముందుగా చేర్చబడిన జా-ఫైల్ను జోడించండి.</string>
+  <string-array name="search_mode">
+    <item>ప్రామాణిక</item>
+    <item>పదాలు పదం మ్యాచ్</item>
+    <item>శోధన పదంతో ప్రారంభమయ్యే పదములు</item>
+    <item>శోధన పదంతో సహా పదాలు</item>
+  </string-array>
+  <string name="title_help">DictionaryForMIDsసహాయం</string>
+  <string name="desc_help">మీ శోధనను మెరుగుపరచడానికి వైల్డ్కార్డ్ అక్షరాలను ఉపయోగించండి:\n%1$c ఏ వరుస అక్షరాలను సరిపోల్చండి\n%2$c ఏ పాత్ర సరిపోతుంది\n\nఉప-వ్యక్తీకరణ శోధనను నియంత్రించడానికి:\n%3$c మొదటి శోధన మీ శోధన-ఎంట్రీతో ప్రారంభమయ్యే ఫలితాలను ఉత్పత్తి చేస్తుంది\n%4$c \n\nమీ ఎంట్రీ ముగిసిన ఫలితాలను అందిస్తుంది. దయచేసి గమనించండి: వైల్డ్కార్డ్ అక్షరాలు జోడించడం శోధన మోడ్ ప్రాధాన్యతలను భర్తీ చేస్తుంది.</string>
+  <string name="desc_see_website">మరింత సమాచారం కోసం వెబ్సైట్ చూడండి:\n%1$s</string>
+  <string name="tab_load_recent">ఇటీవలి</string>
+  <string name="tab_load_from_file">ఫైల్ నుండి</string>
+  <string name="tab_load_included">చేర్చబడిన</string>
+  <string name="tab_load_download">డౌన్లోడ్</string>
+  <string name="title_activity_about">స్క్రీన్ గురించి</string>
+  <string name="title_activity_help">స్క్రీన్ సహాయం</string>
+  <string name="title_activity_choose_dictionary">నిఘంటువు ఎంచుకోండి</string>
+  <string name="title_activity_file_list">నిఘంటువు ఎంచుకోండి</string>
+  <string name="title_activity_dictionary_list">నిఘంటువు ఎంచుకోండి</string>
+  <string name="title_activity_recent_list">నిఘంటువు ఎంచుకోండి</string>
+  <string name="title_activity_preferences">ప్రాధాన్యతలు</string>
+  <string name="title_activity_install_dictionary">నిఘంటువు ఇన్స్టాల్ చేయబడింది</string>
+  <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_remove_from_list">జాబితా నుండి తీసివేయండి</string>
+  <string name="app_description">DictionaryForMIDs ఒక సెల్ ఫోన్లు మరియు PDA లకు ఉచిత బహుళ-భాష నిఘంటువు</string>
+  <string name="hint_enter_word">అనువదించడానికి ఒక పదాన్ని నమోదు చేయండి</string>
+  <string name="hint_filter">వడపోత</string>
+  <string name="title_pref_search_options">శోధన ఎంపికలు</string>
+  <string name="title_pref_search_mode">శోధన మోడ్</string>
+  <string name="title_pref_max_results">మాక్స్. ఫలితాలు</string>
+  <string name="title_pref_timeout">శోధన గడువు ముగిసింది</string>
+  <string name="title_pref_search_as_you_type">మీరు టైప్ చేసినప్పుడు శోధించండి</string>
+  <string name="title_pref_display_options">ప్రదర్శన ఎంపికలు</string>
+  <string name="title_pref_result_font_size">ఫలితాల కోసం ఫాంట్ పరిమాణం</string>
+  <string name="title_pref_ignore_font_styles">సిస్టమ్ శైలులను ఉపయోగించండి</string>
+  <string name="title_pref_language_code">భాషా</string>
+  <string name="title_pref_advanced_features">ఆధునిక లక్షణాలను</string>
+  <string name="title_pref_enable_starred_words">నక్షత్రం ఉంచిన పదాలను ప్రారంభించండి</string>
+  <string name="title_pref_theme">థీమ్</string>
+  <string name="title_default_language_code">డిఫాల్ట్</string>
+  <string name="summary_pref_ignore_font_style_checked">ఫలితాలు నిర్వచించిన శైలిని ఉపయోగించి ఫలితాలు ప్రదర్శించబడతాయి.</string>
+  <string name="summary_pref_ignore_font_style_unchecked">ఫలితాలు వ్యవస్థ శైలిని ఉపయోగించి ప్రదర్శించబడతాయి.</string>
+  <string name="language_english">ఇంగ్లీష్</string>
+  <string name="language_esperanto">ఎస్పరెన్టొ</string>
+  <string name="language_vietnamese">వియత్నమిస</string>
+  <string name="language_chinese">చైనీస్</string>
+  <string name="language_japanese">జపనీస్</string>
+  <string name="language_thai">థాయ్</string>
+  <string name="language_hindi">హిందీ</string>
+  <string name="language_indonesian">ఇండోనేషియన్</string>
+  <string name="language_french">ఫ్రెంచ్</string>
+  <string name="language_spanish">స్పానిష్</string>
+  <string name="language_german">జర్మన్</string>
+  <string name="language_italian">ఇటాలియన్</string>
+  <string name="language_latin">లాటిన్</string>
+  <string name="language_russian">రష్యన్</string>
+  <string name="language_arabic">అరబిక్</string>
+  <string name="language_czech">సెక్</string>
+  <string name="language_slovak">స్లోవాక్</string>
+  <string name="language_bulgarian">బల్గేరియన్</string>
+  <string name="language_catalan">కాటలాన్</string>
+  <string name="language_persian">పెర్షియన్</string>
+  <string name="language_finnish">ఫీనిస్</string>
+  <string name="language_greek">గ్రీకు</string>
+  <string name="language_hebrew">హిబ్రూ</string>
+  <string name="language_croatian">క్రొయేషియన్</string>
+  <string name="language_hungarian">హంగేరియన్</string>
+  <string name="language_lithuanian">లిథువేనియన్</string>
+  <string name="language_dutch">డచ్</string>
+  <string name="language_polish">పోలిష్</string>
+  <string name="language_portuguese">పోర్చుగీస్</string>
+  <string name="language_swedish">స్వీడిష్</string>
+  <string name="language_norwegian">నార్వేజియన్</string>
+  <string name="language_turkish">టర్కిష్</string>
+  <string name="language_tagalog">తగలోగ్</string>
+  <string name="language_tamil">తమిళ</string>
+  <string name="language_turkmen">తుర్క్‌మెన్</string>
+  <string name="language_danish">డానిష్</string>
+  <string name="language_korean">కొరియన్</string>
+  <string name="language_macedonian">మేసిడోనియా</string>
+  <string name="language_occitan">ఆక్సిటన్</string>
+  <string name="language_ukrainian">ఉక్రేనియన్</string>
+  <string name="language_sanskrit">సంస్కృత</string>
+  <string name="language_belarusian">బెలారుషియన్</string>
+  <string name="language_afrikaans">ఆఫ్రికన్లు</string>
+  <string name="language_scottish_gaelic">స్కాటిష్ గేలిక్</string>
+  <string name="language_icelandic">ఐస్లాండిక్</string>
+  <string name="language_welsh">వెల్ష్</string>
+  <string name="language_irish">ఐరిష్</string>
+  <string name="language_definition">నిర్వచనం</string>
+  <string name="load_dictionary_button">మరింత&#8230;</string>
+  <plurals name="open_dictionary_drawer">
+    <item quantity="one"><![CDATA[క్రియాశీల భాషలు.<a href="#">మార్చు...</a>]]></item>
+    <item quantity="other"><![CDATA[%1$dక్రియాశీల భాషలు.<a href="#">మార్చు...</a>]]></item>
+  </plurals>
 </resources>

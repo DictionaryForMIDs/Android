@@ -5,6 +5,7 @@
 		put the name of the current language into language_name, e.g. Deutsch
 		if this is the German language file
 	-->
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">نام محلی این زبان</string>
   <!--
 		put the name/e-mail/website of the translator (that's probably you)
 		here, it will appear on the about screen; leave empty if you don't
@@ -15,6 +16,8 @@
   <string name="msg_searching">در حال جستجو...</string>
   <string name="copy_all">کپی همه</string>
   <string name="not_found">یافت نشد</string>
+  <string name="no_included_dictionaries">واژه نامه ای یافت نشد. found.\n\nTap اینجا دانلود کن.</string>
+  <string name="no_starred_words">واژه ستاره دار یافت نشد.\n\nبرای ستاره دار کردن‌ آیکون ستاره دیکشنری را بفشارید.</string>
   <string name="msg_installation_finished">واژه نامه نصب شد!</string>
   <string name="msg_installation_error">خطا در نصب</string>
   <string name="title_exception">استثنا</string>
@@ -25,6 +28,9 @@
   <string name="title_installation_status">وضعیت نصب</string>
   <string name="msg_installing_dictionary">نصب واژه نامه...</string>
   <string name="msg_installation_aborted">نصب توسط کاربر متوقف شد.</string>
+  <string name="results_found_maximum">بیشتر از%1$d(ماکزیمم) نتیجه یافت شد.</string>
+  <string name="results_found_cancel">%1$d نتیجه (ها) قبل لغو یافت شد.</string>
+  <string name="results_found_one">یک نتیجه یافت شد.</string>
   <string name="menu_about">درباره</string>
   <string name="menu_help">کمک</string>
   <string name="menu_starred">ستاره دار</string>

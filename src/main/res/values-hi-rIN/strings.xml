@@ -5,16 +5,74 @@
 		put the name of the current language into language_name, e.g. Deutsch
 		if this is the German language file
 	-->
+  <string name="language_name" comment="The localized language name of this translation, e.g. Deutsch if this the German translation.">वर्तमान भाषा का अनुवादित नाम language_name में रखें, उदा। Deutsch अगर यह जर्मन भाषा फ़ाइल है
+उपयोगकर्ता इंटरफ़ेस के लिए मौजूदा भाषा का चयन करने के लिए इस पाठ का उपयोग भाषा चयन संवाद में किया जाता है</string>
   <!--
 		put the name/e-mail/website of the translator (that's probably you)
 		here, it will appear on the about screen; leave empty if you don't
 		want to be mentioned
 	-->
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">Title_user_interface_translator
+अनुवादक का नाम / ई-मेल / वेबसाइट (जो शायद आप में है), यह स्क्रीन के बारे में दिखाई देगा; अगर आप का उल्लेख नहीं करना चाहते हैं तो खाली छोड़ दें</string>
+  <string name="app_name">एप्लिकेशन का नाम</string>
+  <string name="no_files">फ़ाइल नहीं</string>
+  <string name="to_top">शीर्ष पर</string>
+  <string name="to_upper_level">ऊपरी स्तर पर</string>
+  <string name="to_sdcard">एसडी कार्ड के लिए</string>
+  <string name="title_please_wait">कृपया प्रतीक्षा करें</string>
+  <string name="msg_searching">खोज रहा...</string>
+  <string name="copy_all">सभी को कॉपी करें</string>
+  <string name="copy_word">कॉपी: %1$s</string>
+  <string name="not_found">नहीं मिला</string>
+  <string name="no_included_dictionaries">कोई भी शब्दकोश नहीं मिला.\n\n एक डाउनलोड करने के लिए यहां टैप करें</string>
+  <string name="no_starred_words">कोई तारांकित शब्द नहीं मिला.\n\n इसे तारांकित करने के लिए एक शब्दकोश प्रविष्टि के स्टार आइकन को टैप करें</string>
+  <string name="starred_words_current_dictionary">वर्तमान: %1$d</string>
+  <string name="starred_words_all_dictionaries">सब: %1$d</string>
+  <string name="no_recent_dictionaries">कोई भी शब्दकोश नहीं मिला.\n\n एक डाउनलोड करने के लिए यहां टैप करें</string>
+  <string name="loading_download_dictionaries">कृपया प्रतीक्षा करें.\n\n उपलब्ध शब्दकोश लोड हो रहा है...</string>
+  <string name="no_download_dictionaries">क्षमा करें, वर्तमान में डाउनलोड के लिए कोई भी शब्दकोश उपलब्ध नहीं है।</string>
+  <string name="msg_error_downloading_available_dictionaries">उपलब्ध शब्दकोशों की सूची डाउनलोड करते समय एक त्रुटि हुई\n\n\n फिर से प्रयास करने के लिए यहां टैप करें.</string>
+  <string name="msg_error_dictionary_not_found">आईडी% 1 $ d के साथ शब्दकोश वर्तमान में उपलब्ध नहीं है</string>
+  <string name="msg_error_accessing_storage">बाह्य भंडारण सुलभ नहीं है कृपया सुनिश्चित करें कि आपका डिवाइस यूएसबी के माध्यम से कनेक्ट नहीं है। \ N \ n वर्तमान स्टोरेज स्थिति %1$s</string>
+  <string name="msg_suggest_update">शब्दकोश के लिए आपका संस्करण पुराना है I शब्दकोशों को डाउनलोड करने से पहले अपडेट करें। \ N अभी अपडेट करें</string>
+  <string name="msg_suggest_update_with_message">शब्दकोश के लिए आपका संस्करण पुराना है I शब्दकोशों को डाउनलोड करने से पहले अपडेट करें। \ N अभी अपडेट करें</string>
+  <string name="msg_confirm_installation">\"% 1 $ s\" शब्दकोश डाउनलोड और इंस्टॉल करें? \ N आकार: अज्ञात</string>
+  <string name="msg_confirm_installation_size">\"% 1 $ s\" शब्दकोश डाउनलोड और इंस्टॉल करें? \ N आकार: अज्ञात</string>
+  <string name="msg_installation_exception">इंस्टॉल करने के दौरान अपवाद:\n%1$s</string>
+  <string name="msg_installation_exception_cause">इंस्टॉल करने के दौरान अपवाद:\n%1$s\n\nकारण:\n%1$s</string>
+  <string name="msg_installation_already_started">क्षमा करें, एक स्थापना पहले से ही सक्रिय है</string>
+  <string name="msg_installation_started">इंस्टॉलेशन को कुछ देर लगसक्ति है, आप एप्लिकेशन का इस्तेमाल कर सकते हैं</string>
+  <string name="msg_auto_installation_started">\"%1$s\" शब्दकोश डाउनलोड कर रहा है, इसमें कुछ समय लग सकता है. \ n \ nYou अब अनुप्रयोग से बाहर निकल सकते हैं, प्रगति स्थिति पट्टी में दिखाया गया है ।</string>
+  <string name="msg_installation_finished">शब्दकोश स्थापित!</string>
+  <string name="msg_list_already_downloaded">सूची पहले से ही डाउनलोड हो रही है।</string>
+  <string name="msg_installation_error">स्थापना त्रुटि</string>
+  <string name="msg_external_storage_inaccessible">बाह्य भंडारण वर्तमान में पहुंच योग्य नहीं है</string>
+  <string name="msg_exported_starred_words">बाह्य भंडारण के लिए शब्दों को सफलतापूर्वक निर्यात किया गया</string>
+  <string name="msg_error_parsing_integer_preference">क्षमा करें, संख्या को पहचान नहीं सका पूर्ववत मूल्य को डिफ़ॉल्ट</string>
+  <string name="title_exception">अपवाद (Automatic Translation)</string>
+  <string name="title_activity_starred_words">तारांकित शब्द</string>
+  <string name="exception_failed_create_directory">निर्देशिका बनाने में विफल [%s]</string>
+  <string name="exception_failed_create_file">निर्देशिका बनाने में विफल [%s]</string>
+  <string name="exception_failed_delete_file">निर्देशिका बनाने में विफल [%s]</string>
+  <string name="title_installation_finished">समाप्त</string>
+  <string name="msg_successfully_installed_dictionary">शब्दकोश सफलतापूर्वक इंस्टॉल किया गया</string>
+  <string name="msg_installation_complete">इंस्टॉलेशन समाप्त हुवा</string>
+  <string name="title_installation_status">स्थिति स्थापित करें</string>
+  <string name="msg_installing_dictionary">शब्दकोश स्थापित कर रहा है.. ।</string>
+  <string name="msg_installation_aborted">उपयोगकर्ता द्वारा निरस्त स्थापना</string>
+  <string name="msg_installation_status">स्थिति: %1$.2f%%</string>
+  <string name="msg_compressed_entry_not_found">संग्रह \"%1$s\" में कोई प्रविष्टि निंन प्रतिमान \"%2$s\" से मेल खाता था</string>
   <string name="unit_byte">B</string>
   <string name="unit_kilo_byte">KB</string>
   <string name="unit_mega_byte">MB</string>
   <string name="unit_giga_byte">GB</string>
   <string name="file_size">%1$.2f %2$s</string>
+  <string name="results_found_maximum">से अधिक |123_4_0_321| (अधिकतम) परिणाम मिले.</string>
+  <string name="results_found_cancel">|123_4_0_321| रद्द करने से पहले मिला परिणाम (s) ।</string>
+  <string name="results_found_timeout">समय समाप्ति से पहले% %1$d परिणाम मिले</string>
+  <string name="results_found">कोई परिणाम नहीं मिला</string>
+  <string name="results_found_one">कोई परिणाम नहीं मिला</string>
+  <string name="no_results_found">माफ करना, कोई नतीजे नही मिले.</string>
   <string-array name="font_sizes">
     <item>10sp</item>
     <item>11sp</item>
@@ -34,15 +92,174 @@
     <item>25sp</item>
     <item>26sp</item>
   </string-array>
+  <string-array name="themes">
+    <item>प्रणाली चूक</item>
+    <item>अंधेरा</item>
+    <item>हल्का</item>
+  </string-array>
+  <string name="title_translation_error">अनुवाद त्रुटि उत्पंन हुई ।</string>
+  <string name="msg_translation_error">विवरण: \ n\n%1$s</string>
+  <string name="msg_translation_cancelled">अनुवाद रद्द ।</string>
+  <string name="menu_dictionary">शब्दकोष</string>
+  <string name="menu_preferences">प्राथमिकताएं</string>
+  <string name="menu_about">के बारे में</string>
+  <string name="menu_help">सहायता</string>
+  <string name="menu_starred">तारांकित</string>
+  <string name="menu_export_all_starred">सभी निर्यात करें</string>
+  <string name="menu_download_dictionaries">मैंयुअल रूप से डाउनलोड.. ।</string>
+  <string name="menu_find_hidden_dictionaries">छुपी हुई फिर से जोड़ें</string>
+  <string name="menu_clear_recent_dictionary_list">सूची रद्द करें</string>
+  <string name="msg_enter_word_first">कृपया पहले कोई शब्द दर्ज करें ।</string>
+  <string name="menu_reload_dictionary_list">सूची पुनः लोड करें</string>
+  <string name="menu_cancel_installation">स्थापना रद्द करें</string>
+  <string name="menu_reinstall_default_dictionary">डिफ़ॉल्ट शब्दकोश पुन: स्थापित करें</string>
+  <string name="msg_load_dictionary_first">कृपया पहले कोई शब्दकोश लोड करें ।</string>
+  <string name="msg_reload_dictionary">कृपया शब्दकोश पुनः लोड करें ।</string>
+  <string name="msg_exception">अपवाद उत्पंन हुआ: \ n%1$s</string>
+  <string name="msg_restart_app_after_settings_changed">सेटिंग्स को प्रभावी बनाने के लिए एप्लिकेशन को पुनरारंभ करें</string>
+  <string name="button_ok">ठीक है</string>
+  <string name="button_cancel">रद्द करें</string>
+  <string name="button_do_not_show_again">फिर से मत दिखाना</string>
+  <string name="button_exit">बाहर जाएं</string>
+  <string name="msg_download_dictionaries">एक शब्दकोश को डाउनलोड करने के लिए 4 कदम शामिल हैं (निम्नलिखित मानते हैं कि आपके पास एस्ट्रो इंस्टॉल एक फ़ाइल प्रबंधक है): \ n \ n1.इस शब्दकोश की पुष्टि के बाद खोले गए वेबसाइट पर एक शब्दकोश चुनें और डाउनलोड करें। नोट: संस्करण 2.4.4 या उच्चतर के केवल शब्दकोश समर्थित हैं। \ N \ n2. अपने एसडी-कार्ड पर एक निर्देशिका में ज़िप फ़ाइल की सामग्री को निकालें (जैसे एस्ट्रो का उपयोग करना)। \ N \ n3। वैकल्पिक: शामिल किए गए जार निकालें तेज़ लुक-अप के लिए आपके एसडी-कार्ड पर फ़ाइल की सामग्री। \ n \ n4। पहले से दिखाए गए डायलॉग में डिक्शनरी चुनें। \ n \ n वैकल्पिक रूप से, आप अपने पीसी का उपयोग करके शब्दकोश डाउनलोड कर सकते हैं और निकाल सकते हैं, तो फाइल को अपने एसडी कार्ड।</string>
+  <string name="msg_clear_recent_dictionaries_list">हाल ही में शब्दकोशों की सूची साफ़ करें?</string>
+  <string name="msg_cancel_installation">वर्तमान स्थापना रद्द करें?</string>
+  <string name="msg_load_dictionary">अब नए शब्दकोश लोड? \n\nYou इसे बाद में हाल ही के शब्दकोशों की सूची से लोड कर सकते हैं ।</string>
+  <string name="button_load_dictionary_from_current_directory">वर्तमान निर्देशिका से शब्दकोश लोड</string>
+  <string name="msg_dictionary_error">शब्दकोश व्यवहार</string>
+  <string name="msg_dictionary_not_found">शब्दकोश लोड नहीं किया जा सका।. \ n \ n आप निम्न डायलॉग पर एक शब्दकोश चुन सकते हैं</string>
+  <string name="msg_dictionary_load_error">शब्दकोश लोड करते समय त्रुटि ।</string>
+  <string name="msg_internal_dictionary_load_error">%1$sोश लोड करते समय त्रुटि. \</string>
   <string name="title_current_path">&gt; %1$s</string>
+  <string name="msg_no_dictionary">चयनित आइटम एक शब्दकोश की तरह नहीं दिखता है ।</string>
+  <string name="title_load_dictionary">लोड शब्दकोश</string>
+  <string name="msg_auto_install">ऐसा लगता है कि आपने अभी तक अपना डिफ़ॉल्ट शब्दकोश स्थापित नहीं किया है। \ N \ n क्या आप अभी इसे डाउनलोड और इंस्टॉल करना चाहते हैं?</string>
   <!--
 		specifies a translation direction, e.g. English -> German; if this
 		language is right-to-left you may want to swap %1$s and %2$s as well
 		as replace &#8594; (right-arrow) with &#8592; (left-arrow)
 	-->
   <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
+  <string name="title_load_dictionary_first">कृपया पहले कोई शब्दकोश लोड करें ।</string>
+  <string name="title_about_heading">जावा एप्लिकेशन DictonaryForMIDs</string>
+  <string name="title_about_copyright_owner">Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) और अंय योगदानकर्ताओं द्वारा कॉपीराइट ।</string>
   <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
   <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
   <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
+  <string name="title_version">संस्करण: %1$s</string>
+  <string name="title_about_copyright">शब्दकोशफॉरमीड्स Java अनुप्रयोग एक मुफ्त सॉफ्टवेयर है: आप इसे पुनर्वितरित कर सकते हैं और / या संशोधित कर सकते हैं
+    यह द्वारा प्रकाशित जीएनयू जनरल पब्लिक लाइसेंस की शर्तों के तहत
+    फ्री सॉफ्टवेयर फाउंडेशन; लाइसेंस के संस्करण 2 या तो, या
+    (आपके विकल्प पर) किसी भी बाद के संस्करण। COPYING फ़ाइल देखें या http://www.gnu.org/licenses/\n\n इस प्रोग्राम को आशा में वितरित किया जाता है कि यह उपयोगी होगा,
+    लेकिन बिना किसी वारंटी के; बिना निहित वारंटी के भी
+    किसी विशेष उद्देश्य के लिए अनुरूपता या फिटनेस। देखें
+    अधिक जानकारी के लिए जीएनयू जनरल पब्लिक लाइसेंस।</string>
+  <string name="title_about_dictionary">शब्दकोश</string>
+  <string name="title_about_ui_translation">स्थानीयकरण</string>
+  <string name="title_about_translation_request">इस ऐप को अपनी भाषा में अनुवाद करने या मौजूदा अनुवादों को सुधारने में हमारी सहायता करें</string>
+  <string name="title_information">जानकारी</string>
+  <string name="title_welcome">स्वागत है!</string>
+  <string name="title_seconds">%d सेकेंड</string>
+  <string name="msg_first_run">ऐसा लगता है कि आप इस कार्यक्रम को पहली बार चला रहे हैं! कृपया निम्न स्क्रीन का उपयोग करके एक शब्दकोश का चयन करें</string>
+  <string name="msg_slow_archive_loading">टाइमआउट के बाद अनुवाद को रद्द कर दिया गया था। \ N आप अपने एसडी-कार्ड पर एक फ़ोल्डर में संग्रहित डिक्शनरी को निकालने और इस फ़ोल्डर को शब्दकोश के रूप में चुनकर अनुवाद को तेज कर सकते हैं। वैकल्पिक रूप से आप वरीयता संवाद में टाइमआउट बढ़ा सकते हैं</string>
+  <string name="msg_parsing_error">संसाधन पार्स करने में त्रुटि.\n\n%1$s</string>
+  <string name="msg_extract_dictionary">चयनित संग्रह लोड नहीं किया जा सका, लेकिन एक संपीड़ित शब्दकोश को शामिल करने के लिए लगता है कृपया शामिल जार फाइल एफआइआर निकालें</string>
+  <string-array name="search_mode">
+    <item>मानक</item>
+    <item>शब्द खोज शब्द से मेल खाते</item>
+    <item>शब्द खोज शब्द से मेल खाते</item>
+    <item>खोज शब्द सहित शब्द</item>
+  </string-array>
+  <string name="title_help">शब्दकोशफॉरमिड्स सहायता</string>
+  <string name="desc_help">अपनी खोज को परिष्कृत करने के लिए वाइल्डकार्ड वर्णों का उपयोग करें: \ n% 1 $ c अक्षरों की किसी भी श्रृंखला से मेल खाता है \ n% 2 $ c किसी एकल वर्ण से मेल खाता है \ n \ n उप-अभिव्यक्ति खोज को नियंत्रित करने के लिए: \ n% 3 $ c को पहले वर्ण के रूप में उत्पादित करता है आपकी प्रविष्टि के साथ शुरू होने वाले परिणाम \ n% 4 $ c आपकी प्रविष्टि के साथ समाप्त होने वाले परिणामों का उत्पादन करता है। \ n \ n कृपया ध्यान दें: वाइल्डकार्ड वर्ण जोड़ने से खोज मोड प्राथमिकताएं ओवरराइड हो जाती हैं</string>
+  <string name="desc_see_website">अधिक जानकारी के लिए वेबसाइट देखिए
+</string>
+  <string name="tab_load_recent">हाल ही में</string>
+  <string name="tab_load_from_file">फ़ाइल से</string>
+  <string name="tab_load_included">(शामिल)</string>
+  <string name="tab_load_download">डाउनलोड करें|</string>
+  <string name="title_activity_about">स्क्रीन के बारे में|</string>
+  <string name="title_activity_help">सहायता स्क्रीन</string>
+  <string name="title_activity_choose_dictionary">शब्दकोश चुनें</string>
+  <string name="title_activity_file_list">शब्दकोश चुनें</string>
+  <string name="title_activity_dictionary_list">शब्दकोश चुनें</string>
+  <string name="title_activity_recent_list">शब्दकोश चुनें</string>
+  <string name="title_activity_preferences">प्राथमिकताएं</string>
+  <string name="title_activity_install_dictionary">शब्दकोश स्थापित करें</string>
   <string name="title_recent_dictionary">%1$s: %2$s</string>
+  <string name="title_remove_from_list">सूची से निकालें
+</string>
+  <string name="app_description">शब्दकोशफॉरमीड्स सेलफोन और पीडीए के लिए एक नि: शुल्क बहु-भाषा शब्दकोश है</string>
+  <string name="hint_enter_word">अनुवाद करने के लिए शब्द दर्ज करें</string>
+  <string name="hint_filter">फ़िल्टर</string>
+  <string name="title_pref_search_options">खोज विकल्प</string>
+  <string name="title_pref_search_mode">खोज मोड</string>
+  <string name="title_pref_max_results">अधिकतम. परिणाम</string>
+  <string name="title_pref_timeout">खोज के लिए समयबाह्य</string>
+  <string name="title_pref_search_as_you_type">लिखते ही खोज</string>
+  <string name="title_pref_display_options">डिस्प्ले विकल्प</string>
+  <string name="title_pref_result_font_size">परिणामों के लिए फ़ॉंट आकार</string>
+  <string name="title_pref_ignore_font_styles">सिस्टम शैलियों का उपयोग करें</string>
+  <string name="title_pref_language_code">भाषा </string>
+  <string name="title_pref_advanced_features">उन्नत सुविधाएँ</string>
+  <string name="title_pref_enable_starred_words">तारांकित शब्द सक्षम करें</string>
+  <string name="title_pref_theme">थीम</string>
+  <string name="title_default_language_code">डिफ़ॉल्ट</string>
+  <string name="summary_pref_ignore_font_style_checked">शब्दकोश द्वारा परिभाषित शैली का उपयोग करके परिणाम प्रदर्शित किए जाते हैं</string>
+  <string name="summary_pref_ignore_font_style_unchecked">परिणाम सिस्टम शैली का उपयोग करके प्रदर्शित किए जाते हैं ।</string>
+  <string name="language_english">अंग्रेजी</string>
+  <string name="language_esperanto">एस्पेरांतो</string>
+  <string name="language_vietnamese">वियतनामी</string>
+  <string name="language_chinese">चीनी</string>
+  <string name="language_japanese">जापानी</string>
+  <string name="language_thai">थाई</string>
+  <string name="language_hindi">हिन्दी</string>
+  <string name="language_indonesian">इंडोनेशियाई</string>
+  <string name="language_french">फ्रेंच</string>
+  <string name="language_spanish">स्पेनिश</string>
+  <string name="language_german">जर्मन</string>
+  <string name="language_italian">इटैलियन</string>
+  <string name="language_latin">लैटिन</string>
+  <string name="language_russian">रूसी</string>
+  <string name="language_arabic">अरबी</string>
+  <string name="language_czech">ज़ेक</string>
+  <string name="language_slovak">स्लोवाक</string>
+  <string name="language_bulgarian">बल्गेरियाई</string>
+  <string name="language_catalan">कैटलन</string>
+  <string name="language_persian">फ़ारसी</string>
+  <string name="language_finnish">फ़िनिश</string>
+  <string name="language_greek">ग्रीक</string>
+  <string name="language_hebrew">हिब्रू</string>
+  <string name="language_croatian">क्रोएशियाई</string>
+  <string name="language_hungarian">हंगेरी</string>
+  <string name="language_lithuanian">लिथुआनियाई</string>
+  <string name="language_dutch">डच</string>
+  <string name="language_polish">पोलिश</string>
+  <string name="language_portuguese">पुर्तगाली</string>
+  <string name="language_swedish">स्वीडिश</string>
+  <string name="language_norwegian">नार्वेजियन</string>
+  <string name="language_turkish">तुर्की</string>
+  <string name="language_tagalog">टेगलॉग</string>
+  <string name="language_tamil">तमिल</string>
+  <string name="language_turkmen">तुर्कमेन</string>
+  <string name="language_danish">डैनिश</string>
+  <string name="language_korean">कोरियाई</string>
+  <string name="language_swahili">स्वाहिली</string>
+  <string name="language_macedonian">मैसिडोनियाई</string>
+  <string name="language_occitan">ऑसीटान</string>
+  <string name="language_ukrainian">यूक्रेनियाई</string>
+  <string name="language_sanskrit">संस्कृत</string>
+  <string name="language_belarusian">बेलारूसी</string>
+  <string name="language_afrikaans">अफ्रीकी</string>
+  <string name="language_scottish_gaelic">स्कॉटिश गेलिक</string>
+  <string name="language_icelandic">आइसलैंडिक</string>
+  <string name="language_welsh">वेल्श</string>
+  <string name="language_irish">आयरिश</string>
+  <string name="language_asturian">Asturian</string>
+  <string name="language_definition">परिभाषा</string>
+  <string name="load_dictionary_button">अधिक</string>
+  <plurals name="open_dictionary_drawer">
+    <item quantity="one"><![CDATA[एक सक्रिय भाषा । < a href = "#" > बदल... </a>]]></item>
+    <item quantity="other"><![CDATA[एक सक्रिय भाषा । < a href = "#" > बदल... </a>]]></item>
+  </plurals>
 </resources>

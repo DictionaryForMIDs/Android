@@ -11,15 +11,14 @@
 		here, it will appear on the about screen; leave empty if you don't
 		want to be mentioned
 	-->
-  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">Ozzy
-https://github.com/TheCodeRunsMe</string>
-  <string name="app_name">MIDlerİçinSözlük</string>
+  <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned">Kullanıcı Arayüzü Çeviri Dili</string>
+  <string name="app_name">DictionaryForMIDS</string>
   <string name="no_files">Hiçbir dosya bulunamadı.</string>
   <string name="to_top">/ (Başa)</string>
   <string name="to_upper_level">.. (yukarı)</string>
   <string name="to_sdcard">/sdkart</string>
   <string name="title_please_wait">Lütfen Bekleyin</string>
-  <string name="msg_searching">Arıyor...</string>
+  <string name="msg_searching">Arıyor&#8230;</string>
   <string name="copy_all">Hepsini kopyala</string>
   <string name="copy_word">Kopyala: %1$s</string>
   <string name="not_found">bulunamadı</string>
@@ -28,7 +27,7 @@ https://github.com/TheCodeRunsMe</string>
   <string name="starred_words_current_dictionary">Geçerli: %1$d</string>
   <string name="starred_words_all_dictionaries">Hepsi: %1$d</string>
   <string name="no_recent_dictionaries">Yüklenmiş sözlük bulunamadı.\n\nYüklemek için buraya tıklayın.</string>
-  <string name="loading_download_dictionaries">Lütfen bekleyin.\n\nMevcut sözlükleri yüklüyor...</string>
+  <string name="loading_download_dictionaries">Lütfen bekleyin.\n\nMevcut sözlükleri yüklüyor&#8230;</string>
   <string name="no_download_dictionaries">Üzgünüz, şu anda indirilebilecek sözlük bulunmamakta.</string>
   <string name="msg_error_downloading_available_dictionaries">Mevcut sözlüklerin listesini indirirken bir sorun oldu.\n\n\nTekrar denemek için buraya tıklayın.\n\n\nAyrıntılar:\n%1$s</string>
   <string name="msg_error_dictionary_not_found">%1$d kodlu sözlük şu anda mevcut değil.</string>
@@ -57,7 +56,7 @@ https://github.com/TheCodeRunsMe</string>
   <string name="msg_successfully_installed_dictionary">Sözlük başarıyla yüklendi.</string>
   <string name="msg_installation_complete">Kurulum tamam</string>
   <string name="title_installation_status">Yükleme durumu</string>
-  <string name="msg_installing_dictionary">Sözlük yükleniyor...</string>
+  <string name="msg_installing_dictionary">Sözlük yükleniyor&#8230;</string>
   <string name="msg_installation_aborted">Yüklemeyi iptal ettiniz.</string>
   <string name="msg_installation_status">Durum: %%%1$.2f</string>
   <string name="msg_compressed_entry_not_found">\"%1$s\" arşivinde, \"%2$s\" ile eşleşen öğe yok</string>
@@ -66,7 +65,7 @@ https://github.com/TheCodeRunsMe</string>
   <string name="unit_mega_byte">MB</string>
   <string name="unit_giga_byte">GB</string>
   <string name="file_size">%1$.2f %2$s</string>
-  <string name="results_found_maximum">Sonuç sayısı: %1$d (maksimum)</string>
+  <string name="results_found_maximum">Sonuç sayısı: %1$d (maksimum).</string>
   <string name="results_found_cancel">İptal etmeden önce %1$d sonuç bulundu.</string>
   <string name="results_found_timeout">Zaman aşımından önce %1$d sonuç bulundu.</string>
   <string name="results_found">%1$d sonuç bulundu.</string>
@@ -115,9 +114,9 @@ https://github.com/TheCodeRunsMe</string>
   <string name="msg_load_dictionary_first">Lütfen önce bir sözlük yükleyin.</string>
   <string name="msg_reload_dictionary">Lütfen sözlüğü yeniden yükleyin.</string>
   <string name="msg_exception">İstisna:\n%1$s</string>
-  <string name="msg_restart_app_after_settings_changed">Ayarların etkinleşmesi için uygulamayı yeniden başlatın.</string>
+  <string name="msg_restart_app_after_settings_changed">Ayarların etkinleşmesi için uygulamayı yeniden başlatın Lutfen.</string>
   <string name="button_ok">Tamam</string>
-  <string name="button_cancel">İptal</string>
+  <string name="button_cancel">Vazgeç</string>
   <string name="button_do_not_show_again">Tekrar gösterme</string>
   <string name="button_exit">Çık</string>
   <string name="msg_download_dictionaries">Sözlük indirme 4 adım içerir (bu kısım Astro veya Amaze gibi bir dosya yöneticisini yüklü olduğunu varsayar)\n\n1.Bu diyalog kapandıktan sonra açılan siteden bir sözlük indirin. Not: Sadece 2.4.4 üstü sürümler destekleniyor. \n\n2.Zip arşivini SD-kartınıza çıkartın(Amaze veya Astro\'yu kullanarak)\n\n3.İsteğe bağlı: Daha hızlı arama için jar arşivini de SD-kartınıza çıkartın.\n\n4. Bir önceki diyalogtan çıkarttığınız sözlüğü seçin\n\nAlternatif olarak, kişisel bilgisayarınızı kullanarak sözlüğü indirip SD-kartınıza çıkartabilirsiniz.</string>
@@ -141,7 +140,7 @@ https://github.com/TheCodeRunsMe</string>
   <string name="title_format_translation_direction">%1$s\t→\t%2$s</string>
   <string name="title_load_dictionary_first">Lütfen önce sözlük yükleyin.</string>
   <string name="title_about_heading">Java uygulaması DictonaryForMIDs</string>
-  <string name="title_about_copyright_owner">Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) ve diğer katkıcılar tarafından telif hakkı.</string>
+  <string name="title_about_copyright_owner">Gert Nuber (dict@kugihan.de), Achim Weimert (axw.dev@gmail.com) ve diğer katılımcılar tarafından tüm hakları saklıdır.</string>
   <string name="attribute_url">http://dictionarymid.sourceforge.net/android.html</string>
   <string name="attribute_dictionary_list_url">http://dictionarymid.sourceforge.net/ota.php?p=%1$d&amp;v=%2$s</string>
   <string name="attribute_dictionaries_url">http://dictionarymid.sourceforge.net/dict.html</string>
@@ -175,10 +174,10 @@ https://github.com/TheCodeRunsMe</string>
   <string name="tab_load_download">İndir</string>
   <string name="title_activity_about">Hakkında Ekranı</string>
   <string name="title_activity_help">Yardım Ekranı</string>
-  <string name="title_activity_choose_dictionary">Sözlük seç</string>
-  <string name="title_activity_file_list">Sözlük seç</string>
-  <string name="title_activity_dictionary_list">Sözlük seç</string>
-  <string name="title_activity_recent_list">Sözlük seç</string>
+  <string name="title_activity_choose_dictionary">Sözlüğü seç</string>
+  <string name="title_activity_file_list">Sözlüğü seç</string>
+  <string name="title_activity_dictionary_list">Sözlüğü seç</string>
+  <string name="title_activity_recent_list">Sözlüğü seç</string>
   <string name="title_activity_preferences">Tercihler</string>
   <string name="title_activity_install_dictionary">Sözlük yükle</string>
   <string name="title_recent_dictionary">%1$s: %2$s</string>
@@ -203,12 +202,12 @@ https://github.com/TheCodeRunsMe</string>
   <string name="summary_pref_ignore_font_style_unchecked">Sonuçlar sistem stili kullanarak görüntülenir.</string>
   <string name="language_english">İngilizce</string>
   <string name="language_esperanto">Esperantoca</string>
-  <string name="language_vietnamese">Vietnamca</string>
+  <string name="language_vietnamese">Vietnam Dili</string>
   <string name="language_chinese">Çince</string>
   <string name="language_japanese">Japonca</string>
   <string name="language_thai">Tayca</string>
   <string name="language_hindi">Hintçe</string>
-  <string name="language_indonesian">Endonezyaca</string>
+  <string name="language_indonesian">Endonezce</string>
   <string name="language_french">Fransızca</string>
   <string name="language_spanish">İspanyolca</string>
   <string name="language_german">Almanca</string>
@@ -219,7 +218,7 @@ https://github.com/TheCodeRunsMe</string>
   <string name="language_czech">Çekce</string>
   <string name="language_slovak">Slovakça</string>
   <string name="language_bulgarian">Bulgarca</string>
-  <string name="language_catalan">Katalanca</string>
+  <string name="language_catalan">Ispanyolca</string>
   <string name="language_persian">Farsça</string>
   <string name="language_finnish">Fince</string>
   <string name="language_greek">Yunanca</string>
@@ -251,9 +250,9 @@ https://github.com/TheCodeRunsMe</string>
   <string name="language_irish">İrlandaca</string>
   <string name="language_asturian">Asturyanca</string>
   <string name="language_definition">Tanım</string>
-  <string name="load_dictionary_button">Daha...</string>
+  <string name="load_dictionary_button">Daha Fazla&#8230;</string>
   <plurals name="open_dictionary_drawer">
-    <item quantity="one"><![CDATA[Bir aktif dil. <a href="#">Değiştir...</a>]]></item>
-    <item quantity="other"><![CDATA[%1$d aktif dil. <a href="#">Değiştir...</a>]]></item>
+    <item quantity="one"><![CDATA[Bir aktif dil. <a href="#">Seç...</a>]]></item>
+    <item quantity="other"><![CDATA[Bir aktif dil. <a href="#">Seç...</a>]]></item>
   </plurals>
 </resources>

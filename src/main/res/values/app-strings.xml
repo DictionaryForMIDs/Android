@@ -46,13 +46,16 @@
 	<string-array name="language_codes">
 		<item>@string/title_default_language_code</item>
         <item>العربية</item>
+		<item>Беларуская</item>
         <item>Български</item>
+		<item>বাংলা</item>
 		<item>Dansk</item>
         <item>Deutsch</item>
         <item>Ελληνικά</item>
 		<item>English</item>
 		<item>Español</item>
 		<item>Esperanto</item>
+		<item>نام محلی این زبان</item>
         <item>Français</item>
 		<item>Magyar</item>
 		<item>Italiano</item>
@@ -75,13 +78,16 @@
 	<string-array name="language_code_values">
 		<item></item>
         <item>ar-SA</item>
+		<item>be-BY</item>
         <item>bg-BG</item>
+		<item>bn-BD</item>
 		<item>da-DK</item>
         <item>de-DE</item>
         <item>el-GR</item>
 		<item>en</item>
 		<item>es-ES</item>
 		<item>eo</item>
+		<item>fa-IR</item>
         <item>fr-FR</item>
 		<item>hu-HU</item>
 		<item>it</item>

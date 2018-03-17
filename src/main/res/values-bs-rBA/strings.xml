@@ -10,9 +10,16 @@
 		here, it will appear on the about screen; leave empty if you don't
 		want to be mentioned
 	-->
+  <string name="starred_words_all_dictionaries">Sve: %1$d</string>
+  <string name="file_size">%1$.2f%2$s</string>
+  <string name="menu_help">Pomoć</string>
   <!--
 		specifies a translation direction, e.g. English -> German; if this
 		language is right-to-left you may want to swap %1$s and %2$s as well
 		as replace &#8594; (right-arrow) with &#8592; (left-arrow)
 	-->
+  <string name="hint_filter">Filter</string>
+  <string name="language_swedish">Švedski</string>
+  <string name="language_norwegian">Norveški</string>
+  <string name="language_ukrainian">Ukrajinski</string>
 </resources>

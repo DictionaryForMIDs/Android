@@ -13,8 +13,8 @@
 	-->
   <string name="title_user_interface_translator" comment="The name/e-mail/website of the translator (that's probably you), it will appear on the about screen; leave empty if you don't want to be mentioned"> </string>
   <string name="app_name">DictionaryForMIDs</string>
-  <string name="no_files">Nem találhatók fájlok.</string>
-  <string name="to_top">/ (fel)</string>
+  <string name="no_files">Nem található fájlok.</string>
+  <string name="to_top">/ (tetejére)</string>
   <string name="to_upper_level">.. (feljebb)</string>
   <string name="to_sdcard">/sdcard</string>
   <string name="title_please_wait">Kérem várjon</string>
@@ -235,6 +235,18 @@
   <string name="language_danish">dán</string>
   <string name="language_korean">koreai</string>
   <string name="language_swahili">szuahéli</string>
+  <string name="language_macedonian">Macedón</string>
+  <string name="language_occitan">Okszitán</string>
+  <string name="language_ukrainian">Ukrán</string>
+  <string name="language_sanskrit">Szanszkrit</string>
+  <string name="language_belarusian">Belorusz</string>
+  <string name="language_afrikaans">Búr</string>
+  <string name="language_scottish_gaelic">Skót Gael</string>
+  <string name="language_icelandic">Izlandi</string>
+  <string name="language_welsh">Walesi</string>
+  <string name="language_irish">Ír</string>
+  <string name="language_asturian">Asztúriai</string>
+  <string name="language_definition">Definíció</string>
   <string name="load_dictionary_button">Továbbiak&#8230;</string>
   <plurals name="open_dictionary_drawer">
     <item quantity="one"><![CDATA[Aktív nyelv. <a href="#">Megváltoztatás…</a>]]></item>
